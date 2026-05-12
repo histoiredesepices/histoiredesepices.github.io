@@ -39,8 +39,11 @@ function waUrl(phone, msg) {
 function imgFallback(img, initial) {
     img.loading = 'lazy';
     img.onerror = function () {
+        const isMenuItem = this.classList.contains('menu-item__img');
         const div = Object.assign(document.createElement('div'), {
-            className: 'img-placeholder',
+            className: isMenuItem
+                ? 'menu-item__img menu-item__img--placeholder'
+                : 'img-placeholder',
             textContent: (initial || '?')[0].toUpperCase(),
         });
         div.setAttribute('aria-hidden', 'true');
@@ -157,13 +160,14 @@ function renderFeatures() {
 }
 
 // ─── Menu
-function buildDishCard(dish) {
+function buildMenuItem(dish) {
     const name = t(dish.name);
     const desc = t(dish.description);
     const isVeg = dish.tags?.includes('vegetarian') || dish.tags?.includes('vegan');
     const isHalal = dish.tags?.includes('halal');
     const u = C.ui_strings;
 
+    // Badges row
     let badges = '';
     if (dish.is_signature)
         badges += `<span class="badge badge--sig">${esc(t(u.badges.signature))}</span>`;
@@ -171,48 +175,44 @@ function buildDishCard(dish) {
     if (isVeg)
         badges += `<span class="badge badge--veg" title="${esc(t(u.badges.vegetarian))}">🌱</span>`;
     if (isHalal && !isVeg) badges += `<span class="badge badge--hal" title="Halal">H</span>`;
-
     const spice = clamp(dish.spice_level ?? 0, 0, 3);
-    const spiceHtml =
-        spice > 0
-            ? `<div class="dish-spice" aria-label="${esc(t(u.labels.spice_level))}: ${spice}/3">${'🌶'.repeat(spice)}</div>`
-            : '';
+    if (spice > 0) badges += `<span class="menu-item__spice">${'🌶'.repeat(spice)}</span>`;
 
-    let meta = '';
-    if (C.settings.show_prices && dish.price_eur != null)
-        meta += `<span class="dish-meta-item">${dish.price_eur.toFixed(2)}&thinsp;€</span>`;
-    if (C.settings.show_calories && dish.calories_kcal != null)
-        meta += `<span class="dish-meta-item">${dish.calories_kcal}&thinsp;${esc(t(u.labels.calories))}</span>`;
-    if (C.settings.show_allergens && dish.allergens?.length) {
-        const labels = dish.allergens
-            .map((a) => {
-                const al = u.allergens[a];
-                return al ? esc(t(al)) : `<code>${esc(a)}</code>`;
-            })
-            .join(', ');
-        meta += `<span class="dish-meta-item">${esc(t(u.labels.contains_allergens))}: ${labels}</span>`;
+    // Price block
+    let priceHtml = '';
+    if (C.settings.show_prices && dish.price_eur != null) {
+        const disc = dish.discount_percent;
+        if (disc) {
+            const discounted = (dish.price_eur * (1 - disc / 100)).toFixed(2);
+            priceHtml = `
+            <div class="menu-item__price">
+              <span class="price-original">${dish.price_eur.toFixed(2)}&thinsp;€</span>
+              <span class="price-current">${discounted}&thinsp;€</span>
+              <span class="price-badge">-${disc}%</span>
+            </div>`;
+        } else {
+            priceHtml = `<div class="menu-item__price"><span class="price-current">${dish.price_eur.toFixed(2)}&thinsp;€</span></div>`;
+        }
     }
 
     const imgHtml = dish.image
-        ? `<img data-src="${esc(dish.image)}" alt="${esc(t(dish.image_alt))}" class="dish-img" loading="lazy">`
-        : `<div class="img-placeholder" aria-hidden="true">${esc(name[0] || '?')}</div>`;
-
-    const cta = lang === 'fr' ? 'Demander un devis' : 'Request a quote';
+        ? `<img data-src="${esc(dish.image)}" alt="${esc(t(dish.image_alt))}" class="menu-item__img" loading="lazy">`
+        : `<div class="menu-item__img menu-item__img--placeholder" aria-hidden="true">${esc(name[0] || '?')}</div>`;
 
     return `
-    <article class="dish-card" data-category="${esc(dish.category)}" id="dish-${esc(dish.id)}">
-      <div class="dish-card__img">${imgHtml}</div>
-      <div class="dish-card__body">
-        <div class="dish-card__header">
-          <h3 class="dish-card__name">${esc(name)}</h3>
-          ${badges ? `<div class="dish-card__badges" aria-label="Badges">${badges}</div>` : ''}
+    <div class="menu-item" id="dish-${esc(dish.id)}">
+      ${imgHtml}
+      <div class="menu-item__body">
+        <div class="menu-item__top">
+          <div class="menu-item__name-row">
+            <h3 class="menu-item__name">${esc(name)}</h3>
+            ${badges ? `<div class="menu-item__badges">${badges}</div>` : ''}
+          </div>
+          ${priceHtml}
         </div>
-        <p class="dish-card__desc">${esc(desc)}</p>
-        ${spiceHtml}
-        ${meta ? `<div class="dish-card__meta">${meta}</div>` : ''}
-        <a href="#contact" class="dish-card__cta">${esc(cta)}</a>
+        <p class="menu-item__desc">${esc(desc)}</p>
       </div>
-    </article>`;
+    </div>`;
 }
 
 function renderMenu() {
@@ -231,39 +231,63 @@ function renderMenu() {
         allergenLink.lastChild.textContent = ' ' + t(m.allergen_button.label);
     }
 
-    // Category chips
+    const cats = m.categories || [];
+    const available = (m.dishes || []).filter((d) => d.is_available !== false);
+
+    // ── Category tabs (icon + label)
     const filters = $('menu-filters');
     if (filters) {
-        filters.innerHTML = (m.categories || [])
+        filters.innerHTML = cats
             .map(
                 (cat) => `
-      <button class="chip${cat.id === activeCategory ? ' chip--active' : ''}"
-              data-cat="${esc(cat.id)}"
-              aria-pressed="${cat.id === activeCategory}">${esc(t(cat.label))}</button>`,
+      <button class="menu-tab${cat.id === activeCategory ? ' menu-tab--active' : ''}"
+              data-cat="${esc(cat.id)}" aria-pressed="${cat.id === activeCategory}">
+        <span class="material-symbols-outlined menu-tab__icon">${esc(cat.icon || 'restaurant_menu')}</span>
+        <span class="menu-tab__label">${esc(t(cat.label))}</span>
+      </button>`,
             )
             .join('');
-
-        filters.querySelectorAll('.chip').forEach((btn) => {
+        filters.querySelectorAll('.menu-tab').forEach((btn) => {
             btn.addEventListener('click', () => filterMenu(btn.dataset.cat));
         });
     }
 
-    // Dishes
+    // ── Grouped dish sections
     const grid = $('menu-grid');
     if (!grid) return;
 
-    const available = (m.dishes || []).filter((d) => d.is_available !== false);
     if (!available.length) {
-        grid.innerHTML = `<p class="col-span-2 text-center text-on-muted py-8">${esc(t(u.labels.menu_empty))}</p>`;
+        grid.innerHTML = `<p class="text-center text-on-muted py-8">${esc(t(u.labels.menu_empty))}</p>`;
         return;
     }
 
-    grid.innerHTML = available.map(buildDishCard).join('');
+    // Build one section per non-"all" category
+    const dataCats = cats.filter((c) => c.id !== 'all');
+    grid.innerHTML = dataCats
+        .map((cat) => {
+            const dishes = available.filter((d) => d.category === cat.id);
+            if (!dishes.length) return '';
+            return `
+      <div class="menu-group" data-cat-group="${esc(cat.id)}">
+        <div class="menu-section-header" aria-hidden="true">
+          <span class="menu-section-line"></span>
+          <div class="menu-section-title">
+            <span class="material-symbols-outlined">${esc(cat.icon || 'restaurant_menu')}</span>
+            <span>${esc(t(cat.label))}</span>
+          </div>
+          <span class="menu-section-line"></span>
+        </div>
+        <div class="menu-items-grid">
+          ${dishes.map(buildMenuItem).join('')}
+        </div>
+      </div>`;
+        })
+        .join('');
 
-    // Add onerror handlers to lazily-loaded images
+    // Lazy-load images
     grid.querySelectorAll('img[data-src]').forEach((img) => {
         img.src = img.dataset.src;
-        const nameEl = img.closest('.dish-card')?.querySelector('.dish-card__name');
+        const nameEl = img.closest('.menu-item')?.querySelector('.menu-item__name');
         imgFallback(img, nameEl?.textContent);
     });
 
@@ -273,20 +297,18 @@ function renderMenu() {
 function filterMenu(catId, animate = true) {
     activeCategory = catId;
 
-    // Update chip states
-    document.querySelectorAll('.chip').forEach((btn) => {
+    // Update tab states
+    document.querySelectorAll('.menu-tab').forEach((btn) => {
         const active = btn.dataset.cat === catId;
-        btn.classList.toggle('chip--active', active);
+        btn.classList.toggle('menu-tab--active', active);
         btn.setAttribute('aria-pressed', active);
     });
 
-    // Show/hide cards
-    document.querySelectorAll('.dish-card').forEach((card) => {
-        const match = catId === 'all' || card.dataset.category === catId;
-        if (animate) {
-            card.style.transition = 'opacity 0.2s, transform 0.2s';
-        }
-        card.classList.toggle('dish-card--hidden', !match);
+    // Show/hide category groups
+    document.querySelectorAll('.menu-group').forEach((group) => {
+        const match = catId === 'all' || group.dataset.catGroup === catId;
+        if (animate) group.style.transition = 'opacity 0.25s';
+        group.classList.toggle('menu-group--hidden', !match);
     });
 }
 
@@ -536,7 +558,7 @@ function initEventListeners() {
         });
     }
 
-    // Smooth scroll with header offset
+    // Smooth scroll with header offset (uses scroll-margin-top set in CSS)
     document.addEventListener('click', (e) => {
         const link = e.target.closest('a[href^="#"]');
         if (!link) return;
@@ -544,9 +566,7 @@ function initEventListeners() {
         const target = document.getElementById(id);
         if (!target) return;
         e.preventDefault();
-        const headerH = $('site-header')?.offsetHeight || 64;
-        const top = target.getBoundingClientRect().top + window.scrollY - headerH - 8;
-        window.scrollTo({ top, behavior: 'smooth' });
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
     // Scroll reveal (IntersectionObserver)

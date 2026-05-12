@@ -36,6 +36,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -43,6 +44,7 @@ body {
     background-color: #ffffff;
     color: var(--clr-on-surf);
     -webkit-font-smoothing: antialiased;
+    overscroll-behavior-y: none;
 }
 
 /* ─── Skip link ────────────────────────────────────────────────────────────── */
@@ -381,141 +383,276 @@ body {
     font-family: 'Inter', system-ui, sans-serif;
     font-size: 0.8rem;
     font-weight: 600;
-    padding: 0.45rem 1rem;
+    padding: 0.35rem 0.9rem;
     border-radius: var(--radius-pill);
-    border: 1.5px solid var(--clr-outline-light);
+    border: 1px solid var(--clr-outline);
     background: transparent;
     color: var(--clr-on-muted);
     cursor: pointer;
     transition:
-        background 0.15s var(--ease),
+        border-color 0.15s var(--ease),
         color 0.15s var(--ease),
-        border-color 0.15s var(--ease);
+        background 0.15s var(--ease);
     white-space: nowrap;
-}
-.chip:hover {
-    border-color: var(--clr-primary);
-    color: var(--clr-primary);
 }
 .chip--active {
     background: var(--clr-saffron);
     color: #fff;
     border-color: var(--clr-saffron);
 }
-.chip--active:hover {
-    background: #b8913d;
-    border-color: #b8913d;
+
+/* ─── Menu tabs (icon + label) ─────────────────────────────────────────────── */
+.menu-tabs-row {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
 }
 
-/* ─── Dish cards ───────────────────────────────────────────────────────────── */
+.menu-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.6rem 1rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition:
+        color 0.18s var(--ease),
+        border-color 0.18s var(--ease);
+    border-radius: 0;
+}
+.menu-tab__icon {
+    font-size: 1.6rem;
+    color: var(--clr-on-muted);
+    transition: color 0.18s var(--ease);
+}
+.menu-tab__label {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--clr-on-muted);
+    transition: color 0.18s var(--ease);
+}
+.menu-tab:hover .menu-tab__icon,
+.menu-tab:hover .menu-tab__label {
+    color: var(--clr-primary);
+}
+
+.menu-tab--active {
+    border-bottom-color: var(--clr-primary);
+}
+.menu-tab--active .menu-tab__icon,
+.menu-tab--active .menu-tab__label {
+    color: var(--clr-primary);
+    font-weight: 700;
+}
+
+/* ─── Menu section header  (── [icon] Label ──) ─────────────────────────────── */
+.menu-section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2.5rem 0 1.5rem;
+}
+.menu-section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--clr-primary);
+    opacity: 0.18;
+    border-radius: 1px;
+}
+.menu-section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+    color: var(--clr-primary);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+.menu-section-title .material-symbols-outlined {
+    font-size: 1.3rem;
+    color: var(--clr-primary);
+}
+
+/* ─── Menu item (horizontal: circle-img | name+desc | price) ────────────────── */
+.menu-items-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+}
+@media (max-width: 767px) {
+    .menu-items-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.menu-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem 1rem 1rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+.menu-item:last-child,
+.menu-item:nth-last-child(2):nth-child(odd) {
+    border-bottom: none;
+}
+
+.menu-item__img {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--clr-surf-lo);
+}
+.menu-item__img--placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 1.6rem;
+    color: var(--clr-on-muted);
+    border: 1px solid var(--clr-outline);
+}
+
+.menu-item__body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.menu-item__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.menu-item__name-row {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    min-width: 0;
+}
+
+.menu-item__name {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--clr-on-surf);
+    line-height: 1.3;
+    margin: 0;
+}
+
+.menu-item__badges {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    flex-wrap: wrap;
+}
+.menu-item__spice {
+    font-size: 0.65rem;
+}
+
+.menu-item__desc {
+    font-size: 0.78rem;
+    color: var(--clr-on-muted);
+    line-height: 1.45;
+    margin: 0;
+}
+
+/* ─── Price display ─────────────────────────────────────────────────────────── */
+.menu-item__price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.15rem;
+    flex-shrink: 0;
+}
+.price-current {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--clr-primary);
+    white-space: nowrap;
+}
+.price-original {
+    font-size: 0.72rem;
+    font-weight: 400;
+    color: var(--clr-on-muted);
+    text-decoration: line-through;
+    white-space: nowrap;
+}
+.price-badge {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    background: var(--clr-primary);
+    color: #fff;
+    padding: 0.1rem 0.35rem;
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
+}
+
+/* ─── Hidden group ──────────────────────────────────────────────────────────── */
+.menu-group--hidden {
+    display: none;
+}
+
+/* ─── Dish cards (legacy, kept for compat) ──────────────────────────────────── */
 .dish-card {
     display: flex;
     gap: 1rem;
     background: #fff;
-    border: 1px solid #ebebeb;
     border-radius: var(--radius-card);
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-    overflow: hidden;
-    transition:
-        box-shadow 0.2s var(--ease),
-        border-color 0.2s var(--ease);
-}
-.dish-card:hover {
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
-    border-color: var(--clr-saffron);
+    border: 1px solid var(--clr-outline);
+    padding: 1rem;
 }
 .dish-card--hidden {
     display: none;
 }
-
 .dish-card__img {
     flex-shrink: 0;
     width: 120px;
     min-height: 120px;
 }
-@media (min-width: 768px) {
-    .dish-card__img {
-        width: 140px;
-    }
-}
-
-.dish-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
 .dish-card__body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 0.875rem 0.875rem 0.875rem 0;
     gap: 0.35rem;
 }
-
-.dish-card__header {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-}
-
 .dish-card__name {
     font-family: 'EB Garamond', Georgia, serif;
     font-size: 1.1rem;
     font-weight: 600;
-    color: var(--clr-primary);
-    flex: 1;
-    line-height: 1.3;
+    color: var(--clr-on-surf);
 }
-
-.dish-card__badges {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    flex-wrap: wrap;
-}
-
 .dish-card__desc {
     font-size: 0.8rem;
     color: var(--clr-on-muted);
     line-height: 1.5;
-    flex: 1;
 }
-
-.dish-spice {
-    font-size: 0.75rem;
-    letter-spacing: -0.05em;
-}
-
-.dish-card__meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    font-size: 0.7rem;
-    color: var(--clr-on-muted);
-}
-.dish-meta-item {
-    background: #f3f3f3;
-    padding: 0.15rem 0.4rem;
-    border-radius: 0.25rem;
-}
-
 .dish-card__cta {
     font-size: 0.75rem;
     font-weight: 600;
     color: var(--clr-primary);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    transition: color 0.15s var(--ease);
+    text-decoration: none;
     align-self: flex-start;
     margin-top: auto;
 }
-.dish-card__cta:hover {
-    color: var(--clr-primary-hover);
-}
-
 /* ─── Badges ───────────────────────────────────────────────────────────────── */
 .badge {
     font-family: 'Inter', system-ui, sans-serif;
@@ -766,6 +903,7 @@ body {
         transform 0.15s var(--ease),
         box-shadow 0.15s var(--ease);
     animation: fab-pulse 2s infinite;
+    will-change: transform;
 }
 .fab-wa:hover {
     transform: scale(1.08);
@@ -797,17 +935,24 @@ body {
     display: none;
 }
 
+/* ─── Scroll offset for sticky header ──────────────────────────────────────── */
+section[id] {
+    scroll-margin-top: 72px;
+}
+
 /* ─── Scroll reveal ────────────────────────────────────────────────────────── */
 .section-reveal {
     opacity: 0;
     transform: translateY(12px);
+    will-change: transform, opacity;
     transition:
-        opacity 0.45s var(--ease),
-        transform 0.45s var(--ease);
+        opacity 0.5s var(--ease),
+        transform 0.5s var(--ease);
 }
 .section-reveal.revealed {
     opacity: 1;
     transform: translateY(0);
+    will-change: auto;
 }
 
 /* ─── Reduced motion ───────────────────────────────────────────────────────── */
