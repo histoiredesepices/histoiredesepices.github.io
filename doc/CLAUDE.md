@@ -10,23 +10,24 @@
 2. **Static & dependency-light.** Pure HTML + Tailwind (CDN) + vanilla JavaScript. No build step, no npm, no framework. GitHub Pages serves it as-is.
 3. **Bilingual, French-first.** French is the default. English is a toggle. Every user-facing string in `content.json` has both `fr` and `en` keys.
 4. **Design is locked.** The visual system (colors, typography, spacing, components) is defined in `DESIGN.md` and implemented in the HTML/CSS. Content edits must never break the design.
-5. **Resilient to bad input.** If the owner deletes a field, removes a section, or uploads a broken image, the site degrades gracefully — it does not crash.
-6. **Mobile-first.** Most diners will browse on a phone. Test every layout at 360px before 1440px.
+5. **60 / 30 / 10 colour allocation.** White is dominant (60% — all content sections). Burgundy is structural (30% — nav, features strip, heritage, footer). Saffron is accent-only (10% — dividers, hover underlines, active chips, focus rings, portrait ring). Never expand any role beyond its proportion.
+6. **Resilient to bad input.** If the owner deletes a field, removes a section, or uploads a broken image, the site degrades gracefully — it does not crash.
+7. **Mobile-first.** Most diners will browse on a phone. Test every layout at 360px before 1440px.
 
 ---
 
 ## 2. Tech Stack
 
-| Layer       | Choice                                  | Why                                                                  |
-| ----------- | --------------------------------------- | -------------------------------------------------------------------- |
-| Markup      | Semantic HTML5                          | Accessible, SEO-friendly, no framework lock-in.                      |
-| Styling     | Tailwind CSS (via CDN)                  | Already used in the prototype; zero build step.                      |
-| Behaviour   | Vanilla JavaScript (single `app.js`)    | No bundler. Loads `content.json`, hydrates the DOM, handles toggles. |
-| Data        | `content.json`                          | Single source of truth for all content.                              |
-| Icons       | Material Symbols Outlined (Google CDN)  | Consistent with the existing prototype.                              |
-| Fonts       | EB Garamond + Inter (Google Fonts CDN)  | Defined in `DESIGN.md`.                                              |
-| Hosting     | GitHub Pages (static)                   | Free, simple, version-controlled edits via GitHub web UI.            |
-| Deployment  | Push to `main` → auto-deploys           | No CI needed.                                                        |
+| Layer      | Choice                                 | Why                                                                  |
+| ---------- | -------------------------------------- | -------------------------------------------------------------------- |
+| Markup     | Semantic HTML5                         | Accessible, SEO-friendly, no framework lock-in.                      |
+| Styling    | Tailwind CSS (via CDN)                 | Already used in the prototype; zero build step.                      |
+| Behaviour  | Vanilla JavaScript (single `app.js`)   | No bundler. Loads `content.json`, hydrates the DOM, handles toggles. |
+| Data       | `content.json`                         | Single source of truth for all content.                              |
+| Icons      | Material Symbols Outlined (Google CDN) | Consistent with the existing prototype.                              |
+| Fonts      | EB Garamond + Inter (Google Fonts CDN) | Defined in `DESIGN.md`.                                              |
+| Hosting    | GitHub Pages (static)                  | Free, simple, version-controlled edits via GitHub web UI.            |
+| Deployment | Push to `main` → auto-deploys          | No CI needed.                                                        |
 
 **Do NOT add:** React, Vue, Astro, build tools, package.json, npm scripts, TypeScript. Keep it boring and editable.
 
@@ -81,6 +82,7 @@ This is the **only file the owner ever edits**. Structure it so every piece of c
 ### 4.2 Section-by-section
 
 #### `settings` — Global behaviour flags
+
 ```json
 "settings": {
   "default_language": "fr",
@@ -101,6 +103,7 @@ This is the **only file the owner ever edits**. Structure it so every piece of c
 Each flag is a simple boolean the owner can flip. The site re-renders accordingly. `show_calories` and `show_allergens` are **per-site toggles** — if `true`, the dish cards reveal that data; if `false`, the data is hidden even when present in dish entries.
 
 #### `branding`
+
 ```json
 "branding": {
   "name": "L'Histoire des Épices",
@@ -114,6 +117,7 @@ Each flag is a simple boolean the owner can flip. The site re-renders accordingl
 ```
 
 #### `navigation`
+
 ```json
 "navigation": {
   "items": [
@@ -128,6 +132,7 @@ Each flag is a simple boolean the owner can flip. The site re-renders accordingl
 Each `id` must match a section `id` in `index.html` so anchor scroll works.
 
 #### `hero`
+
 ```json
 "hero": {
   "eyebrow": {
@@ -162,6 +167,7 @@ Each `id` must match a section `id` in `index.html` so anchor scroll works.
 `headline` is an array of strings rendered as separate lines. `headline_italic_part` is the index (0-based) of which line is italicised — keeps the editorial feel.
 
 #### `features` — The 3 quick-info icons under the hero
+
 ```json
 "features": {
   "items": [
@@ -187,6 +193,7 @@ Each `id` must match a section `id` in `index.html` so anchor scroll works.
 `icon` is a Material Symbols name — the EDITING.md should link to the picker: https://fonts.google.com/icons.
 
 #### `menu` — The heart of the site
+
 ```json
 "menu": {
   "section_title": { "fr": "Notre Carte Gourmande", "en": "Our Menu" },
@@ -234,25 +241,26 @@ Each `id` must match a section `id` in `index.html` so anchor scroll works.
 
 **Dish field reference:**
 
-| Field           | Type                   | Purpose                                                                                                     |
-| --------------- | ---------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `id`            | string (kebab-case)    | Stable internal ID. Used for anchors, must be unique.                                                       |
-| `category`      | string                 | Must match a `categories[].id` exactly.                                                                     |
-| `name`          | `{fr, en}`             | Display name.                                                                                               |
-| `description`   | `{fr, en}`             | One short sentence.                                                                                         |
-| `image`         | string (path)          | Path under `assets/menu/`. If missing/broken → graceful placeholder.                                        |
-| `image_alt`     | `{fr, en}`             | Accessibility text.                                                                                         |
-| `tags`          | string[]               | Free-form tags: `vegetarian`, `vegan`, `halal`, `dairy_free`, `gluten_free`.                                |
-| `is_signature`  | boolean                | Shows a "Signature" badge.                                                                                  |
-| `is_new`        | boolean                | Shows a "Nouveau / New" badge.                                                                              |
-| `is_spicy`      | boolean                | Shows a flame icon.                                                                                         |
-| `is_available`  | boolean                | If false, dish is hidden from the menu. (Owner can hide seasonal items without deleting them.)              |
-| `price_eur`     | number \| null         | Shown only if `settings.show_prices === true`. `null` = price hidden / quote-based.                         |
-| `calories_kcal` | number \| null         | Shown only if `settings.show_calories === true`.                                                            |
-| `allergens`     | string[]               | Allergen keys (see `ui_strings.allergens`). Shown only if `settings.show_allergens === true`.               |
-| `spice_level`   | 0–3                    | 0 = mild, 3 = very spicy. Rendered as 0–3 flame icons.                                                      |
+| Field           | Type                | Purpose                                                                                        |
+| --------------- | ------------------- | ---------------------------------------------------------------------------------------------- |
+| `id`            | string (kebab-case) | Stable internal ID. Used for anchors, must be unique.                                          |
+| `category`      | string              | Must match a `categories[].id` exactly.                                                        |
+| `name`          | `{fr, en}`          | Display name.                                                                                  |
+| `description`   | `{fr, en}`          | One short sentence.                                                                            |
+| `image`         | string (path)       | Path under `assets/menu/`. If missing/broken → graceful placeholder.                           |
+| `image_alt`     | `{fr, en}`          | Accessibility text.                                                                            |
+| `tags`          | string[]            | Free-form tags: `vegetarian`, `vegan`, `halal`, `dairy_free`, `gluten_free`.                   |
+| `is_signature`  | boolean             | Shows a "Signature" badge.                                                                     |
+| `is_new`        | boolean             | Shows a "Nouveau / New" badge.                                                                 |
+| `is_spicy`      | boolean             | Shows a flame icon.                                                                            |
+| `is_available`  | boolean             | If false, dish is hidden from the menu. (Owner can hide seasonal items without deleting them.) |
+| `price_eur`     | number \| null      | Shown only if `settings.show_prices === true`. `null` = price hidden / quote-based.            |
+| `calories_kcal` | number \| null      | Shown only if `settings.show_calories === true`.                                               |
+| `allergens`     | string[]            | Allergen keys (see `ui_strings.allergens`). Shown only if `settings.show_allergens === true`.  |
+| `spice_level`   | 0–3                 | 0 = mild, 3 = very spicy. Rendered as 0–3 flame icons.                                         |
 
 #### `heritage` — The story block (dark burgundy section)
+
 ```json
 "heritage": {
   "eyebrow": { "fr": "NOTRE HISTOIRE", "en": "OUR STORY" },
@@ -277,6 +285,7 @@ Each `id` must match a section `id` in `index.html` so anchor scroll works.
 ```
 
 #### `events`
+
 ```json
 "events": {
   "title": { "fr": "Événements Privés & Professionnels", "en": "Private & Professional Events" },
@@ -298,6 +307,7 @@ Each `id` must match a section `id` in `index.html` so anchor scroll works.
 ```
 
 #### `contact` — No form. WhatsApp + phone + socials only.
+
 ```json
 "contact": {
   "title": { "fr": "Prêt pour un voyage gustatif ?", "en": "Ready for a culinary journey?" },
@@ -340,6 +350,7 @@ Each `id` must match a section `id` in `index.html` so anchor scroll works.
 ```
 
 #### `footer`
+
 ```json
 "footer": {
   "tagline": {
@@ -359,6 +370,7 @@ Each `id` must match a section `id` in `index.html` so anchor scroll works.
 ```
 
 #### `seo` — Per-language SEO metadata
+
 ```json
 "seo": {
   "title": {
@@ -376,6 +388,7 @@ Each `id` must match a section `id` in `index.html` so anchor scroll works.
 ```
 
 #### `ui_strings` — Translatable micro-copy
+
 This is for labels the owner shouldn't have to know about: badge names, allergen names, accessibility labels.
 
 ```json
@@ -427,6 +440,7 @@ This is for labels the owner shouldn't have to know about: badge names, allergen
 ## 5. JavaScript Behaviour (`app.js`)
 
 ### 5.1 Boot sequence
+
 1. On `DOMContentLoaded`, `fetch('content.json')`.
 2. Read `localStorage.getItem('lang')`. If null, use `settings.default_language`. Store result.
 3. Apply `<html lang="fr|en">`.
@@ -447,24 +461,25 @@ This is for labels the owner shouldn't have to know about: badge names, allergen
 
 ### 5.3 Edge cases (mandatory handling)
 
-| Edge case                                    | Handling                                                                                       |
-| -------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `content.json` fails to load                 | Show fallback hero with `ui_strings.errors.content_load_failed` and a phone number from a safe in-page fallback. |
-| Dish has no image path                       | Render a textured beige placeholder with the dish initial.                                      |
-| Dish image 404s                              | Same placeholder via `onerror`.                                                                |
-| Translation key missing in one language      | Fall back to French. Log a `console.warn`.                                                     |
-| `dishes[]` is empty                          | Show empty-state message: "Le menu est en cours de mise à jour. Contactez-nous directement."   |
-| `categories` array changed but dish points to removed category | Treat the dish as `all` only.                                                |
-| `allergens` references an unknown key        | Render the raw key in monospace as a hint to the owner; do not crash.                          |
-| `spice_level` out of range                   | Clamp to 0–3.                                                                                  |
-| Hero image fails                             | Use a CSS gradient fallback only — never break the layout.                                     |
-| Phone number missing `+`                     | Strip non-digits, prefix `+`, build `tel:` and `wa.me/` links from the cleaned E.164.          |
-| User has reduced-motion preference           | Disable scroll animations and the WhatsApp button pulse.                                       |
-| User on slow connection                      | Lazy-load all `<img>` below the fold (`loading="lazy"`).                                       |
-| User scrolls before JS loads                 | HTML must include critical above-the-fold text inline as a no-JS fallback (see 5.4).            |
-| `localStorage` blocked (private mode)        | Fall back to in-memory state silently.                                                         |
+| Edge case                                                      | Handling                                                                                                         |
+| -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `content.json` fails to load                                   | Show fallback hero with `ui_strings.errors.content_load_failed` and a phone number from a safe in-page fallback. |
+| Dish has no image path                                         | Render a textured beige placeholder with the dish initial.                                                       |
+| Dish image 404s                                                | Same placeholder via `onerror`.                                                                                  |
+| Translation key missing in one language                        | Fall back to French. Log a `console.warn`.                                                                       |
+| `dishes[]` is empty                                            | Show empty-state message: "Le menu est en cours de mise à jour. Contactez-nous directement."                     |
+| `categories` array changed but dish points to removed category | Treat the dish as `all` only.                                                                                    |
+| `allergens` references an unknown key                          | Render the raw key in monospace as a hint to the owner; do not crash.                                            |
+| `spice_level` out of range                                     | Clamp to 0–3.                                                                                                    |
+| Hero image fails                                               | Use a CSS gradient fallback only — never break the layout.                                                       |
+| Phone number missing `+`                                       | Strip non-digits, prefix `+`, build `tel:` and `wa.me/` links from the cleaned E.164.                            |
+| User has reduced-motion preference                             | Disable scroll animations and the WhatsApp button pulse.                                                         |
+| User on slow connection                                        | Lazy-load all `<img>` below the fold (`loading="lazy"`).                                                         |
+| User scrolls before JS loads                                   | HTML must include critical above-the-fold text inline as a no-JS fallback (see 5.4).                             |
+| `localStorage` blocked (private mode)                          | Fall back to in-memory state silently.                                                                           |
 
 ### 5.4 No-JavaScript fallback
+
 The HTML shell should include the French hero headline, the brand name, the phone number, and a WhatsApp link as static markup so the page is usable even before JS hydrates (or if it fails entirely). The hydration script replaces these.
 
 ---
@@ -473,9 +488,14 @@ The HTML shell should include the French hero headline, the brand name, the phon
 
 Implements the layout shown in the reference screenshot. Sections in order:
 
-1. **Sticky nav** — brand wordmark left, anchor links centre, FR/EN toggle + WhatsApp pill right. Mobile: hamburger reveals nav links in a sheet.
+1. **Sticky nav** — Deep burgundy (`rgba(91,6,23,0.98)`) — a 30% structural element visible at every scroll position. Background set via CSS `#site-header` ID rule (not Tailwind class) to guarantee reliability on CDN Play.
+    - **Brand (left):** A saffron `★` mark (`<span class="nav-brand-mark">`) + brand name in `<span id="nav-brand-text">`. Two separate spans — `app.js` targets `nav-brand-text` so the decorative mark is never overwritten.
+    - **Nav links (centre-right):** Inter 0.66rem / 700 / UPPERCASE / `letter-spacing: 0.15em`. Rest state `rgba(255,255,255,0.52)`. Hover: white text + saffron 1.5px underline that slides in from the left via `::after` pseudo-element.
+    - **Controls (right):** Ghost pill language toggle (white → saffron on hover); WhatsApp pill; hamburger.
+    - **Bottom accent:** Gradient hairline `transparent → saffron → transparent` (10% detail).
+    - **Mobile sheet:** Same burgundy bg, UPPERCASE links with slide-indent hover.
 2. **Hero** — two-column on desktop, stacked on mobile. Eyebrow, two-line headline (second line italic in primary burgundy), subhead, two CTAs. Image right with a soft circular crop and ambient burgundy glow.
-3. **Features strip** — 3 icon + title + subtitle cells on a `surface-container-low` band. The third cell hosts the floating-WhatsApp green chip on desktop reference but the floating button is separate; this cell shows "Click & Collect".
+3. **Features strip** — A **30% burgundy section** (`#features { background: var(--clr-primary) }`). Three glass-effect cards (`rgba(255,255,255,0.07)` bg, `rgba(255,255,255,0.12)` border) holding icon + title + subtitle. Icons in saffron (10% accent); titles in white; subtitles in `rgba(255,255,255,0.65)`. Hover: card background lightens slightly, saffron border appears.
 4. **Menu** — section title centred with a thin decorative divider. Pill-style category filters. Two-column dish-card grid on desktop, single column on mobile. Cards: square image on the left, name + badges + description + "Demander un devis" link. Below the grid: rice footnote + allergens CTA.
 5. **Heritage** — dark `primary` background, two-column. Spice flat-lay image left with a small floating stat card. Eyebrow + headline + 2 paragraphs right. Mandala watermark behind, low opacity.
 6. **Events** — title, subtitle, four image cards in a row. Each card is a dark-overlay image with a label bottom-left.
@@ -520,18 +540,18 @@ Write this file as **plain, friendly French** (with an English version below). C
 1. **What is `content.json`?** It's the brain of your website. Every word, photo, and price is in here.
 2. **How to edit it.** Open it directly on GitHub.com → click the pencil icon → make your change → click "Commit changes". The website updates in 1–2 minutes.
 3. **The golden rules.**
-   - Always keep the quotes `"` around words.
-   - Always keep the commas `,` at the end of lines (except the last item in a list).
-   - Never delete a `{`, `}`, `[`, or `]`.
-   - Use https://jsonlint.com to check before saving if unsure.
+    - Always keep the quotes `"` around words.
+    - Always keep the commas `,` at the end of lines (except the last item in a list).
+    - Never delete a `{`, `}`, `[`, or `]`.
+    - Use https://jsonlint.com to check before saving if unsure.
 4. **Common tasks — step-by-step.**
-   - Add a new dish.
-   - Hide a dish without deleting it (`"is_available": false`).
-   - Change the WhatsApp number.
-   - Switch a feature on/off (calories, prices, allergens).
-   - Update the daily special (set `"is_signature": true` on the dish you want featured).
-   - Replace a photo: upload to `assets/menu/`, then change the `image` path.
-   - Translate a new dish into English.
+    - Add a new dish.
+    - Hide a dish without deleting it (`"is_available": false`).
+    - Change the WhatsApp number.
+    - Switch a feature on/off (calories, prices, allergens).
+    - Update the daily special (set `"is_signature": true` on the dish you want featured).
+    - Replace a photo: upload to `assets/menu/`, then change the `image` path.
+    - Translate a new dish into English.
 5. **Allergen and tag glossary** — table of every valid allergen and tag key with its French + English meaning.
 6. **What to do if something breaks.** Revert the last commit via the GitHub UI. Show the exact 3 clicks.
 7. **When to call the developer.** Anything outside `content.json`, broken layout, anything you don't recognise.
@@ -588,8 +608,10 @@ Before shipping, every item must pass:
 
 - Refer to `DESIGN.md` for every visual decision. Do not invent colours or fonts.
 - Refer to this `CLAUDE.md` for every behavioural and content-structure decision.
-- When in doubt about a design choice, **match the reference screenshot** in the repository.
+- **Enforce the 60/30/10 rule.** Before adding any new background colour, confirm which proportion it belongs to. Any new white/light area is 60%; any new burgundy block is 30%; any new saffron element is 10%.
+- **Nav background must be forced via CSS ID selector** (`#site-header { background: rgba(91,6,23,0.98) }`), not Tailwind class. The CDN Play opacity modifier (`bg-primary/95`) is unreliable with custom hex colours.
+- **Brand DOM split** — the `<a id="nav-brand">` must contain two children: `<span class="nav-brand-mark">` (static decorative mark) and `<span id="nav-brand-text">` (app.js target). Never collapse them into a single element or the mark disappears on re-render.
 - Write code that the owner could open and roughly read. Comments in French in `content.json` are welcome; comments in English in `app.js` are fine.
-- Keep `app.js` under ~400 lines. If it grows beyond that, the design is wrong, not the code.
+- `app.js` will realistically be 500–600 lines for a fully bilingual, 6-section site with construction mode and all edge-case handling. This is acceptable. Focus on legibility, not line count.
 - Validate `content.json` on load and log human-readable errors to the console (in English — for the developer, not the owner).
 - Ship the smallest thing that satisfies the acceptance checklist. Resist scope creep.
