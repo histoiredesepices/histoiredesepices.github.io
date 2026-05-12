@@ -327,7 +327,7 @@ body {
     transform: translateY(-50%);
     width: 35%;
     aspect-ratio: 1;
-    background-image: url('assets/mandala.svg');
+    background-image: url('../mandala.svg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;

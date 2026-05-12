@@ -38,10 +38,13 @@
 ```
 histoire-des-epices/
 ├── index.html              ← Page shell. Empty containers with data-* hooks.
-├── app.js                  ← Loads content.json, hydrates DOM, handles toggles.
-├── styles.css              ← Custom CSS beyond Tailwind (mandala bg, animations).
 ├── content.json            ← ⭐ THE ONLY FILE THE OWNER EDITS.
 ├── assets/
+│   ├── js/
+│   │   └── app.js          ← Loads content.json, hydrates DOM, handles toggles.
+│   ├── css/
+│   │   └── styles.css      ← Custom CSS beyond Tailwind (mandala bg, animations).
+│   ├── mandala.svg         ← Decorative watermark SVG.
 │   ├── logo.png
 │   ├── hero/
 │   ├── menu/               ← Dish photos. Filename references in content.json.
@@ -49,10 +52,13 @@ histoire-des-epices/
 │   ├── heritage/
 │   └── og-image.jpg        ← Social share preview (1200x630).
 ├── EDITING.md              ← Plain-French guide for the owner. See section 9.
-├── DESIGN.md               ← Design system reference (do not edit casually).
-├── CLAUDE.md               ← This file. The AI build brief.
+├── doc/
+│   ├── DESIGN.md           ← Design system reference (do not edit casually).
+│   └── CLAUDE.md           ← This file. The AI build brief.
 └── README.md               ← Public-facing project description.
 ```
+
+> **Path note:** `styles.css` uses `url('../mandala.svg')` (not `url('assets/mandala.svg')`) because it is resolved relative to `assets/css/`, not the project root.
 
 ---
 
