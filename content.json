@@ -1,0 +1,1109 @@
+{
+    "settings": {
+        "default_language": "fr",
+        "show_calories": false,
+        "show_allergens": false,
+        "show_prices": false,
+        "show_event_section": true,
+        "show_heritage_section": true,
+        "show_floating_whatsapp": true,
+        "site_under_construction": false,
+        "construction_message": {
+            "fr": "Nous revenons très bientôt !",
+            "en": "We'll be back very soon!"
+        }
+    },
+
+    "branding": {
+        "name": "L'Histoire des Épices",
+        "tagline": {
+            "fr": "Cuisine Indienne Authentique",
+            "en": "Authentic Indian Cuisine"
+        },
+        "logo_path": "assets/logo.png",
+        "favicon_path": "assets/favicon.ico"
+    },
+
+    "navigation": {
+        "items": [
+            { "id": "menu", "label": { "fr": "La Carte", "en": "Menu" } },
+            { "id": "heritage", "label": { "fr": "Héritage", "en": "Heritage" } },
+            { "id": "evenements", "label": { "fr": "Événements", "en": "Events" } },
+            { "id": "contact", "label": { "fr": "Contact", "en": "Contact" } }
+        ]
+    },
+
+    "hero": {
+        "eyebrow": {
+            "fr": "TRAITEUR AUTHENTIQUE À VALENCIENNES",
+            "en": "AUTHENTIC CATERER IN VALENCIENNES"
+        },
+        "headline": {
+            "fr": ["Cuisine Indienne Authentique,", "Préparée avec Amour"],
+            "en": ["Authentic Indian Cuisine,", "Made with Love"]
+        },
+        "headline_italic_part": 1,
+        "subheadline": {
+            "fr": "Découvrez l'héritage culinaire de l'Inde à travers nos plats faits maison, préparés avec des épices soigneusement sélectionnées.",
+            "en": "Discover India's culinary heritage through our homemade dishes, prepared with carefully selected spices."
+        },
+        "image": "assets/hero/hero.jpg",
+        "image_alt": {
+            "fr": "Plat indien authentique fait maison",
+            "en": "Authentic homemade Indian dish"
+        },
+        "primary_cta": {
+            "label": { "fr": "Voir la Carte", "en": "View Menu" },
+            "anchor": "#menu"
+        },
+        "secondary_cta": {
+            "label": { "fr": "Commander", "en": "Order Now" },
+            "anchor": "#contact"
+        }
+    },
+
+    "features": {
+        "items": [
+            {
+                "icon": "restaurant",
+                "title": { "fr": "Traiteur à Domicile", "en": "Home Catering" },
+                "subtitle": {
+                    "fr": "Pour tous vos événements privés et professionnels",
+                    "en": "For all your private and professional events"
+                }
+            },
+            {
+                "icon": "eco",
+                "title": { "fr": "Halal & Végétarien", "en": "Halal & Vegetarian" },
+                "subtitle": {
+                    "fr": "Viandes halal et options végétariennes variées",
+                    "en": "Halal meats and diverse vegetarian options"
+                }
+            },
+            {
+                "icon": "local_shipping",
+                "title": { "fr": "À Emporter & Livraison", "en": "Takeaway & Delivery" },
+                "subtitle": {
+                    "fr": "Valenciennes et ses environs, avec forfait livraison",
+                    "en": "Valenciennes & surroundings, delivery fee applies"
+                }
+            }
+        ]
+    },
+
+    "menu": {
+        "section_title": { "fr": "Notre Carte Gourmande", "en": "Our Menu" },
+        "footnote": {
+            "fr": "Tous les plats sont accompagnés de Riz Basmati nature. Supplément pour tout accompagnement ou remplacement.",
+            "en": "All dishes are served with plain Basmati rice. Extra charge for any side dish or replacement."
+        },
+        "allergen_button": {
+            "label": { "fr": "Consulter la liste des allergènes", "en": "View allergen list" },
+            "url": "assets/allergens.pdf"
+        },
+        "categories": [
+            { "id": "all", "label": { "fr": "Tout", "en": "All" } },
+            { "id": "entrees", "label": { "fr": "Entrées", "en": "Starters" } },
+            { "id": "vegetarian", "label": { "fr": "Végétarien", "en": "Vegetarian" } },
+            { "id": "non_vegetarian", "label": { "fr": "Non-Végétarien", "en": "Non-Vegetarian" } },
+            { "id": "sides", "label": { "fr": "Accompagnements", "en": "Sides" } },
+            { "id": "desserts", "label": { "fr": "Desserts", "en": "Desserts" } }
+        ],
+        "dishes": [
+            {
+                "id": "vegetable-puff",
+                "category": "entrees",
+                "name": { "fr": "Vegetable Puff", "en": "Vegetable Puff" },
+                "description": {
+                    "fr": "Pâte feuilletée garnie de légumes parfumés aux épices.",
+                    "en": "Puff pastry filled with vegetables perfumed with spices."
+                },
+                "image": "assets/menu/vegetable-puff.jpg",
+                "image_alt": { "fr": "Vegetable Puff croustillant", "en": "Crispy Vegetable Puff" },
+                "tags": ["vegetarian"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": ["gluten"],
+                "spice_level": 1
+            },
+
+            {
+                "id": "vegetable-cutlet",
+                "category": "entrees",
+                "name": { "fr": "Vegetable Cutlet", "en": "Vegetable Cutlet" },
+                "description": {
+                    "fr": "Croquette de légumes aux épices indiennes.",
+                    "en": "Vegetable croquette seasoned with Indian spices."
+                },
+                "image": "assets/menu/vegetable-cutlet.jpg",
+                "image_alt": { "fr": "Croquette de légumes", "en": "Vegetable croquette" },
+                "tags": ["vegetarian"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": ["gluten"],
+                "spice_level": 1
+            },
+
+            {
+                "id": "paneer-tikka",
+                "category": "entrees",
+                "name": { "fr": "Paneer Tikka", "en": "Paneer Tikka" },
+                "description": {
+                    "fr": "Fromage frais indien mariné et grillé.",
+                    "en": "Fresh Indian cheese marinated and grilled."
+                },
+                "image": "assets/menu/paneer-tikka.jpg",
+                "image_alt": { "fr": "Paneer Tikka grillé", "en": "Grilled Paneer Tikka" },
+                "tags": ["vegetarian"],
+                "is_signature": true,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": ["dairy"],
+                "spice_level": 1
+            },
+
+            {
+                "id": "poulet-tandoori",
+                "category": "entrees",
+                "name": { "fr": "Poulet Tandoori", "en": "Chicken Tandoori" },
+                "description": {
+                    "fr": "Poulet mariné aux épices et grillé.",
+                    "en": "Chicken marinated in spices and grilled."
+                },
+                "image": "assets/menu/poulet-tandoori.jpg",
+                "image_alt": { "fr": "Poulet Tandoori grillé", "en": "Grilled Chicken Tandoori" },
+                "tags": ["halal"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": true,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": ["dairy"],
+                "spice_level": 2
+            },
+
+            {
+                "id": "seekh-kabab",
+                "category": "entrees",
+                "name": { "fr": "Seekh Kabab", "en": "Seekh Kabab" },
+                "description": {
+                    "fr": "Brochette de viande hachée épicée.",
+                    "en": "Minced meat skewer, spiced and grilled."
+                },
+                "image": "assets/menu/seekh-kabab.jpg",
+                "image_alt": { "fr": "Brochette Seekh Kabab", "en": "Seekh Kabab skewer" },
+                "tags": ["halal"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": true,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": [],
+                "spice_level": 2
+            },
+
+            {
+                "id": "malai-kabab",
+                "category": "entrees",
+                "name": { "fr": "Malai Kabab", "en": "Malai Kabab" },
+                "description": {
+                    "fr": "Poulet mariné à la crème, fromage et épices douces et grillé.",
+                    "en": "Chicken marinated in cream, cheese and mild spices, then grilled."
+                },
+                "image": "assets/menu/malai-kabab.jpg",
+                "image_alt": { "fr": "Malai Kabab crémeux", "en": "Creamy Malai Kabab" },
+                "tags": ["halal"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": ["dairy"],
+                "spice_level": 1
+            },
+
+            {
+                "id": "egg-roll",
+                "category": "entrees",
+                "name": { "fr": "Egg Roll", "en": "Egg Roll" },
+                "description": {
+                    "fr": "Galette indienne garnie d'œuf, légumes.",
+                    "en": "Indian flatbread stuffed with egg and vegetables."
+                },
+                "image": "assets/menu/egg-roll.jpg",
+                "image_alt": { "fr": "Egg Roll indien", "en": "Indian Egg Roll" },
+                "tags": [],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": ["gluten", "eggs"],
+                "spice_level": 1
+            },
+
+            {
+                "id": "idli-fry",
+                "category": "entrees",
+                "name": { "fr": "Idli Fry", "en": "Idli Fry" },
+                "description": {
+                    "fr": "Idli poêlée aux épices.",
+                    "en": "Pan-fried idli with spices."
+                },
+                "image": "assets/menu/idli-fry.jpg",
+                "image_alt": { "fr": "Idli poêlée aux épices", "en": "Spiced pan-fried idli" },
+                "tags": ["vegetarian"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": [],
+                "spice_level": 1
+            },
+
+            {
+                "id": "galouti-kabab",
+                "category": "entrees",
+                "name": { "fr": "Galouti Kabab d'Agneau", "en": "Lamb Galouti Kabab" },
+                "description": {
+                    "fr": "Agneau finement haché et épicé, cuit jusqu'à une texture ultra-fondante.",
+                    "en": "Finely minced and spiced lamb, cooked to a melt-in-the-mouth texture."
+                },
+                "image": "assets/menu/galouti-kabab.jpg",
+                "image_alt": {
+                    "fr": "Galouti Kabab d'Agneau fondant",
+                    "en": "Melt-in-the-mouth Lamb Galouti Kabab"
+                },
+                "tags": ["halal"],
+                "is_signature": true,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": [],
+                "spice_level": 2
+            },
+
+            {
+                "id": "dal-tadka",
+                "category": "vegetarian",
+                "name": { "fr": "Dal Tadka", "en": "Dal Tadka" },
+                "description": {
+                    "fr": "Lentilles noires indiennes décortiquées fondantes, relevées d'un beurre chaud aux épices.",
+                    "en": "Soft Indian skinned black lentils, finished with a fragrant spiced butter."
+                },
+                "image": "assets/menu/dal-tadka.jpg",
+                "image_alt": { "fr": "Dal Tadka aux lentilles", "en": "Dal Tadka lentil dish" },
+                "tags": ["vegetarian"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": ["dairy"],
+                "spice_level": 1
+            },
+
+            {
+                "id": "dal-makhani",
+                "category": "vegetarian",
+                "name": { "fr": "Dal Makhani", "en": "Dal Makhani" },
+                "description": {
+                    "fr": "Lentilles noires indiennes mijotées dans une sauce onctueuse à base de tomates, de beurre et de crème, délicatement parfumée aux épices indiennes.",
+                    "en": "Black lentils slow-simmered in a rich tomato, butter and cream sauce, delicately spiced."
+                },
+                "image": "assets/menu/dal-makhani.jpg",
+                "image_alt": { "fr": "Dal Makhani crémeux", "en": "Creamy Dal Makhani" },
+                "tags": ["vegetarian"],
+                "is_signature": true,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": ["dairy"],
+                "spice_level": 1
+            },
+
+            {
+                "id": "sambar-dal",
+                "category": "vegetarian",
+                "name": { "fr": "Sambar Dal", "en": "Sambar Dal" },
+                "description": {
+                    "fr": "Soupe de lentilles et de légumes cuisinée selon la tradition familiale du sud de l'Inde, aux épices maison, tamarin et feuilles de curry.",
+                    "en": "Lentil and vegetable soup in the South Indian family tradition, with house spices, tamarind and curry leaves."
+                },
+                "image": "assets/menu/sambar-dal.jpg",
+                "image_alt": {
+                    "fr": "Sambar Dal du sud de l'Inde",
+                    "en": "South Indian Sambar Dal"
+                },
+                "tags": ["vegetarian"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": [],
+                "spice_level": 2
+            },
+
+            {
+                "id": "pav-bhaji",
+                "category": "vegetarian",
+                "name": { "fr": "Pav Bhaji", "en": "Pav Bhaji" },
+                "description": {
+                    "fr": "Purée de légumes longuement mijotés aux épices de Bombay, servi avec pain brioché toasté.",
+                    "en": "Mashed vegetables slow-cooked in Bombay-style spices, served with toasted brioche rolls."
+                },
+                "image": "assets/menu/pav-bhaji.jpg",
+                "image_alt": { "fr": "Pav Bhaji de Bombay", "en": "Mumbai-style Pav Bhaji" },
+                "tags": ["vegetarian"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": true,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": ["gluten", "dairy"],
+                "spice_level": 2
+            },
+
+            {
+                "id": "baingan-bharta",
+                "category": "vegetarian",
+                "name": { "fr": "Baingan Bharta", "en": "Baingan Bharta" },
+                "description": {
+                    "fr": "Aubergine grillée à la flamme, écrasée, mijotée avec des oignons, des tomates, de l'ail, du gingembre et un mélange d'épices indiennes.",
+                    "en": "Flame-grilled aubergine, mashed and simmered with onions, tomatoes, garlic, ginger and a blend of Indian spices."
+                },
+                "image": "assets/menu/baingan-bharta.jpg",
+                "image_alt": { "fr": "Baingan Bharta fumé", "en": "Smoky Baingan Bharta" },
+                "tags": ["vegetarian"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": [],
+                "spice_level": 1
+            },
+
+            {
+                "id": "palak-paneer",
+                "category": "vegetarian",
+                "name": { "fr": "Palak Paneer", "en": "Palak Paneer" },
+                "description": {
+                    "fr": "Cubes de fromage indien mijotés dans une crème d'épinards frais, parfumée à l'ail, au gingembre et aux épices indiennes douces.",
+                    "en": "Indian cheese cubes simmered in a fresh spinach cream, flavoured with garlic, ginger and mild Indian spices."
+                },
+                "image": "assets/menu/palak-paneer.jpg",
+                "image_alt": {
+                    "fr": "Palak Paneer épinards fromage",
+                    "en": "Palak Paneer spinach cheese"
+                },
+                "tags": ["vegetarian"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": ["dairy"],
+                "spice_level": 1
+            },
+
+            {
+                "id": "paneer-bhurji",
+                "category": "vegetarian",
+                "name": { "fr": "Paneer Bhurji", "en": "Paneer Bhurji" },
+                "description": {
+                    "fr": "Du paneer finement râpé, mélangé à une sauce onctueuse à base de crème et d'épices douces, mijoté doucement.",
+                    "en": "Finely crumbled paneer cooked in a smooth cream sauce with mild spices, gently simmered."
+                },
+                "image": "assets/menu/paneer-bhurji.jpg",
+                "image_alt": { "fr": "Paneer Bhurji crémeux", "en": "Creamy Paneer Bhurji" },
+                "tags": ["vegetarian"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": ["dairy"],
+                "spice_level": 1
+            },
+
+            {
+                "id": "ragout-legumes",
+                "category": "vegetarian",
+                "name": { "fr": "Ragoût de Légumes", "en": "Vegetable Stew" },
+                "description": {
+                    "fr": "Ragoût raffiné de légumes, lentement mijoté dans un lait de coco onctueux, délicatement parfumé aux épices douces.",
+                    "en": "Refined vegetable stew, slowly simmered in creamy coconut milk, delicately spiced."
+                },
+                "image": "assets/menu/ragout-legumes.jpg",
+                "image_alt": { "fr": "Ragoût de légumes au coco", "en": "Coconut vegetable stew" },
+                "tags": ["vegetarian"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": [],
+                "spice_level": 1
+            },
+
+            {
+                "id": "dum-aloo",
+                "category": "vegetarian",
+                "name": { "fr": "Dum Aloo", "en": "Dum Aloo" },
+                "description": {
+                    "fr": "Pommes de terre nouvelles mijotées lentement, sauce épicée et parfumée.",
+                    "en": "Baby potatoes slowly simmered in a spiced and aromatic sauce."
+                },
+                "image": "assets/menu/dum-aloo.jpg",
+                "image_alt": {
+                    "fr": "Dum Aloo pommes de terre épicées",
+                    "en": "Spiced Dum Aloo potatoes"
+                },
+                "tags": ["vegetarian"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": true,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": [],
+                "spice_level": 2
+            },
+
+            {
+                "id": "butter-chicken",
+                "category": "non_vegetarian",
+                "name": { "fr": "Butter Chicken", "en": "Butter Chicken" },
+                "description": {
+                    "fr": "Poulet grillé tendre cuit dans une sauce tomate riche et crémeuse. Légèrement épicé, onctueux, légèrement sucré et beurré.",
+                    "en": "Tender grilled chicken in a rich, creamy tomato sauce. Mildly spiced, smooth, slightly sweet and buttery."
+                },
+                "image": "assets/menu/butter-chicken.jpg",
+                "image_alt": {
+                    "fr": "Butter Chicken sauce crémeuse",
+                    "en": "Creamy Butter Chicken"
+                },
+                "tags": ["halal"],
+                "is_signature": true,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": ["dairy"],
+                "spice_level": 1
+            },
+
+            {
+                "id": "poulet-tikka-masala",
+                "category": "non_vegetarian",
+                "name": { "fr": "Poulet Tikka Masala", "en": "Chicken Tikka Masala" },
+                "description": {
+                    "fr": "Poulet mariné aux épices, rôti au tandoor, sublimé par une sauce veloutée de tomates, crème fraîche et beurre, relevée d'un mélange d'épices.",
+                    "en": "Spice-marinated chicken, tandoor-roasted, in a velvety tomato, cream and butter sauce with a blend of spices."
+                },
+                "image": "assets/menu/poulet-tikka-masala.jpg",
+                "image_alt": { "fr": "Poulet Tikka Masala", "en": "Chicken Tikka Masala" },
+                "tags": ["halal"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": true,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": ["dairy"],
+                "spice_level": 2
+            },
+
+            {
+                "id": "poulet-curry",
+                "category": "non_vegetarian",
+                "name": { "fr": "Poulet au Curry", "en": "Chicken Curry" },
+                "description": {
+                    "fr": "Poulet traditionnel découpé en morceaux avec os, cuisiné dans une sauce parfumée aux épices.",
+                    "en": "Traditional bone-in chicken pieces cooked in a fragrant spiced sauce."
+                },
+                "image": "assets/menu/poulet-curry.jpg",
+                "image_alt": { "fr": "Poulet au Curry", "en": "Chicken Curry" },
+                "tags": ["halal"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": [],
+                "spice_level": 2
+            },
+
+            {
+                "id": "poulet-bharta",
+                "category": "non_vegetarian",
+                "name": { "fr": "Poulet Bharta", "en": "Chicken Bharta" },
+                "description": {
+                    "fr": "Émincé de poulet mijoté dans une sauce épaisse à base de tomates, d'oignons, de gingembre, d'ail et d'épices indiennes.",
+                    "en": "Shredded chicken simmered in a thick sauce of tomatoes, onions, ginger, garlic and Indian spices."
+                },
+                "image": "assets/menu/poulet-bharta.jpg",
+                "image_alt": { "fr": "Poulet Bharta épicé", "en": "Spiced Chicken Bharta" },
+                "tags": ["halal"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": [],
+                "spice_level": 2
+            },
+
+            {
+                "id": "poulet-chaap",
+                "category": "non_vegetarian",
+                "name": { "fr": "Poulet Chaap", "en": "Chicken Chaap" },
+                "description": {
+                    "fr": "Poulet longuement mariné puis mijoté dans une sauce riche et parfumée aux épices et aux fruits secs.",
+                    "en": "Chicken slow-marinated and simmered in a rich sauce scented with spices and dried fruits."
+                },
+                "image": "assets/menu/poulet-chaap.jpg",
+                "image_alt": { "fr": "Poulet Chaap mariné", "en": "Marinated Chicken Chaap" },
+                "tags": ["halal"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": ["nuts"],
+                "spice_level": 2
+            },
+
+            {
+                "id": "rezala-agneau",
+                "category": "non_vegetarian",
+                "name": { "fr": "Rezala d'Agneau", "en": "Lamb Rezala" },
+                "description": {
+                    "fr": "Agneau mijoté lentement dans une sauce blanche onctueuse à base de yaourt, de noix de cajou et d'épices douces, subtilement parfumée.",
+                    "en": "Lamb slow-cooked in a smooth white sauce of yogurt, cashews and mild spices, subtly perfumed."
+                },
+                "image": "assets/menu/rezala-agneau.jpg",
+                "image_alt": {
+                    "fr": "Rezala d'Agneau sauce blanche",
+                    "en": "Lamb Rezala white sauce"
+                },
+                "tags": ["halal"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": ["dairy", "nuts"],
+                "spice_level": 1
+            },
+
+            {
+                "id": "poulet-biriyani",
+                "category": "non_vegetarian",
+                "name": { "fr": "Poulet Biriyani", "en": "Chicken Biryani" },
+                "description": {
+                    "fr": "Riz basmati aux épices douces et viande marinée, cuisson lente à l'étouffée, saveurs subtiles et parfumées.",
+                    "en": "Basmati rice with mild spices and marinated chicken, slow-cooked dum-style for subtle, fragrant flavours."
+                },
+                "image": "assets/menu/poulet-biriyani.jpg",
+                "image_alt": { "fr": "Poulet Biriyani dum", "en": "Dum Chicken Biryani" },
+                "tags": ["halal"],
+                "is_signature": true,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": [],
+                "spice_level": 1
+            },
+
+            {
+                "id": "agneau-bhuna-gosht",
+                "category": "non_vegetarian",
+                "name": { "fr": "Agneau Bhuna Gosht", "en": "Bhuna Gosht Lamb" },
+                "description": {
+                    "fr": "L'agneau est braisé lentement avec des oignons, du yaourt et des épices pour obtenir une sauce onctueuse et riche.",
+                    "en": "Lamb slow-braised with onions, yogurt and spices to develop a rich, glossy sauce."
+                },
+                "image": "assets/menu/agneau-bhuna-gosht.jpg",
+                "image_alt": {
+                    "fr": "Agneau Bhuna Gosht braisé",
+                    "en": "Braised Bhuna Gosht Lamb"
+                },
+                "tags": ["halal"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": true,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": ["dairy"],
+                "spice_level": 2
+            },
+
+            {
+                "id": "ragout-poulet",
+                "category": "non_vegetarian",
+                "name": { "fr": "Ragoût de Poulet", "en": "Chicken Stew" },
+                "description": {
+                    "fr": "Poulet mijoté lentement avec des légumes et des épices douces, en sauce légère et réconfortante.",
+                    "en": "Chicken slowly simmered with vegetables and mild spices in a light, comforting sauce."
+                },
+                "image": "assets/menu/ragout-poulet.jpg",
+                "image_alt": { "fr": "Ragoût de poulet léger", "en": "Light Chicken Stew" },
+                "tags": ["halal"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": [],
+                "spice_level": 1
+            },
+
+            {
+                "id": "crevettes-malai-curry",
+                "category": "non_vegetarian",
+                "name": { "fr": "Crevettes Malai Curry", "en": "Malai Prawn Curry" },
+                "description": {
+                    "fr": "Crevettes mijotées dans une sauce crémeuse à base de lait de coco, d'oignons, de gingembre, d'ail et d'épices douces.",
+                    "en": "Prawns simmered in a creamy coconut milk sauce with onions, ginger, garlic and mild spices."
+                },
+                "image": "assets/menu/crevettes-malai-curry.jpg",
+                "image_alt": {
+                    "fr": "Crevettes Malai Curry au coco",
+                    "en": "Coconut Malai Prawn Curry"
+                },
+                "tags": [],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": ["shellfish"],
+                "spice_level": 1
+            },
+
+            {
+                "id": "riz-basmati",
+                "category": "sides",
+                "name": { "fr": "Riz Basmati Nature", "en": "Plain Basmati Rice" },
+                "description": {
+                    "fr": "Riz basmati cuit à la vapeur, léger et parfumé.",
+                    "en": "Steamed basmati rice, light and fragrant."
+                },
+                "image": "assets/menu/riz-basmati.jpg",
+                "image_alt": { "fr": "Riz Basmati Nature", "en": "Plain Basmati Rice" },
+                "tags": ["vegetarian"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": [],
+                "spice_level": 0
+            },
+
+            {
+                "id": "riz-cumin",
+                "category": "sides",
+                "name": { "fr": "Riz au Cumin", "en": "Cumin Rice" },
+                "description": {
+                    "fr": "Riz basmati parfumé aux graines de cumin.",
+                    "en": "Basmati rice fragrant with cumin seeds."
+                },
+                "image": "assets/menu/riz-cumin.jpg",
+                "image_alt": { "fr": "Riz au Cumin", "en": "Cumin Rice" },
+                "tags": ["vegetarian"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": [],
+                "spice_level": 0
+            },
+
+            {
+                "id": "pilaf-legumes",
+                "category": "sides",
+                "name": { "fr": "Pilaf aux Légumes", "en": "Vegetable Pilaf" },
+                "description": {
+                    "fr": "Riz basmati cuit avec des légumes et des épices douces.",
+                    "en": "Basmati rice cooked with vegetables and mild spices."
+                },
+                "image": "assets/menu/pilaf-legumes.jpg",
+                "image_alt": { "fr": "Pilaf de légumes coloré", "en": "Colourful vegetable pilaf" },
+                "tags": ["vegetarian"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": [],
+                "spice_level": 1
+            },
+
+            {
+                "id": "chapati",
+                "category": "sides",
+                "name": { "fr": "Chapati", "en": "Chapati" },
+                "description": {
+                    "fr": "Pain plat indien traditionnel, cuit à la poêle.",
+                    "en": "Traditional Indian flatbread, pan-cooked."
+                },
+                "image": "assets/menu/chapati.jpg",
+                "image_alt": { "fr": "Chapati pain indien", "en": "Indian Chapati flatbread" },
+                "tags": ["vegetarian"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": ["gluten"],
+                "spice_level": 0
+            },
+
+            {
+                "id": "naan-maison",
+                "category": "sides",
+                "name": { "fr": "Naan Maison", "en": "Homemade Naan" },
+                "description": {
+                    "fr": "Pain naan fait maison, moelleux et légèrement beurré.",
+                    "en": "Homemade naan bread, soft and lightly buttered."
+                },
+                "image": "assets/menu/naan-maison.jpg",
+                "image_alt": { "fr": "Naan Maison moelleux", "en": "Soft Homemade Naan" },
+                "tags": ["vegetarian"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": ["gluten", "dairy"],
+                "spice_level": 0
+            },
+
+            {
+                "id": "vattayappam",
+                "category": "sides",
+                "name": { "fr": "Vattayappam", "en": "Vattayappam" },
+                "description": {
+                    "fr": "Gâteau de riz cuit à la vapeur, léger et moelleux, spécialité du Kerala.",
+                    "en": "Steamed rice cake, light and fluffy, a Kerala speciality."
+                },
+                "image": "assets/menu/vattayappam.jpg",
+                "image_alt": { "fr": "Vattayappam gâteau de riz", "en": "Vattayappam rice cake" },
+                "tags": ["vegetarian"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": [],
+                "spice_level": 0
+            },
+
+            {
+                "id": "halwa-carottes",
+                "category": "desserts",
+                "name": { "fr": "Halwa Carottes", "en": "Carrot Halwa" },
+                "description": {
+                    "fr": "Carottes râpées lentement mijotées dans du lait, du sucre et du ghee, parfumées à la cardamome et garnies de fruits secs.",
+                    "en": "Grated carrots slowly simmered in milk, sugar and ghee, scented with cardamom and topped with dried fruits."
+                },
+                "image": "assets/menu/halwa-carottes.jpg",
+                "image_alt": {
+                    "fr": "Halwa Carottes aux fruits secs",
+                    "en": "Carrot Halwa with dried fruits"
+                },
+                "tags": ["vegetarian"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": ["dairy", "nuts"],
+                "spice_level": 0
+            },
+
+            {
+                "id": "halwa-semoule",
+                "category": "desserts",
+                "name": { "fr": "Halwa Semoule", "en": "Semolina Halwa" },
+                "description": {
+                    "fr": "Dessert à base de semoule, cuite avec du sucre, du ghee et du safran, parfumée à la cardamome.",
+                    "en": "Dessert of semolina cooked with sugar, ghee and saffron, perfumed with cardamom."
+                },
+                "image": "assets/menu/halwa-semoule.jpg",
+                "image_alt": { "fr": "Halwa Semoule au safran", "en": "Saffron Semolina Halwa" },
+                "tags": ["vegetarian"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": ["dairy", "gluten"],
+                "spice_level": 0
+            },
+
+            {
+                "id": "semiya-kheer",
+                "category": "desserts",
+                "name": { "fr": "Semiya Kheer", "en": "Vermicelli Kheer" },
+                "description": {
+                    "fr": "Vermicelles au lait, mijotées avec du sucre et parfumées à la cardamome, garnies de fruits secs.",
+                    "en": "Vermicelli slow-cooked in milk with sugar and cardamom, topped with dried fruits."
+                },
+                "image": "assets/menu/semiya-kheer.jpg",
+                "image_alt": {
+                    "fr": "Semiya Kheer aux vermicelles",
+                    "en": "Vermicelli Kheer dessert"
+                },
+                "tags": ["vegetarian"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": null,
+                "calories_kcal": null,
+                "allergens": ["dairy", "gluten", "nuts"],
+                "spice_level": 0
+            }
+        ]
+    },
+
+    "heritage": {
+        "eyebrow": { "fr": "NOTRE HISTOIRE", "en": "OUR STORY" },
+        "title": { "fr": "L'Héritage d'une Passion", "en": "A Legacy of Passion" },
+        "paragraphs": {
+            "fr": [
+                "L'Histoire des Épices est née d'une volonté simple : partager la richesse de la cuisine indienne familiale avec Valenciennes et ses environs. Chaque plat est préparé avec des épices soigneusement sélectionnées, des recettes transmises de génération en génération.",
+                "Nous sommes présents sur les marchés de Valenciennes et Anzin, et nous vous accompagnons dans tous vos événements privés — mariages, anniversaires, baptêmes — avec la chaleur et l'authenticité d'une cuisine faite maison."
+            ],
+            "en": [
+                "L'Histoire des Épices was born from a simple wish: to share the richness of family Indian cuisine with Valenciennes and its surroundings. Every dish is prepared with carefully selected spices and recipes passed down through generations.",
+                "We are present at the Valenciennes and Anzin markets, and we accompany you at all your private events — weddings, birthdays, baptisms — with the warmth and authenticity of home-cooked food."
+            ]
+        },
+        "image": "assets/heritage/spices-flat-lay.jpg",
+        "image_alt": {
+            "fr": "Étalage d'épices indiennes colorées",
+            "en": "Colourful Indian spice flat lay"
+        },
+        "stat": {
+            "value": "100%",
+            "label": { "fr": "FAIT MAISON", "en": "HOMEMADE" }
+        }
+    },
+
+    "events": {
+        "title": {
+            "fr": "Événements Privés & Professionnels",
+            "en": "Private & Professional Events"
+        },
+        "subtitle": {
+            "fr": "Donnez une touche d'exotisme et d'élégance à vos moments les plus importants.",
+            "en": "Add a touch of exotic elegance to your most important moments."
+        },
+        "items": [
+            {
+                "id": "mariage",
+                "label": { "fr": "Mariage", "en": "Wedding" },
+                "image": "assets/events/mariage.jpg"
+            },
+            {
+                "id": "anniversaire",
+                "label": { "fr": "Anniversaire", "en": "Birthday" },
+                "image": "assets/events/anniversaire.jpg"
+            },
+            {
+                "id": "bapteme",
+                "label": { "fr": "Baptême", "en": "Baptism" },
+                "image": "assets/events/bapteme.jpg"
+            },
+            {
+                "id": "entreprise",
+                "label": { "fr": "Entreprise", "en": "Corporate" },
+                "image": "assets/events/entreprise.jpg"
+            }
+        ]
+    },
+
+    "contact": {
+        "title": { "fr": "Prêt pour un voyage gustatif ?", "en": "Ready for a culinary journey?" },
+        "subtitle": {
+            "fr": "Contactez-nous directement via WhatsApp ou par téléphone pour votre commande ou devis.",
+            "en": "Reach us directly via WhatsApp or phone for your order or quote."
+        },
+        "primary_action": {
+            "type": "whatsapp",
+            "phone_e164": "+33123456789",
+            "prefilled_message": {
+                "fr": "Bonjour ! Je souhaite passer une commande chez L'Histoire des Épices.",
+                "en": "Hello! I'd like to place an order with L'Histoire des Épices."
+            },
+            "label": { "fr": "Discuter sur WhatsApp", "en": "Chat on WhatsApp" }
+        },
+        "phone": {
+            "display": "01 23 45 67 89",
+            "tel": "+33123456789",
+            "label": { "fr": "APPELEZ-NOUS", "en": "CALL US" }
+        },
+        "alternative_phone": {
+            "display": "12 34 56 78 90",
+            "tel": "+33123456789",
+            "label": { "fr": "OU", "en": "OR" }
+        },
+        "socials": [
+            {
+                "platform": "facebook",
+                "url": "https://facebook.com/histoiredesepices",
+                "label": "Facebook"
+            },
+            {
+                "platform": "instagram",
+                "url": "https://instagram.com/histoiredesepices",
+                "label": "Instagram"
+            }
+        ],
+        "ordering_note": {
+            "fr": "Commande à passer la veille ou avant 9h. À emporter ou livrable avec forfait livraison.",
+            "en": "Orders placed the day before or before 9 AM. Takeaway or delivery (fee applies)."
+        },
+        "location_hint": {
+            "fr": "Présents sur les marchés de Valenciennes & Anzin.",
+            "en": "Find us at the Valenciennes & Anzin markets."
+        }
+    },
+
+    "footer": {
+        "tagline": {
+            "fr": "Une invitation au voyage à travers les saveurs authentiques de l'Inde.",
+            "en": "An invitation to journey through the authentic flavours of India."
+        },
+        "links": [
+            {
+                "label": { "fr": "Mentions Légales", "en": "Legal Notice" },
+                "url": "mentions-legales.html"
+            },
+            {
+                "label": { "fr": "Politique de Confidentialité", "en": "Privacy Policy" },
+                "url": "privacy.html"
+            },
+            { "label": { "fr": "Allergènes", "en": "Allergens" }, "url": "assets/allergens.pdf" }
+        ],
+        "copyright": {
+            "fr": "© 2026 L'Histoire des Épices. Curateurs de Traditions Culinaires.",
+            "en": "© 2026 L'Histoire des Épices. Curators of Culinary Tradition."
+        }
+    },
+
+    "seo": {
+        "title": {
+            "fr": "L'Histoire des Épices | Traiteur Indien à Valenciennes",
+            "en": "L'Histoire des Épices | Indian Caterer in Valenciennes"
+        },
+        "description": {
+            "fr": "Traiteur indien authentique à Valenciennes. Plats halal et végétariens, livraison à domicile, mariages et événements privés.",
+            "en": "Authentic Indian caterer in Valenciennes. Halal and vegetarian dishes, home delivery, weddings and private events."
+        },
+        "keywords": "traiteur indien, valenciennes, cuisine indienne, halal, végétarien, mariage, anzin",
+        "og_image": "assets/og-image.jpg",
+        "canonical_url": "https://histoire-des-epices.fr"
+    },
+
+    "ui_strings": {
+        "lang_toggle_label": { "fr": "Passer en anglais", "en": "Switch to French" },
+        "view_menu_pdf": { "fr": "Télécharger le menu (PDF)", "en": "Download menu (PDF)" },
+        "request_quote": { "fr": "Demander un devis", "en": "Request a quote" },
+        "open_menu": { "fr": "Ouvrir le menu", "en": "Open menu" },
+        "close_menu": { "fr": "Fermer le menu", "en": "Close menu" },
+        "badges": {
+            "signature": { "fr": "Signature", "en": "Signature" },
+            "new": { "fr": "Nouveau", "en": "New" },
+            "spicy": { "fr": "Épicé", "en": "Spicy" },
+            "vegetarian": { "fr": "Végétarien", "en": "Vegetarian" },
+            "vegan": { "fr": "Végan", "en": "Vegan" },
+            "halal": { "fr": "Halal", "en": "Halal" },
+            "gluten_free": { "fr": "Sans gluten", "en": "Gluten-free" },
+            "dairy_free": { "fr": "Sans lactose", "en": "Dairy-free" }
+        },
+        "allergens": {
+            "dairy": { "fr": "Lait", "en": "Dairy" },
+            "gluten": { "fr": "Gluten", "en": "Gluten" },
+            "nuts": { "fr": "Fruits à coque", "en": "Nuts" },
+            "peanuts": { "fr": "Arachides", "en": "Peanuts" },
+            "eggs": { "fr": "Œufs", "en": "Eggs" },
+            "soy": { "fr": "Soja", "en": "Soy" },
+            "sesame": { "fr": "Sésame", "en": "Sesame" },
+            "mustard": { "fr": "Moutarde", "en": "Mustard" },
+            "shellfish": { "fr": "Crustacés", "en": "Shellfish" },
+            "fish": { "fr": "Poisson", "en": "Fish" },
+            "sulphites": { "fr": "Sulfites", "en": "Sulphites" }
+        },
+        "labels": {
+            "calories": { "fr": "kcal", "en": "kcal" },
+            "contains_allergens": { "fr": "Contient", "en": "Contains" },
+            "spice_level": { "fr": "Niveau d'épice", "en": "Spice level" },
+            "image_unavailable": { "fr": "Image indisponible", "en": "Image unavailable" },
+            "unavailable": { "fr": "Indisponible", "en": "Unavailable" },
+            "menu_empty": {
+                "fr": "Le menu est en cours de mise à jour. Contactez-nous directement.",
+                "en": "The menu is being updated. Contact us directly."
+            }
+        },
+        "errors": {
+            "content_load_failed": {
+                "fr": "Impossible de charger le contenu. Veuillez rafraîchir la page.",
+                "en": "Unable to load content. Please refresh the page."
+            }
+        }
+    }
+}

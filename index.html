@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Primary SEO (updated by app.js on load) -->
+  <title>L'Histoire des Épices | Traiteur Indien à Valenciennes</title>
+  <meta name="description"
+    content="Traiteur indien authentique à Valenciennes. Plats halal et végétariens, livraison à domicile, mariages et événements privés." />
+  <meta name="keywords" content="traiteur indien, valenciennes, cuisine indienne, halal, végétarien, mariage, anzin" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://histoire-des-epices.fr" />
+  <meta property="og:title" content="L'Histoire des Épices | Traiteur Indien à Valenciennes" />
+  <meta property="og:description"
+    content="Traiteur indien authentique à Valenciennes. Plats halal et végétariens, livraison à domicile." />
+  <meta property="og:image" content="assets/og-image.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="L'Histoire des Épices | Traiteur Indien à Valenciennes" />
+  <meta name="twitter:description" content="Traiteur indien authentique à Valenciennes." />
+  <meta name="twitter:image" content="assets/og-image.jpg" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/favicon.ico" />
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+  <!-- Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+
+  <!-- Tailwind CDN (Play) -->
+  <script>
+    tailwind = {
+      config: {
+        theme: {
+          extend: {
+            colors: {
+              primary: { DEFAULT: '#5b0617', hover: '#7a1f2b' },
+              saffron: '#C9A55C',
+              surface: '#ffffff',
+              'surf-lo': '#f6f6f6',
+              'surf-mid': '#eeeeee',
+              'on-surf': '#1a1a1a',
+              'on-muted': '#555555',
+              'inv-surf': '#5b0617',
+              outline: { DEFAULT: '#cccccc', light: '#e5e5e5' },
+              whatsapp: '#004b3b',
+            },
+            fontFamily: {
+              garamond: ['EB Garamond', 'Georgia', 'serif'],
+              inter: ['Inter', 'system-ui', 'sans-serif'],
+            },
+          }
+        }
+      }
+    };
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- JSON-LD Schema (updated by app.js) -->
+  <script type="application/ld+json" id="schema-org">
+  {
+    "@context": "https://schema.org",
+    "@type": "FoodEstablishment",
+    "name": "L'Histoire des Épices",
+    "description": "Traiteur indien authentique à Valenciennes",
+    "address": { "@type": "PostalAddress", "addressLocality": "Valenciennes", "addressCountry": "FR" },
+    "telephone": "+33123456789",
+    "servesCuisine": "Indian",
+    "url": "https://histoire-des-epices.fr"
+  }
+  </script>
+</head>
+
+<body class="bg-surface font-inter text-on-surf antialiased">
+
+  <!-- Skip to content (accessibility) -->
+  <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+  <!-- ═══════════════════════════════════════════════════════════ HEADER / NAV -->
+  <header id="site-header" class="sticky top-0 z-50">
+    <nav class="container mx-auto px-4 md:px-6 h-[72px] flex items-center justify-between gap-4"
+      aria-label="Navigation principale">
+
+      <!-- Brand -->
+      <a href="#" id="nav-brand" class="nav-brand-link shrink-0" aria-label="Accueil L'Histoire des Épices">
+        <span class="nav-brand-mark" aria-hidden="true">★</span>
+        <span id="nav-brand-text">L'Histoire des Épices</span>
+      </a>
+
+      <!-- Desktop nav links -->
+      <div id="nav-links" class="hidden md:flex items-center gap-6" role="list">
+        <!-- Populated by app.js -->
+      </div>
+
+      <!-- Right controls -->
+      <div class="flex items-center gap-2 shrink-0">
+        <!-- WhatsApp pill -->
+        <div id="nav-whatsapp" class="hidden md:block">
+          <!-- Populated by app.js -->
+        </div>
+
+        <!-- Language toggle -->
+        <button id="lang-toggle" class="btn-lang" aria-label="Changer de langue">
+          EN
+        </button>
+
+        <!-- Hamburger (mobile) -->
+        <button id="hamburger" class="md:hidden btn-icon" aria-label="Ouvrir le menu" aria-expanded="false"
+          aria-controls="mobile-menu">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile menu sheet -->
+    <div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu de navigation" hidden>
+      <div id="mobile-nav-links" class="flex flex-col gap-1 p-4">
+        <!-- Populated by app.js -->
+      </div>
+      <div id="mobile-nav-whatsapp" class="px-4 pb-4">
+        <!-- Populated by app.js -->
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════════ MAIN -->
+  <main id="main-content">
+
+    <!-- ── CONSTRUCTION MODE (hidden unless site_under_construction: true) -->
+    <div id="construction-screen" class="construction-screen" hidden>
+      <div class="text-center p-8">
+        <p class="font-garamond text-3xl text-on-surf mb-4">L'Histoire des Épices</p>
+        <p id="construction-message" class="text-on-muted text-lg">Nous revenons très bientôt !</p>
+        <a href="tel:+33123456789" class="btn-primary inline-block mt-6">01 23 45 67 89</a>
+      </div>
+    </div>
+
+    <!-- ── HERO ──────────────────────────────────────────────────────────── -->
+    <section id="hero" class="hero-section section-reveal" aria-label="Présentation" data-section="hero">
+      <div class="container mx-auto px-4 md:px-6 py-16 md:py-24 grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+
+        <!-- Hero text — static no-JS fallback, replaced by app.js -->
+        <div id="hero-content">
+          <p class="eyebrow">TRAITEUR AUTHENTIQUE À VALENCIENNES</p>
+          <h1 class="font-garamond text-4xl md:text-6xl font-medium leading-tight mt-3 mb-5 text-on-surf">
+            Cuisine Indienne Authentique,<br>
+            <em class="hero-italic">Préparée avec Amour</em>
+          </h1>
+          <p class="text-on-muted text-lg leading-relaxed mb-8">
+            Découvrez l'héritage culinaire de l'Inde à travers nos plats faits maison, préparés avec des épices
+            soigneusement sélectionnées.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="#menu" class="btn-primary">Voir la Carte</a>
+            <a href="#contact" class="btn-secondary">Commander</a>
+          </div>
+        </div>
+
+        <!-- Hero image -->
+        <div id="hero-image" class="hero-image-wrap order-first md:order-last">
+          <div class="img-placeholder hero-img-placeholder" aria-hidden="true">É</div>
+        </div>
+      </div>
+
+      <!-- Mandala watermark -->
+      <div class="mandala-watermark" aria-hidden="true"></div>
+    </section>
+
+    <!-- ── FEATURES STRIP ─────────────────────────────────────────────────── -->
+    <section id="features" class="bg-surf-lo section-reveal" aria-label="Points forts" data-section="features">
+      <div id="features-grid" class="container mx-auto px-4 md:px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Populated by app.js -->
+        <div class="feature-card">
+          <span class="material-symbols-outlined feature-icon">restaurant</span>
+          <h3 class="font-garamond text-xl font-medium text-primary mt-3 mb-1">Traiteur à Domicile</h3>
+          <p class="text-on-muted text-sm">Pour tous vos événements privés et professionnels</p>
+        </div>
+        <div class="feature-card">
+          <span class="material-symbols-outlined feature-icon">eco</span>
+          <h3 class="font-garamond text-xl font-medium text-primary mt-3 mb-1">Halal &amp; Végétarien</h3>
+          <p class="text-on-muted text-sm">Viandes halal et options végétariennes variées</p>
+        </div>
+        <div class="feature-card">
+          <span class="material-symbols-outlined feature-icon">local_shipping</span>
+          <h3 class="font-garamond text-xl font-medium text-primary mt-3 mb-1">À Emporter &amp; Livraison</h3>
+          <p class="text-on-muted text-sm">Valenciennes et ses environs, avec forfait livraison</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── MENU ──────────────────────────────────────────────────────────── -->
+    <section id="menu" class="py-16 md:py-24 section-reveal" aria-label="La carte" data-section="menu">
+      <div class="container mx-auto px-4 md:px-6">
+
+        <!-- Section header -->
+        <div class="text-center mb-10">
+          <p class="eyebrow mb-2">LA CARTE</p>
+          <h2 id="menu-title" class="font-garamond text-3xl md:text-4xl font-medium text-on-surf">Notre Carte Gourmande
+          </h2>
+          <div class="section-divider" aria-hidden="true"></div>
+        </div>
+
+        <!-- Category filter chips -->
+        <div id="menu-filters" class="flex flex-wrap justify-center gap-2 mb-10" role="group"
+          aria-label="Filtrer par catégorie">
+          <!-- Populated by app.js -->
+        </div>
+
+        <!-- Dish grid -->
+        <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          <!-- Populated by app.js -->
+        </div>
+
+        <!-- Footnote + allergens -->
+        <div class="mt-10 text-center space-y-3">
+          <p id="menu-footnote" class="text-on-muted text-sm italic max-w-xl mx-auto">
+            Tous les plats sont accompagnés de Riz Basmati nature. Supplément pour tout accompagnement ou remplacement.
+          </p>
+          <a id="allergen-link" href="assets/allergens.pdf" target="_blank" rel="noopener"
+            class="inline-flex items-center gap-2 text-primary text-sm font-medium underline underline-offset-4 hover:text-primary-hover transition-colors">
+            <span class="material-symbols-outlined text-base">warning</span>
+            Consulter la liste des allergènes
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── HERITAGE ───────────────────────────────────────────────────────── -->
+    <section id="heritage" class="heritage-section section-reveal" aria-label="Notre histoire" data-section="heritage">
+      <div id="heritage-content"
+        class="container mx-auto px-4 md:px-6 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center relative z-10">
+        <!-- Populated by app.js -->
+        <div class="heritage-image-col">
+          <div class="img-placeholder" style="width:100%;aspect-ratio:4/3;" aria-hidden="true">É</div>
+        </div>
+        <div class="text-white">
+          <p class="eyebrow text-saffron mb-3">NOTRE HISTOIRE</p>
+          <h2 class="font-garamond text-3xl md:text-4xl font-medium mb-6">L'Héritage d'une Passion</h2>
+          <p class="text-white/80 leading-relaxed mb-4">L'Histoire des Épices est née d'une volonté simple : partager la
+            richesse de la cuisine indienne familiale avec Valenciennes et ses environs.</p>
+        </div>
+      </div>
+      <div class="mandala-watermark mandala-watermark--dark" aria-hidden="true"></div>
+    </section>
+
+    <!-- ── EVENTS ─────────────────────────────────────────────────────────── -->
+    <section id="evenements" class="bg-surf-mid py-16 md:py-24 section-reveal" aria-label="Événements"
+      data-section="evenements">
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="text-center mb-10">
+          <h2 id="events-title" class="font-garamond text-3xl md:text-4xl font-medium text-on-surf">Événements Privés
+            &amp; Professionnels</h2>
+          <p id="events-subtitle" class="text-on-muted mt-3 max-w-lg mx-auto">Donnez une touche d'exotisme et d'élégance
+            à vos moments les plus importants.</p>
+          <div class="section-divider" aria-hidden="true"></div>
+        </div>
+        <div id="events-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <!-- Populated by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CONTACT ────────────────────────────────────────────────────────── -->
+    <section id="contact" class="bg-surf-lo py-16 md:py-24 section-reveal" aria-label="Contact" data-section="contact">
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="text-center mb-10">
+          <h2 id="contact-title" class="font-garamond text-3xl md:text-4xl font-medium text-on-surf">Prêt pour un voyage
+            gustatif ?</h2>
+          <p id="contact-subtitle" class="text-on-muted mt-3 max-w-lg mx-auto">Contactez-nous directement via WhatsApp
+            ou par téléphone pour votre commande ou devis.</p>
+        </div>
+        <div id="contact-cards" class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+          <!-- Populated by app.js -->
+        </div>
+        <div id="contact-meta" class="text-center mt-8 space-y-4">
+          <!-- Socials, ordering note, location hint — populated by app.js -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════════ FOOTER -->
+  <footer id="site-footer" class="bg-inv-surf text-white py-10" aria-label="Pied de page" data-section="footer">
+    <div class="container mx-auto px-4 md:px-6 text-center space-y-4">
+      <p id="footer-brand" class="font-garamond text-2xl font-medium text-saffron">L'Histoire des Épices</p>
+      <p id="footer-tagline" class="text-white/60 text-sm max-w-md mx-auto">Une invitation au voyage à travers les
+        saveurs authentiques de l'Inde.</p>
+      <nav id="footer-links" class="flex flex-wrap justify-center gap-4 text-xs text-white/40"
+        aria-label="Liens du bas de page">
+        <!-- Populated by app.js -->
+      </nav>
+      <p id="footer-copyright" class="text-white/30 text-xs">© 2026 L'Histoire des Épices. Curateurs de Traditions
+        Culinaires.</p>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════════════════ FLOATING WHATSAPP -->
+  <div id="floating-whatsapp" aria-label="Contacter sur WhatsApp" role="complementary">
+    <!-- Populated by app.js when show_floating_whatsapp: true -->
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════ APP -->
+  <script src="app.js"></script>
+
+</body>
+
+</html>
