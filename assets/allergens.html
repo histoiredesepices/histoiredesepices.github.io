@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Allergènes | L'Histoire des Épices</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Jura:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Jura', sans-serif;
+            background: #faf8f5;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid #5b0617;
+        }
+        
+        h1 {
+            color: #5b0617;
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: #6b6b6b;
+            font-size: 0.9rem;
+        }
+        
+        h2 {
+            color: #5b0617;
+            font-size: 1.25rem;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .allergen-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .allergen-item {
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .allergen-icon {
+            width: 40px;
+            height: 40px;
+            background: #5b0617;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+        
+        .allergen-info h3 {
+            font-size: 0.95rem;
+            color: #1a1a1a;
+            margin-bottom: 0.25rem;
+        }
+        
+        .allergen-info p {
+            font-size: 0.8rem;
+            color: #6b6b6b;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        th {
+            background: #5b0617;
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background: rgba(91, 6, 23, 0.03);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .badge-dairy { background: #e3f2fd; color: #1565c0; }
+        .badge-gluten { background: #fff3e0; color: #e65100; }
+        .badge-nuts { background: #fce4ec; color: #c2185b; }
+        .badge-shellfish { background: #e8f5e9; color: #2e7d32; }
+        
+        .note {
+            background: #fff8e1;
+            border-left: 4px solid #c9a55c;
+            padding: 1rem;
+            margin: 2rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .note strong {
+            color: #5b0617;
+        }
+        
+        footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e5e5e5;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #6b6b6b;
+        }
+        
+        @media print {
+            body {
+                padding: 1rem;
+                background: white;
+            }
+            
+            .allergen-item {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌿 Liste des Allergènes</h1>
+        <p class="subtitle">L'Histoire des Épices — Traiteur Indien à Valenciennes</p>
+    </header>
+
+    <section>
+        <h2>Allergènes Présents dans Nos Plats</h2>
+        <div class="allergen-grid">
+            <div class="allergen-item">
+                <div class="allergen-icon">🥛</div>
+                <div class="allergen-info">
+                    <h3>Lait (Produits Laitiers)</h3>
+                    <p>Ghee, crème, yaourt, paneer</p>
+                </div>
+            </div>
+            <div class="allergen-item">
+                <div class="allergen-icon">🌾</div>
+                <div class="allergen-info">
+                    <h3>Gluten</h3>
+                    <p>Naan, chapati, samosas</p>
+                </div>
+            </div>
+            <div class="allergen-item">
+                <div class="allergen-icon">🥜</div>
+                <div class="allergen-info">
+                    <h3>Fruits à Coque</h3>
+                    <p>Noix de cajou, amandes, pistaches</p>
+                </div>
+            </div>
+            <div class="allergen-item">
+                <div class="allergen-icon">🥜</div>
+                <div class="allergen-info">
+                    <h3>Arachides</h3>
+                    <p>Huile d'arachide (certains plats)</p>
+                </div>
+            </div>
+            <div class="allergen-item">
+                <div class="allergen-icon">🦐</div>
+                <div class="allergen-info">
+                    <h3>Crustacés</h3>
+                    <p>Crevettes dans les plats de fruits de mer</p>
+                </div>
+            </div>
+            <div class="allergen-item">
+                <div class="allergen-icon">🐟</div>
+                <div class="allergen-info">
+                    <h3>Poisson</h3>
+                    <p>Plats de poisson uniquement</p>
+                </div>
+            </div>
+            <div class="allergen-item">
+                <div class="allergen-icon">🥚</div>
+                <div class="allergen-info">
+                    <h3>Œufs</h3>
+                    <p>Certaines pâtisseries</p>
+                </div>
+            </div>
+            <div class="allergen-item">
+                <div class="allergen-icon">🫘</div>
+                <div class="allergen-info">
+                    <h3>Sésame</h3>
+                    <p>Huile de sésame, graines</p>
+                </div>
+            </div>
+            <div class="allergen-item">
+                <div class="allergen-icon">🌱</div>
+                <div class="allergen-info">
+                    <h3>Moutarde</h3>
+                    <p>Graines de moutarde, huile</p>
+                </div>
+            </div>
+            <div class="allergen-item">
+                <div class="allergen-icon">🍷</div>
+                <div class="allergen-info">
+                    <h3>Sulfites</h3>
+                    <p>Certaines sauces et marinades</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Plats et Leurs Allergènes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Plat</th>
+                    <th>Allergènes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Samosas Légumes</td>
+                    <td><span class="badge badge-gluten">Gluten</span></td>
+                </tr>
+                <tr>
+                    <td>Paneer Tikka</td>
+                    <td><span class="badge badge-dairy">Lait</span></td>
+                </tr>
+                <tr>
+                    <td>Butter Chicken</td>
+                    <td><span class="badge badge-dairy">Lait</span> <span class="badge badge-nuts">Noix</span></td>
+                </tr>
+                <tr>
+                    <td>Poulet Korma</td>
+                    <td><span class="badge badge-dairy">Lait</span> <span class="badge badge-nuts">Noix</span></td>
+                </tr>
+                <tr>
+                    <td>Biryani Agneau</td>
+                    <td><span class="badge badge-dairy">Lait</span> <span class="badge badge-nuts">Noix</span></td>
+                </tr>
+                <tr>
+                    <td>Crevettes Malai Curry</td>
+                    <td><span class="badge badge-shellfish">Crustacés</span></td>
+                </tr>
+                <tr>
+                    <td>Naan Maison</td>
+                    <td><span class="badge badge-gluten">Gluten</span> <span class="badge badge-dairy">Lait</span></td>
+                </tr>
+                <tr>
+                    <td>Chapati</td>
+                    <td><span class="badge badge-gluten">Gluten</span></td>
+                </tr>
+                <tr>
+                    <td>Halwa Carottes</td>
+                    <td><span class="badge badge-dairy">Lait</span> <span class="badge badge-nuts">Noix</span></td>
+                </tr>
+                <tr>
+                    <td>Halwa Semoule</td>
+                    <td><span class="badge badge-dairy">Lait</span> <span class="badge badge-gluten">Gluten</span></td>
+                </tr>
+                <tr>
+                    <td>Semiya Kheer</td>
+                    <td><span class="badge badge-dairy">Lait</span> <span class="badge badge-gluten">Gluten</span> <span class="badge badge-nuts">Noix</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <div class="note">
+        <strong>⚠️ Important :</strong> Tous nos plats sont préparés dans une cuisine où sont manipulés des allergènes. 
+        Des traces peuvent être présentes même dans les plats qui n'en contiennent pas normalement. 
+        Si vous avez des allergies sévères, veuillez nous contacter avant de commander.
+    </div>
+
+    <section>
+        <h2>Options Alimentaires</h2>
+        <div class="allergen-grid">
+            <div class="allergen-item">
+                <div class="allergen-icon" style="background: #4caf50;">✓</div>
+                <div class="allergen-info">
+                    <h3>Halal</h3>
+                    <p>Toutes nos viandes sont certifiées halal</p>
+                </div>
+            </div>
+            <div class="allergen-item">
+                <div class="allergen-icon" style="background: #8bc34a;">🌱</div>
+                <div class="allergen-info">
+                    <h3>Végétarien</h3>
+                    <p>Large choix de plats végétariens disponibles</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p><strong>L'Histoire des Épices</strong></p>
+        <p>Traiteur Indien — Valenciennes & Anzin</p>
+        <p>Contact : 01 23 45 67 89</p>
+        <p style="margin-top: 1rem; font-size: 0.7rem;">Document mis à jour : Mai 2026</p>
+    </footer>
+</body>
+</html>

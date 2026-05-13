@@ -109,7 +109,7 @@
         },
         "allergen_button": {
             "label": { "fr": "Consulter la liste des allergènes", "en": "View allergen list" },
-            "url": "assets/allergens.pdf"
+            "url": "assets/allergens.html"
         },
         "categories": [
             { "id": "all", "icon": "restaurant_menu", "label": { "fr": "Tout", "en": "All" } },
