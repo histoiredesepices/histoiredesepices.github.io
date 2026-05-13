@@ -47,6 +47,55 @@
     --radius-full: 9999px;
 }
 
+/* ─── Performance Optimizations ──────────────────────────────────────────── */
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Content containment for better rendering */
+section {
+    contain: layout style;
+}
+
+/* GPU acceleration for smooth scrolling */
+.hero,
+.specialties,
+.menu-section,
+.heritage,
+.events,
+.contact {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* Image optimization */
+img {
+    content-visibility: auto;
+}
+
+img[data-src] {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+img:not([data-src]) {
+    opacity: 1;
+}
+
 /* ─── Base Reset ──────────────────────────────────────────────────────────── */
 *,
 *::before,

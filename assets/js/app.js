@@ -49,6 +49,7 @@ function waUrl(phone, msg) {
 
 function imgFallback(img, initial) {
     img.loading = 'lazy';
+    img.decoding = 'async';
     img.onerror = function () {
         const placeholder = document.createElement('div');
         placeholder.className = this.closest('.specialty-card')
@@ -60,6 +61,38 @@ function imgFallback(img, initial) {
         placeholder.setAttribute('aria-hidden', 'true');
         this.replaceWith(placeholder);
     };
+}
+
+// Lazy load images with Intersection Observer
+function initLazyImages() {
+    const images = document.querySelectorAll('img[data-src]');
+
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            },
+            {
+                rootMargin: '100px 0px',
+                threshold: 0.01,
+            },
+        );
+
+        images.forEach((img) => imageObserver.observe(img));
+    } else {
+        // Fallback for older browsers
+        images.forEach((img) => {
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+        });
+    }
 }
 
 // WhatsApp SVG
@@ -864,6 +897,9 @@ function render() {
 
     // Re-init scroll reveal for new elements
     initScrollReveal();
+
+    // Initialize lazy loading for images
+    initLazyImages();
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
