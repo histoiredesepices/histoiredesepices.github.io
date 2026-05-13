@@ -773,6 +773,68 @@ function showError() {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
+// ACCESSIBILITY LABELS & SECTION EYEBROWS
+// ═══════════════════════════════════════════════════════════════════════════
+
+function updateAccessibilityLabels() {
+    const u = C.ui_strings;
+
+    // Skip link
+    const skipLink = document.querySelector('.skip-link');
+    if (skipLink) skipLink.textContent = t(u.skip_to_content);
+
+    // Navigation aria-labels
+    const nav = document.querySelector('nav[aria-label]');
+    if (nav) nav.setAttribute('aria-label', t(u.main_navigation));
+
+    // Brand link
+    const brandLink = $('nav-brand');
+    if (brandLink) brandLink.setAttribute('aria-label', t(u.home_link));
+
+    // Language toggle
+    const langToggle = $('lang-toggle');
+    if (langToggle) langToggle.setAttribute('aria-label', t(u.change_language));
+
+    // Hamburger
+    const hamburger = $('hamburger');
+    if (hamburger) hamburger.setAttribute('aria-label', t(u.open_menu));
+
+    // Mobile menu
+    const mobileMenu = $('mobile-menu');
+    if (mobileMenu) mobileMenu.setAttribute('aria-label', t(u.mobile_menu));
+
+    // Menu filters
+    const menuFilters = $('menu-filters');
+    if (menuFilters) menuFilters.setAttribute('aria-label', t(u.filter_by_category));
+
+    // Floating WhatsApp
+    const floatingWa = $('floating-whatsapp');
+    if (floatingWa) floatingWa.setAttribute('aria-label', t(u.contact_whatsapp));
+
+    // Section aria-labels
+    const sections = u.section_labels || {};
+    Object.keys(sections).forEach((id) => {
+        const section = document.getElementById(id);
+        if (section) section.setAttribute('aria-label', t(sections[id]));
+    });
+
+    // Section eyebrows
+    const eyebrows = u.section_eyebrows || {};
+
+    // Menu eyebrow
+    const menuEyebrow = document.querySelector('#menu .section-eyebrow');
+    if (menuEyebrow && eyebrows.menu) menuEyebrow.textContent = t(eyebrows.menu);
+
+    // Events eyebrow
+    const eventsEyebrow = document.querySelector('#evenements .section-eyebrow');
+    if (eventsEyebrow && eyebrows.events) eventsEyebrow.textContent = t(eyebrows.events);
+
+    // Contact eyebrow
+    const contactEyebrow = document.querySelector('#contact .section-eyebrow');
+    if (contactEyebrow && eyebrows.contact) contactEyebrow.textContent = t(eyebrows.contact);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
 // FULL RENDER
 // ═══════════════════════════════════════════════════════════════════════════
 
@@ -780,6 +842,7 @@ function render() {
     if (!C) return;
 
     updateSEO();
+    updateAccessibilityLabels();
     renderNav();
     renderHero();
     renderFeatures();

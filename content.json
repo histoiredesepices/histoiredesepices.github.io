@@ -1124,6 +1124,26 @@
         "request_quote": { "fr": "Demander un devis", "en": "Request a quote" },
         "open_menu": { "fr": "Ouvrir le menu", "en": "Open menu" },
         "close_menu": { "fr": "Fermer le menu", "en": "Close menu" },
+        "skip_to_content": { "fr": "Aller au contenu principal", "en": "Skip to main content" },
+        "main_navigation": { "fr": "Navigation principale", "en": "Main navigation" },
+        "home_link": { "fr": "Accueil L'Histoire des Épices", "en": "Home L'Histoire des Épices" },
+        "change_language": { "fr": "Changer de langue", "en": "Change language" },
+        "mobile_menu": { "fr": "Menu de navigation", "en": "Navigation menu" },
+        "filter_by_category": { "fr": "Filtrer par catégorie", "en": "Filter by category" },
+        "contact_whatsapp": { "fr": "Contacter sur WhatsApp", "en": "Contact on WhatsApp" },
+        "section_labels": {
+            "hero": { "fr": "Présentation", "en": "Introduction" },
+            "specialties": { "fr": "Nos Spécialités", "en": "Our Specialties" },
+            "menu": { "fr": "La carte", "en": "The menu" },
+            "heritage": { "fr": "Notre histoire", "en": "Our story" },
+            "evenements": { "fr": "Événements", "en": "Events" },
+            "contact": { "fr": "Contact", "en": "Contact" }
+        },
+        "section_eyebrows": {
+            "menu": { "fr": "La Carte", "en": "The Menu" },
+            "events": { "fr": "Célébrez avec nous", "en": "Celebrate with us" },
+            "contact": { "fr": "Contactez-nous", "en": "Contact us" }
+        },
         "badges": {
             "signature": { "fr": "Signature", "en": "Signature" },
             "new": { "fr": "Nouveau", "en": "New" },
