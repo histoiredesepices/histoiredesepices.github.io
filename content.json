@@ -1000,10 +1000,20 @@
             "fr": "Étalage d'épices indiennes colorées",
             "en": "Colourful Indian spice flat lay"
         },
-        "stat": {
-            "value": "100%",
-            "label": { "fr": "FAIT MAISON", "en": "HOMEMADE" }
-        }
+        "stats": [
+            {
+                "value": "100%",
+                "label": { "fr": "FAIT MAISON", "en": "HOMEMADE" }
+            },
+            {
+                "value": "30+",
+                "label": { "fr": "ÉPICES AUTHENTIQUES", "en": "AUTHENTIC SPICES" }
+            },
+            {
+                "value": "3",
+                "label": { "fr": "GÉNÉRATIONS DE RECETTES", "en": "GENERATIONS OF RECIPES" }
+            }
+        ]
     },
 
     "events": {

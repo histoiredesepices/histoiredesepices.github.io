@@ -585,13 +585,20 @@ function renderHeritage() {
         paras.innerHTML = paragraphs.map((p) => `<p>${esc(p)}</p>`).join('');
     }
 
-    // Stat
-    const stat = $('heritage-stat');
-    if (stat) {
-        stat.innerHTML = `
-            <span class="stat-value">${esc(h.stat.value)}</span>
-            <span class="stat-label">${esc(t(h.stat.label))}</span>
-        `;
+    // Stats (supports both single stat and array of stats)
+    const statsContainer = $('heritage-stats');
+    const stats = h.stats || (h.stat ? [h.stat] : []);
+    if (statsContainer && stats.length) {
+        statsContainer.innerHTML = stats
+            .map(
+                (s) => `
+            <div class="heritage-stat">
+                <span class="stat-value">${esc(s.value)}</span>
+                <span class="stat-label">${esc(t(s.label))}</span>
+            </div>
+        `,
+            )
+            .join('');
     }
 
     // Image
