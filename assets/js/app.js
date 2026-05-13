@@ -995,19 +995,17 @@ function initEventListeners() {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
-    // Header scroll effect
+    // Header scroll effect - transparent over hero, solid after
     const header = $('site-header');
+    const hero = $('hero');
     if (header) {
-        let lastScroll = 0;
-        window.addEventListener(
-            'scroll',
-            () => {
-                const currentScroll = window.pageYOffset;
-                header.classList.toggle('scrolled', currentScroll > 50);
-                lastScroll = currentScroll;
-            },
-            { passive: true },
-        );
+        const updateHeader = () => {
+            const scrollThreshold = hero ? hero.offsetHeight * 0.20 : 100;
+            const currentScroll = window.pageYOffset;
+            header.classList.toggle('scrolled', currentScroll > scrollThreshold);
+        };
+        window.addEventListener('scroll', updateHeader, { passive: true });
+        updateHeader(); // Check on load
     }
 }
 

@@ -175,16 +175,43 @@ img {
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(250, 248, 245, 0.95);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    transition: all 0.3s var(--ease);
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition: all 0.4s var(--ease);
 }
 
 #site-header.scrolled {
-    background: rgba(255, 255, 255, 0.98);
+    background: rgba(250, 248, 245, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
     box-shadow: var(--shadow-sm);
+}
+
+/* Navbar text colors - transparent state (over hero) */
+#site-header:not(.scrolled) #nav-brand-text {
+    color: white !important;
+}
+
+#site-header:not(.scrolled) .nav-link {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+#site-header:not(.scrolled) .nav-link:hover {
+    color: var(--saffron);
+}
+
+#site-header:not(.scrolled) .lang-switch__label {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#site-header:not(.scrolled) .lang-switch__label--fr,
+#site-header:not(.scrolled) .lang-switch__label--en {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#site-header:not(.scrolled) .hamburger span {
+    background: white;
 }
 
 .nav-container {
