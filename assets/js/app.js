@@ -259,9 +259,32 @@ function renderSpecialties() {
         .map((dish) => {
             const name = t(dish.name);
             const desc = t(dish.description);
-            const priceHtml =
-                C.settings.show_prices && dish.price_eur != null
-                    ? `<span class="specialty-card__price">${dish.price_eur.toFixed(2)} €</span>`
+
+            // Price with discount
+            let priceHtml = '';
+            if (C.settings.show_prices && dish.price_eur != null) {
+                if (dish.discount_percent) {
+                    const discounted = (dish.price_eur * (1 - dish.discount_percent / 100)).toFixed(
+                        2,
+                    );
+                    priceHtml = `<span class="specialty-card__price"><s style="color:var(--muted);font-size:0.9rem;">${dish.price_eur.toFixed(2)}€</s> ${discounted} €</span>`;
+                } else {
+                    priceHtml = `<span class="specialty-card__price">${dish.price_eur.toFixed(2)} €</span>`;
+                }
+            }
+
+            // Badges
+            let badgeHtml = '';
+            if (dish.is_signature)
+                badgeHtml = `<span class="specialty-card__badge">${esc(t(u.badges.signature))}</span>`;
+            else if (dish.is_new)
+                badgeHtml = `<span class="specialty-card__badge specialty-card__badge--new">${esc(t(u.badges.new))}</span>`;
+
+            // Spice indicator
+            const spice = clamp(dish.spice_level ?? 0, 0, 5);
+            const spiceHtml =
+                dish.is_spicy || spice > 0
+                    ? `<span class="specialty-card__spice">${'🌶'.repeat(spice > 0 ? Math.min(spice, 5) : 1)}</span>`
                     : '';
 
             const imageHtml = dish.image
@@ -272,10 +295,10 @@ function renderSpecialties() {
             <div class="specialty-card reveal" data-dish="${esc(dish.id)}">
                 <div class="specialty-card__image">
                     ${imageHtml}
-                    ${dish.is_signature ? `<span class="specialty-card__badge">${esc(t(u.badges.signature))}</span>` : ''}
+                    ${badgeHtml}
                 </div>
                 <div class="specialty-card__content">
-                    <h3 class="specialty-card__name">${esc(name)}</h3>
+                    <h3 class="specialty-card__name">${esc(name)} ${spiceHtml}</h3>
                     <p class="specialty-card__desc">${esc(desc)}</p>
                     ${priceHtml}
                 </div>
@@ -311,8 +334,12 @@ function buildMenuItem(dish) {
     if (isVeg) badges += `<span class="badge badge--veg">🌱</span>`;
     if (isHalal && !isVeg) badges += `<span class="badge badge--halal">H</span>`;
 
-    const spice = clamp(dish.spice_level ?? 0, 0, 3);
-    if (spice > 0) badges += `<span class="badge badge--spicy">${'🌶'.repeat(spice)}</span>`;
+    // Spice indicator: use is_spicy flag OR spice_level > 0
+    const spice = clamp(dish.spice_level ?? 0, 0, 5);
+    if (dish.is_spicy || spice > 0) {
+        const flames = spice > 0 ? spice : 1;
+        badges += `<span class="badge badge--spicy">${'🌶'.repeat(Math.min(flames, 5))}</span>`;
+    }
 
     // Price
     let priceHtml = '';
@@ -328,6 +355,12 @@ function buildMenuItem(dish) {
         } else {
             priceHtml = `<span class="menu-item__price">${dish.price_eur.toFixed(2)}€</span>`;
         }
+    }
+
+    // Calories
+    let caloriesHtml = '';
+    if (C.settings.show_calories && dish.calories_kcal != null) {
+        caloriesHtml = `<span class="menu-item__calories">${dish.calories_kcal} ${t(u.labels?.calories) || 'kcal'}</span>`;
     }
 
     // Allergens
@@ -348,6 +381,12 @@ function buildMenuItem(dish) {
         ? `<img data-src="${esc(dish.image)}" alt="${esc(t(dish.image_alt))}" loading="lazy">`
         : `<div class="menu-item__placeholder">${esc(name[0] || '?')}</div>`;
 
+    // Meta line (calories + allergens)
+    const metaHtml =
+        caloriesHtml || allergensHtml
+            ? `<div class="menu-item__meta">${caloriesHtml}${allergensHtml}</div>`
+            : '';
+
     return `
         <div class="menu-item" data-dish="${esc(dish.id)}">
             <div class="menu-item__image">${imageHtml}</div>
@@ -358,7 +397,7 @@ function buildMenuItem(dish) {
                 </div>
                 ${badges ? `<div class="menu-item__badges">${badges}</div>` : ''}
                 <p class="menu-item__desc">${esc(desc)}</p>
-                ${allergensHtml}
+                ${metaHtml}
             </div>
         </div>
     `;

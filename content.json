@@ -167,13 +167,13 @@
                 "tags": ["vegetarian"],
                 "is_signature": true,
                 "is_new": true,
-                "is_spicy": true,
+                "is_spicy": false,
                 "is_available": true,
                 "price_eur": 4.5,
                 "discount_percent": 10,
                 "calories_kcal": 20,
                 "allergens": ["gluten"],
-                "spice_level": 1
+                "spice_level": 2
             },
 
             {

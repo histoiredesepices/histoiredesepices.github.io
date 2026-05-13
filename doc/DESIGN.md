@@ -1,270 +1,256 @@
 ---
-name: L'Histoire des Épices — Design System
-colour_rule: 60/30/10
+name: L'Histoire des Épices — Design System (Modern Redesign)
+style: Clean Modern with Elegant Typography
 colors:
-    # 60% — WHITE (dominant surface)
-    surface: '#ffffff'
-    surface-lo: '#f6f6f6'
-    surface-mid: '#eeeeee'
-    on-surface: '#1a1a1a'
-    on-surface-variant: '#555555'
-    # 30% — BURGUNDY (structural / brand colour)
+    # Primary palette
     primary: '#5b0617'
     primary-hover: '#7a1f2b'
-    inverse-surface: '#5b0617'
-    # 10% — SAFFRON (accent / call-to-action)
-    saffron: '#C9A55C'
+    primary-light: '#8a2a3d'
+    saffron: '#c9a55c'
+    saffron-light: '#e0c88a'
+    saffron-dark: '#a88940'
+    # Surfaces
+    cream: '#faf8f5'
+    surface: '#ffffff'
+    light-gray: '#f0ede8'
+    # Text
+    dark: '#1a1a1a'
+    muted: '#6b6b6b'
     # Functional
-    outline: '#cccccc'
-    outline-variant: '#e5e5e5'
-    whatsapp: '#004b3b'
-    whatsapp-text: '#7cbaa5'
-    error: '#ba1a1a'
-    on-error: '#ffffff'
+    border: 'rgba(91, 6, 23, 0.1)'
+    whatsapp: '#25d366'
+    whatsapp-dark: '#128c7e'
 typography:
+    script:
+        fontFamily: Felipa
+        usage: Decorative titles, brand name, section headers, hero headline
+    body:
+        fontFamily: Jura
+        weights: 300-700
+        usage: All body text, navigation, buttons, labels
     display-lg:
-        fontFamily: ebGaramond
-        fontSize: 64px
-        fontWeight: '500'
-        lineHeight: 72px
-        letterSpacing: -0.02em
-    display-lg-mobile:
-        fontFamily: ebGaramond
-        fontSize: 40px
-        fontWeight: '500'
-        lineHeight: 48px
-    headline-md:
-        fontFamily: ebGaramond
-        fontSize: 32px
-        fontWeight: '500'
-        lineHeight: 40px
-    headline-sm:
-        fontFamily: ebGaramond
-        fontSize: 24px
-        fontWeight: '600'
-        lineHeight: 32px
-    body-lg:
-        fontFamily: inter
-        fontSize: 18px
-        fontWeight: '400'
-        lineHeight: 28px
+        fontFamily: Felipa
+        fontSize: 5rem (mobile) / 8rem (desktop)
+        usage: Hero headline first line
+    section-title:
+        fontFamily: Felipa
+        fontSize: 2.5rem (mobile) / 3.5rem (desktop)
+        usage: Section headers
     body-md:
-        fontFamily: inter
-        fontSize: 16px
-        fontWeight: '400'
-        lineHeight: 24px
-    label-md:
-        fontFamily: inter
-        fontSize: 14px
-        fontWeight: '600'
-        lineHeight: 20px
-        letterSpacing: 0.05em
+        fontFamily: Jura
+        fontSize: 1rem
+        fontWeight: 400
+        lineHeight: 1.6
+    label:
+        fontFamily: Jura
+        fontSize: 0.75rem
+        fontWeight: 600
+        letterSpacing: 0.2em
+        textTransform: uppercase
 rounded:
-    sm: 0.125rem
-    DEFAULT: 0.25rem
-    md: 0.375rem
-    lg: 0.5rem
-    xl: 0.75rem
+    sm: 0.5rem
+    md: 1rem
+    lg: 1.5rem
     full: 9999px
 spacing:
-    base: 8px
     container-max: 1200px
-    gutter: 24px
-    margin-mobile: 16px
-    margin-desktop: 48px
-    section-gap: 80px
+    section-py: 6rem (desktop) / 4rem (mobile)
+    gutter: 1.5rem (mobile) / 2rem (desktop)
+shadows:
+    sm: '0 2px 8px rgba(0, 0, 0, 0.06)'
+    md: '0 4px 20px rgba(0, 0, 0, 0.08)'
+    lg: '0 8px 40px rgba(0, 0, 0, 0.12)'
+    glow: '0 0 40px rgba(201, 165, 92, 0.3)'
+transitions:
+    ease: 'cubic-bezier(0.4, 0, 0.2, 1)'
+    ease-bounce: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
 breakpoints:
     sm: 640px
     md: 768px
     lg: 1024px
     xl: 1280px
-    '2xl': 1536px
 ---
 
 > **Pair this file with `CLAUDE.md`.** `DESIGN.md` describes _how it looks_; `CLAUDE.md` describes _how it's built and edited_.
 
 ## Brand & Voice
 
-The brand is a curator of heritage and culinary tradition. The aesthetic blends **Minimalism** with **Tactile** influences to evoke the sensory experience of Indian spices. High-quality photography of vibrant ingredients is balanced by generous whitespace, ensuring a premium, editorial feel that avoids the clutter often associated with catering services.
+The brand is a curator of heritage and culinary tradition. The aesthetic is **Clean Modern** with elegant script typography that evokes sophistication and warmth. High-quality photography with dark overlays creates an immersive, premium feel.
 
-The emotional response should be one of **Warm Sophistication**. Organic textures and delicate decorative elements move the UI away from corporate coldness toward a hand-crafted, family-run atmosphere. The interface is a quiet vessel for the "History of Spices" — subtle transitions and refined details guide the user through a narrative-driven booking experience.
+The emotional response should be one of **Modern Elegance**. The Felipa script font adds a personal, handcrafted touch while Jura provides clean, readable body text. Generous whitespace, subtle animations, and glassmorphism effects create a contemporary experience that feels both luxurious and approachable.
 
-## Colour System — 60 / 30 / 10 Rule
+## Colour System
 
-The palette follows the interior-design **60/30/10 principle**, applied to every page view:
-
-| Proportion       | Role               | Hex       | Where it appears                                                                                                         |
-| ---------------- | ------------------ | --------- | ------------------------------------------------------------------------------------------------------------------------ |
-| **60% White**    | Dominant surface   | `#ffffff` | Hero, Menu, Events, Contact — every main content area. Clean and airy.                                                   |
-| **30% Burgundy** | Structural / brand | `#5b0617` | Sticky nav, Features strip, Heritage section, Footer. All major structural blocks.                                       |
-| **10% Saffron**  | Accent / energy    | `#C9A55C` | Active chips, section dividers, nav hover underlines, hero image ring, focus rings, feature icons on dark bg, FAB pulse. |
+The palette uses a warm cream base with burgundy and saffron accents for a sophisticated, inviting feel.
 
 ### Full token reference
 
-| Token           | Hex       | Role                                                                 |
-| --------------- | --------- | -------------------------------------------------------------------- |
-| `surface`       | `#ffffff` | Pure white page canvas                                               |
-| `surf-lo`       | `#f6f6f6` | Very light neutral — Events, Contact section bands                   |
-| `surf-mid`      | `#eeeeee` | Slightly deeper neutral — subtle elevation                           |
-| `on-surface`    | `#1a1a1a` | Body text — near-black, not pure black                               |
-| `on-muted`      | `#555555` | Muted text — descriptions, subtitles                                 |
-| `primary`       | `#5b0617` | Deep burgundy — nav bg, features strip, heritage bg, footer bg, CTAs |
-| `primary-hover` | `#7a1f2b` | Button hover state                                                   |
-| `saffron`       | `#C9A55C` | Saffron gold — all 10% accent uses                                   |
-| `outline`       | `#cccccc` | Neutral borders                                                      |
-| `outline-light` | `#e5e5e5` | Subtle dividers                                                      |
-| `whatsapp`      | `#004b3b` | WhatsApp button only — never used as brand colour                    |
-| `error`         | `#ba1a1a` | Errors only                                                          |
+| Token           | Hex                    | Role                                              |
+| --------------- | ---------------------- | ------------------------------------------------- |
+| `cream`         | `#faf8f5`              | Warm off-white background — main page canvas      |
+| `surface`       | `#ffffff`              | Pure white — cards, elevated surfaces             |
+| `light-gray`    | `#f0ede8`              | Subtle backgrounds, placeholders                  |
+| `dark`          | `#1a1a1a`              | Primary text color                                |
+| `muted`         | `#6b6b6b`              | Secondary text, descriptions                      |
+| `primary`       | `#5b0617`              | Deep burgundy — heritage section, text accents    |
+| `primary-hover` | `#7a1f2b`              | Button hover state                                |
+| `primary-light` | `#8a2a3d`              | Lighter burgundy for gradients                    |
+| `saffron`       | `#c9a55c`              | Gold accent — CTAs, badges, highlights, hero text |
+| `saffron-light` | `#e0c88a`              | Lighter gold for hover states                     |
+| `saffron-dark`  | `#a88940`              | Darker gold for active states                     |
+| `border`        | `rgba(91, 6, 23, 0.1)` | Subtle borders with burgundy tint                 |
+| `whatsapp`      | `#25d366`              | WhatsApp brand green                              |
 
-**Hard rules:**
+**Design principles:**
 
-- Never use saffron as a fill on any large surface. It is an accent — 10% maximum.
-- Never use the warm parchment tones (`#fff8f7`, `#fff0f0`) — they are replaced by clean neutral whites and grays.
-- Never combine burgundy and WhatsApp green on the same control.
-- Never introduce a new colour without adding it to this file.
-- Shadows are always tinted with `primary` at low opacity — never cold grey.
-
-### Why the change from warm beige to white?
-
-The original palette used warm-tinted surfaces (`#fff8f7`). The 60/30/10 rule replaces these with **clinical white** for the dominant 60%, which creates maximum contrast against the deep burgundy structural elements (30%) and makes the saffron accents (10%) pop more legibly. The warmth is now carried entirely by the burgundy and gold — not the backgrounds.
+- **Cream background** (`#faf8f5`) provides warmth without being distracting
+- **Saffron** is the primary CTA color — used for buttons, badges, and highlights
+- **Burgundy** is reserved for the Heritage section background and text accents
+- **Glassmorphism** effects use `rgba(255,255,255,0.1)` with `backdrop-filter: blur()`
+- Shadows use neutral black at low opacity, not tinted
 
 ## Typography
 
-A classic pairing balances tradition and utility.
+A modern pairing of elegant script and clean sans-serif.
 
-- **EB Garamond** — all expressive headings. Display sizes use medium weight (500) and a slight negative letter-spacing (`-0.02em`) for elegance. Headlines may use italic for a single phrase to evoke editorial pull-quotes.
-- **Inter** — all body copy, instructional text, and labels. Uppercase labels with `letter-spacing: 0.05em` give a rhythmic, refined hierarchy without shouting.
+- **Felipa** — Decorative script font for expressive titles. Used sparingly for brand name, section headers, and hero headline to create visual hierarchy and elegance.
+- **Jura** — Clean, geometric sans-serif for all body text, navigation, buttons, and UI elements. Variable weight (300-700) provides flexibility.
 
-**Pairing examples:**
+**Usage examples:**
 
-- Hero headline: EB Garamond 64px / 500 — second line italic in `primary`.
-- Section title: EB Garamond 32px / 500.
-- Eyebrow: Inter 14px / 600 / uppercase / wide tracking, in `primary`.
-- Card title: EB Garamond 24px / 600, in `primary`.
-- Body: Inter 16px / 400 in `on-surface-variant`.
+- **Hero headline (line 1):** Felipa, 5rem mobile / 8rem desktop, saffron color
+- **Hero headline (line 2):** Jura 300, 2rem mobile / 4rem desktop, white
+- **Section titles:** Felipa, 2.5rem mobile / 3.5rem desktop, primary color
+- **Eyebrow labels:** Jura 600, 0.75rem, uppercase, letter-spacing 0.2em, saffron-dark
+- **Navigation:** Jura 500, 0.85rem, uppercase, letter-spacing 0.05em
+- **Body text:** Jura 400, 1rem, line-height 1.6
+- **Card titles:** Jura 600, 1.1rem
+- **Buttons:** Jura 600, 0.875rem, uppercase, letter-spacing 0.05em
 
 ## Elevation & Depth
 
-Hierarchy is built through **ambient shadows** and **tonal layers**, not heavy borders. Surfaces should feel like stacked layers of paper or linen.
+Hierarchy is built through **subtle shadows** and **hover transforms**. Cards lift on hover to indicate interactivity.
 
-- Card elevation: `box-shadow: 0 8px 24px rgba(122, 31, 43, 0.08)`. Warm, not grey.
-- Focus state: a 2px inner glow in saffron, `box-shadow: inset 0 0 0 2px #C9A55C`.
-- Mandala watermarks: 10–15% opacity. They feel embossed, never decorative-for-its-own-sake.
-- The heritage section is the only large dark surface and uses `primary` as its background — a deliberate change of register.
+- **Card rest:** `box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06)` — barely visible
+- **Card hover:** `box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12)` + `transform: translateY(-8px)`
+- **Focus state:** 2px saffron outline with 3px offset
+- **Glassmorphism:** `background: rgba(255, 255, 255, 0.1)` + `backdrop-filter: blur(10px)` for hero features
+- The heritage section uses `primary` burgundy as background with radial gradient accents
 
 ## Shape Language
 
-Soft, structured, never sharp.
+Rounded, modern, approachable.
 
-- Buttons & inputs: `border-radius: 0.5rem` (lg) — replaces the prototype's overly squared default for a friendlier feel.
-- Image cards: `border-radius: 0.5rem`.
-- Pill chips (nav, category filters): `border-radius: 9999px`.
-- Hero image and stat badges: large rounded shapes; the hero image may be a soft circle for editorial flair.
-- Mandalas: the only perfectly circular elements. They earn that role.
+- **Buttons:** `border-radius: 9999px` (full pill shape)
+- **Cards:** `border-radius: 1rem` to `1.5rem`
+- **Menu items:** `border-radius: 0.5rem` to `1rem`
+- **Images:** `border-radius: 0.5rem` to `1.5rem` depending on context
+- **Badges:** `border-radius: 9999px` (pill shape)
 
 ## Components
 
 ### Buttons
 
-| Variant    | Background           | Text                    | Border          | Use                                          |
-| ---------- | -------------------- | ----------------------- | --------------- | -------------------------------------------- |
-| Primary    | `primary`            | `on-primary`            | none            | The main CTA on any view.                    |
-| Secondary  | transparent          | `on-surface`            | 2px `outline`   | Inline alternates. Hover → border `primary`. |
-| Ghost text | transparent          | `primary`               | none, underline | "Demander un devis" links on dish cards.     |
-| WhatsApp   | `tertiary-container` | `on-tertiary-container` | none            | The header pill and the floating button.     |
+| Variant   | Background  | Text      | Border                      | Use                                    |
+| --------- | ----------- | --------- | --------------------------- | -------------------------------------- |
+| Primary   | `saffron`   | `dark`    | none                        | Main CTAs — "Voir la Carte", "Order"   |
+| Outline   | transparent | white     | 2px `rgba(255,255,255,0.4)` | Secondary CTAs on dark backgrounds     |
+| Secondary | transparent | `primary` | 2px `border`                | Inline alternates on light backgrounds |
+| WhatsApp  | `#25d366`   | white     | none                        | Floating FAB and contact card          |
 
-All buttons have a 150–200ms transition on background and border. Active state: `scale(0.97)`.
+All buttons: `border-radius: 9999px`, 300ms transitions, hover lift effect.
 
-### Cards (dish)
+### Cards
 
-- Background: `surface-container-lowest` (#ffffff) on the beige page; thin 1px `outline-variant` border.
-- Layout: image left (128×128 desktop, 96×96 mobile, 8px radius), content right.
-- Hover: lift via the warm burgundy shadow above; no transform.
-- Badges sit top-right of the title row. Allergens and calories sit at the bottom as a small line of metadata, only when their respective `settings` flags are on.
+**Specialty Cards:**
+
+- White background, `border-radius: 1.5rem`
+- Image with 4:3 aspect ratio, signature badge overlay
+- Hover: `translateY(-8px)` + larger shadow
+
+**Menu Items:**
+
+- Cream background (`#faf8f5`), `border-radius: 0.5rem` to `1rem`
+- Thumbnail 80×80px left, content right
+- Hover: saffron border appears
+
+**Event Cards:**
+
+- Full-bleed image with dark gradient overlay
+- Felipa label at bottom
+- Hover: image scales 1.08×
 
 ### Navigation
 
-The nav is a **30% burgundy structural element** — it signals the brand immediately on every scroll position.
+Fixed header with glass effect.
 
-| Property      | Value                                                                                                    |
-| ------------- | -------------------------------------------------------------------------------------------------------- |
-| Background    | `rgba(91, 6, 23, 0.98)` + `backdrop-filter: blur(24px)` — forced via CSS ID selector, not Tailwind class |
-| Height        | 72px                                                                                                     |
-| Bottom accent | 1px gradient line fading from transparent → `saffron` → transparent (10% accent detail)                  |
-| Border        | `1px solid rgba(201, 165, 92, 0.22)` — hairline saffron                                                  |
-| Shadow        | `0 2px 40px rgba(0,0,0,0.22)` — depth against white hero                                                 |
+| Property   | Value                                                       |
+| ---------- | ----------------------------------------------------------- |
+| Background | `rgba(250, 248, 245, 0.95)` + `backdrop-filter: blur(20px)` |
+| Height     | 72px                                                        |
+| Border     | `1px solid rgba(91, 6, 23, 0.1)` — subtle bottom border     |
+| On scroll  | Gains `box-shadow` for depth                                |
 
-**Brand (left):**
+**Brand:** Felipa script, primary burgundy color
 
-- A saffron `★` mark that rotates 30° on hover (micro-animation, 300ms ease)
-- Brand name in _EB Garamond italic_ 1.18rem white — `<span id="nav-brand-text">` populated by `app.js`
-- The mark and text are separate DOM elements so `app.js` can update text without wiping the mark
+**Nav links:** Jura uppercase, muted gray → primary on hover, saffron underline animation via `::after`
 
-**Nav links (centre-right):**
+**Language toggle:** Pill with subtle border, hover shows saffron border
 
-- Font: Inter 0.66rem / 700 / UPPERCASE / `letter-spacing: 0.15em`
-- Colour at rest: `rgba(255,255,255,0.52)` — clearly subordinate to the brand
-- Hover: colour → `rgba(255,255,255,0.95)` + saffron `1.5px` underline **slides in from left** via `::after` pseudo-element (`width: 0 → 100%`, 280ms ease)
-- No border-bottom hack — the `::after` animation is the only active indicator
+**Hamburger:** Three-line animated icon, transforms to X when active
 
-**Controls (right):**
+**Mobile menu:** Full-screen slide-in from right, large touch-friendly links
 
-- Language toggle: ghost pill `border: 1px solid rgba(255,255,255,0.28)` / white text → saffron border + saffron text on hover
-- WhatsApp pill: dark green, sits visually separate from the burgundy field
-- Hamburger: `rgba(255,255,255,0.7)` icon
+### Hero Section
 
-**Mobile sheet:**
+Full-viewport immersive hero with:
 
-- Background: `primary` burgundy (extends the 30% band)
-- Links: UPPERCASE 0.8rem, `padding-left` slides on hover for tactile feedback
-- Dividers: `rgba(255,255,255,0.08)` — barely-there separators
+- Dark gradient overlay on background image
+- Centered content with staggered fade-up animations
+- Glassmorphism feature pills at bottom
+- Bouncing scroll indicator
 
-### Decorative dividers
+### Contact Cards
 
-- Below section titles: a **96px wide × 2px** bar in `saffron` at 70% opacity, with `border-radius: 1px`. This is a 10% saffron accent touch.
-- Dish card hover: `1px solid saffron` border replaces the old shadow-only lift — reinforces the 10% accent system.
-- Hero portrait ring: `3px solid saffron` — the only large saffron ring permitted.
-- Nav bottom: gradient saffron hairline (see Navigation above).
+Two-column grid with:
 
-### Imagery & watermarks
-
-- Warm lighting, shallow depth of field, beige backgrounds preferred.
-- Each dish photo should be roughly square. Object-fit `cover`, never `contain`.
-- The hero photo may use a circular crop with a `8px` solid `surface` border ring.
-- Mandalas appear behind the hero and the heritage section, anchored to the right edge, sized at 30–40% of the section width, opacity 10%.
-
-### Forms
-
-The site has **no contact form**. The only inputs that may exist in the future are a single search field for the menu (out of scope for v1).
+- Phone card: burgundy icon circle, cream background
+- WhatsApp card: green icon circle, green-tinted background
+- Hover: lift effect + saffron border
 
 ## Motion
 
-- All transitions: 150–250ms, easing `cubic-bezier(0.22, 0.61, 0.36, 1)`.
-- Page-scroll reveals: 12px upward fade-in, only on first viewport entry.
-- The floating WhatsApp button has a gentle 2-second pulse (saffron-tinted ring), suppressed if `prefers-reduced-motion`.
-- Hover transforms are scoped to shadows and colours — no layout shift.
-- Disable all non-essential animation when `prefers-reduced-motion: reduce`.
+- **Transitions:** 200-400ms, easing `cubic-bezier(0.4, 0, 0.2, 1)`
+- **Hero animations:** Staggered fade-up with 0.2s delays between elements
+- **Scroll reveal:** 30px upward fade-in using IntersectionObserver, triggered once
+- **Hover effects:** Cards lift with `translateY(-8px)`, buttons lift with `translateY(-2px)`
+- **WhatsApp FAB:** Pulsing green glow animation (2s infinite)
+- **Hamburger:** Smooth transform to X icon (300ms)
+- **Reduced motion:** All animations disabled when `prefers-reduced-motion: reduce`
 
 ## Responsive Behaviour
 
-- **Mobile (≤768px):** single column. Hero stacks (text then image). Menu cards single column. Events scroll horizontally. Floating WhatsApp button remains.
-- **Tablet (768–1024px):** two-column hero, two-column menu, four-up events.
-- **Desktop (≥1024px):** full layout per the reference screenshot.
+- **Mobile (≤640px):** Single column layouts, full-width cards, 2×2 events grid
+- **Tablet (640–1024px):** Two-column specialty grid, two-column menu items
+- **Desktop (≥1024px):** Three-column specialty grid, full navigation, 4-column events
 
 Test viewports: 360px, 768px, 1024px, 1440px.
 
 ## Accessibility
 
-- Body text contrast on `background`: 13.6:1 (passes AAA).
-- Primary button (`on-primary` on `primary`): 14.6:1 (passes AAA).
-- Muted text (`on-surface-variant` on `background`): 9.4:1 (passes AAA).
-- All interactive surfaces ≥ 44×44px touch target.
-- Focus visible at all times, never `outline: none` without a replacement.
+- Body text contrast on cream: passes WCAG AA
+- All interactive elements ≥ 44×44px touch target
+- Focus visible with saffron outline, 3px offset
+- Skip-to-content link for keyboard users
+- Semantic HTML landmarks (`header`, `main`, `section`, `footer`)
+- `aria-label` on all icon-only buttons
+- `prefers-reduced-motion` respected
 
 ## What Not to Do
 
-- No drop shadows in cold grey. Always tint shadows with `primary` at low opacity.
-- No stock-corporate gradients. The only gradient permitted is the hero's `background → surface-container` warm wash.
-- No icon families other than Material Symbols Outlined.
-- No emoji as decorative elements in headlines (small inline emoji like 🌱 inside dish badges is fine).
-- No purple, no neon, no electric blue. The palette is the palette.
+- No cold grey shadows — use neutral black at low opacity
+- No icon families other than Material Symbols Outlined
+- No fonts other than Felipa and Jura
+- No colors outside the defined palette
+- No layout-shifting hover animations
+- No auto-playing videos or audio

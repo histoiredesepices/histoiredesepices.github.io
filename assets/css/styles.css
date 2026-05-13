@@ -773,6 +773,16 @@ img {
     border-radius: var(--radius-full);
 }
 
+.specialty-card__badge--new {
+    background: var(--primary);
+    color: white;
+}
+
+.specialty-card__spice {
+    font-size: 0.9rem;
+    margin-left: 0.25rem;
+}
+
 .specialty-card__content {
     padding: 1.5rem;
 }
@@ -1031,11 +1041,27 @@ img {
     overflow: hidden;
 }
 
+.menu-item__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.menu-item__calories {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--muted);
+    padding: 0.2rem 0.5rem;
+    background: rgba(201, 165, 92, 0.15);
+    border-radius: var(--radius-full);
+}
+
 .menu-item__allergens {
     display: flex;
     flex-wrap: wrap;
     gap: 0.25rem;
-    margin-top: 0.5rem;
 }
 
 .allergen-tag {

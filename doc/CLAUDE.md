@@ -10,7 +10,7 @@
 2. **Static & dependency-light.** Pure HTML + Tailwind (CDN) + vanilla JavaScript. No build step, no npm, no framework. GitHub Pages serves it as-is.
 3. **Bilingual, French-first.** French is the default. English is a toggle. Every user-facing string in `content.json` has both `fr` and `en` keys.
 4. **Design is locked.** The visual system (colors, typography, spacing, components) is defined in `DESIGN.md` and implemented in the HTML/CSS. Content edits must never break the design.
-5. **60 / 30 / 10 colour allocation.** White is dominant (60% — all content sections). Burgundy is structural (30% — nav, features strip, heritage, footer). Saffron is accent-only (10% — dividers, hover underlines, active chips, focus rings, portrait ring). Never expand any role beyond its proportion.
+5. **Modern & Clean aesthetic.** Full-viewport hero with gradient overlay, glassmorphism effects, smooth animations, and elegant typography create a premium feel.
 6. **Resilient to bad input.** If the owner deletes a field, removes a section, or uploads a broken image, the site degrades gracefully — it does not crash.
 7. **Mobile-first.** Most diners will browse on a phone. Test every layout at 360px before 1440px.
 
@@ -21,11 +21,11 @@
 | Layer      | Choice                                 | Why                                                                  |
 | ---------- | -------------------------------------- | -------------------------------------------------------------------- |
 | Markup     | Semantic HTML5                         | Accessible, SEO-friendly, no framework lock-in.                      |
-| Styling    | Tailwind CSS (via CDN)                 | Already used in the prototype; zero build step.                      |
+| Styling    | Tailwind CSS (via CDN) + Custom CSS    | Zero build step, custom properties for design tokens.                |
 | Behaviour  | Vanilla JavaScript (single `app.js`)   | No bundler. Loads `content.json`, hydrates the DOM, handles toggles. |
 | Data       | `content.json`                         | Single source of truth for all content.                              |
-| Icons      | Material Symbols Outlined (Google CDN) | Consistent with the existing prototype.                              |
-| Fonts      | EB Garamond + Inter (Google Fonts CDN) | Defined in `DESIGN.md`.                                              |
+| Icons      | Material Symbols Outlined (Google CDN) | Consistent icon system.                                              |
+| Fonts      | Felipa + Jura (Google Fonts CDN)       | Felipa for decorative script titles, Jura for modern body text.      |
 | Hosting    | GitHub Pages (static)                  | Free, simple, version-controlled edits via GitHub web UI.            |
 | Deployment | Push to `main` → auto-deploys          | No CI needed.                                                        |
 
@@ -127,6 +127,7 @@ Each flag is a simple boolean the owner can flip. The site re-renders accordingl
 ```json
 "navigation": {
   "items": [
+    { "id": "specialties", "label": { "fr": "Spécialités", "en": "Specialties" } },
     { "id": "menu", "label": { "fr": "La Carte", "en": "Menu" } },
     { "id": "heritage", "label": { "fr": "Héritage", "en": "Heritage" } },
     { "id": "evenements", "label": { "fr": "Événements", "en": "Events" } },
@@ -172,31 +173,46 @@ Each `id` must match a section `id` in `index.html` so anchor scroll works.
 
 `headline` is an array of strings rendered as separate lines. `headline_italic_part` is the index (0-based) of which line is italicised — keeps the editorial feel.
 
-#### `features` — The 3 quick-info icons under the hero
+#### `specialties` — The 6 signature dishes showcase section
+
+```json
+"specialties": {
+  "eyebrow": { "fr": "Découvrez", "en": "Discover" },
+  "title": { "fr": "Nos Spécialités", "en": "Our Specialties" },
+  "subtitle": {
+    "fr": "Six plats signatures qui racontent l'histoire de nos épices",
+    "en": "Six signature dishes that tell the story of our spices"
+  }
+}
+```
+
+This section automatically displays 6 dishes marked with `is_signature: true` from the menu. If fewer than 6 signatures exist, it fills with other available dishes.
+
+#### `features` — The 3 quick-info pills in the hero
 
 ```json
 "features": {
   "items": [
     {
       "icon": "restaurant",
-      "title": { "fr": "Traiteur d'Excellence", "en": "Catering Excellence" },
+      "title": { "fr": "Traiteur à Domicile", "en": "Home Catering" },
       "subtitle": { "fr": "Pour tous vos événements privés", "en": "For all your private events" }
     },
     {
       "icon": "eco",
-      "title": { "fr": "100% Halal & Veg", "en": "100% Halal & Veg" },
+      "title": { "fr": "Halal & Végétarien", "en": "Halal & Vegetarian" },
       "subtitle": { "fr": "Options végétariennes variées", "en": "Diverse vegetarian options" }
     },
     {
       "icon": "local_shipping",
-      "title": { "fr": "Click & Collect", "en": "Click & Collect" },
+      "title": { "fr": "À Emporter & Livraison", "en": "Takeaway & Delivery" },
       "subtitle": { "fr": "Valenciennes et ses environs", "en": "Valenciennes and surrounding area" }
     }
   ]
 }
 ```
 
-`icon` is a Material Symbols name — the EDITING.md should link to the picker: https://fonts.google.com/icons.
+Features are displayed as glassmorphism pills at the bottom of the hero section. `icon` is a Material Symbols name — the EDITING.md should link to the picker: https://fonts.google.com/icons.
 
 #### `menu` — The heart of the site
 
@@ -492,24 +508,44 @@ The HTML shell should include the French hero headline, the brand name, the phon
 
 ## 6. HTML Shell (`index.html`)
 
-Implements the layout shown in the reference screenshot. Sections in order:
+Implements a modern, clean single-page layout. Sections in order:
 
-1. **Sticky nav** — Deep burgundy (`rgba(91,6,23,0.98)`) — a 30% structural element visible at every scroll position. Background set via CSS `#site-header` ID rule (not Tailwind class) to guarantee reliability on CDN Play.
-    - **Brand (left):** A saffron `★` mark (`<span class="nav-brand-mark">`) + brand name in `<span id="nav-brand-text">`. Two separate spans — `app.js` targets `nav-brand-text` so the decorative mark is never overwritten.
-    - **Nav links (centre-right):** Inter 0.66rem / 700 / UPPERCASE / `letter-spacing: 0.15em`. Rest state `rgba(255,255,255,0.52)`. Hover: white text + saffron 1.5px underline that slides in from the left via `::after` pseudo-element.
-    - **Controls (right):** Ghost pill language toggle (white → saffron on hover); WhatsApp pill; hamburger.
-    - **Bottom accent:** Gradient hairline `transparent → saffron → transparent` (10% detail).
-    - **Mobile sheet:** Same burgundy bg, UPPERCASE links with slide-indent hover.
-2. **Hero** — two-column on desktop, stacked on mobile. Eyebrow, two-line headline (second line italic in primary burgundy), subhead, two CTAs. Image right with a soft circular crop and ambient burgundy glow.
-3. **Features strip** — A **30% burgundy section** (`#features { background: var(--clr-primary) }`). Three glass-effect cards (`rgba(255,255,255,0.07)` bg, `rgba(255,255,255,0.12)` border) holding icon + title + subtitle. Icons in saffron (10% accent); titles in white; subtitles in `rgba(255,255,255,0.65)`. Hover: card background lightens slightly, saffron border appears.
-4. **Menu** — section title centred with a thin decorative divider. Pill-style category filters. Two-column dish-card grid on desktop, single column on mobile. Cards: square image on the left, name + badges + description + "Demander un devis" link. Below the grid: rice footnote + allergens CTA.
-5. **Heritage** — dark `primary` background, two-column. Spice flat-lay image left with a small floating stat card. Eyebrow + headline + 2 paragraphs right. Mandala watermark behind, low opacity.
-6. **Events** — title, subtitle, four image cards in a row. Each card is a dark-overlay image with a label bottom-left.
-7. **Contact** — `surface-container` band. Title left + two large action cards (Phone, WhatsApp), each a clickable row with icon + label + number. Below: social icons + ordering note. **No form.**
-8. **Footer** — centred wordmark, tagline, link row, copyright.
-9. **Floating WhatsApp button** — fixed bottom-right, hidden on focus inside form fields, hidden if `settings.show_floating_whatsapp === false`.
+1. **Fixed nav** — Glass-effect header with cream background + blur. Fixed at top, gains shadow on scroll.
+    - **Brand (left):** Brand name in Felipa script font, primary burgundy color.
+    - **Nav links (centre-right):** Jura 0.85rem / 500 / UPPERCASE / `letter-spacing: 0.05em`. Muted gray at rest, primary on hover with saffron underline animation.
+    - **Controls (right):** Pill-style language toggle; animated hamburger for mobile.
+    - **Mobile sheet:** Full-screen slide-in menu with large touch-friendly links.
 
-Every dynamic node should have a `data-bind` attribute or a `data-component` attribute so `app.js` knows where to render.
+2. **Hero** — Full-viewport immersive section with dark gradient overlay on background image.
+    - **Content:** Centered eyebrow, two-line headline (first line in Felipa script + saffron, second in Jura), subheadline, two CTAs (primary saffron pill + outline ghost button).
+    - **Features:** Three glassmorphism pills at bottom showing key selling points (icon + title).
+    - **Scroll indicator:** Bouncing chevron at very bottom.
+
+3. **Specialties** — Showcase of 6 signature dishes in a responsive grid (1/2/3 columns).
+    - Cards with image, signature badge, name, description, and price.
+    - Hover: lift effect with shadow.
+
+4. **Menu** — Full menu with category filtering.
+    - Section header with Felipa title.
+    - Pill-style category filter tabs.
+    - Two-column grid of menu items grouped by category.
+    - Each item: thumbnail, name, badges, description, price, allergens.
+    - Footer with rice footnote + allergen PDF link.
+
+5. **Heritage** — Dark burgundy background section with radial gradient accents.
+    - Two-column layout: text left (eyebrow, Felipa title, paragraphs, stat badge), image right with saffron border.
+
+6. **Events** — Grid of 4 event type cards (2x2 mobile, 4x1 desktop).
+    - Each card: full-bleed image with dark gradient overlay, Felipa label at bottom.
+
+7. **Contact** — Clean section with two action cards (Phone + WhatsApp).
+    - Cards with icon circles, labels, and values.
+    - WhatsApp card has green-tinted background.
+    - Social links, ordering note, and location hint below.
+
+8. **Floating WhatsApp FAB** — Fixed bottom-right, pulsing animation, hidden if `settings.show_floating_whatsapp === false`.
+
+Every dynamic node has an `id` attribute so `app.js` can hydrate content from `content.json`.
 
 ---
 
@@ -614,10 +650,10 @@ Before shipping, every item must pass:
 
 - Refer to `DESIGN.md` for every visual decision. Do not invent colours or fonts.
 - Refer to this `CLAUDE.md` for every behavioural and content-structure decision.
-- **Enforce the 60/30/10 rule.** Before adding any new background colour, confirm which proportion it belongs to. Any new white/light area is 60%; any new burgundy block is 30%; any new saffron element is 10%.
-- **Nav background must be forced via CSS ID selector** (`#site-header { background: rgba(91,6,23,0.98) }`), not Tailwind class. The CDN Play opacity modifier (`bg-primary/95`) is unreliable with custom hex colours.
-- **Brand DOM split** — the `<a id="nav-brand">` must contain two children: `<span class="nav-brand-mark">` (static decorative mark) and `<span id="nav-brand-text">` (app.js target). Never collapse them into a single element or the mark disappears on re-render.
+- **Typography:** Use Felipa for decorative script titles (section headers, brand name, hero headline first line). Use Jura for all body text, navigation, and UI elements.
+- **Modern aesthetic:** Prioritize clean whitespace, subtle animations, glassmorphism effects, and smooth transitions.
+- **CSS custom properties:** All design tokens (colors, fonts, spacing, shadows) are defined in `:root` in `styles.css`. Use these variables consistently.
 - Write code that the owner could open and roughly read. Comments in French in `content.json` are welcome; comments in English in `app.js` are fine.
-- `app.js` will realistically be 500–600 lines for a fully bilingual, 6-section site with construction mode and all edge-case handling. This is acceptable. Focus on legibility, not line count.
+- `app.js` will realistically be 500–700 lines for a fully bilingual site with all sections and edge-case handling. This is acceptable. Focus on legibility, not line count.
 - Validate `content.json` on load and log human-readable errors to the console (in English — for the developer, not the owner).
 - Ship the smallest thing that satisfies the acceptance checklist. Resist scope creep.
