@@ -391,11 +391,14 @@ img {
     left: 0;
     right: 0;
     bottom: 0;
+    height: calc(100vh - 72px);
+    height: calc(100dvh - 72px);
     background: var(--surface);
     padding: 2rem;
     transform: translateX(100%);
     transition: transform 0.4s var(--ease);
     overflow-y: auto;
+    z-index: 999;
 }
 
 .mobile-menu:not([hidden]) {
