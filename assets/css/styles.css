@@ -1142,13 +1142,14 @@ img {
 }
 
 .badge--veg {
-    background: #d4edda;
-    color: #155724;
+    background: #e8f5e9;
+    color: #2e7d32;
 }
 
 .badge--halal {
-    background: #e8f4f0;
-    color: #004b3b;
+    background: #e8f5e9;
+    color: #2e7d32;
+    font-weight: 600;
 }
 
 .badge--spicy {
