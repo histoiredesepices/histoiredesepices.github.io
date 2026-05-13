@@ -785,9 +785,21 @@ function renderFloatingWA() {
 // ═══════════════════════════════════════════════════════════════════════════
 
 function showConstruction() {
-    const msg = t(C.settings.construction_message);
-    const el = $('construction-message');
-    if (el) el.textContent = msg;
+    const msgFr = C.settings.construction_message?.fr;
+    const msgEn = C.settings.construction_message?.en;
+
+    const elFr = $('construction-message-fr');
+    if (elFr && msgFr) elFr.textContent = msgFr;
+
+    const elEn = $('construction-message-en');
+    if (elEn && msgEn) elEn.textContent = msgEn;
+
+    // Update phone from contact
+    const phoneBtn = $('construction-phone');
+    if (phoneBtn && C.contact?.phone) {
+        phoneBtn.href = `tel:${C.contact.phone.replace(/\s/g, '')}`;
+        phoneBtn.textContent = C.contact.phone;
+    }
 
     const screen = $('construction-screen');
     if (screen) screen.hidden = false;
@@ -813,8 +825,10 @@ function showError() {
     document.body.innerHTML = `
         <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;
                     font-family:'Jura',sans-serif;text-align:center;padding:2rem;color:#1a1a1a;background:#faf8f5;">
-            <p style="font-family:'Pinyon Script',cursive;font-size:3rem;color:#5b0617;margin-bottom:1rem;">L'Histoire des Épices</p>
-            <p style="color:#6b6b6b;margin-bottom:1.5rem;">Impossible de charger le contenu. Veuillez rafraîchir la page.</p>
+            <img src="assets/logo.png" alt="L'Histoire des Épices" style="width:120px;margin-bottom:1.5rem;" />
+            <p style="font-family:'Felipa',cursive;font-size:3rem;color:#5b0617;margin-bottom:1.5rem;">L'Histoire des Épices</p>
+            <p style="color:#6b6b6b;margin-bottom:0.25rem;font-size:1.1rem;">Impossible de charger le contenu. Veuillez rafraîchir la page.</p>
+            <p style="color:#6b6b6b;margin-bottom:1.5rem;font-style:italic;opacity:0.8;">Unable to load content. Please refresh the page.</p>
             <a href="tel:+33123456789" style="background:#C9A55C;color:#1a1a1a;padding:1rem 2rem;border-radius:9999px;
                text-decoration:none;font-weight:600;">01 23 45 67 89</a>
         </div>
