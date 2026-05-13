@@ -1230,6 +1230,31 @@ img {
     font-size: 1.1rem;
 }
 
+.download-menu-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: white;
+    background: var(--primary);
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--radius-full);
+    margin-top: 1rem;
+    transition: all 0.2s var(--ease);
+}
+
+.download-menu-btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+.download-menu-btn .material-symbols-outlined {
+    font-size: 1.1rem;
+}
+
 /* ═══════════════════════════════════════════════════════════════════════════
    HERITAGE SECTION
    ═══════════════════════════════════════════════════════════════════════════ */

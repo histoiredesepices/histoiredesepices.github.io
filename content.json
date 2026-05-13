@@ -111,6 +111,10 @@
             "label": { "fr": "Consulter la liste des allergènes", "en": "View allergen list" },
             "url": "assets/allergens.html"
         },
+        "download_button": {
+            "label": { "fr": "Télécharger le Menu (PDF)", "en": "Download Menu (PDF)" },
+            "url": "assets/Menu.pdf"
+        },
         "categories": [
             { "id": "all", "icon": "restaurant_menu", "label": { "fr": "Tout", "en": "All" } },
             { "id": "entrees", "icon": "tapas", "label": { "fr": "Entrées", "en": "Starters" } },
