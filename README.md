@@ -1,65 +1,117 @@
-# L'Histoire des Épices — Site Web
+<div align="center">
 
-Site vitrine bilingue (FR/EN) pour **L'Histoire des Épices**, traiteur indien authentique à Valenciennes, France.
+# 🍛 L'Histoire des Épices
 
-## Stack
+### _Authentic Indian Catering in Valenciennes, France_
 
-- **HTML5** sémantique — aucun framework
-- **Tailwind CSS** (CDN Play) — zéro build
-- **Vanilla JavaScript** — `app.js` unique
-- **`content.json`** — source unique de vérité pour tout le contenu
-- **GitHub Pages** — hébergement gratuit et automatique
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Visit_Site-C9A55C?style=for-the-badge)](histoiredesepices.github.io)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
+[![Made with Love](https://img.shields.io/badge/Made_with-❤️-5b0617?style=for-the-badge)](https://github.com/histoiredesepices/)
 
-## Structure
+---
+
+**Built with vanilla HTML, CSS, and JavaScript**  
+_No frameworks • No build step • Bilingual FR/EN • GitHub Pages ready_
+
+</div>
+
+## ✨ Features
+
+- **Bilingual (FR/EN)** - Language toggle with localStorage persistence
+- **PDF Menu Download** - Downloadable menu for customers
+- **Menu Filtering** - Filter by category (Starters, Vegetarian, Non-Vegetarian, Sides, Desserts)
+- **WhatsApp Integration** - Floating button with pre-filled message
+- **Allergen Information** - Dedicated allergens page with dietary options
+- **Smooth Scrolling** - GPU-accelerated animations and lazy loading
+- **Responsive Design** - Mobile-first, 360px → 1440px
+- **Accessible** - WCAG compliant with ARIA, focus states, skip links
+- **SEO Optimized** - Meta tags, Open Graph, Twitter Cards, JSON-LD Schema
+- **Maintenance Mode** - Toggle via `content.json`
+
+## 🛠️ Tech Stack
+
+| Technology       | Purpose                                |
+| ---------------- | -------------------------------------- |
+| **HTML5**        | Semantic markup                        |
+| **Tailwind CSS** | Styling via CDN (no build)             |
+| **Vanilla JS**   | Single `app.js` for all functionality  |
+| **content.json** | Single source of truth for all content |
+| **GitHub Pages** | Free automatic deployment              |
+
+## 📁 Project Structure
 
 ```
-├── index.html        ← Coque HTML (ne pas modifier pour le contenu)
-├── app.js            ← Comportement : chargement, hydratation, toggles
-├── styles.css        ← Système de design : couleurs, composants, animations
-├── content.json      ← ⭐ L'UNIQUE FICHIER À MODIFIER POUR LE CONTENU
+├── index.html           # Main HTML shell
+├── content.json         # ⭐ ALL CONTENT LIVES HERE
 ├── assets/
+│   ├── js/app.js        # Core functionality
+│   ├── css/styles.css   # Design system
+│   ├── allergens.html   # Allergen information page
+│   ├── Menu.pdf         # Downloadable menu
 │   ├── logo.png
-│   ├── favicon.ico
-│   ├── og-image.jpg
-│   ├── mandala.svg
-│   ├── hero/         ← Photo de fond du héros
-│   ├── menu/         ← Photos des plats (nommées selon content.json)
-│   ├── events/       ← Photos des événements
-│   └── heritage/     ← Photo pour la section histoire
-├── EDITING.md        ← Guide complet pour le propriétaire (FR + EN)
+│   ├── hero/            # Hero background images
+│   ├── menu/            # Dish photos
+│   ├── events/          # Event photos
+│   └── heritage/        # Heritage section photos
+├── scripts/
+│   └── optimize_images.py  # Image optimization script
 └── doc/
-    ├── CLAUDE.md     ← Brief de construction technique
-    └── DESIGN.md     ← Système de design (couleurs, typo, composants)
+    ├── CLAUDE.md        # Technical brief
+    └── DESIGN.md        # Design system documentation
 ```
 
-## Pour le propriétaire
+## 🚀 Deploy
 
-Tout le contenu (menu, tarifs, coordonnées, photos, textes) se modifie **uniquement dans `content.json`**.  
-Consultez le fichier **`EDITING.md`** pour un guide pas à pas en français et en anglais.
+This site is designed for GitHub Pages:
 
-## Déploiement
+1. Push your code to GitHub
+2. Enable GitHub Pages in **Settings** → **Pages** → Set source to **GitHub Actions**
+3. Your site will be live at `https://<username>.github.io/Histoire-Des-Epices/`
 
-Poussez sur la branche `main` → GitHub Pages déploie automatiquement.
+## 💻 Local Development
 
-## Fonctionnalités
+```bash
+# Simple Python server
+python3 -m http.server 8000
+```
 
-- Bilingue FR/EN avec mémorisation du choix (localStorage)
-- Filtre de menu par catégorie (Entrées, Végétarien, Non-Végétarien, Accompagnements, Desserts)
-- Bouton WhatsApp flottant avec message pré-rempli
-- Navigation sticky avec scroll fluide
-- Images manquantes remplacées par un placeholder élégant
-- Mode maintenance via `site_under_construction: true` dans content.json
-- Affichage conditionnel des prix, allergènes et calories via des flags
-- Responsive : 360px → 1440px
-- Accessibilité : ARIA, focus visible, skip link, prefers-reduced-motion
-- SEO : meta tags, Open Graph, Twitter Card, JSON-LD Schema
+Then open `http://localhost:8000`
 
-## Personnalisation rapide
+## ⚙️ Quick Customization
 
-| Ce que vous voulez changer | Où modifier                         |
-|---------------------------|--------------------------------------|
-| Ajouter un plat           | `menu.dishes` dans `content.json`    |
-| Changer le numéro WhatsApp| `contact.primary_action.phone_e164`  |
-| Activer les prix          | `settings.show_prices: true`         |
-| Changer une photo         | Upload dans `assets/menu/`, puis mettre à jour `image` dans le plat |
-| Passer en maintenance     | `settings.site_under_construction: true` |
+| What to change         | Where to modify                               |
+| ---------------------- | --------------------------------------------- |
+| Add a dish             | `menu.dishes` in `content.json`               |
+| Change WhatsApp number | `contact.primary_action.phone_e164`           |
+| Toggle prices          | `settings.show_prices: true/false`            |
+| Change a photo         | Upload to `assets/menu/`, update `image` path |
+| Enable maintenance     | `settings.site_under_construction: true`      |
+| Update allergens       | Edit `assets/allergens.html`                  |
+
+## 🖼️ Image Optimization
+
+Run the included Python script to optimize images:
+
+```bash
+python3 scripts/optimize_images.py
+```
+
+This resizes and compresses images for better performance.
+
+## 📄 License
+
+**Code**: [MIT License](LICENSE) - Free to use, modify, and distribute
+
+---
+
+<div align="center">
+
+### 🌿 _Authentic Indian cuisine, prepared with love_
+
+**Cuisine Indienne Authentique • Traiteur à Valenciennes**
+
+---
+
+Made with ❤️ | [Report an Issue](https://github.com/histoiredesepices/histoiredesepices.github.io/issues)
+
+</div>
