@@ -155,12 +155,28 @@ img {
 }
 
 .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
     text-decoration: none;
     transition: opacity 0.2s var(--ease);
 }
 
 .nav-brand:hover {
     opacity: 0.8;
+}
+
+.nav-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+@media (min-width: 768px) {
+    .nav-logo {
+        width: 48px;
+        height: 48px;
+    }
 }
 
 .nav-links {
@@ -402,6 +418,23 @@ img {
     text-align: center;
     padding: 2rem;
     max-width: 900px;
+}
+
+.hero-logo {
+    width: 160px;
+    height: auto;
+    margin: 0 auto 2rem;
+    margin-top: -3rem;
+    display: block;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+}
+
+@media (min-width: 768px) {
+    .hero-logo {
+        width: 200px;
+        margin-top: -4rem;
+        margin-bottom: 2.5rem;
+    }
 }
 
 .hero-eyebrow {
@@ -1441,10 +1474,14 @@ img {
 }
 
 .contact-card__body {
+    display: flex;
+    flex-direction: column;
     flex: 1;
+    min-width: 0;
 }
 
 .contact-card__label {
+    display: block;
     font-size: 0.7rem;
     font-weight: 700;
     letter-spacing: 0.1em;
@@ -1454,10 +1491,12 @@ img {
 }
 
 .contact-card__value {
+    display: block;
     font-family: var(--font-body);
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--dark);
+    white-space: nowrap;
 }
 
 .contact-meta {
