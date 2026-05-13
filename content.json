@@ -26,6 +26,7 @@
 
     "navigation": {
         "items": [
+            { "id": "specialties", "label": { "fr": "Spécialités", "en": "Specialties" } },
             { "id": "menu", "label": { "fr": "La Carte", "en": "Menu" } },
             { "id": "heritage", "label": { "fr": "Héritage", "en": "Heritage" } },
             { "id": "evenements", "label": { "fr": "Événements", "en": "Events" } },
@@ -59,6 +60,15 @@
         "secondary_cta": {
             "label": { "fr": "Commander", "en": "Order Now" },
             "anchor": "#contact"
+        }
+    },
+
+    "specialties": {
+        "eyebrow": { "fr": "Découvrez", "en": "Discover" },
+        "title": { "fr": "Nos Spécialités", "en": "Our Specialties" },
+        "subtitle": {
+            "fr": "Six plats signatures qui racontent l'histoire de nos épices",
+            "en": "Six signature dishes that tell the story of our spices"
         }
     },
 
