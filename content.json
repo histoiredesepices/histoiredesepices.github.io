@@ -1063,12 +1063,12 @@
         "socials": [
             {
                 "platform": "facebook",
-                "url": "https://facebook.com/histoiredesepices",
+                "url": "https://www.facebook.com/share/1afK88eJG7",
                 "label": "Facebook"
             },
             {
                 "platform": "instagram",
-                "url": "https://instagram.com/histoiredesepices",
+                "url": "https://www.instagram.com/lhistoire_des_epices",
                 "label": "Instagram"
             }
         ],
@@ -1087,17 +1087,6 @@
             "fr": "Une invitation au voyage à travers les saveurs authentiques de l'Inde.",
             "en": "An invitation to journey through the authentic flavours of India."
         },
-        "links": [
-            {
-                "label": { "fr": "Mentions Légales", "en": "Legal Notice" },
-                "url": "mentions-legales.html"
-            },
-            {
-                "label": { "fr": "Politique de Confidentialité", "en": "Privacy Policy" },
-                "url": "privacy.html"
-            },
-            { "label": { "fr": "Allergènes", "en": "Allergens" }, "url": "assets/allergens.pdf" }
-        ],
         "copyright": {
             "fr": "© 2026 L'Histoire des Épices. Curateurs de Traditions Culinaires.",
             "en": "© 2026 L'Histoire des Épices. Curators of Culinary Tradition."

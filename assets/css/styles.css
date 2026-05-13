@@ -1549,47 +1549,25 @@ img {
    FOOTER
    ═══════════════════════════════════════════════════════════════════════════ */
 
-.footer {
-    padding: 4rem 0 2rem;
-    background: var(--dark);
-    color: white;
+.site-footer {
+    padding: 3rem 0 2rem;
+    background: white;
     text-align: center;
-}
-
-.footer-brand {
-    margin-bottom: 2rem;
+    border-top: 1px solid var(--border);
 }
 
 .footer-tagline {
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.6);
-    max-width: 400px;
-    margin: 1rem auto 0;
-    line-height: 1.7;
-}
-
-.footer-links {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.footer-link {
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.5);
-    text-decoration: none;
-    transition: color 0.2s var(--ease);
-}
-
-.footer-link:hover {
-    color: var(--saffron);
+    font-family: var(--font-script);
+    font-size: 1.25rem;
+    color: var(--primary);
+    max-width: 500px;
+    margin: 0 auto 1rem;
+    line-height: 1.6;
 }
 
 .footer-copyright {
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.35);
+    font-size: 0.8rem;
+    color: var(--muted);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
