@@ -187,12 +187,27 @@ function buildMenuItem(dish) {
             priceHtml = `
             <div class="menu-item__price">
               <span class="price-original">${dish.price_eur.toFixed(2)}&thinsp;€</span>
-              <span class="price-current">${discounted}&thinsp;€</span>
-              <span class="price-badge">-${disc}%</span>
+              <div class="price-current-row">
+                <span class="price-current">${discounted}&thinsp;€</span>
+                <span class="price-badge">-${disc}%</span>
+              </div>
             </div>`;
         } else {
             priceHtml = `<div class="menu-item__price"><span class="price-current">${dish.price_eur.toFixed(2)}&thinsp;€</span></div>`;
         }
+    }
+
+    // Allergens (full word)
+    let allergensHtml = '';
+    if (C.settings.show_allergens && dish.allergens?.length) {
+        const tags = dish.allergens
+            .map((a) => {
+                const al = u.allergens?.[a];
+                const label = al ? t(al) : a.charAt(0).toUpperCase() + a.slice(1);
+                return `<span class="allergen-tag">${esc(label)}</span>`;
+            })
+            .join('');
+        allergensHtml = `<div class="menu-item__allergens">${tags}</div>`;
     }
 
     const imgHtml = dish.image
@@ -201,16 +216,16 @@ function buildMenuItem(dish) {
 
     return `
     <div class="menu-item" id="dish-${esc(dish.id)}">
-      ${imgHtml}
-      <div class="menu-item__body">
-        <div class="menu-item__top">
-          <div class="menu-item__name-row">
-            <h3 class="menu-item__name">${esc(name)}</h3>
-            ${badges ? `<div class="menu-item__badges">${badges}</div>` : ''}
-          </div>
-          ${priceHtml}
+      <div class="menu-item__left">
+        ${imgHtml}
+        <div class="menu-item__body">
+          <h3 class="menu-item__name">${esc(name)} ${badges}</h3>
+          <p class="menu-item__desc">${esc(desc)}</p>
+          ${allergensHtml}
         </div>
-        <p class="menu-item__desc">${esc(desc)}</p>
+      </div>
+      <div class="menu-item__right">
+        ${priceHtml}
       </div>
     </div>`;
 }
