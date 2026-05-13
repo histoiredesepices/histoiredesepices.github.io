@@ -130,9 +130,17 @@ function renderNav() {
     const brand = $('nav-brand-text');
     if (brand) brand.textContent = C.branding.name;
 
-    // Language toggle
+    // Language toggle switch
     const toggle = $('lang-toggle');
-    if (toggle) toggle.textContent = lang === 'fr' ? 'EN' : 'FR';
+    if (toggle) {
+        toggle.setAttribute('aria-pressed', lang === 'en' ? 'true' : 'false');
+    }
+
+    // Update label active states
+    const frLabel = document.querySelector('.lang-switch__label--fr');
+    const enLabel = document.querySelector('.lang-switch__label--en');
+    if (frLabel) frLabel.classList.toggle('active', lang === 'fr');
+    if (enLabel) enLabel.classList.toggle('active', lang === 'en');
 }
 
 // ═══════════════════════════════════════════════════════════════════════════

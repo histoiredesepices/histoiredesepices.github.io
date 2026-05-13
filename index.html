@@ -104,8 +104,14 @@
 
       <!-- Right controls -->
       <div class="nav-controls">
-        <!-- Language toggle -->
-        <button id="lang-toggle" class="btn-lang" aria-label="Changer de langue">EN</button>
+        <!-- Language toggle switch -->
+        <div class="lang-switch" role="group" aria-label="Changer de langue">
+          <span class="lang-switch__label lang-switch__label--fr">FR</span>
+          <button id="lang-toggle" class="lang-switch__toggle" aria-label="Changer de langue" aria-pressed="false">
+            <span class="lang-switch__slider"></span>
+          </button>
+          <span class="lang-switch__label lang-switch__label--en">EN</span>
+        </div>
 
         <!-- Hamburger (mobile) -->
         <button id="hamburger" class="hamburger" aria-label="Ouvrir le menu" aria-expanded="false"
