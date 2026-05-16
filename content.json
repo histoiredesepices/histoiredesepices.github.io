@@ -7,7 +7,7 @@
         "show_event_section": true,
         "show_heritage_section": true,
         "show_floating_whatsapp": true,
-        "site_under_construction": false,
+        "site_under_construction": true,
         "construction_message": {
             "fr": "Nous revenons très bientôt !",
             "en": "We'll be back very soon!"
