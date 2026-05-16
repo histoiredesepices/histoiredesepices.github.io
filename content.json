@@ -22,6 +22,25 @@
                 "tel": "+33123451789"
             }
         },
+        "structured_data": {
+            "business_type": "Restaurant",
+            "cuisine": "Indian",
+            "price_range": "€€",
+            "location": {
+                "city": "Valenciennes",
+                "country": "FR"
+            },
+            "accepts_reservations": true,
+            "opening_days": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+            ]
+        },
         "construction_screen": {
             "logo": "assets/logo.png",
             "brand_name": "L'Histoire des Épices",

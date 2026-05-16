@@ -164,25 +164,27 @@ function updateSEO() {
 }
 
 function updateStructuredData() {
+    const sd = C.settings.structured_data || {};
+
     const schema = {
         '@context': 'https://schema.org',
-        '@type': 'Restaurant',
+        '@type': sd.business_type || 'Restaurant',
         name: C.branding.name,
         description: t(C.seo.description),
         url: C.seo.canonical_url,
         logo: C.branding.logo_path,
         image: C.seo.og_image,
-        servesCuisine: 'Indian',
-        priceRange: '€€',
+        servesCuisine: sd.cuisine || 'Indian',
+        priceRange: sd.price_range || '€€',
         address: {
             '@type': 'PostalAddress',
-            addressLocality: 'Valenciennes',
-            addressCountry: 'FR',
+            addressLocality: sd.location?.city || 'Valenciennes',
+            addressCountry: sd.location?.country || 'FR',
         },
         telephone: C.settings.contact_info?.primary_phone?.tel || '+33123456789',
         openingHoursSpecification: {
             '@type': 'OpeningHoursSpecification',
-            dayOfWeek: [
+            dayOfWeek: sd.opening_days || [
                 'Monday',
                 'Tuesday',
                 'Wednesday',
@@ -192,7 +194,7 @@ function updateStructuredData() {
                 'Sunday',
             ],
         },
-        acceptsReservations: 'True',
+        acceptsReservations: sd.accepts_reservations !== false ? 'True' : 'False',
         hasMenu: C.seo.canonical_url + '#menu',
     };
 
