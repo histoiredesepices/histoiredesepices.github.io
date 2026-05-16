@@ -1065,7 +1065,7 @@
             "label": { "fr": "Discuter sur WhatsApp", "en": "Chat on WhatsApp" }
         },
         "phone": {
-            "display": "01 23 45 67 89",
+            "display": "01 23 45 67 89, 09 87 65 34 21",
             "tel": "+33123456789",
             "label": { "fr": "APPELEZ-NOUS", "en": "CALL US" }
         },
