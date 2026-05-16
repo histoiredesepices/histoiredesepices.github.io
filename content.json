@@ -8,9 +8,35 @@
         "show_heritage_section": true,
         "show_floating_whatsapp": true,
         "site_under_construction": false,
-        "construction_message": {
-            "fr": "Nous revenons très bientôt !",
-            "en": "We'll be back very soon!"
+        "contact_info": {
+            "primary_phone": {
+                "display": "01 23 45 17 89",
+                "tel": "+33123451789"
+            },
+            "alternative_phone": {
+                "display": "09 87 65 34 87",
+                "tel": "+33987653487"
+            },
+            "whatsapp": {
+                "display": "WhatsApp",
+                "tel": "+33123451789"
+            }
+        },
+        "construction_screen": {
+            "logo": "assets/logo.png",
+            "brand_name": "L'Histoire des Épices",
+            "message": {
+                "fr": "Nous revenons très bientôt !",
+                "en": "We'll be back very soon!"
+            }
+        },
+        "error_screen": {
+            "logo": "assets/logo.png",
+            "brand_name": "L'Histoire des Épices",
+            "message": {
+                "fr": "Impossible de charger le contenu. Veuillez rafraîchir la page.",
+                "en": "Unable to load content. Please refresh the page."
+            }
         }
     },
 
@@ -170,12 +196,12 @@
                 "image_alt": { "fr": "Croquette de légumes", "en": "Vegetable croquette" },
                 "tags": ["vegetarian"],
                 "is_signature": true,
-                "is_new": true,
-                "is_spicy": false,
+                "is_new": false,
+                "is_spicy": true,
                 "is_available": true,
                 "price_eur": 4.5,
-                "discount_percent": 10,
-                "calories_kcal": 20,
+                "discount_percent": 40,
+                "calories_kcal": 90,
                 "allergens": ["gluten"],
                 "spice_level": 2
             },
@@ -1057,23 +1083,14 @@
         },
         "primary_action": {
             "type": "whatsapp",
-            "phone_e164": "+33123456789",
             "prefilled_message": {
                 "fr": "Bonjour ! Je souhaite passer une commande chez L'Histoire des Épices.",
                 "en": "Hello! I'd like to place an order with L'Histoire des Épices."
             },
             "label": { "fr": "Discuter sur WhatsApp", "en": "Chat on WhatsApp" }
         },
-        "phone": {
-            "display": "01 23 45 67 89",
-            "tel": "+33123456789",
-            "label": { "fr": "APPELEZ-NOUS", "en": "CALL US" }
-        },
-        "alternative_phone": {
-            "display": "09 87 65 34 21",
-            "tel": "+33123456789",
-            "label": { "fr": "OU", "en": "OR" }
-        },
+        "phone_label": { "fr": "APPELEZ-NOUS", "en": "CALL US" },
+        "alternative_phone_label": { "fr": "NUMÉRO ALTERNATIF", "en": "ALTERNATIVE NUMBER" },
         "socials": [
             {
                 "platform": "facebook",
@@ -1116,9 +1133,9 @@
             "fr": "Traiteur indien authentique à Valenciennes. Plats halal et végétariens, livraison à domicile, mariages et événements privés.",
             "en": "Authentic Indian caterer in Valenciennes. Halal and vegetarian dishes, home delivery, weddings and private events."
         },
-        "keywords": "traiteur indien, valenciennes, cuisine indienne, halal, végétarien, mariage, anzin",
-        "og_image": "assets/og-image.jpg",
-        "canonical_url": "https://histoire-des-epices.fr"
+        "keywords": "traiteur indien, valenciennes, cuisine indienne, halal, végétarien, mariage, anzin, restaurant indien, indian food, catering",
+        "og_image": "https://histoiredesepices.github.io/assets/og-image.jpg",
+        "canonical_url": "https://histoiredesepices.github.io"
     },
 
     "ui_strings": {

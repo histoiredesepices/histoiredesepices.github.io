@@ -115,11 +115,94 @@ function updateSEO() {
         if (m) m.content = val;
     };
 
+    const setOrCreateMeta = (name, content, isProperty = false) => {
+        const attr = isProperty ? 'property' : 'name';
+        let meta = document.querySelector(`meta[${attr}="${name}"]`);
+        if (!meta) {
+            meta = document.createElement('meta');
+            meta.setAttribute(attr, name);
+            document.head.appendChild(meta);
+        }
+        meta.content = content;
+    };
+
+    // Basic meta tags
     setMeta('meta[name="description"]', t(s.description));
+    if (s.keywords) setOrCreateMeta('keywords', s.keywords);
+    setOrCreateMeta(
+        'robots',
+        'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+    );
+    setOrCreateMeta('googlebot', 'index, follow');
+
+    // Open Graph
     setMeta('meta[property="og:title"]', t(s.title));
     setMeta('meta[property="og:description"]', t(s.description));
+    if (s.og_image) setOrCreateMeta('og:image', s.og_image, true);
+    setOrCreateMeta('og:type', 'website', true);
+    setOrCreateMeta('og:locale', lang === 'en' ? 'en_US' : 'fr_FR', true);
+    if (s.canonical_url) setOrCreateMeta('og:url', s.canonical_url, true);
+
+    // Twitter Card
     setMeta('meta[name="twitter:title"]', t(s.title));
     setMeta('meta[name="twitter:description"]', t(s.description));
+    if (s.og_image) setOrCreateMeta('twitter:image', s.og_image);
+
+    // Canonical URL
+    if (s.canonical_url) {
+        let canonical = document.querySelector('link[rel="canonical"]');
+        if (!canonical) {
+            canonical = document.createElement('link');
+            canonical.rel = 'canonical';
+            document.head.appendChild(canonical);
+        }
+        canonical.href = s.canonical_url;
+    }
+
+    // JSON-LD Structured Data for Google
+    updateStructuredData();
+}
+
+function updateStructuredData() {
+    const schema = {
+        '@context': 'https://schema.org',
+        '@type': 'Restaurant',
+        name: C.branding.name,
+        description: t(C.seo.description),
+        url: C.seo.canonical_url,
+        logo: C.branding.logo_path,
+        image: C.seo.og_image,
+        servesCuisine: 'Indian',
+        priceRange: '€€',
+        address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Valenciennes',
+            addressCountry: 'FR',
+        },
+        telephone: C.settings.contact_info?.primary_phone?.tel || '+33123456789',
+        openingHoursSpecification: {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: [
+                'Monday',
+                'Tuesday',
+                'Wednesday',
+                'Thursday',
+                'Friday',
+                'Saturday',
+                'Sunday',
+            ],
+        },
+        acceptsReservations: 'True',
+        hasMenu: C.seo.canonical_url + '#menu',
+    };
+
+    let script = document.querySelector('script[type="application/ld+json"]');
+    if (!script) {
+        script = document.createElement('script');
+        script.type = 'application/ld+json';
+        document.head.appendChild(script);
+    }
+    script.textContent = JSON.stringify(schema, null, 2);
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -673,6 +756,7 @@ function renderEvents() {
 
 function renderContact() {
     const c = C.contact;
+    const phones = C.settings.contact_info;
 
     // Title
     const title = $('contact-title');
@@ -684,22 +768,42 @@ function renderContact() {
     const sub = $('contact-subtitle');
     if (sub) sub.textContent = t(c.subtitle);
 
-    // Cards
+    // Cards - use centralized phone numbers
     const wa = c.primary_action;
-    const waHref = wa ? waUrl(wa.phone_e164, t(wa.prefilled_message)) : '#';
+    const waPhone = phones?.whatsapp?.tel || phones?.primary_phone?.tel;
+    const waHref = wa && waPhone ? waUrl(waPhone, t(wa.prefilled_message)) : '#';
 
     const cards = $('contact-cards');
-    if (cards) {
-        cards.innerHTML = `
-            <a href="tel:${esc(c.phone.tel)}" class="contact-card">
+    if (cards && phones) {
+        const phoneCards = phones.primary_phone
+            ? `
+            <a href="tel:${esc(phones.primary_phone.tel)}" class="contact-card">
                 <div class="contact-card__icon">
                     <span class="material-symbols-outlined">call</span>
                 </div>
                 <div class="contact-card__body">
-                    <span class="contact-card__label">${esc(t(c.phone.label))}</span>
-                    <span class="contact-card__value">${esc(c.phone.display)}</span>
+                    <span class="contact-card__label">${esc(t(c.phone_label))}</span>
+                    <span class="contact-card__value">${esc(phones.primary_phone.display)}</span>
                 </div>
             </a>
+        `
+            : '';
+
+        const altPhoneCard = phones.alternative_phone
+            ? `
+            <a href="tel:${esc(phones.alternative_phone.tel)}" class="contact-card contact-card--alt">
+                <div class="contact-card__icon">
+                    <span class="material-symbols-outlined">phone_in_talk</span>
+                </div>
+                <div class="contact-card__body">
+                    <span class="contact-card__label">${esc(t(c.alternative_phone_label))}</span>
+                    <span class="contact-card__value">${esc(phones.alternative_phone.display)}</span>
+                </div>
+            </a>
+        `
+            : '';
+
+        const whatsappCard = `
             <a href="${esc(waHref)}" class="contact-card contact-card--whatsapp" target="_blank" rel="noopener">
                 <div class="contact-card__icon contact-card__icon--whatsapp">
                     ${waSvg('white', 28)}
@@ -710,6 +814,8 @@ function renderContact() {
                 </div>
             </a>
         `;
+
+        cards.innerHTML = phoneCards + altPhoneCard + whatsappCard;
     }
 
     // Meta (socials, notes)
@@ -792,8 +898,23 @@ function renderFloatingWA() {
 // ═══════════════════════════════════════════════════════════════════════════
 
 function showConstruction() {
-    const msgFr = C.settings.construction_message?.fr;
-    const msgEn = C.settings.construction_message?.en;
+    const cs = C.settings.construction_screen;
+    const phone = C.settings.contact_info?.primary_phone;
+
+    // Logo
+    const logo = $('construction-logo');
+    if (logo && cs?.logo) {
+        logo.src = cs.logo;
+        logo.alt = cs.brand_name || C.branding.name;
+    }
+
+    // Brand name
+    const brand = $('construction-brand');
+    if (brand) brand.textContent = cs?.brand_name || C.branding.name;
+
+    // Messages
+    const msgFr = cs?.message?.fr || C.settings.construction_message?.fr;
+    const msgEn = cs?.message?.en || C.settings.construction_message?.en;
 
     const elFr = $('construction-message-fr');
     if (elFr && msgFr) elFr.textContent = msgFr;
@@ -801,11 +922,11 @@ function showConstruction() {
     const elEn = $('construction-message-en');
     if (elEn && msgEn) elEn.textContent = msgEn;
 
-    // Update phone from contact
+    // Phone - use centralized contact_info
     const phoneBtn = $('construction-phone');
-    if (phoneBtn && C.contact?.phone) {
-        phoneBtn.href = `tel:${C.contact.phone.replace(/\s/g, '')}`;
-        phoneBtn.textContent = C.contact.phone;
+    if (phoneBtn && phone) {
+        phoneBtn.href = `tel:${phone.tel}`;
+        phoneBtn.textContent = phone.display;
     }
 
     const screen = $('construction-screen');
@@ -829,15 +950,30 @@ function showConstruction() {
 }
 
 function showError() {
+    // Fallback values if content.json failed to load
+    const es = C?.settings?.error_screen || {
+        logo: 'assets/logo.png',
+        brand_name: "L'Histoire des Épices",
+        message: {
+            fr: 'Impossible de charger le contenu. Veuillez rafraîchir la page.',
+            en: 'Unable to load content. Please refresh the page.',
+        },
+    };
+
+    const phone = C?.settings?.contact_info?.primary_phone || {
+        display: '01 23 45 67 89',
+        tel: '+33123456789',
+    };
+
     document.body.innerHTML = `
         <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;
                     font-family:'Jura',sans-serif;text-align:center;padding:2rem;color:#1a1a1a;background:#faf8f5;">
-            <img src="assets/logo.png" alt="L'Histoire des Épices" style="width:120px;margin-bottom:1.5rem;" />
-            <p style="font-family:'Felipa',cursive;font-size:3rem;color:#5b0617;margin-bottom:1.5rem;">L'Histoire des Épices</p>
-            <p style="color:#6b6b6b;margin-bottom:0.25rem;font-size:1.1rem;">Impossible de charger le contenu. Veuillez rafraîchir la page.</p>
-            <p style="color:#6b6b6b;margin-bottom:1.5rem;font-style:italic;opacity:0.8;">Unable to load content. Please refresh the page.</p>
-            <a href="tel:+33123456789" style="background:#C9A55C;color:#1a1a1a;padding:1rem 2rem;border-radius:9999px;
-               text-decoration:none;font-weight:600;">01 23 45 67 89</a>
+            <img src="${es.logo}" alt="${es.brand_name}" style="width:120px;margin-bottom:1.5rem;" />
+            <p style="font-family:'Felipa',cursive;font-size:3rem;color:#5b0617;margin-bottom:1.5rem;">${es.brand_name}</p>
+            <p style="color:#6b6b6b;margin-bottom:0.25rem;font-size:1.1rem;">${es.message.fr}</p>
+            <p style="color:#6b6b6b;margin-bottom:1.5rem;font-style:italic;opacity:0.8;">${es.message.en}</p>
+            <a href="tel:${phone.tel}" style="background:#C9A55C;color:#1a1a1a;padding:1rem 2rem;border-radius:9999px;
+               text-decoration:none;font-weight:600;">${phone.display}</a>
         </div>
     `;
 }
@@ -1000,7 +1136,7 @@ function initEventListeners() {
     const hero = $('hero');
     if (header) {
         const updateHeader = () => {
-            const scrollThreshold = hero ? hero.offsetHeight * 0.20 : 100;
+            const scrollThreshold = hero ? hero.offsetHeight * 0.2 : 100;
             const currentScroll = window.pageYOffset;
             header.classList.toggle('scrolled', currentScroll > scrollThreshold);
         };

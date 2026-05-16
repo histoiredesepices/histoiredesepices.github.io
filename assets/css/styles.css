@@ -1663,13 +1663,19 @@ img {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.5rem;
-    max-width: 700px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
 @media (min-width: 640px) {
     .contact-cards {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .contact-cards {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
@@ -1688,6 +1694,15 @@ img {
 .contact-card:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow-md);
+    border-color: var(--saffron);
+}
+
+.contact-card--alt {
+    background: linear-gradient(135deg, #fff8e1 0%, #fffbf0 100%);
+    border-color: rgba(201, 165, 92, 0.3);
+}
+
+.contact-card--alt:hover {
     border-color: var(--saffron);
 }
 
@@ -1714,6 +1729,10 @@ img {
 
 .contact-card__icon .material-symbols-outlined {
     font-size: 28px;
+}
+
+.contact-card--alt .contact-card__icon {
+    background: var(--saffron);
 }
 
 .contact-card__icon--whatsapp {
