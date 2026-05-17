@@ -208,10 +208,9 @@
                 "category": "entrees",
                 "name": { "fr": "Vegetable Cutlet", "en": "Vegetable Cutlet" },
                 "description": {
-                    "fr": "Croquette de légumes aux épices indiennes.",
-                    "en": "Vegetable croquette seasoned with Indian spices."
-                    "fr": "2pc",
-                    "en": "2pc"
+                    "fr": "Croquette de légumes aux épices indiennes.(2pc)",
+                    "en": "Vegetable croquette seasoned with Indian spices.(2pc)"
+                   
                 },
                 "image": "assets/menu/vegetable-cutlet.jpg",
                 "image_alt": { "fr": "Croquette de légumes", "en": "Vegetable croquette" },
