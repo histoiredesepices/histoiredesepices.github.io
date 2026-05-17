@@ -939,7 +939,7 @@
                     "fr": "Gâteau de riz cuit à la vapeur, léger et moelleux, spécialité du Kerala.",
                     "en": "Steamed rice cake, light and fluffy, a Kerala speciality."
                 },
-                "image": "assets/menu/vattayappam.jpg",
+                "image": "assets/menu/vattayappam.jpeg",
                 "image_alt": { "fr": "Vattayappam gâteau de riz", "en": "Vattayappam rice cake" },
                 "tags": ["vegetarian"],
                 "is_signature": false,
