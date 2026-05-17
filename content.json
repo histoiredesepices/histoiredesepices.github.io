@@ -231,8 +231,8 @@
                 "category": "entrees",
                 "name": { "fr": "Paneer Tikka", "en": "Paneer Tikka" },
                 "description": {
-                    "fr": "Fromage frais indien mariné et grillé.",
-                    "en": "Fresh Indian cheese marinated and grilled."
+                    "fr": "Fromage frais indien mariné et grillé.(2pc)",
+                    "en": "Fresh Indian cheese marinated and grilled.(2pc)"
                 },
                 "image": "assets/menu/paneer-tikka.jpg",
                 "image_alt": { "fr": "Paneer Tikka grillé", "en": "Grilled Paneer Tikka" },
@@ -241,7 +241,7 @@
                 "is_new": false,
                 "is_spicy": false,
                 "is_available": true,
-                "price_eur": 8.0,
+                "price_eur": 6,
                 "discount_percent": null,
                 "calories_kcal": null,
                 "allergens": ["dairy"],
@@ -263,7 +263,7 @@
                 "is_new": false,
                 "is_spicy": true,
                 "is_available": true,
-                "price_eur": 9.0,
+                "price_eur": 6,
                 "discount_percent": 10,
                 "calories_kcal": null,
                 "allergens": ["dairy"],
@@ -337,7 +337,7 @@
             },
 
             {
-                "id": "idli-fry",
+                "id": "Masala Idli",
                 "category": "entrees",
                 "name": { "fr": "Masala Idli", "en": "Masala Idli" },
                 "description": {
@@ -363,8 +363,8 @@
                 "category": "entrees",
                 "name": { "fr": "Galouti Kabab d'Agneau", "en": "Lamb Galouti Kabab" },
                 "description": {
-                    "fr": "Agneau finement haché et épicé, cuit jusqu'à une texture ultra-fondante.",
-                    "en": "Finely minced and spiced lamb, cooked to a melt-in-the-mouth texture."
+                    "fr": "Agneau finement haché et épicé, cuit jusqu'à une texture ultra-fondante.(2pc)",
+                    "en": "Finely minced and spiced lamb, cooked to a melt-in-the-mouth texture.(2pc)"
                 },
                 "image": "assets/menu/galouti-kabab.jpg",
                 "image_alt": {
@@ -376,7 +376,7 @@
                 "is_new": false,
                 "is_spicy": false,
                 "is_available": true,
-                "price_eur": 9.5,
+                "price_eur": 7,
                 "discount_percent": null,
                 "calories_kcal": null,
                 "allergens": [],
