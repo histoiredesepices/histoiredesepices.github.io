@@ -218,8 +218,8 @@
                 "is_new": false,
                 "is_spicy": true,
                 "is_available": true,
-                "price_eur": 4.5,
-                "discount_percent": 40,
+                "price_eur": 5,
+                "discount_percent": null,
                 "calories_kcal": 90,
                 "allergens": ["gluten"],
                 "spice_level": 2
