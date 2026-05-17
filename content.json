@@ -903,7 +903,7 @@
                 "is_new": false,
                 "is_spicy": false,
                 "is_available": true,
-                "price_eur": 2 (2pc),
+                "price_eur": 2 ,
                 "discount_percent": null,
                 "calories_kcal": null,
                 "allergens": ["gluten"],
