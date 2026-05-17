@@ -823,6 +823,32 @@
             },
 
             {
+                "id": "Saumon Molly",
+                "category": "non_vegetarian",
+                "name": { "fr": "Saumon Molly", "en": "Salmon Molly" },
+                "description": {
+                    "fr": "Saumon tendre cuit dans une sauce douce et parfumée au lait de coco, délicatement relevée d’épices pour un curry riche et réconfortant.",
+                    "en": "Tender salmon cooked in a mild, aromatic coconut milk sauce, delicately flavored with spices for a rich and comforting  curry."
+                },
+                "image": "assets/menu/Saumon Molly.jpg",
+                "image_alt": {
+                    "fr": "Saumon au curry de lait de coco",
+                    "en": "Salmon in Coconut Milk Curry"
+                },
+                "tags": [],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": 13.5,
+                "discount_percent": null,
+                "calories_kcal": null,
+                "allergens": null,
+                "spice_level": 1
+            },
+
+
+            {
                 "id": "riz-basmati",
                 "category": "sides",
                 "name": { "fr": "Riz Basmati Nature", "en": "Plain Basmati Rice" },
