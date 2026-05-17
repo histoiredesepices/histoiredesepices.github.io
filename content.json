@@ -872,15 +872,15 @@
             },
 
             {
-                "id": "Beouf-biriyani",
+                "id": "Biryani au bœuf",
                 "category": "non_vegetarian",
-                "name": { "fr": "Beouf Biriyani", "en": "Beef Biryani" },
+                "name": { "fr": "Biryani au bœuf", "en": "Beef Biryani" },
                 "description": {
-                    "fr": "Riz basmati aux épices douces et viande marinée, cuisson lente à l'étouffée, saveurs subtiles et parfumées.",
-                    "en": "Basmati rice with mild spices and marinated chicken, slow-cooked dum-style for subtle, fragrant flavours."
+                    "fr": "Biryani de bœuf de style Malabar, préparé avec du bœuf tendre mijoté lentement, des épices grillées et des oignons caramélisés, superposé avec du riz parfumé Kaima (Jeerakasala) — une spécialité côtière du sud de l’Inde aux saveurs riches, intenses et authentiques du Kerala.",
+                    "en": "Malabar-style beef biryani made with tender slow-cooked beef, roasted spices, and caramelized onions, layered with aromatic Kaima (Jeerakasala) rice for an authentic coastal flavour."
                 },
-                "image": "assets/menu/poulet-biriyani.jpg",
-                "image_alt": { "fr": "Poulet Biriyani dum", "en": "Dum Chicken Biryani" },
+                "image": "assets/menu/beef_biryani.png",
+                "image_alt": { "fr": "Biryani au bœuf", "en": "Beef Biryani" },
                 "tags": ["halal"],
                 "is_signature": true,
                 "is_new": false,
