@@ -10,16 +10,16 @@
         "site_under_construction": false,
         "contact_info": {
             "primary_phone": {
-                "display": "01 23 45 17 89",
-                "tel": "+33123451789"
+                "display": "07 61 93 81 90",
+                "tel": "+330761938190"
             },
             "alternative_phone": {
-                "display": "09 87 65 34 87",
-                "tel": "+33987653487"
+                "display": "06 99 54 03 47",
+                "tel": "+33699540347"
             },
             "whatsapp": {
                 "display": "WhatsApp",
-                "tel": "+33123451789"
+                "tel": "+330761938190"
             }
         },
         "structured_data": {
