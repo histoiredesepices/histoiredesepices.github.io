@@ -186,8 +186,8 @@
                 "category": "entrees",
                 "name": { "fr": "Vegetable Puff", "en": "Vegetable Puff" },
                 "description": {
-                    "fr": "Pâte feuilletée garnie de légumes parfumés aux épices.",
-                    "en": "Puff pastry filled with vegetables perfumed with spices."
+                    "fr": "Pâte feuilletée garnie de légumes parfumés aux épices.(2pc)",
+                    "en": "Puff pastry filled with vegetables perfumed with spices.(2pc)"
                 },
                 "image": "assets/menu/vegetable-puff.jpg",
                 "image_alt": { "fr": "Vegetable Puff croustillant", "en": "Crispy Vegetable Puff" },
@@ -196,7 +196,7 @@
                 "is_new": false,
                 "is_spicy": true,
                 "is_available": true,
-                "price_eur": 4.5,
+                "price_eur": 5,
                 "discount_percent": null,
                 "calories_kcal": null,
                 "allergens": ["gluten"],
@@ -275,8 +275,8 @@
                 "category": "entrees",
                 "name": { "fr": "Seekh Kabab", "en": "Seekh Kabab" },
                 "description": {
-                    "fr": "Brochette de viande hachée épicée.",
-                    "en": "Minced meat skewer, spiced and grilled."
+                    "fr": "Brochette de viande hachée épicée.(2pc)",
+                    "en": "Minced meat skewer, spiced and grilled.(2pc)"
                 },
                 "image": "assets/menu/seekh-kabab.jpg",
                 "image_alt": { "fr": "Brochette Seekh Kabab", "en": "Seekh Kabab skewer" },
@@ -285,7 +285,7 @@
                 "is_new": false,
                 "is_spicy": true,
                 "is_available": true,
-                "price_eur": 8.5,
+                "price_eur": 6,
                 "discount_percent": null,
                 "calories_kcal": null,
                 "allergens": [],
@@ -297,8 +297,8 @@
                 "category": "entrees",
                 "name": { "fr": "Malai Kabab", "en": "Malai Kabab" },
                 "description": {
-                    "fr": "Poulet mariné à la crème, fromage et épices douces et grillé.",
-                    "en": "Chicken marinated in cream, cheese and mild spices, then grilled."
+                    "fr": "Poulet mariné à la crème, fromage et épices douces et grillé.(2pc)",
+                    "en": "Chicken marinated in cream, cheese and mild spices, then grilled.(2pc)"
                 },
                 "image": "assets/menu/malai-kabab.jpg",
                 "image_alt": { "fr": "Malai Kabab crémeux", "en": "Creamy Malai Kabab" },
@@ -307,7 +307,7 @@
                 "is_new": false,
                 "is_spicy": false,
                 "is_available": true,
-                "price_eur": 9.0,
+                "price_eur": 6,
                 "discount_percent": null,
                 "calories_kcal": null,
                 "allergens": ["dairy"],
@@ -339,10 +339,10 @@
             {
                 "id": "idli-fry",
                 "category": "entrees",
-                "name": { "fr": "Idli Fry", "en": "Idli Fry" },
+                "name": { "fr": "Masala Idli", "en": "Masala Idli" },
                 "description": {
-                    "fr": "Idli poêlée aux épices.",
-                    "en": "Pan-fried idli with spices."
+                    "fr": "Un gâteau moelleux à base de riz et lentilles fermentés. Mélangé avec des épices pour un goût savoureux.",
+                    "en": "Soft steamed cake made from fermented rice and lentil batter. Mixed with spices for a delicious flavor."
                 },
                 "image": "assets/menu/idli-fry.jpg",
                 "image_alt": { "fr": "Idli poêlée aux épices", "en": "Spiced pan-fried idli" },
@@ -351,7 +351,7 @@
                 "is_new": false,
                 "is_spicy": false,
                 "is_available": true,
-                "price_eur": 5.5,
+                "price_eur": 4,
                 "discount_percent": null,
                 "calories_kcal": null,
                 "allergens": [],
