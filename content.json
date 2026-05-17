@@ -871,6 +871,71 @@
                 "spice_level": 1
             },
 
+            {
+                "id": "Beouf-biriyani",
+                "category": "non_vegetarian",
+                "name": { "fr": "Beouf Biriyani", "en": "Beef Biryani" },
+                "description": {
+                    "fr": "Riz basmati aux épices douces et viande marinée, cuisson lente à l'étouffée, saveurs subtiles et parfumées.",
+                    "en": "Basmati rice with mild spices and marinated chicken, slow-cooked dum-style for subtle, fragrant flavours."
+                },
+                "image": "assets/menu/poulet-biriyani.jpg",
+                "image_alt": { "fr": "Poulet Biriyani dum", "en": "Dum Chicken Biryani" },
+                "tags": ["halal"],
+                "is_signature": true,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": 15.0,
+                "discount_percent": null,
+                "calories_kcal": null,
+                "allergens": [],
+                "spice_level": 1
+            },
+{
+                "id": "Agneau-biriyani",
+                "category": "non_vegetarian",
+                "name": { "fr": "Agneau Biriyani", "en": "Mutton Biryani" },
+                "description": {
+                    "fr": "Riz basmati aux épices douces et viande marinée, cuisson lente à l'étouffée, saveurs subtiles et parfumées.",
+                    "en": "Basmati rice with mild spices and marinated chicken, slow-cooked dum-style for subtle, fragrant flavours."
+                },
+                "image": "assets/menu/poulet-biriyani.jpg",
+                "image_alt": { "fr": "Poulet Biriyani dum", "en": "Dum Chicken Biryani" },
+                "tags": ["halal"],
+                "is_signature": true,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": 15.0,
+                "discount_percent": null,
+                "calories_kcal": null,
+                "allergens": [],
+                "spice_level": 1
+            },
+{
+                "id": "Crevettes -biriyani",
+                "category": "non_vegetarian",
+                "name": { "fr": "Crevettes Biriyani", "en": "Prawns Biryani" },
+                "description": {
+                    "fr": "Riz basmati aux épices douces et viande marinée, cuisson lente à l'étouffée, saveurs subtiles et parfumées.",
+                    "en": "Basmati rice with mild spices and marinated chicken, slow-cooked dum-style for subtle, fragrant flavours."
+                },
+                "image": "assets/menu/poulet-biriyani.jpg",
+                "image_alt": { "fr": "Poulet Biriyani dum", "en": "Dum Chicken Biryani" },
+                "tags": ["halal"],
+                "is_signature": true,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": 15.0,
+                "discount_percent": null,
+                "calories_kcal": null,
+                "allergens": [],
+                "spice_level": 1
+            },
+
+
 
             {
                 "id": "riz-basmati",
