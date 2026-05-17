@@ -876,8 +876,8 @@
                 "category": "non_vegetarian",
                 "name": { "fr": "Biryani au bœuf", "en": "Beef Biryani" },
                 "description": {
-                    "fr": "Biryani de bœuf de style Malabar, à base de bœuf tendre mijoté, d’épices grillées et d’oignons caramélisés, servi avec du riz parfumé Kaima (Jeerakasala) aux saveurs authentiques du Kerala.",
-                    "en": "Malabar-style beef biryani made with tender slow-cooked beef, roasted spices, and caramelized onions, layered with aromatic Kaima (Jeerakasala) rice for an authentic coastal flavour."
+                    "fr": "Biryani de bœuf de style Malabar, préparé avec du bœuf tendre mijoté, des épices grillées et des oignons caramélisés, servi avec du riz parfumé Kaima (Jeerakasala).",
+                    "en": "Malabar-style beef biryani made with tender slow-cooked beef, roasted spices, and caramelized onions, served with fragrant Kaima (Jeerakasala) rice."
                 },
                 "image": "assets/menu/beef_biryani.png",
                 "image_alt": { "fr": "Biryani au bœuf", "en": "Beef Biryani" },
