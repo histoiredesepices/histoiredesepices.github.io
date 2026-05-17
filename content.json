@@ -847,6 +847,28 @@
                 "spice_level": 1
             },
 
+            {
+                "id": "Beef Roast",
+                "category": "non_vegetarian",
+                "name": { "fr": "Rôti de Bœuf", "en": "Beef Roast" },
+                "description": {
+                    "fr": "Rôti de bœuf mijoté lentement avec masala rôti, oignons caramélisés, feuilles de curry et épices aromatiques. Bœuf tendre au goût authentique.",
+                    "en": "Slow-cooked beef roast with roasted masala, caramelized onions, curry leaves, and aromatic spices. Tender homemade-style beef, rich in flavor."
+                },
+                "image": "assets/menu/Beef Roast.jpg",
+                "image_alt": { "fr": "Rôti de bœuf style Kerala", "en": "Beef Roast kerala style" },
+                "tags": ["halal"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": 13.5,
+                "discount_percent": null,
+                "calories_kcal": null,
+                "allergens": [],
+                "spice_level": 1
+            },
+
 
             {
                 "id": "riz-basmati",
