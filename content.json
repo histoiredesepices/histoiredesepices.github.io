@@ -872,9 +872,9 @@
             },
 
             {
-                "id": "Biryani au bœuf",
+                "id": "Biriyani au bœuf",
                 "category": "non_vegetarian",
-                "name": { "fr": "Biryani au bœuf", "en": "Beef Biryani" },
+                "name": { "fr": "Biriyani au bœuf", "en": "Beef Biryani" },
                 "description": {
                     "fr": "Biryani de bœuf de style Malabar avec du bœuf tendre mijoté, des épices grillées, des oignons caramélisés et du riz parfumé Kaima (Jeerakasala) .",
                     "en": "Malabar-style beef biryani with tender slow-cooked beef, roasted spices, caramelized onions, and fragrant Kaima (Jeerakasala) rice."
