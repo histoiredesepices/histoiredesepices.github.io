@@ -763,7 +763,7 @@
                     "fr": "Poulet mijoté lentement avec des légumes et des épices douces, en sauce légère et réconfortante.",
                     "en": "Chicken slowly simmered with vegetables and mild spices in a light, comforting sauce."
                 },
-                "image": "assets/menu/ragout-poulet.jpg",
+                "image": "assets/menu/Chicken Stew.png",
                 "image_alt": { "fr": "Ragoût de poulet léger", "en": "Light Chicken Stew" },
                 "tags": ["halal"],
                 "is_signature": false,
