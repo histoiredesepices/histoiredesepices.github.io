@@ -551,7 +551,7 @@
                     "fr": "Ragoût raffiné de légumes, lentement mijoté dans un lait de coco onctueux, délicatement parfumé aux épices douces.",
                     "en": "Refined vegetable stew, slowly simmered in creamy coconut milk, delicately spiced."
                 },
-                "image": "assets/menu/ragout-legumes.jpg",
+                "image": "assets/menu/veg stew.png",
                 "image_alt": { "fr": "Ragoût de légumes au coco", "en": "Coconut vegetable stew" },
                 "tags": ["vegetarian"],
                 "is_signature": false,
