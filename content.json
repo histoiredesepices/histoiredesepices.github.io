@@ -1102,7 +1102,7 @@
                     "fr": "Dessert à base de semoule, cuite avec du sucre, du ghee et du safran, parfumée à la cardamome.",
                     "en": "Dessert of semolina cooked with sugar, ghee and saffron, perfumed with cardamom."
                 },
-                "image": "assets/menu/halwa-semoule.jpg",
+                "image": "assets/menu/sooji halwa.png",
                 "image_alt": { "fr": "Halwa Semoule au safran", "en": "Saffron Semolina Halwa" },
                 "tags": ["vegetarian"],
                 "is_signature": false,
@@ -1124,7 +1124,7 @@
                     "fr": "Vermicelles au lait, mijotées avec du sucre et parfumées à la cardamome, garnies de fruits secs.",
                     "en": "Vermicelli slow-cooked in milk with sugar and cardamom, topped with dried fruits."
                 },
-                "image": "assets/menu/semiya-kheer.jpg",
+                "image": "assets/menu/seemiya kheer.png",
                 "image_alt": {
                     "fr": "Semiya Kheer aux vermicelles",
                     "en": "Vermicelli Kheer dessert"
