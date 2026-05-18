@@ -322,7 +322,7 @@
                     "fr": "Galette indienne garnie d'œuf, légumes.",
                     "en": "Indian flatbread stuffed with egg and vegetables."
                 },
-                "image": "assets/menu/egg-roll.jpg",
+                "image": "assets/menu/Egg roll.jfif",
                 "image_alt": { "fr": "Egg Roll indien", "en": "Indian Egg Roll" },
                 "tags": [],
                 "is_signature": false,
@@ -344,7 +344,7 @@
                     "fr": "Un gâteau moelleux à base de riz et lentilles fermentés. Mélangé avec des épices pour un goût savoureux.",
                     "en": "Soft steamed cake made from fermented rice and lentil batter. Mixed with spices for a delicious flavor."
                 },
-                "image": "assets/menu/idli-fry.jpg",
+                "image": "assets/menu/Masala Idli.png",
                 "image_alt": { "fr": "Idli poêlée aux épices", "en": "Spiced pan-fried idli" },
                 "tags": ["vegetarian"],
                 "is_signature": false,
@@ -391,7 +391,7 @@
                     "fr": "Lentilles noires indiennes décortiquées fondantes, relevées d'un beurre chaud aux épices.",
                     "en": "Soft Indian skinned black lentils, finished with a fragrant spiced butter."
                 },
-                "image": "assets/menu/dal-tadka.jpg",
+                "image": "assets/menu/Dal tadka.png",
                 "image_alt": { "fr": "Dal Tadka aux lentilles", "en": "Dal Tadka lentil dish" },
                 "tags": ["vegetarian"],
                 "is_signature": false,
@@ -413,7 +413,7 @@
                     "fr": "Lentilles noires indiennes mijotées dans une sauce onctueuse à base de tomates, de beurre et de crème, délicatement parfumée aux épices indiennes.",
                     "en": "Black lentils slow-simmered in a rich tomato, butter and cream sauce, delicately spiced."
                 },
-                "image": "assets/menu/dal-makhani.jpg",
+                "image": "assets/menu/Dal makhani.png",
                 "image_alt": { "fr": "Dal Makhani crémeux", "en": "Creamy Dal Makhani" },
                 "tags": ["vegetarian"],
                 "is_signature": true,
@@ -460,7 +460,7 @@
                     "fr": "Purée de légumes longuement mijotés aux épices de Bombay, servi avec pain brioché toasté.",
                     "en": "Mashed vegetables slow-cooked in Bombay-style spices, served with toasted brioche rolls."
                 },
-                "image": "assets/menu/pav-bhaji.jpg",
+                "image": "assets/menu/Pav bhaji.png",
                 "image_alt": { "fr": "Pav Bhaji de Bombay", "en": "Mumbai-style Pav Bhaji" },
                 "tags": ["vegetarian"],
                 "is_signature": false,
@@ -482,7 +482,7 @@
                     "fr": "Aubergine grillée à la flamme, écrasée, mijotée avec des oignons, des tomates, de l'ail, du gingembre et un mélange d'épices indiennes.",
                     "en": "Flame-grilled aubergine, mashed and simmered with onions, tomatoes, garlic, ginger and a blend of Indian spices."
                 },
-                "image": "assets/menu/baingan-bharta.jpg",
+                "image": "assets/menu/Baingan bharta.png",
                 "image_alt": { "fr": "Baingan Bharta fumé", "en": "Smoky Baingan Bharta" },
                 "tags": ["vegetarian"],
                 "is_signature": false,
@@ -504,7 +504,7 @@
                     "fr": "Cubes de fromage indien mijotés dans une crème d'épinards frais, parfumée à l'ail, au gingembre et aux épices indiennes douces.",
                     "en": "Indian cheese cubes simmered in a fresh spinach cream, flavoured with garlic, ginger and mild Indian spices."
                 },
-                "image": "assets/menu/palak-paneer.jpg",
+                "image": "assets/menu/Palak paneer.png",
                 "image_alt": {
                     "fr": "Palak Paneer épinards fromage",
                     "en": "Palak Paneer spinach cheese"
@@ -529,7 +529,7 @@
                     "fr": "Du paneer finement râpé, mélangé à une sauce onctueuse à base de crème et d'épices douces, mijoté doucement.",
                     "en": "Finely crumbled paneer cooked in a smooth cream sauce with mild spices, gently simmered."
                 },
-                "image": "assets/menu/paneer-bhurji.jpg",
+                "image": "assets/menu/Paneer bhurji.png",
                 "image_alt": { "fr": "Paneer Bhurji crémeux", "en": "Creamy Paneer Bhurji" },
                 "tags": ["vegetarian"],
                 "is_signature": false,
