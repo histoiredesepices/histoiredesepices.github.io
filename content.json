@@ -1033,7 +1033,7 @@
                     "fr": "Pain naan fait maison, moelleux et légèrement beurré.",
                     "en": "Homemade naan bread, soft and lightly buttered."
                 },
-                "image": "assets/menu/naan-maison.jpg",
+                "image": "assets/menu/Naan maison.png",
                 "image_alt": { "fr": "Naan Maison moelleux", "en": "Soft Homemade Naan" },
                 "tags": ["vegetarian"],
                 "is_signature": false,
