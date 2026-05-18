@@ -573,7 +573,7 @@
                     "fr": "Pommes de terre nouvelles mijotées lentement, sauce épicée et parfumée.",
                     "en": "Baby potatoes slowly simmered in a spiced and aromatic sauce."
                 },
-                "image": "assets/menu/dum-aloo.jpg",
+                "image": "assets/menu/Dum aloo.png",
                 "image_alt": {
                     "fr": "Dum Aloo pommes de terre épicées",
                     "en": "Spiced Dum Aloo potatoes"
@@ -623,7 +623,7 @@
                     "fr": "Poulet mariné aux épices, rôti au tandoor, sublimé par une sauce veloutée de tomates, crème fraîche et beurre, relevée d'un mélange d'épices.",
                     "en": "Spice-marinated chicken, tandoor-roasted, in a velvety tomato, cream and butter sauce with a blend of spices."
                 },
-                "image": "assets/menu/poulet-tikka-masala.jpg",
+                "image": "assets/menu/Poulet tikka masala.png",
                 "image_alt": { "fr": "Poulet Tikka Masala", "en": "Chicken Tikka Masala" },
                 "tags": ["halal"],
                 "is_signature": false,
@@ -645,7 +645,7 @@
                     "fr": "Poulet traditionnel découpé en morceaux avec os, cuisiné dans une sauce parfumée aux épices.",
                     "en": "Traditional bone-in chicken pieces cooked in a fragrant spiced sauce."
                 },
-                "image": "assets/menu/poulet-curry.jpg",
+                "image": "assets/menu/Poulet curry.png",
                 "image_alt": { "fr": "Poulet au Curry", "en": "Chicken Curry" },
                 "tags": ["halal"],
                 "is_signature": false,
@@ -667,7 +667,7 @@
                     "fr": "Émincé de poulet mijoté dans une sauce épaisse à base de tomates, d'oignons, de gingembre, d'ail et d'épices indiennes.",
                     "en": "Shredded chicken simmered in a thick sauce of tomatoes, onions, ginger, garlic and Indian spices."
                 },
-                "image": "assets/menu/poulet-bharta.jpg",
+                "image": "assets/menu/Poulet bharta.png",
                 "image_alt": { "fr": "Poulet Bharta épicé", "en": "Spiced Chicken Bharta" },
                 "tags": ["halal"],
                 "is_signature": false,
@@ -689,7 +689,7 @@
                     "fr": "Poulet longuement mariné puis mijoté dans une sauce riche et parfumée aux épices et aux fruits secs.",
                     "en": "Chicken slow-marinated and simmered in a rich sauce scented with spices and dried fruits."
                 },
-                "image": "assets/menu/poulet-chaap.jpg",
+                "image": "assets/menu/Poulet chaap.png",
                 "image_alt": { "fr": "Poulet Chaap mariné", "en": "Marinated Chicken Chaap" },
                 "tags": ["halal"],
                 "is_signature": false,
@@ -711,7 +711,7 @@
                     "fr": "Agneau mijoté lentement dans une sauce blanche onctueuse à base de yaourt, de noix de cajou et d'épices douces, subtilement parfumée.",
                     "en": "Lamb slow-cooked in a smooth white sauce of yogurt, cashews and mild spices, subtly perfumed."
                 },
-                "image": "assets/menu/rezala-agneau.jpg",
+                "image": "assets/menu/Mutton Rezala.png",
                 "image_alt": {
                     "fr": "Rezala d'Agneau sauce blanche",
                     "en": "Lamb Rezala white sauce"
@@ -785,7 +785,7 @@
                     "fr": "Crevettes mijotées dans une sauce crémeuse à base de lait de coco, d'oignons, de gingembre, d'ail et d'épices douces.",
                     "en": "Prawns simmered in a creamy coconut milk sauce with onions, ginger, garlic and mild spices."
                 },
-                "image": "assets/menu/crevettes-malai-curry.jpg",
+                "image": "assets/menu/Prawn Malai Curry.png",
                 "image_alt": {
                     "fr": "Crevettes Malai Curry au coco",
                     "en": "Coconut Malai Prawn Curry"
@@ -810,7 +810,7 @@
                     "fr": "Saumon tendre cuit dans une sauce douce et parfumée au lait de coco, délicatement relevée d’épices pour un curry riche et réconfortant.",
                     "en": "Tender salmon cooked in a mild, aromatic coconut milk sauce, delicately flavored with spices for a rich and comforting  curry."
                 },
-                "image": "assets/menu/Saumon Molly.jpg",
+                "image": "assets/menu/Salmon Molly.jpeg",
                 "image_alt": {
                     "fr": "Saumon au curry de lait de coco",
                     "en": "Salmon in Coconut Milk Curry"
@@ -857,7 +857,7 @@
                     "fr": "Riz basmati aux épices douces et viande marinée, cuisson lente à l'étouffée, saveurs subtiles et parfumées.",
                     "en": "Basmati rice with mild spices and marinated chicken, slow-cooked dum-style for subtle, fragrant flavours."
                 },
-                "image": "assets/menu/poulet-biriyani.jpg",
+                "image": "assets/menu/Poulet biriyani.jpg",
                 "image_alt": { "fr": "Poulet Biriyani dum", "en": "Dum Chicken Biryani" },
                 "tags": ["halal"],
                 "is_signature": true,
@@ -945,7 +945,7 @@
                     "fr": "Riz basmati cuit à la vapeur, léger et parfumé.",
                     "en": "Steamed basmati rice, light and fragrant."
                 },
-                "image": "assets/menu/riz-basmati.jpg",
+                "image": "assets/menu/Riz basmati.png",
                 "image_alt": { "fr": "Riz Basmati Nature", "en": "Plain Basmati Rice" },
                 "tags": ["vegetarian"],
                 "is_signature": false,
@@ -967,7 +967,7 @@
                     "fr": "Riz basmati parfumé aux graines de cumin.",
                     "en": "Basmati rice fragrant with cumin seeds."
                 },
-                "image": "assets/menu/riz-cumin.jpg",
+                "image": "assets/menu/Riz au cumin.png",
                 "image_alt": { "fr": "Riz au Cumin", "en": "Cumin Rice" },
                 "tags": ["vegetarian"],
                 "is_signature": false,
@@ -989,7 +989,7 @@
                     "fr": "Riz basmati cuit avec des légumes et des épices douces.",
                     "en": "Basmati rice cooked with vegetables and mild spices."
                 },
-                "image": "assets/menu/pilaf-legumes.jpg",
+                "image": "assets/menu/Pilaf aux legumes.png",
                 "image_alt": { "fr": "Pilaf de légumes coloré", "en": "Colourful vegetable pilaf" },
                 "tags": ["vegetarian"],
                 "is_signature": false,
