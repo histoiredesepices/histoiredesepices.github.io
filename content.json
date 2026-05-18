@@ -879,7 +879,7 @@
                     "fr": "Biryani de bœuf de style Malabar avec du bœuf tendre mijoté, des épices grillées, des oignons caramélisés et du riz parfumé Kaima (Jeerakasala) .",
                     "en": "Malabar-style beef biryani with tender slow-cooked beef, roasted spices, caramelized onions, and fragrant Kaima (Jeerakasala) rice."
                 },
-                "image": "assets/menu/beef_biryani.png",
+                "image": "assets/menu/Beef Biriyani.jpg",
                 "image_alt": { "fr": "Biryani au bœuf", "en": "Beef Biryani" },
                 "tags": ["halal"],
                 "is_signature": true,
