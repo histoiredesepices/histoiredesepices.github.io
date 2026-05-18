@@ -256,7 +256,7 @@
                     "fr": "Poulet mariné aux épices et grillé.",
                     "en": "Chicken marinated in spices and grilled."
                 },
-                "image": "assets/menu/poulet-tandoori.jpg",
+                "image": "assets/menu/Tandoori chicken.png",
                 "image_alt": { "fr": "Poulet Tandoori grillé", "en": "Grilled Chicken Tandoori" },
                 "tags": ["halal"],
                 "is_signature": false,
@@ -278,7 +278,7 @@
                     "fr": "Brochette de viande hachée épicée.(2pc)",
                     "en": "Minced meat skewer, spiced and grilled.(2pc)"
                 },
-                "image": "assets/menu/seekh-kabab.jpg",
+                "image": "assets/menu/Seekh kabab.png",
                 "image_alt": { "fr": "Brochette Seekh Kabab", "en": "Seekh Kabab skewer" },
                 "tags": ["halal"],
                 "is_signature": false,
@@ -300,7 +300,7 @@
                     "fr": "Poulet mariné à la crème, fromage et épices douces et grillé.(2pc)",
                     "en": "Chicken marinated in cream, cheese and mild spices, then grilled.(2pc)"
                 },
-                "image": "assets/menu/malai-kabab.jpg",
+                "image": "assets/menu/chicken malai kabab.jpg",
                 "image_alt": { "fr": "Malai Kabab crémeux", "en": "Creamy Malai Kabab" },
                 "tags": ["halal"],
                 "is_signature": false,
