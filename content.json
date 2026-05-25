@@ -264,7 +264,7 @@
                 "is_spicy": true,
                 "is_available": true,
                 "price_eur": 6,
-                "discount_percent": 10,
+                "discount_percent": null,
                 "calories_kcal": null,
                 "allergens": ["dairy"],
                 "spice_level": 2
