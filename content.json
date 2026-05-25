@@ -6,7 +6,7 @@
         "show_prices": true,
         "show_event_section": true,
         "show_heritage_section": true,
-        "show_floating_whatsapp": true,
+        "show_floating_whatsapp": false,
         "site_under_construction": false,
         "contact_info": {
             "primary_phone": {
