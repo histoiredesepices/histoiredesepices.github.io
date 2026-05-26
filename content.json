@@ -28,7 +28,7 @@
             "price_range": "€€",
             "location": {
                 "city": "Valenciennes",
-                "country": "FR",
+                "country": "FR"
             },
             "accepts_reservations": true,
             "opening_days": [
