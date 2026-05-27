@@ -1218,6 +1218,7 @@
         },
         "primary_action": {
             "type": "whatsapp",
+            "phone_e164": "+33612345678",
             "prefilled_message": {
                 "fr": "Bonjour ! Je souhaite passer une commande chez L'Histoire des Épices.",
                 "en": "Hello! I'd like to place an order with L'Histoire des Épices."
