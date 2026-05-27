@@ -44,7 +44,7 @@ const getLang = () => {
 
 function waUrl(phone, msg) {
     const n = String(phone).replace(/\D/g, '').replace(/^0/, '33');
-    return `https://wa.me/${n.startsWith('33') ? n : '33' + n}?text=${encodeURIComponent(msg)}`;
+    return `https://wa.me/${n.startsWith('+33') ? n : '33' + n}?text=${encodeURIComponent(msg)}`;
 }
 
 function imgFallback(img, initial) {
