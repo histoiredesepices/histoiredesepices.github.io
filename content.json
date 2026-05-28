@@ -1240,8 +1240,8 @@
             }
         ],
         "ordering_note": {
-            "fr": "Commande à passer la veille ou avant 9h. À emporter ou livrable avec forfait livraison.",
-            "en": "Orders placed the day before or before 9 AM. Takeaway or delivery (fee applies)."
+            "fr": "Commande à passer la veille . À emporter ou livraison (Gratuite à partir de 35€).",
+            "en": "Orders must be placed the day before. Takeaway or delivery (free for orders over €35)."
         },
         "location_hint": {
             "fr": "Bientôt disponibles aux marchés de Valenciennes et d'Anzin.",
