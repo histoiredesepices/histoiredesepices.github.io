@@ -200,7 +200,7 @@
                 "discount_percent": null,
                 "calories_kcal": null,
                 "allergens": ["gluten"],
-                "spice_level": 1
+                "spice_level": 0
             },
 
             {
@@ -223,7 +223,7 @@
                 "discount_percent": null,
                 "calories_kcal": 90,
                 "allergens": ["gluten"],
-                "spice_level": 2
+                "spice_level": 0
             },
 
             {
@@ -245,7 +245,7 @@
                 "discount_percent": null,
                 "calories_kcal": null,
                 "allergens": ["dairy"],
-                "spice_level": 1
+                "spice_level": 0
             },
 
             {
@@ -267,7 +267,7 @@
                 "discount_percent": null,
                 "calories_kcal": null,
                 "allergens": ["dairy"],
-                "spice_level": 2
+                "spice_level": 1
             },
 
             {
@@ -289,7 +289,7 @@
                 "discount_percent": null,
                 "calories_kcal": null,
                 "allergens": [],
-                "spice_level": 2
+                "spice_level": 1
             },
 
             {
@@ -333,7 +333,7 @@
                 "discount_percent": null,
                 "calories_kcal": null,
                 "allergens": ["gluten", "eggs"],
-                "spice_level": 1
+                "spice_level": 0
             },
 
             {
