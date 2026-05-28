@@ -221,7 +221,7 @@
                 "is_available": true,
                 "price_eur": 5,
                 "discount_percent": null,
-                "calories_kcal": 90,
+                "calories_kcal": null,
                 "allergens": ["gluten"],
                 "spice_level": 0
             },
