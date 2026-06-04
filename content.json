@@ -430,15 +430,15 @@
             {
                 "id": "sambar-dal",
                 "category": "vegetarian",
-                "name": { "fr": "Sambar Dal", "en": "Sambar Dal" },
+                "name": { "fr": "Sambar", "en": "Sambar" },
                 "description": {
                     "fr": "Soupe de lentilles et de légumes cuisinée selon la tradition familiale du sud de l'Inde, aux épices maison, tamarin et feuilles de curry.",
                     "en": "Lentil and vegetable soup in the South Indian family tradition, with house spices, tamarind and curry leaves."
                 },
                 "image": "assets/menu/sambar-dal.jpg",
                 "image_alt": {
-                    "fr": "Sambar Dal du sud de l'Inde",
-                    "en": "South Indian Sambar Dal"
+                    "fr": "Sambar  du sud de l'Inde",
+                    "en": "South Indian Sambar "
                 },
                 "tags": ["vegetarian"],
                 "is_signature": false,
