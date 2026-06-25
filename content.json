@@ -1004,12 +1004,12 @@
             },
 
             {
-                "id": "chapati(2pcs)",
+                "id": "chapati",
                 "category": "sides",
                 "name": { "fr": "Chapati", "en": "Chapati" },
                 "description": {
-                    "fr": "Pain plat indien traditionnel, cuit à la poêle.",
-                    "en": "Traditional Indian flatbread, pan-cooked."
+                    "fr": "Pain plat indien traditionnel, cuit à la poêle.(2pcs)",
+                    "en": "Traditional Indian flatbread, pan-cooked.(2pcs)"
                 },
                 "image": "assets/menu/chapati.jpg",
                 "image_alt": { "fr": "Chapati pain indien", "en": "Indian Chapati flatbread" },
