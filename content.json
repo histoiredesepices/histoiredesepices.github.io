@@ -210,7 +210,6 @@
                 "description": {
                     "fr": "Croquette de légumes aux épices indiennes.(2pc)",
                     "en": "Vegetable croquette seasoned with Indian spices.(2pc)"
-                   
                 },
                 "image": "assets/menu/vegetable-cutlet.jpg",
                 "image_alt": { "fr": "Croquette de légumes", "en": "Vegetable croquette" },
@@ -728,8 +727,6 @@
                 "spice_level": 1
             },
 
-            
-
             {
                 "id": "agneau-bhuna-gosht",
                 "category": "non_vegetarian",
@@ -892,7 +889,7 @@
                 "allergens": [],
                 "spice_level": 1
             },
-{
+            {
                 "id": "Agneau-biriyani",
                 "category": "non_vegetarian",
                 "name": { "fr": "Agneau Biriyani", "en": "Mutton Biryani" },
@@ -913,7 +910,7 @@
                 "allergens": [],
                 "spice_level": 0
             },
-{
+            {
                 "id": "Crevettes -biriyani",
                 "category": "non_vegetarian",
                 "name": { "fr": "Crevettes Biriyani", "en": "Prawns Biryani" },
@@ -934,8 +931,6 @@
                 "allergens": [],
                 "spice_level": 1
             },
-
-
 
             {
                 "id": "riz-basmati",
@@ -1018,7 +1013,7 @@
                 "is_new": false,
                 "is_spicy": false,
                 "is_available": true,
-                "price_eur": 2 ,
+                "price_eur": 2,
                 "discount_percent": null,
                 "calories_kcal": null,
                 "allergens": [],
@@ -1270,7 +1265,7 @@
             "en": "Authentic Indian caterer in Valenciennes. Halal and vegetarian dishes, home delivery, weddings and private events."
         },
         "keywords": "traiteur indien, valenciennes, cuisine indienne, halal, végétarien, mariage, anzin, restaurant indien, indian food, catering",
-        "og_image": "https://histoiredesepices.github.io/assets/og-image.jpg",
+        "og_image": "https://histoiredesepices.github.io/assets/logo.png",
         "canonical_url": "https://histoiredesepices.github.io"
     },
 

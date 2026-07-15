@@ -21,9 +21,7 @@
   <meta property="og:title" content="L'Histoire des Épices | Traiteur Indien à Valenciennes" />
   <meta property="og:description"
     content="Traiteur indien authentique à Valenciennes. Plats halal et végétariens, livraison à domicile." />
-  <meta property="og:image" content="https://histoiredesepices.github.io/assets/og-image.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
+  <meta property="og:image" content="https://histoiredesepices.github.io/assets/logo.png" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="L'Histoire des Épices" />
 
@@ -31,7 +29,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="L'Histoire des Épices | Traiteur Indien à Valenciennes" />
   <meta name="twitter:description" content="Traiteur indien authentique à Valenciennes." />
-  <meta name="twitter:image" content="https://histoiredesepices.github.io/assets/og-image.jpg" />
+  <meta name="twitter:image" content="https://histoiredesepices.github.io/assets/logo.png" />
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://histoiredesepices.github.io" />
@@ -97,7 +95,7 @@
                 },
                 "servesCuisine": "Indian",
                 "url": "https://histoiredesepices.github.io",
-                "image": "https://histoiredesepices.github.io/assets/og-image.jpg"
+                "image": "https://histoiredesepices.github.io/assets/logo.png"
             }
         </script>
 </head>
@@ -303,6 +301,24 @@
 
   <!-- ═══════════════════════════════════════════════════════════ FLOATING WHATSAPP -->
   <div id="floating-whatsapp" class="fab-container" aria-label="Contacter sur WhatsApp" role="complementary"></div>
+
+  <!-- ═══════════════════════════════════════════════════════════ DISH MODAL -->
+  <div id="dish-modal" class="dish-modal" role="dialog" aria-modal="true" aria-labelledby="modal-dish-name" hidden>
+    <div class="dish-modal__backdrop" id="modal-backdrop"></div>
+    <div class="dish-modal__card">
+      <button class="dish-modal__close" id="modal-close" aria-label="Fermer">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      <div id="modal-image-wrap" class="dish-modal__image-wrap"></div>
+      <div class="dish-modal__body">
+        <div id="modal-badges" class="dish-modal__badges"></div>
+        <h2 id="modal-dish-name" class="dish-modal__name"></h2>
+        <p id="modal-desc" class="dish-modal__desc"></p>
+        <div id="modal-details" class="dish-modal__details"></div>
+        <div id="modal-cta" class="dish-modal__cta"></div>
+      </div>
+    </div>
+  </div>
 
   <!-- ═══════════════════════════════════════════════════════════ APP -->
   <script src="./assets/js/app.js"></script>
