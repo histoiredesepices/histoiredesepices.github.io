@@ -302,6 +302,30 @@
   <!-- ═══════════════════════════════════════════════════════════ FLOATING WHATSAPP -->
   <div id="floating-whatsapp" class="fab-container" aria-label="Contacter sur WhatsApp" role="complementary"></div>
 
+  <!-- ═══════════════════════════════════════════════════════════ CART FAB -->
+  <button id="cart-fab" class="cart-fab" aria-label="Voir le panier">
+    <span class="material-symbols-outlined">shopping_cart</span>
+    <span id="cart-fab-badge" class="cart-fab-badge" hidden>0</span>
+  </button>
+
+  <!-- ═══════════════════════════════════════════════════════════ CART MODAL -->
+  <div id="cart-modal" class="cart-modal" role="dialog" aria-modal="true" aria-labelledby="cart-modal-title" hidden>
+    <div class="cart-modal__backdrop" id="cart-backdrop"></div>
+    <div class="cart-modal__panel">
+      <div class="cart-modal__header">
+        <div class="cart-modal__header-left">
+          <span class="material-symbols-outlined">shopping_cart</span>
+          <h2 id="cart-modal-title" class="cart-modal__title"></h2>
+        </div>
+        <button class="cart-modal__close" id="cart-close" aria-label="Fermer">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div id="cart-items" class="cart-modal__items"></div>
+      <div id="cart-footer" class="cart-modal__footer"></div>
+    </div>
+  </div>
+
   <!-- ═══════════════════════════════════════════════════════════ DISH MODAL -->
   <div id="dish-modal" class="dish-modal" role="dialog" aria-modal="true" aria-labelledby="modal-dish-name" hidden>
     <div class="dish-modal__backdrop" id="modal-backdrop"></div>
