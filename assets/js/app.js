@@ -1376,6 +1376,8 @@ function openDishModal(dishId, triggerEl) {
     // ── Show modal ───────────────────────────────────────────────────────────
     const modal = $('dish-modal');
     if (modal) {
+        const closeLabel = modal.querySelector('.dish-modal__close-label');
+        if (closeLabel) closeLabel.textContent = lang === 'fr' ? 'Fermer' : 'Close';
         _modalPrevFocus = triggerEl || document.activeElement;
         modal.hidden = false;
         document.body.style.overflow = 'hidden';

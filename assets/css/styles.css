@@ -2023,32 +2023,35 @@ img {
 }
 
 .dish-modal__close {
-    position: absolute;
-    top: 0.85rem;
-    right: 0.85rem;
-    z-index: 10;
-    width: 36px;
-    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.92);
+    gap: 0.5rem;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: var(--primary);
+    color: white;
     border: none;
-    border-radius: 50%;
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
     cursor: pointer;
-    color: var(--dark);
-    box-shadow: var(--shadow-md);
-    transition: all 0.2s var(--ease);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+    transition: background 0.2s var(--ease);
 }
 
 .dish-modal__close:hover {
-    background: var(--primary);
-    color: white;
-    transform: scale(1.1);
+    background: #3d0410;
 }
 
 .dish-modal__close .material-symbols-outlined {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
+}
+
+.dish-modal__close-label {
+    font-family: var(--font-body);
 }
 
 .dish-modal__image-wrap {
