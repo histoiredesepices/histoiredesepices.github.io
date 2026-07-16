@@ -1074,6 +1074,17 @@ img {
     overflow: hidden;
 }
 
+.specialty-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.75rem;
+}
+
+.specialty-card__cart {
+    flex-shrink: 0;
+}
+
 .specialty-card__price {
     font-family: var(--font-body);
     font-size: 1.1rem;
@@ -2261,6 +2272,63 @@ img {
     .dish-modal__name {
         font-size: 1.85rem;
     }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MENU ITEM — CART CONTROLS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.menu-item__cart {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.6rem;
+}
+
+.menu-item__add-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    background: var(--saffron);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(201, 165, 92, 0.4);
+    transition: all 0.2s var(--ease);
+    flex-shrink: 0;
+}
+
+.menu-item__add-btn:hover {
+    background: #b8903a;
+    transform: scale(1.1);
+    box-shadow: 0 4px 14px rgba(201, 165, 92, 0.55);
+}
+
+.menu-item__add-btn .material-symbols-outlined {
+    font-size: 1rem;
+}
+
+.menu-item__qty-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: var(--cream);
+    border: 1.5px solid var(--saffron);
+    border-radius: var(--radius-full);
+    padding: 0.2rem 0.4rem;
+}
+
+.menu-cart-btn {
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 1rem !important;
+}
+
+.menu-cart-qty {
+    font-size: 0.85rem !important;
+    min-width: 1rem !important;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════

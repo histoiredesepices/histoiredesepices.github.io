@@ -430,7 +430,10 @@ function renderSpecialties() {
                 <div class="specialty-card__content">
                     <h3 class="specialty-card__name">${esc(name)} ${spiceHtml}</h3>
                     <p class="specialty-card__desc">${esc(desc)}</p>
-                    ${priceHtml}
+                    <div class="specialty-card__footer">
+                        ${priceHtml}
+                        <div class="specialty-card__cart" data-cart-control="${esc(dish.id)}"></div>
+                    </div>
                 </div>
             </div>
         `;
@@ -528,6 +531,7 @@ function buildMenuItem(dish) {
                 ${badges ? `<div class="menu-item__badges">${badges}</div>` : ''}
                 <p class="menu-item__desc">${esc(desc)}</p>
                 ${metaHtml}
+                <div class="menu-item__cart" data-cart-control="${esc(dish.id)}"></div>
             </div>
         </div>
     `;
@@ -1456,13 +1460,13 @@ function addToCart(id) {
         cart.push({ id, qty: 1 });
     }
     saveCart();
-    updateCartFab();
+    onCartChange();
 }
 
 function removeFromCart(id) {
     cart = cart.filter((i) => i.id !== id);
     saveCart();
-    updateCartFab();
+    onCartChange();
 }
 
 function updateCartQty(id, delta) {
@@ -1474,13 +1478,13 @@ function updateCartQty(id, delta) {
         return;
     }
     saveCart();
-    updateCartFab();
+    onCartChange();
 }
 
 function clearCart() {
     cart = [];
     saveCart();
-    updateCartFab();
+    onCartChange();
 }
 
 function getCartCount() {
@@ -1505,6 +1509,32 @@ function updateCartFab() {
     if (!badge) return;
     badge.textContent = count;
     badge.hidden = count === 0;
+}
+
+function onCartChange() {
+    updateCartFab();
+    updateMenuCartButtons();
+}
+
+function updateMenuCartButtons() {
+    const addLabel = lang === 'fr' ? 'Ajouter au panier' : 'Add to cart';
+    document.querySelectorAll('[data-cart-control]').forEach((el) => {
+        const id = el.dataset.cartControl;
+        const item = getCartItem(id);
+        if (item) {
+            el.innerHTML = `
+                <div class="menu-item__qty-wrap">
+                    <button class="cart-qty-btn menu-cart-btn" data-dish-id="${esc(id)}" data-action="dec" data-context="menu" aria-label="Retirer">−</button>
+                    <span class="cart-qty-value menu-cart-qty">${item.qty}</span>
+                    <button class="cart-qty-btn menu-cart-btn" data-dish-id="${esc(id)}" data-action="inc" data-context="menu" aria-label="Ajouter">+</button>
+                </div>`;
+        } else {
+            el.innerHTML = `
+                <button class="menu-item__add-btn" data-add-to-cart="${esc(id)}" aria-label="${esc(addLabel)}">
+                    <span class="material-symbols-outlined">add_shopping_cart</span>
+                </button>`;
+        }
+    });
 }
 
 // ── Modal CTA renderer (dish popup) ─────────────────────────────────────────
@@ -1707,6 +1737,7 @@ function closeCartModal() {
 function initCart() {
     loadCart();
     updateCartFab();
+    updateMenuCartButtons();
 
     $('cart-fab')?.addEventListener('click', openCartModal);
     $('cart-close')?.addEventListener('click', closeCartModal);
@@ -1717,22 +1748,26 @@ function initCart() {
     });
 
     document.addEventListener('click', (e) => {
-        // Add to cart (dish modal)
+        // Add to cart (menu card or dish modal)
         const addBtn = e.target.closest('[data-add-to-cart]');
         if (addBtn) {
-            addToCart(addBtn.dataset.addToCart);
-            renderModalCta(addBtn.dataset.addToCart);
+            const id = addBtn.dataset.addToCart;
+            addToCart(id);
+            const dishModal = $('dish-modal');
+            if (dishModal && !dishModal.hidden && _currentDishId === id) {
+                renderModalCta(id);
+            }
             return;
         }
 
-        // Qty +/- (dish modal or cart modal)
+        // Qty +/- (menu card, dish modal, or cart modal)
         const qtyBtn = e.target.closest('.cart-qty-btn');
         if (qtyBtn) {
             const { dishId, action, context } = qtyBtn.dataset;
             updateCartQty(dishId, action === 'inc' ? 1 : -1);
             if (context === 'cart') {
                 renderCartModal();
-            } else if (_currentDishId) {
+            } else if (context !== 'menu' && _currentDishId) {
                 renderModalCta(_currentDishId);
             }
             return;
