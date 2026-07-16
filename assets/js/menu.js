@@ -74,12 +74,14 @@ function buildMenuItem(dish) {
             <div class="menu-item__body">
                 <div class="menu-item__header">
                     <span class="menu-item__name">${esc(name)}</span>
-                    ${priceHtml}
+                    <div class="menu-item__actions">
+                        ${priceHtml}
+                        <div class="menu-item__cart" data-cart-control="${esc(dish.id)}"></div>
+                    </div>
                 </div>
                 ${badges ? `<div class="menu-item__badges">${badges}</div>` : ''}
                 <p class="menu-item__desc">${esc(desc)}</p>
                 ${metaHtml}
-                <div class="menu-item__cart" data-cart-control="${esc(dish.id)}"></div>
             </div>
         </div>
     `;

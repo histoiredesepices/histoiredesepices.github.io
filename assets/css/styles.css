@@ -1250,9 +1250,16 @@ img {
 .menu-item__header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     gap: 0.5rem;
     margin-bottom: 0.25rem;
+}
+
+.menu-item__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
 }
 
 .menu-item__name {
@@ -2280,8 +2287,7 @@ img {
 
 .menu-item__cart {
     display: flex;
-    justify-content: flex-end;
-    margin-top: 0.6rem;
+    align-items: center;
 }
 
 .menu-item__add-btn {
