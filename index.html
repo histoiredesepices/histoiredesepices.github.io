@@ -5,15 +5,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Primary SEO (updated by app.js on load) -->
+  <!-- Primary SEO (updated by seo.js on load) -->
   <title>L'Histoire des Épices | Traiteur Indien à Valenciennes</title>
   <meta name="description"
     content="Traiteur indien authentique à Valenciennes. Plats halal et végétariens, livraison à domicile, mariages et événements privés." />
   <meta name="keywords"
     content="traiteur indien, valenciennes, cuisine indienne, halal, végétarien, mariage, anzin, restaurant indien, indian food, catering" />
 
-  <!-- Google Search Console Verification (add your verification code when ready) -->
-  <!-- <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE_HERE" /> -->
+  <!-- Google Search Console Verification -->
+  <meta name="google-site-verification" content="2e4afe59181e27cf" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -33,6 +33,9 @@
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://histoiredesepices.github.io" />
+
+  <!-- Sitemap -->
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
   <!-- Favicon -->
   <link rel="icon" href="assets/favicon.ico" />
@@ -81,7 +84,7 @@
   <!-- Custom styles -->
   <link rel="stylesheet" href="./assets/css/styles.css" />
 
-  <!-- JSON-LD Schema (updated by app.js) -->
+  <!-- JSON-LD Schema (updated by seo.js) -->
   <script type="application/ld+json" id="schema-org">
             {
                 "@context": "https://schema.org",
@@ -205,7 +208,7 @@
           <p class="section-subtitle">Six plats signatures qui racontent l'histoire de nos épices</p>
         </div>
         <div id="specialties-grid" class="specialties-grid">
-          <!-- Populated by app.js with 6 signature dishes -->
+          <!-- Populated by render.js with 6 signature dishes -->
         </div>
       </div>
     </section>
@@ -348,7 +351,15 @@
   </div>
 
   <!-- ═══════════════════════════════════════════════════════════ APP -->
-  <script src="./assets/js/app.js"></script>
+  <script src="./assets/js/state.js"></script>
+  <script src="./assets/js/utils.js"></script>
+  <script src="./assets/js/seo.js"></script>
+  <script src="./assets/js/menu.js"></script>
+  <script src="./assets/js/render.js"></script>
+  <script src="./assets/js/modal.js"></script>
+  <script src="./assets/js/cart.js"></script>
+  <script src="./assets/js/events.js"></script>
+  <script src="./assets/js/boot.js"></script>
 </body>
 
 </html>

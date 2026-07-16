@@ -20,6 +20,7 @@ _No frameworks • No build step • Bilingual FR/EN • GitHub Pages ready_
 - **Bilingual (FR/EN)** - Language toggle with localStorage persistence
 - **PDF Menu Download** - Downloadable menu for customers
 - **Menu Filtering** - Filter by category (Starters, Vegetarian, Non-Vegetarian, Sides, Desserts)
+- **Cart & WhatsApp Orders** - Add multiple dishes to a cart, view totals, send a consolidated WhatsApp order
 - **WhatsApp Integration** - Floating button with pre-filled message
 - **Allergen Information** - Dedicated allergens page with dietary options
 - **Smooth Scrolling** - GPU-accelerated animations and lazy loading
@@ -34,7 +35,7 @@ _No frameworks • No build step • Bilingual FR/EN • GitHub Pages ready_
 | ---------------- | -------------------------------------- |
 | **HTML5**        | Semantic markup                        |
 | **Tailwind CSS** | Styling via CDN (no build)             |
-| **Vanilla JS**   | Single `app.js` for all functionality  |
+| **Vanilla JS**   | 9 focused modules, no bundler required |
 | **content.json** | Single source of truth for all content |
 | **GitHub Pages** | Free automatic deployment              |
 
@@ -44,7 +45,16 @@ _No frameworks • No build step • Bilingual FR/EN • GitHub Pages ready_
 ├── index.html           # Main HTML shell
 ├── content.json         # ⭐ ALL CONTENT LIVES HERE
 ├── assets/
-│   ├── js/app.js        # Core functionality
+│   ├── js/
+│   │   ├── state.js     # Shared mutable state
+│   │   ├── utils.js     # Pure helpers & DOM shortcuts
+│   │   ├── seo.js       # Meta tags & JSON-LD
+│   │   ├── menu.js      # Menu card builder & filter
+│   │   ├── render.js    # Section renderers & orchestrator
+│   │   ├── modal.js     # Dish detail popup
+│   │   ├── cart.js      # Cart state, modal & WhatsApp order
+│   │   ├── events.js    # Nav, scroll & language listeners
+│   │   └── boot.js      # App entry point
 │   ├── css/styles.css   # Design system
 │   ├── allergens.html   # Allergen information page
 │   ├── Menu.pdf         # Downloadable menu

@@ -18,16 +18,16 @@
 
 ## 2. Tech Stack
 
-| Layer      | Choice                                 | Why                                                                  |
-| ---------- | -------------------------------------- | -------------------------------------------------------------------- |
-| Markup     | Semantic HTML5                         | Accessible, SEO-friendly, no framework lock-in.                      |
-| Styling    | Tailwind CSS (via CDN) + Custom CSS    | Zero build step, custom properties for design tokens.                |
-| Behaviour  | Vanilla JavaScript (single `app.js`)   | No bundler. Loads `content.json`, hydrates the DOM, handles toggles. |
-| Data       | `content.json`                         | Single source of truth for all content.                              |
-| Icons      | Material Symbols Outlined (Google CDN) | Consistent icon system.                                              |
-| Fonts      | Felipa + Jura (Google Fonts CDN)       | Felipa for decorative script titles, Jura for modern body text.      |
-| Hosting    | GitHub Pages (static)                  | Free, simple, version-controlled edits via GitHub web UI.            |
-| Deployment | Push to `main` → auto-deploys          | No CI needed.                                                        |
+| Layer      | Choice                                 | Why                                                                                         |
+| ---------- | -------------------------------------- | ------------------------------------------------------------------------------------------- |
+| Markup     | Semantic HTML5                         | Accessible, SEO-friendly, no framework lock-in.                                             |
+| Styling    | Tailwind CSS (via CDN) + Custom CSS    | Zero build step, custom properties for design tokens.                                       |
+| Behaviour  | Vanilla JavaScript (9 modules)         | No bundler. Plain `<script>` tags. Loads `content.json`, hydrates the DOM, handles toggles. |
+| Data       | `content.json`                         | Single source of truth for all content.                                                     |
+| Icons      | Material Symbols Outlined (Google CDN) | Consistent icon system.                                                                     |
+| Fonts      | Felipa + Jura (Google Fonts CDN)       | Felipa for decorative script titles, Jura for modern body text.                             |
+| Hosting    | GitHub Pages (static)                  | Free, simple, version-controlled edits via GitHub web UI.                                   |
+| Deployment | Push to `main` → auto-deploys          | No CI needed.                                                                               |
 
 **Do NOT add:** React, Vue, Astro, build tools, package.json, npm scripts, TypeScript. Keep it boring and editable.
 
@@ -41,7 +41,15 @@ histoire-des-epices/
 ├── content.json            ← ⭐ THE ONLY FILE THE OWNER EDITS.
 ├── assets/
 │   ├── js/
-│   │   └── app.js          ← Loads content.json, hydrates DOM, handles toggles.
+│   │   ├── state.js        ← Shared mutable state (C, lang, cart, …).
+│   │   ├── utils.js        ← Pure helpers: $, $$, esc, t, waUrl, waSvg, …
+│   │   ├── seo.js          ← updateSEO, updateStructuredData.
+│   │   ├── menu.js         ← buildMenuItem, renderMenu, filterMenu.
+│   │   ├── render.js       ← All section renderers + render() orchestrator.
+│   │   ├── modal.js        ← Dish detail popup (open/close/init).
+│   │   ├── cart.js         ← Cart CRUD, card buttons, modal, WhatsApp order.
+│   │   ├── events.js       ← Language toggle, hamburger, scroll, header.
+│   │   └── boot.js         ← boot() entry point + DOMContentLoaded.
 │   ├── css/
 │   │   └── styles.css      ← Custom CSS beyond Tailwind (mandala bg, animations).
 │   ├── mandala.svg         ← Decorative watermark SVG.
@@ -57,6 +65,8 @@ histoire-des-epices/
 │   └── CLAUDE.md           ← This file. The AI build brief.
 └── README.md               ← Public-facing project description.
 ```
+
+> **Module loading:** All 9 JS files are loaded as plain `<script>` tags in `index.html` in dependency order (state → utils → seo → menu → render → modal → cart → events → boot). They share the global scope — no ES module syntax, no bundler needed.
 
 > **Path note:** `styles.css` uses `url('../mandala.svg')` (not `url('assets/mandala.svg')`) because it is resolved relative to `assets/css/`, not the project root.
 
@@ -459,7 +469,7 @@ This is for labels the owner shouldn't have to know about: badge names, allergen
 
 ---
 
-## 5. JavaScript Behaviour (`app.js`)
+## 5. JavaScript Behaviour (modular — `assets/js/`)
 
 ### 5.1 Boot sequence
 
@@ -545,7 +555,7 @@ Implements a modern, clean single-page layout. Sections in order:
 
 8. **Floating WhatsApp FAB** — Fixed bottom-right, pulsing animation, hidden if `settings.show_floating_whatsapp === false`.
 
-Every dynamic node has an `id` attribute so `app.js` can hydrate content from `content.json`.
+Every dynamic node has an `id` attribute so the JS modules can hydrate content from `content.json`.
 
 ---
 
@@ -570,7 +580,7 @@ Every dynamic node has an `id` attribute so `app.js` can hydrate content from `c
 - JSON-LD `Restaurant` schema injected from `content.json` (name, address, phone, sameAs).
 - `loading="lazy"` on all below-the-fold images.
 - Preconnect to Google Fonts and Material Symbols.
-- A single `app.js` and a single `styles.css` — no chunk splitting.
+- Nine focused JS modules loaded as plain `<script>` tags and a single `styles.css` — no chunk splitting.
 - Aim for Lighthouse Performance ≥ 90 on mobile.
 
 ---
@@ -653,7 +663,7 @@ Before shipping, every item must pass:
 - **Typography:** Use Felipa for decorative script titles (section headers, brand name, hero headline first line). Use Jura for all body text, navigation, and UI elements.
 - **Modern aesthetic:** Prioritize clean whitespace, subtle animations, glassmorphism effects, and smooth transitions.
 - **CSS custom properties:** All design tokens (colors, fonts, spacing, shadows) are defined in `:root` in `styles.css`. Use these variables consistently.
-- Write code that the owner could open and roughly read. Comments in French in `content.json` are welcome; comments in English in `app.js` are fine.
-- `app.js` will realistically be 500–700 lines for a fully bilingual site with all sections and edge-case handling. This is acceptable. Focus on legibility, not line count.
+- Write code that the owner could open and roughly read. Comments in French in `content.json` are welcome; comments in English in the JS modules are fine.
+- Each JS module should stay focused and readable. If a module grows beyond ~300 lines, consider whether a responsibility has crept in that belongs elsewhere.
 - Validate `content.json` on load and log human-readable errors to the console (in English — for the developer, not the owner).
 - Ship the smallest thing that satisfies the acceptance checklist. Resist scope creep.

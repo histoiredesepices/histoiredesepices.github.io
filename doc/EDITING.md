@@ -1,4 +1,5 @@
 # Guide d'édition du site — L'Histoire des Épices
+
 # Site Editing Guide — L'Histoire des Épices
 
 ---
@@ -7,7 +8,7 @@
 
 ### C'est quoi `content.json` ?
 
-C'est **le cerveau de votre site**. Tout le contenu visible — les plats, les descriptions, les coordonnées, les prix — se trouve dans ce fichier. Le site se met à jour automatiquement quand vous le modifiez. **Vous ne devez jamais toucher aux autres fichiers** (`index.html`, `app.js`, `styles.css`).
+C'est **le cerveau de votre site**. Tout le contenu visible — les plats, les descriptions, les coordonnées, les prix — se trouve dans ce fichier. Le site se met à jour automatiquement quand vous le modifiez. **Vous ne devez jamais toucher aux autres fichiers** (`index.html`, `styles.css`, ou les fichiers JavaScript dans `assets/js/`).
 
 ---
 
@@ -41,24 +42,24 @@ Trouvez la liste `"dishes": [...]` dans la section `"menu"`. Copiez un plat exis
 
 ```json
 {
-  "id": "mon-nouveau-plat",
-  "category": "vegetarian",
-  "name": { "fr": "Mon Nouveau Plat", "en": "My New Dish" },
-  "description": {
-    "fr": "Description en français.",
-    "en": "Description in English."
-  },
-  "image": "assets/menu/mon-nouveau-plat.jpg",
-  "image_alt": { "fr": "Photo du plat", "en": "Dish photo" },
-  "tags": ["vegetarian"],
-  "is_signature": false,
-  "is_new": true,
-  "is_spicy": false,
-  "is_available": true,
-  "price_eur": null,
-  "calories_kcal": null,
-  "allergens": [],
-  "spice_level": 1
+    "id": "mon-nouveau-plat",
+    "category": "vegetarian",
+    "name": { "fr": "Mon Nouveau Plat", "en": "My New Dish" },
+    "description": {
+        "fr": "Description en français.",
+        "en": "Description in English."
+    },
+    "image": "assets/menu/mon-nouveau-plat.jpg",
+    "image_alt": { "fr": "Photo du plat", "en": "Dish photo" },
+    "tags": ["vegetarian"],
+    "is_signature": false,
+    "is_new": true,
+    "is_spicy": false,
+    "is_available": true,
+    "price_eur": null,
+    "calories_kcal": null,
+    "allergens": [],
+    "spice_level": 1
 }
 ```
 
@@ -86,7 +87,7 @@ Dans `"settings"`, changez `"show_allergens": false` en `"show_allergens": true`
 
 1. Uploadez votre photo dans le dossier `assets/menu/` sur GitHub.
 2. Nommez-la exactement comme indiqué dans le champ `"image"` du plat.
-   - Exemple : si le champ est `"assets/menu/butter-chicken.jpg"`, uploadez le fichier avec le nom `butter-chicken.jpg`.
+    - Exemple : si le champ est `"assets/menu/butter-chicken.jpg"`, uploadez le fichier avec le nom `butter-chicken.jpg`.
 
 #### Mettre le site en maintenance
 
@@ -96,43 +97,43 @@ Dans `"settings"`, changez `"site_under_construction": false` en `"site_under_co
 
 ### Catégories valides
 
-| Valeur (`category`)  | Affiché en français | Affiché en anglais |
-|----------------------|---------------------|--------------------|
-| `entrees`            | Entrées             | Starters           |
-| `vegetarian`         | Végétarien          | Vegetarian         |
-| `non_vegetarian`     | Non-Végétarien      | Non-Vegetarian     |
-| `sides`              | Accompagnements     | Sides              |
-| `desserts`           | Desserts            | Desserts           |
+| Valeur (`category`) | Affiché en français | Affiché en anglais |
+| ------------------- | ------------------- | ------------------ |
+| `entrees`           | Entrées             | Starters           |
+| `vegetarian`        | Végétarien          | Vegetarian         |
+| `non_vegetarian`    | Non-Végétarien      | Non-Vegetarian     |
+| `sides`             | Accompagnements     | Sides              |
+| `desserts`          | Desserts            | Desserts           |
 
 ---
 
 ### Tags valides (champ `tags`)
 
-| Tag            | Signification                       |
-|----------------|-------------------------------------|
-| `vegetarian`   | Affiche l'icône 🌱                  |
-| `vegan`        | Affiche l'icône 🌱                  |
-| `halal`        | Affiche un badge "H"                |
-| `dairy_free`   | Sans produits laitiers              |
-| `gluten_free`  | Sans gluten                         |
+| Tag           | Signification          |
+| ------------- | ---------------------- |
+| `vegetarian`  | Affiche l'icône 🌱     |
+| `vegan`       | Affiche l'icône 🌱     |
+| `halal`       | Affiche un badge "H"   |
+| `dairy_free`  | Sans produits laitiers |
+| `gluten_free` | Sans gluten            |
 
 ---
 
 ### Allergènes valides (champ `allergens`)
 
-| Clé        | Français         | English     |
-|------------|------------------|-------------|
-| `dairy`    | Lait             | Dairy       |
-| `gluten`   | Gluten           | Gluten      |
-| `nuts`     | Fruits à coque   | Nuts        |
-| `peanuts`  | Arachides        | Peanuts     |
-| `eggs`     | Œufs             | Eggs        |
-| `soy`      | Soja             | Soy         |
-| `sesame`   | Sésame           | Sesame      |
-| `mustard`  | Moutarde         | Mustard     |
-| `shellfish`| Crustacés        | Shellfish   |
-| `fish`     | Poisson          | Fish        |
-| `sulphites`| Sulfites         | Sulphites   |
+| Clé         | Français       | English   |
+| ----------- | -------------- | --------- |
+| `dairy`     | Lait           | Dairy     |
+| `gluten`    | Gluten         | Gluten    |
+| `nuts`      | Fruits à coque | Nuts      |
+| `peanuts`   | Arachides      | Peanuts   |
+| `eggs`      | Œufs           | Eggs      |
+| `soy`       | Soja           | Soy       |
+| `sesame`    | Sésame         | Sesame    |
+| `mustard`   | Moutarde       | Mustard   |
+| `shellfish` | Crustacés      | Shellfish |
+| `fish`      | Poisson        | Fish      |
+| `sulphites` | Sulfites       | Sulphites |
 
 ---
 
@@ -144,18 +145,19 @@ Dans `"settings"`, changez `"site_under_construction": false` en `"site_under_co
 
 ### Quand appeler le développeur ?
 
-- Si la mise en page est cassée (problème dans `index.html`, `app.js`, ou `styles.css`)
+- Si la mise en page est cassée (problème dans `index.html`, `styles.css`, ou les fichiers JavaScript dans `assets/js/`)
 - Si vous voulez ajouter une nouvelle section ou fonctionnalité
 - Si quelque chose que vous ne reconnaissez pas est apparu
 
 ---
+
 ---
 
 ## 🇬🇧 GUIDE IN ENGLISH
 
 ### What is `content.json`?
 
-It is the **brain of your website**. All visible content — dishes, descriptions, contact details, prices — lives in this one file. The site updates automatically when you edit it. **Never touch the other files** (`index.html`, `app.js`, `styles.css`).
+It is the **brain of your website**. All visible content — dishes, descriptions, contact details, prices — lives in this one file. The site updates automatically when you edit it. **Never touch the other files** (`index.html`, `styles.css`, or any JavaScript file inside `assets/js/`).
 
 ---
 
@@ -226,6 +228,6 @@ In `"settings"`, change `"site_under_construction": false` to `"site_under_const
 
 ### When to call the developer?
 
-- If the layout is broken (issue in `index.html`, `app.js`, or `styles.css`)
+- If the layout is broken (issue in `index.html`, `styles.css`, or a file inside `assets/js/`)
 - If you want to add a new section or feature
 - If you see something you don't recognise
