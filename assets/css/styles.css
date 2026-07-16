@@ -1997,9 +1997,16 @@ img {
     width: 100%;
     max-width: 560px;
     max-height: 92vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: modalIn 0.32s var(--ease-bounce) forwards;
+}
+
+.dish-modal__scroll {
     overflow-y: auto;
     overflow-x: hidden;
-    animation: modalIn 0.32s var(--ease-bounce) forwards;
+    flex: 1;
     scrollbar-width: thin;
     scrollbar-color: var(--border) transparent;
 }
@@ -2223,6 +2230,8 @@ img {
         max-height: 95vh;
         border-radius: var(--radius-lg) var(--radius-lg) 0 0;
         animation: modalInMobile 0.32s var(--ease-bounce) forwards;
+        align-self: flex-end;
+        width: 100%;
     }
 
     @keyframes modalInMobile {
