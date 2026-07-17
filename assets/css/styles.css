@@ -2470,8 +2470,8 @@ img {
     bottom: 7rem;
     right: 1.5rem;
     z-index: 999;
-    width: 56px;
-    height: 56px;
+    width: 60px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2491,7 +2491,7 @@ img {
 }
 
 .cart-fab .material-symbols-outlined {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
 }
 
 .cart-fab-badge {
@@ -2866,6 +2866,10 @@ img {
 
     .cart-fab {
         bottom: 7.5rem;
+        right: 1rem;
+    }
+
+    .fab-container {
         right: 1rem;
     }
 }
