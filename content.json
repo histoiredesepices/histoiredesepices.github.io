@@ -338,7 +338,7 @@
             {
                 "id": "Petits samossa aux légumes",
                 "category": "entrees",
-                "name": { "fr": "Petits samossa aux légumes", "en": Mini vegetable samossa" },
+                "name": { "fr": "Petits samossa aux légumes", "en": "Mini vegetable samossa" },
                 "description": {
                     "fr": "Triangles croustillants garnis d'un mélange savoureux de légumes et d'épices, servis avec une sauce maison et ketchup",
                     "en": "Crispy pastry triangles filled with a flavorful blend of vegetables and spices, served with homemade sauce and ketchup."
