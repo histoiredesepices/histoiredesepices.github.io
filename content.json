@@ -178,7 +178,12 @@
                 "icon": "rice_bowl",
                 "label": { "fr": "Accompagnements", "en": "Sides" }
             },
-            { "id": "desserts", "icon": "cake", "label": { "fr": "Desserts", "en": "Desserts" } }
+            { "id": "desserts", "icon": "cake", "label": { "fr": "Desserts", "en": "Desserts" } },
+            {
+                "id": "combo_meal",
+                "icon": "lunch_dining",
+                "label": { "fr": "Formule repas", "en": "Meal combo" }
+            }
         ],
         "dishes": [
             {
@@ -1130,6 +1135,143 @@
                 "is_spicy": false,
                 "is_available": true,
                 "price_eur": 5.0,
+                "discount_percent": null,
+                "calories_kcal": null,
+                "allergens": [],
+                "spice_level": 0
+            },
+
+            {
+                "id": "idlis-chutney-sambar",
+                "category": "combo_meal",
+                "name": { "fr": "Idlis, Chutney & Sambar", "en": "Idlis, Chutney & Sambar" },
+                "description": {
+                    "fr": "De moelleux idlis vapeur, servis avec un chutney maison et un savoureux sambar aux lentilles et aux légumes. Disponible uniquement le week-end.",
+                    "en": "Soft steamed idlis served with homemade chutney and a flavourful lentil and vegetable sambar. Available weekends only."
+                },
+                "image": "assets/menu/idlis-chutney-sambar.jpg",
+                "image_alt": {
+                    "fr": "Idlis vapeur avec chutney et sambar",
+                    "en": "Steamed idlis with chutney and sambar"
+                },
+                "tags": ["vegetarian"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": 12.5,
+                "discount_percent": null,
+                "calories_kcal": null,
+                "allergens": [],
+                "spice_level": 0
+            },
+
+            {
+                "id": "vattayappam-ragout-veg",
+                "category": "combo_meal",
+                "name": {
+                    "fr": "Vattayappam & Ragoût (Végétarien)",
+                    "en": "Vattayappam & Stew (Vegetarian)"
+                },
+                "description": {
+                    "fr": "Des vattayappam moelleux accompagnés d'un ragoût végétarien onctueux à base de lait de noix de coco. Disponible uniquement le week-end.",
+                    "en": "Soft vattayappam accompanied by a creamy vegetarian coconut milk stew. Available weekends only."
+                },
+                "image": "assets/menu/vattayappam-ragout-veg.jpg",
+                "image_alt": {
+                    "fr": "Vattayappam avec ragoût végétarien au lait de coco",
+                    "en": "Vattayappam with vegetarian coconut milk stew"
+                },
+                "tags": ["vegetarian"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": 12.5,
+                "discount_percent": null,
+                "calories_kcal": null,
+                "allergens": [],
+                "spice_level": 0
+            },
+
+            {
+                "id": "vattayappam-ragout-nv",
+                "category": "combo_meal",
+                "name": {
+                    "fr": "Vattayappam & Ragoût (Non-Végétarien)",
+                    "en": "Vattayappam & Stew (Non-Vegetarian)"
+                },
+                "description": {
+                    "fr": "Des vattayappam moelleux accompagnés d'un ragoût onctueux à base de lait de noix de coco avec viande halal. Disponible uniquement le week-end.",
+                    "en": "Soft vattayappam accompanied by a creamy coconut milk stew with halal meat. Available weekends only."
+                },
+                "image": "assets/menu/vattayappam-ragout-nv.jpg",
+                "image_alt": {
+                    "fr": "Vattayappam avec ragoût non-végétarien au lait de coco",
+                    "en": "Vattayappam with non-vegetarian coconut milk stew"
+                },
+                "tags": ["halal"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": 14.5,
+                "discount_percent": null,
+                "calories_kcal": null,
+                "allergens": [],
+                "spice_level": 0
+            },
+
+            {
+                "id": "idiyappam-ragout-veg",
+                "category": "combo_meal",
+                "name": {
+                    "fr": "Idiyappam & Ragoût (Végétarien)",
+                    "en": "Idiyappam & Stew (Vegetarian)"
+                },
+                "description": {
+                    "fr": "Idiyappam moelleux accompagnés d'un ragoût végétarien onctueux à base de lait de noix de coco. Disponible uniquement le week-end.",
+                    "en": "Soft idiyappam accompanied by a creamy vegetarian coconut milk stew. Available weekends only."
+                },
+                "image": "assets/menu/idiyappam-ragout-veg.jpg",
+                "image_alt": {
+                    "fr": "Idiyappam avec ragoût végétarien au lait de coco",
+                    "en": "Idiyappam with vegetarian coconut milk stew"
+                },
+                "tags": ["vegetarian"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": 12.5,
+                "discount_percent": null,
+                "calories_kcal": null,
+                "allergens": [],
+                "spice_level": 0
+            },
+
+            {
+                "id": "idiyappam-ragout-nv",
+                "category": "combo_meal",
+                "name": {
+                    "fr": "Idiyappam & Ragoût (Non-Végétarien)",
+                    "en": "Idiyappam & Stew (Non-Vegetarian)"
+                },
+                "description": {
+                    "fr": "Idiyappam moelleux accompagnés d'un ragoût onctueux à base de lait de noix de coco avec viande halal. Disponible uniquement le week-end.",
+                    "en": "Soft idiyappam accompanied by a creamy coconut milk stew with halal meat. Available weekends only."
+                },
+                "image": "assets/menu/idiyappam-ragout-nv.jpg",
+                "image_alt": {
+                    "fr": "Idiyappam avec ragoût non-végétarien au lait de coco",
+                    "en": "Idiyappam with non-vegetarian coconut milk stew"
+                },
+                "tags": ["halal"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": 14.5,
                 "discount_percent": null,
                 "calories_kcal": null,
                 "allergens": [],
