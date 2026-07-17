@@ -218,7 +218,7 @@
                 "is_new": false,
                 "is_spicy": false,
                 "is_available": true,
-                "price_eur": 5,
+                "price_eur": 6,
                 "discount_percent": null,
                 "calories_kcal": null,
                 "allergens": [],
@@ -336,12 +336,12 @@
             },
 
             {
-                "id": "Masala Idli",
+                "id": "Petits samossa aux légumes",
                 "category": "entrees",
-                "name": { "fr": "Masala Idli", "en": "Masala Idli" },
+                "name": { "fr": "Petits samossa aux légumes", "en": Mini vegetable samossa"" },
                 "description": {
-                    "fr": "Un gâteau moelleux à base de riz et lentilles fermentés. Mélangé avec des épices pour un goût savoureux.",
-                    "en": "Soft steamed cake made from fermented rice and lentil batter. Mixed with spices for a delicious flavor."
+                    "fr": "Triangles croustillants garnis d'un mélange savoureux de légumes et d'épices, servis avec une sauce maison et ketchup",
+                    "en": "Crispy pastry triangles filled with a flavorful blend of vegetables and spices, served with homemade sauce and ketchup."
                 },
                 "image": "assets/menu/Masala Idli.png",
                 "image_alt": { "fr": "Idli poêlée aux épices", "en": "Spiced pan-fried idli" },
