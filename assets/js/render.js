@@ -5,7 +5,12 @@
 // ── Navigation ───────────────────────────────────────────────────────────────
 
 function renderNav() {
-    const items = C.navigation?.items || [];
+    const hasSpecialties = (C.menu?.dishes || []).some(
+        (d) => d.is_signature && d.is_available !== false,
+    );
+    const items = (C.navigation?.items || []).filter(
+        (item) => item.id !== 'specialties' || hasSpecialties,
+    );
     const wa = C.contact?.primary_action;
     const waHref = wa ? waUrl(wa.phone_e164, t(wa.prefilled_message)) : '#contact';
 
@@ -130,7 +135,18 @@ function renderSpecialties() {
     const u = C.ui_strings;
 
     const section = $('specialties');
+
+    const specialties = dishes
+        .filter((d) => d.is_signature && d.is_available !== false)
+        .slice(0, 6);
+
+    if (!specialties.length) {
+        if (section) section.hidden = true;
+        return;
+    }
+
     if (section) {
+        section.hidden = false;
         const eyebrow = section.querySelector('.section-eyebrow');
         if (eyebrow) eyebrow.textContent = t(spec.eyebrow);
 
@@ -141,15 +157,6 @@ function renderSpecialties() {
         const subtitle = section.querySelector('.section-subtitle');
         if (subtitle) subtitle.textContent = t(spec.subtitle);
     }
-
-    let specialties = dishes.filter((d) => d.is_signature && d.is_available !== false);
-    if (specialties.length < 6) {
-        const remaining = dishes
-            .filter((d) => d.is_available !== false && !d.is_signature)
-            .slice(0, 6 - specialties.length);
-        specialties = [...specialties, ...remaining];
-    }
-    specialties = specialties.slice(0, 6);
 
     const grid = $('specialties-grid');
     if (!grid) return;
@@ -162,7 +169,9 @@ function renderSpecialties() {
             let priceHtml = '';
             if (C.settings.show_prices && dish.price_eur != null) {
                 if (dish.discount_percent) {
-                    const discounted = (dish.price_eur * (1 - dish.discount_percent / 100)).toFixed(2);
+                    const discounted = (dish.price_eur * (1 - dish.discount_percent / 100)).toFixed(
+                        2,
+                    );
                     priceHtml = `<span class="specialty-card__price"><s style="color:var(--muted);font-size:0.9rem;">${dish.price_eur.toFixed(2)}€</s> ${discounted} €</span>`;
                 } else {
                     priceHtml = `<span class="specialty-card__price">${dish.price_eur.toFixed(2)} €</span>`;
