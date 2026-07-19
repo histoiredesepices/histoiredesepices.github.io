@@ -458,7 +458,7 @@
 
             {
                 "id": "pav-bhaji",
-                "category": "vegetarian",
+                "category": "combo_meal",
                 "name": { "fr": "Pav Bhaji", "en": "Pav Bhaji" },
                 "description": {
                     "fr": "Purée de légumes longuement mijotés aux épices de Bombay, servi avec pain brioché toasté.",
