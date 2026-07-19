@@ -456,27 +456,6 @@
                 "spice_level": 1
             },
 
-            {
-                "id": "pav-bhaji",
-                "category": "combo_meal",
-                "name": { "fr": "Pav Bhaji", "en": "Pav Bhaji" },
-                "description": {
-                    "fr": "Purée de légumes longuement mijotés aux épices de Bombay, servi avec pain brioché toasté.",
-                    "en": "Mashed vegetables slow-cooked in Bombay-style spices, served with toasted brioche rolls."
-                },
-                "image": "assets/menu/Pav bhaji.png",
-                "image_alt": { "fr": "Pav Bhaji de Bombay", "en": "Mumbai-style Pav Bhaji" },
-                "tags": ["vegetarian"],
-                "is_signature": false,
-                "is_new": false,
-                "is_spicy": false,
-                "is_available": true,
-                "price_eur": 11,
-                "discount_percent": null,
-                "calories_kcal": null,
-                "allergens": [],
-                "spice_level": 1
-            },
 
             {
                 "id": "baingan-bharta",
@@ -1139,6 +1118,29 @@
                 "calories_kcal": null,
                 "allergens": [],
                 "spice_level": 0
+            },
+
+            
+            {
+                "id": "pav-bhaji",
+                "category": "combo_meal",
+                "name": { "fr": "Pav Bhaji", "en": "Pav Bhaji" },
+                "description": {
+                    "fr": "Purée de légumes longuement mijotés aux épices de Bombay, servi avec pain brioché toasté.",
+                    "en": "Mashed vegetables slow-cooked in Bombay-style spices, served with toasted brioche rolls."
+                },
+                "image": "assets/menu/Pav bhaji.png",
+                "image_alt": { "fr": "Pav Bhaji de Bombay", "en": "Mumbai-style Pav Bhaji" },
+                "tags": ["vegetarian"],
+                "is_signature": false,
+                "is_new": false,
+                "is_spicy": false,
+                "is_available": true,
+                "price_eur": 11,
+                "discount_percent": null,
+                "calories_kcal": null,
+                "allergens": [],
+                "spice_level": 1
             },
 
             {
