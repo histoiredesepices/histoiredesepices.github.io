@@ -1136,7 +1136,7 @@
                 "is_new": false,
                 "is_spicy": false,
                 "is_available": true,
-                "price_eur": 11,
+                "price_eur": 12.5,
                 "discount_percent": null,
                 "calories_kcal": null,
                 "allergens": [],
