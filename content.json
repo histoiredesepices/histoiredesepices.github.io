@@ -8,6 +8,7 @@
         "show_heritage_section": true,
         "show_floating_whatsapp": true,
         "site_under_construction": false,
+        "github_repo": "histoiredesepices/histoiredesepices.github.io",
         "contact_info": {
             "primary_phone": {
                 "display": "07 61 93 81 90",
@@ -1338,22 +1339,38 @@
             {
                 "id": "mariage",
                 "label": { "fr": "Mariage", "en": "Wedding" },
-                "image": "assets/events/mariage.jpg"
+                "image": "assets/events/mariage.jpg",
+                "albums": []
             },
             {
                 "id": "anniversaire",
                 "label": { "fr": "Anniversaire", "en": "Birthday" },
-                "image": "assets/events/anniversaire.jpg"
+                "image": "assets/events/anniversaire.jpg",
+                "albums": []
             },
             {
                 "id": "bapteme",
                 "label": { "fr": "Baptême", "en": "Baptism" },
-                "image": "assets/events/bapteme.jpg"
+                "image": "assets/events/bapteme.jpg",
+                "albums": []
             },
             {
                 "id": "market",
-                "label": { "fr": "Marché", "en": "Market" },
-                "image": "assets/events/market.jpg"
+                "label": { "fr": "Marchés", "en": "Markets" },
+                "image": "assets/events/market.jpg",
+                "albums": [
+                    {
+                        "id": "marche-anzin-juin-2025",
+                        "title": {
+                            "fr": "Marché d'Anzin — 28 Juin 2025",
+                            "en": "Anzin Market — June 28, 2025"
+                        },
+                        "date": "2025-06-28",
+                        "location": "Anzin",
+                        "cover": "assets/gallery/market/marche-anzin-juin-2025/cover.jpg",
+                        "folder": "assets/gallery/market/marche-anzin-juin-2025"
+                    }
+                ]
             }
         ]
     },

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="fr" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galerie — L'Histoire des Épices</title>
+  <meta name="description" content="Galerie photos des marchés et événements de L'Histoire des Épices, traiteur indien à Valenciennes." />
+  <meta name="robots" content="noindex" />
+
+  <link rel="icon" href="assets/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="assets/logo.png" as="image" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Felipa&family=Jura:wght@300..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+  <script>
+    tailwind = {
+      config: {
+        theme: {
+          extend: {
+            colors: {
+              primary: { DEFAULT: '#5b0617', hover: '#7a1f2b', light: '#8a2a3d' },
+              saffron: { DEFAULT: '#C9A55C', light: '#e0c88a', dark: '#a88940' },
+              cream: '#faf8f5',
+              surface: '#ffffff',
+              dark: '#1a1a1a',
+              muted: '#6b6b6b',
+              'on-dark': '#f5f5f5',
+              whatsapp: '#25D366',
+            },
+            fontFamily: {
+              script: ['Pinyon Script', 'cursive'],
+              body: ['Jura', 'sans-serif'],
+            },
+          },
+        },
+      },
+    };
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+</head>
+
+<body class="bg-cream font-body text-dark antialiased">
+  <!-- Announcement ticker -->
+  <div id="ticker-bar" class="ticker-bar" hidden></div>
+
+  <!-- Skip link -->
+  <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+  <!-- ══════════════════════════════════════════════════════════ HEADER / NAV -->
+  <header id="site-header">
+    <nav class="nav-container" aria-label="Navigation principale">
+      <a href="index.html" id="nav-brand" class="nav-brand" aria-label="Accueil L'Histoire des Épices">
+        <img src="assets/logo.png" alt="" class="nav-logo" aria-hidden="true" />
+        <span id="nav-brand-text" class="font-script text-2xl md:text-3xl text-primary">L'Histoire des Épices</span>
+      </a>
+
+      <div id="nav-links" class="nav-links" role="list"></div>
+
+      <div class="nav-controls">
+        <div class="lang-switch" role="group" aria-label="Changer de langue">
+          <span class="lang-switch__label lang-switch__label--fr">FR</span>
+          <button id="lang-toggle" class="lang-switch__toggle" aria-label="Changer de langue" aria-pressed="false">
+            <span class="lang-switch__slider"></span>
+          </button>
+          <span class="lang-switch__label lang-switch__label--en">EN</span>
+        </div>
+        <button id="hamburger" class="hamburger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu de navigation" hidden>
+      <div id="mobile-nav-links" class="mobile-nav-links"></div>
+      <div id="mobile-nav-whatsapp" class="mobile-nav-wa"></div>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════════════════════════ MAIN -->
+  <main id="main-content">
+
+    <!-- Gallery Hero -->
+    <section class="gallery-page-hero" id="gallery-hero">
+      <div class="gallery-page-hero__content">
+        <nav class="gallery-breadcrumb" id="gallery-breadcrumb" aria-label="Fil d'Ariane"></nav>
+        <h1 class="gallery-page-hero__title" id="gallery-hero-title"></h1>
+        <p class="gallery-page-hero__count" id="gallery-hero-count"></p>
+      </div>
+    </section>
+
+    <!-- Albums grid view -->
+    <section class="gallery-section" id="gallery-albums-view">
+      <div class="container">
+        <div class="gallery-albums-grid" id="gallery-albums-grid"></div>
+      </div>
+    </section>
+
+    <!-- Photos grid view -->
+    <section class="gallery-section" id="gallery-photos-view" hidden>
+      <div class="container">
+        <div class="gallery-photos-grid" id="gallery-photos-grid"></div>
+      </div>
+    </section>
+
+    <!-- Empty / no content state -->
+    <section class="gallery-section gallery-empty-section" id="gallery-empty" hidden>
+      <div class="container">
+        <div class="gallery-empty">
+          <span class="material-symbols-outlined">photo_library</span>
+          <p id="gallery-empty-msg"></p>
+          <a href="index.html#evenements" class="gallery-empty__back">
+            <span class="material-symbols-outlined">arrow_back</span>
+            <span id="gallery-back-label">Retour aux événements</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════════ LIGHTBOX -->
+  <div id="gallery-lightbox" class="gallery-lightbox" hidden>
+    <button class="gallery-lightbox__backdrop" id="gallery-lightbox-backdrop" aria-label="Fermer"></button>
+    <div class="gallery-lightbox__stage">
+      <img id="gallery-lightbox-img" class="gallery-lightbox__img" src="" alt="" />
+    </div>
+    <button class="gallery-lightbox__close" id="gallery-lightbox-close" aria-label="Fermer">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+    <button class="gallery-lightbox__nav gallery-lightbox__nav--prev" id="gallery-lightbox-prev" aria-label="Photo précédente">
+      <span class="material-symbols-outlined">chevron_left</span>
+    </button>
+    <button class="gallery-lightbox__nav gallery-lightbox__nav--next" id="gallery-lightbox-next" aria-label="Photo suivante">
+      <span class="material-symbols-outlined">chevron_right</span>
+    </button>
+    <div class="gallery-lightbox__counter" id="gallery-lightbox-counter" aria-live="polite"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ FOOTER -->
+  <footer id="site-footer" class="site-footer">
+    <div class="container">
+      <p id="footer-tagline" class="footer-tagline"></p>
+      <p id="footer-copyright" class="footer-copyright"></p>
+    </div>
+  </footer>
+
+  <div id="floating-whatsapp" class="fab-container" aria-label="Contacter sur WhatsApp" role="complementary"></div>
+
+  <!-- ══════════════════════════════════════════════════════════ APP -->
+  <script src="./assets/js/state.js"></script>
+  <script src="./assets/js/utils.js"></script>
+  <script src="./assets/js/seo.js"></script>
+  <script src="./assets/js/render.js"></script>
+  <script src="./assets/js/events.js"></script>
+  <script src="./assets/js/gallery.js"></script>
+</body>
+
+</html>

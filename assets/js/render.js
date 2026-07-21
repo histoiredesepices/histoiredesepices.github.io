@@ -362,20 +362,37 @@ function renderEvents() {
     if (!grid) return;
 
     grid.innerHTML = (ev.items || [])
-        .map(
-            (item) => `
-        <div class="event-card reveal">
+        .map((item) => {
+            const hasAlbums = item.albums && item.albums.length > 0;
+            const albumCount = hasAlbums ? item.albums.length : 0;
+            const tag = hasAlbums ? `a href="gallery.html?event=${esc(item.id)}"` : 'div';
+            const closeTag = hasAlbums ? 'a' : 'div';
+            const albumLabel =
+                lang === 'fr'
+                    ? `${albumCount} album${albumCount !== 1 ? 's' : ''}`
+                    : `${albumCount} album${albumCount !== 1 ? 's' : ''}`;
+            const viewLabel = lang === 'fr' ? 'Voir la galerie' : 'View gallery';
+            const photoBadge = hasAlbums
+                ? `<span class="event-card__photo-badge">
+                       <span class="material-symbols-outlined">photo_library</span>${albumLabel}
+                   </span>
+                   <span class="event-card__view-hint">
+                       <span class="material-symbols-outlined">open_in_new</span>${esc(viewLabel)}
+                   </span>`
+                : '';
+            return `
+        <${tag} class="event-card reveal${hasAlbums ? ' event-card--linked' : ''}">
             ${
                 item.image
                     ? `<img src="${esc(item.image)}" alt="${esc(t(item.label))}" class="event-card__image" loading="lazy">`
-                    : `<div class="event-card__placeholder">${esc(t(item.label)[0] || '?')}</div>`
+                    : `<div class="event-card__placeholder">${esc((t(item.label) || '?')[0])}</div>`
             }
             <div class="event-card__overlay">
                 <span class="event-card__label">${esc(t(item.label))}</span>
+                ${photoBadge}
             </div>
-        </div>
-    `,
-        )
+        </${closeTag}>`;
+        })
         .join('');
 
     grid.querySelectorAll('.event-card__image').forEach((img) => {
