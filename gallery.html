@@ -5,7 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Galerie — L'Histoire des Épices</title>
-  <meta name="description" content="Galerie photos des marchés et événements de L'Histoire des Épices, traiteur indien à Valenciennes." />
+  <meta name="description"
+    content="Galerie photos des marchés et événements de L'Histoire des Épices, traiteur indien à Valenciennes." />
   <meta name="robots" content="noindex" />
 
   <link rel="icon" href="assets/favicon.ico" />
@@ -14,7 +15,9 @@
   <link rel="preload" href="assets/logo.png" as="image" />
 
   <link href="https://fonts.googleapis.com/css2?family=Felipa&family=Jura:wght@300..700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
 
   <script>
     tailwind = {
@@ -44,7 +47,7 @@
   <link rel="stylesheet" href="./assets/css/styles.css" />
 </head>
 
-<body class="bg-cream font-body text-dark antialiased">
+<body class="bg-white font-body text-dark antialiased flex flex-col min-h-screen">
   <!-- Announcement ticker -->
   <div id="ticker-bar" class="ticker-bar" hidden></div>
 
@@ -69,7 +72,8 @@
           </button>
           <span class="lang-switch__label lang-switch__label--en">EN</span>
         </div>
-        <button id="hamburger" class="hamburger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
+        <button id="hamburger" class="hamburger" aria-label="Ouvrir le menu" aria-expanded="false"
+          aria-controls="mobile-menu">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -82,7 +86,7 @@
   </header>
 
   <!-- ══════════════════════════════════════════════════════════ MAIN -->
-  <main id="main-content">
+  <main id="main-content" class="flex-1">
 
     <!-- Gallery Hero -->
     <section class="gallery-page-hero" id="gallery-hero">
@@ -90,6 +94,7 @@
         <nav class="gallery-breadcrumb" id="gallery-breadcrumb" aria-label="Fil d'Ariane"></nav>
         <h1 class="gallery-page-hero__title" id="gallery-hero-title"></h1>
         <p class="gallery-page-hero__count" id="gallery-hero-count"></p>
+        <p class="gallery-page-hero__desc" id="gallery-hero-desc" hidden></p>
       </div>
     </section>
 
@@ -132,10 +137,12 @@
     <button class="gallery-lightbox__close" id="gallery-lightbox-close" aria-label="Fermer">
       <span class="material-symbols-outlined">close</span>
     </button>
-    <button class="gallery-lightbox__nav gallery-lightbox__nav--prev" id="gallery-lightbox-prev" aria-label="Photo précédente">
+    <button class="gallery-lightbox__nav gallery-lightbox__nav--prev" id="gallery-lightbox-prev"
+      aria-label="Photo précédente">
       <span class="material-symbols-outlined">chevron_left</span>
     </button>
-    <button class="gallery-lightbox__nav gallery-lightbox__nav--next" id="gallery-lightbox-next" aria-label="Photo suivante">
+    <button class="gallery-lightbox__nav gallery-lightbox__nav--next" id="gallery-lightbox-next"
+      aria-label="Photo suivante">
       <span class="material-symbols-outlined">chevron_right</span>
     </button>
     <div class="gallery-lightbox__counter" id="gallery-lightbox-counter" aria-live="polite"></div>

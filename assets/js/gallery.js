@@ -134,6 +134,11 @@ function renderAlbumsView(eventItem) {
 
     renderGalleryBreadcrumb(eventItem, null);
     setPageTitle([eventLabel]);
+    const descEl = $('gallery-hero-desc');
+    if (descEl) {
+        descEl.textContent = '';
+        descEl.hidden = true;
+    }
 
     const albumWord =
         lang === 'fr'
@@ -173,8 +178,9 @@ function renderAlbumsView(eventItem) {
                             album.cover
                                 ? `<img src="${esc(album.cover)}" alt="${albumTitle}" loading="lazy">`
                                 : `<div class="gallery-album-card__placeholder">
-                                   <span class="material-symbols-outlined">photo_library</span>
-                               </div>`
+                                       <span class="material-symbols-outlined">photo_library</span>
+                                       <span class="gallery-album-card__placeholder-label">${lang === 'fr' ? 'Photos à venir' : 'Photos coming soon'}</span>
+                                   </div>`
                         }
                         ${
                             album.images?.length
@@ -188,24 +194,26 @@ function renderAlbumsView(eventItem) {
                     <div class="gallery-album-card__body">
                         <p class="gallery-album-card__title">${albumTitle}</p>
                         ${album.description ? `<p class="gallery-album-card__desc">${esc(t(album.description))}</p>` : ''}
-                        ${
-                            dateStr
-                                ? `<p class="gallery-album-card__meta">
-                            <span class="material-symbols-outlined">calendar_today</span>${esc(dateStr)}
-                        </p>`
-                                : ''
-                        }
-                        ${
-                            album.location
-                                ? `<p class="gallery-album-card__meta">
-                            <span class="material-symbols-outlined">location_on</span>${esc(album.location)}
-                        </p>`
-                                : ''
-                        }
+                        <div class="gallery-album-card__meta-row">
+                            ${
+                                dateStr
+                                    ? `<span class="gallery-album-card__meta">
+                                <span class="material-symbols-outlined">calendar_today</span>${esc(dateStr)}
+                            </span>`
+                                    : ''
+                            }
+                            ${
+                                album.location
+                                    ? `<span class="gallery-album-card__meta">
+                                <span class="material-symbols-outlined">location_on</span>${esc(album.location)}
+                            </span>`
+                                    : ''
+                            }
+                        </div>
                     </div>
                     <div class="gallery-album-card__cta">
-                        <span class="material-symbols-outlined">photo_camera</span>
                         ${lang === 'fr' ? 'Voir les photos' : 'View photos'}
+                        <span class="material-symbols-outlined">arrow_forward</span>
                     </div>
                 </a>`;
         })
@@ -224,6 +232,13 @@ async function renderPhotosView(eventItem, album) {
     renderGalleryBreadcrumb(eventItem, album);
     setPageTitle([albumTitle, t(eventItem.label)]);
     setGalleryHero(albumTitle, lang === 'fr' ? 'Chargement…' : 'Loading…');
+
+    const descEl = $('gallery-hero-desc');
+    if (descEl) {
+        const desc = album.description ? t(album.description) : '';
+        descEl.textContent = desc;
+        descEl.hidden = !desc;
+    }
 
     const grid = $('gallery-photos-grid');
     if (grid) {
@@ -358,7 +373,6 @@ async function bootGallery() {
     }
 
     renderGallery();
-    initEventListeners();
 
     /* Language toggle */
     $('lang-toggle')?.addEventListener('click', () => {
@@ -368,6 +382,46 @@ async function bootGallery() {
         const toggle = $('lang-toggle');
         if (toggle) toggle.setAttribute('aria-pressed', String(lang === 'en'));
         renderGallery();
+    });
+
+    /* Hamburger / mobile menu */
+    const hamburger = $('hamburger');
+    const mobileMenu = $('mobile-menu');
+    if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', () => {
+            const isOpen = !mobileMenu.hidden;
+            mobileMenu.hidden = isOpen;
+            hamburger.classList.toggle('active', !isOpen);
+            hamburger.setAttribute('aria-expanded', String(!isOpen));
+            document.body.style.overflow = isOpen ? '' : 'hidden';
+        });
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target.closest('a')) {
+                mobileMenu.hidden = true;
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+
+    /* Header scroll effect */
+    const header = $('site-header');
+    if (header) {
+        const updateHeader = () => header.classList.toggle('scrolled', window.pageYOffset > 80);
+        window.addEventListener('scroll', updateHeader, { passive: true });
+        updateHeader();
+    }
+
+    /* Escape closes mobile menu */
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu && !mobileMenu.hidden) {
+            mobileMenu.hidden = true;
+            hamburger?.classList.remove('active');
+            hamburger?.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+            hamburger?.focus();
+        }
     });
 
     /* Photo thumbnail → lightbox */

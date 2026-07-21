@@ -137,6 +137,69 @@ Dans `"settings"`, changez `"site_under_construction": false` en `"site_under_co
 
 ---
 
+---
+
+### Galerie de photos d'événements
+
+Chaque événement (Marchés, Mariage, etc.) peut avoir une **galerie de photos** accessible depuis la page d'accueil. Le fonctionnement est entièrement automatique : vous déposez vos photos dans un dossier, vous ajoutez quelques lignes dans `content.json`, et le site les affiche tout seul.
+
+#### Comment ça marche
+
+1. Créez un sous-dossier dans `assets/gallery/<id-de-l-événement>/<id-de-l-album>/`
+    - Exemple : `assets/gallery/market/marche-anzin-juin-2025/`
+2. Déposez toutes vos photos dans ce dossier (JPEG, PNG, WebP, AVIF).
+3. Ajoutez une photo nommée **`cover.jpg`** — elle sera utilisée comme vignette de l'album.
+4. Ajoutez l'album dans `content.json` (voir ci-dessous).
+5. **Commitez et poussez** tous ces fichiers sur GitHub. Les photos s'affichent automatiquement.
+
+#### Ajouter un album dans `content.json`
+
+Trouvez l'événement concerné dans la section `"events"` → `"items"` et ajoutez un objet dans son tableau `"albums"` :
+
+```json
+{
+    "id": "marche-anzin-juin-2025",
+    "title": {
+        "fr": "Marché d'Anzin — Juin 2025",
+        "en": "Anzin Market — June 2025"
+    },
+    "date": "2025-06-28",
+    "location": "Anzin",
+    "description": {
+        "fr": "Découvrez notre stand avec épices, plats préparés et dégustations sur place.",
+        "en": "Discover our stall with spices, ready-made dishes and on-site tastings."
+    },
+    "cover": "assets/gallery/market/marche-anzin-juin-2025/cover.jpg",
+    "folder": "assets/gallery/market/marche-anzin-juin-2025"
+}
+```
+
+#### Champs de l'album
+
+| Champ         | Obligatoire  | Description                                                                                  |
+| ------------- | ------------ | -------------------------------------------------------------------------------------------- |
+| `id`          | ✅           | Identifiant unique, minuscules, tirets, pas d'espaces                                        |
+| `title`       | ✅           | Titre bilingue de l'album                                                                    |
+| `date`        | ✅           | Date au format `AAAA-MM-JJ`                                                                  |
+| `location`    | ✅           | Lieu affiché sur la carte                                                                    |
+| `description` | ☑️ Optionnel | Texte bilingue affiché dans la galerie                                                       |
+| `cover`       | ☑️ Optionnel | Chemin vers la vignette (ex : `cover.jpg` dans le dossier)                                   |
+| `folder`      | ✅           | Chemin du dossier contenant les photos — **toutes les images sont chargées automatiquement** |
+
+#### Ajouter un événement sans album pour l'instant
+
+Laissez simplement le tableau `"albums"` vide. La carte de l'événement ne sera pas cliquable :
+
+```json
+"albums": []
+```
+
+#### ⚠️ Rappel important
+
+Les photos doivent être **commitées et poussées sur GitHub** pour apparaître sur le site. Le site est hébergé sur GitHub Pages et ne voit que les fichiers présents dans le dépôt.
+
+---
+
 ### Que faire si quelque chose se casse ?
 
 1. Sur GitHub, allez dans l'**historique des commits** (onglet "Commits").
@@ -225,6 +288,69 @@ In `"settings"`, change `"site_under_construction": false` to `"site_under_const
 1. On GitHub, go to the **Commits** history.
 2. Find the last working commit.
 3. Click **"Revert"**, or contact your developer.
+
+---
+
+### Event photo gallery
+
+Each event (Markets, Wedding, etc.) can have a **photo gallery** accessible from the home page. It works automatically — you drop photos in a folder, add a few lines to `content.json`, and the site displays them on its own.
+
+#### How it works
+
+1. Create a sub-folder under `assets/gallery/<event-id>/<album-id>/`
+    - Example: `assets/gallery/market/marche-anzin-juin-2025/`
+2. Drop all your photos inside (JPEG, PNG, WebP, AVIF — any name).
+3. Add a photo named **`cover.jpg`** — it will be used as the album thumbnail.
+4. Add the album entry to `content.json` (see below).
+5. **Commit and push** all these files to GitHub. Photos load automatically.
+
+#### Adding an album in `content.json`
+
+Find the relevant event inside `"events"` → `"items"` and add an object to its `"albums"` array:
+
+```json
+{
+    "id": "marche-anzin-juin-2025",
+    "title": {
+        "fr": "Marché d'Anzin — Juin 2025",
+        "en": "Anzin Market — June 2025"
+    },
+    "date": "2025-06-28",
+    "location": "Anzin",
+    "description": {
+        "fr": "Découvrez notre stand avec épices, plats préparés et dégustations sur place.",
+        "en": "Discover our stall with spices, ready-made dishes and on-site tastings."
+    },
+    "cover": "assets/gallery/market/marche-anzin-juin-2025/cover.jpg",
+    "folder": "assets/gallery/market/marche-anzin-juin-2025"
+}
+```
+
+#### Album fields
+
+| Field         | Required    | Description                                                               |
+| ------------- | ----------- | ------------------------------------------------------------------------- |
+| `id`          | ✅          | Unique identifier — lowercase, hyphens, no spaces                         |
+| `title`       | ✅          | Bilingual album title                                                     |
+| `date`        | ✅          | Date in `YYYY-MM-DD` format                                               |
+| `location`    | ✅          | Location shown on the card                                                |
+| `description` | ☑️ Optional | Bilingual text shown inside the gallery                                   |
+| `cover`       | ☑️ Optional | Path to the thumbnail image (e.g. `cover.jpg` in the folder)              |
+| `folder`      | ✅          | Path to the folder containing photos — **all images are auto-discovered** |
+
+#### Event with no album yet
+
+Leave the `"albums"` array empty. The event card on the home page will not be clickable:
+
+```json
+"albums": []
+```
+
+#### ⚠️ Important reminder
+
+Photos must be **committed and pushed to GitHub** to appear on the live site. The site is hosted on GitHub Pages and only sees files that are in the repository.
+
+---
 
 ### When to call the developer?
 
