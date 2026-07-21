@@ -187,6 +187,7 @@ function renderAlbumsView(eventItem) {
                     </div>
                     <div class="gallery-album-card__body">
                         <p class="gallery-album-card__title">${albumTitle}</p>
+                        ${album.description ? `<p class="gallery-album-card__desc">${esc(t(album.description))}</p>` : ''}
                         ${
                             dateStr
                                 ? `<p class="gallery-album-card__meta">

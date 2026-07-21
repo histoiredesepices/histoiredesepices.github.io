@@ -3068,10 +3068,18 @@ html.ticker-active #site-header {
     text-decoration: none;
 }
 
+.event-card--linked .event-card__overlay {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 0.35rem;
+}
+
 .event-card__photo-badge {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: 0.3rem;
+    width: fit-content;
     background: rgba(0, 0, 0, 0.55);
     color: rgba(255, 255, 255, 0.92);
     font-family: var(--font-body);
@@ -3081,7 +3089,6 @@ html.ticker-active #site-header {
     border-radius: var(--radius-full);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
-    margin-top: 0.5rem;
 }
 
 .event-card__photo-badge .material-symbols-outlined {
@@ -3089,9 +3096,10 @@ html.ticker-active #site-header {
 }
 
 .event-card__view-hint {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: 0.35rem;
+    width: fit-content;
     font-family: var(--font-body);
     font-size: 0.72rem;
     font-weight: 700;
@@ -3103,7 +3111,6 @@ html.ticker-active #site-header {
     transition:
         opacity 0.25s var(--ease),
         transform 0.25s var(--ease);
-    margin-top: 0.4rem;
 }
 
 .event-card__view-hint .material-symbols-outlined {
@@ -3334,6 +3341,19 @@ html.ticker-active #site-header {
     color: var(--dark);
     line-height: 1.35;
     margin: 0;
+}
+
+.gallery-album-card__desc {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.55;
+    margin: 0 0 0.25rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-clamp: 3;
+    overflow: hidden;
 }
 
 .gallery-album-card__meta {

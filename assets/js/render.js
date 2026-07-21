@@ -77,10 +77,19 @@ function renderNav() {
     const wa = C.contact?.primary_action;
     const waHref = wa ? waUrl(wa.phone_e164, t(wa.prefilled_message)) : '#contact';
 
+    const base = window._navAnchorBase || '';
+    const navHref = (item) => {
+        const raw = item.href || `#${item.id}`;
+        return raw.startsWith('#') && base ? `${base}${raw}` : raw;
+    };
+
     const navLinks = $('nav-links');
     if (navLinks) {
         navLinks.innerHTML = items
-            .map((item) => `<a href="#${esc(item.id)}" class="nav-link">${esc(t(item.label))}</a>`)
+            .map(
+                (item) =>
+                    `<a href="${esc(navHref(item))}" class="nav-link">${esc(t(item.label))}</a>`,
+            )
             .join('');
     }
 
@@ -89,7 +98,7 @@ function renderNav() {
         mobileLinks.innerHTML = items
             .map(
                 (item) =>
-                    `<a href="#${esc(item.id)}" class="nav-link-mobile">${esc(t(item.label))}</a>`,
+                    `<a href="${esc(navHref(item))}" class="nav-link-mobile">${esc(t(item.label))}</a>`,
             )
             .join('');
     }
