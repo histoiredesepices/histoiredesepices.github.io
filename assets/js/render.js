@@ -2,6 +2,69 @@
  * render.js — Section renderers and full-page render orchestrator
  */
 
+// ── Ticker ────────────────────────────────────────────────────────────────────
+
+let _tickerDismissed = false;
+
+function renderTicker() {
+    const bar = $('ticker-bar');
+    if (!bar) return;
+
+    if (_tickerDismissed) {
+        bar.hidden = true;
+        return;
+    }
+
+    const ticker = C.ticker;
+    const msg = ticker ? t(ticker.message) : null;
+
+    if (!msg) {
+        bar.hidden = true;
+        document.documentElement.classList.remove('ticker-active');
+        return;
+    }
+
+    const sep = '\u2003\u00B7\u2003';
+    const loopText = esc(msg + sep);
+    const closeLabel = esc(lang === 'fr' ? "Fermer l'annonce" : 'Dismiss');
+    const ctaLabel = ticker.cta ? t(ticker.cta.label) : '';
+    const ctaHref = ticker.cta?.href;
+    const ctaHtml =
+        ctaLabel && ctaHref
+            ? `<a href="${esc(ctaHref)}" class="ticker__cta">${esc(ctaLabel)}</a>`
+            : '';
+
+    bar.innerHTML = `
+        <div class="ticker__inner">
+            <span class="ticker__label" aria-hidden="true">
+                <span class="material-symbols-outlined">campaign</span>
+            </span>
+            <div class="ticker__scroll-zone" role="status" aria-label="${esc(msg)}">
+                <div class="ticker__track" aria-hidden="true">
+                    <span class="ticker__text">${loopText}</span>
+                    <span class="ticker__text">${loopText}</span>
+                </div>
+            </div>
+            ${ctaHtml}
+            <button class="ticker__close" id="ticker-close" aria-label="${closeLabel}">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>`;
+
+    bar.hidden = false;
+    document.documentElement.classList.add('ticker-active');
+
+    $('ticker-close')?.addEventListener(
+        'click',
+        () => {
+            _tickerDismissed = true;
+            bar.hidden = true;
+            document.documentElement.classList.remove('ticker-active');
+        },
+        { once: true },
+    );
+}
+
 // ── Navigation ───────────────────────────────────────────────────────────────
 
 function renderNav() {
@@ -583,6 +646,7 @@ function updateAccessibilityLabels() {
 function render() {
     if (!C) return;
 
+    renderTicker();
     updateSEO();
     updateAccessibilityLabels();
     renderNav();

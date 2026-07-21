@@ -2873,3 +2873,187 @@ img {
         right: 1rem;
     }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ANNOUNCEMENT TICKER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+    --ticker-h: 44px;
+}
+
+.ticker-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--ticker-h);
+    background: linear-gradient(90deg, #b8903f 0%, var(--saffron) 40%, #d4b06a 100%);
+    border-bottom: 2px solid rgba(91, 6, 23, 0.25);
+    z-index: 1001;
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(201, 165, 92, 0.45);
+}
+
+.ticker-bar[hidden] {
+    display: none;
+}
+
+/* Push the fixed nav header down when ticker is visible */
+html.ticker-active #site-header {
+    top: var(--ticker-h);
+}
+
+.ticker__inner {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+/* Campaign icon chip on the left */
+.ticker__label {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.85rem;
+    align-self: stretch;
+    background: rgba(91, 6, 23, 0.15);
+    border-right: 1px solid rgba(91, 6, 23, 0.2);
+}
+
+.ticker__label .material-symbols-outlined {
+    font-size: 1rem;
+    color: var(--primary);
+}
+
+/* Scrolling text zone */
+.ticker__scroll-zone {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 93%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 5%, black 93%, transparent);
+}
+
+.ticker__track {
+    display: flex;
+    width: max-content;
+    animation: ticker-scroll 22s linear infinite;
+    will-change: transform;
+}
+
+.ticker__text {
+    display: inline-block;
+    white-space: nowrap;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--dark);
+    letter-spacing: 0.025em;
+    padding-right: 5rem;
+}
+
+/* Optional CTA pill */
+.ticker__cta {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--primary);
+    padding: 0.22rem 0.75rem;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    white-space: nowrap;
+    margin-right: 0.65rem;
+    transition: background 0.2s var(--ease);
+}
+
+.ticker__cta:hover {
+    background: var(--primary-hover);
+}
+
+/* Dismiss button */
+.ticker__close {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    margin: 0 0.45rem;
+    background: rgba(91, 6, 23, 0.12);
+    border: 1px solid rgba(91, 6, 23, 0.2);
+    border-radius: var(--radius-full);
+    color: rgba(91, 6, 23, 0.75);
+    cursor: pointer;
+    padding: 0;
+    transition:
+        background 0.2s var(--ease),
+        color 0.2s var(--ease);
+}
+
+.ticker__close:hover {
+    background: rgba(91, 6, 23, 0.22);
+    color: var(--primary);
+}
+
+.ticker__close:focus-visible {
+    outline: 2px solid var(--saffron);
+    outline-offset: 2px;
+}
+
+.ticker__close .material-symbols-outlined {
+    font-size: 0.9rem;
+}
+
+/* Keyframe — moves track exactly one copy width for seamless loop */
+@keyframes ticker-scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* Pause on hover for readability */
+.ticker-bar:hover .ticker__track {
+    animation-play-state: paused;
+}
+
+/* Respect reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .ticker__track {
+        animation: none;
+    }
+}
+
+/* Mobile: hide the CTA pill to save space */
+@media (max-width: 480px) {
+    :root {
+        --ticker-h: 38px;
+    }
+
+    .ticker__label {
+        padding: 0 0.6rem;
+    }
+
+    .ticker__text {
+        font-size: 0.8rem;
+        padding-right: 3rem;
+    }
+
+    .ticker__cta {
+        display: none;
+    }
+}

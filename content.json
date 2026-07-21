@@ -59,6 +59,17 @@
         }
     },
 
+    "ticker": {
+        "message": {
+            "fr": "",
+            "en": ""
+        },
+        "cta": {
+            "label": { "fr": "Commander", "en": "Order" },
+            "href": "#contact"
+        }
+    },
+
     "branding": {
         "name": "L'Histoire des Épices",
         "tagline": {
@@ -455,7 +466,6 @@
                 "allergens": [],
                 "spice_level": 1
             },
-
 
             {
                 "id": "baingan-bharta",
@@ -1120,7 +1130,6 @@
                 "spice_level": 0
             },
 
-            
             {
                 "id": "pav-bhaji",
                 "category": "combo_meal",
