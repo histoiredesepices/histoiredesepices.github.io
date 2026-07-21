@@ -1351,9 +1351,9 @@
                 "image": "assets/events/bapteme.jpg"
             },
             {
-                "id": "entreprise",
-                "label": { "fr": "Entreprise", "en": "Corporate" },
-                "image": "assets/events/entreprise.jpg"
+                "id": "market",
+                "label": { "fr": "Marché", "en": "Market" },
+                "image": "assets/events/market.jpg"
             }
         ]
     },
