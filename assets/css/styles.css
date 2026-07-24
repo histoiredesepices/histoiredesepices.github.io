@@ -2943,7 +2943,7 @@ html.ticker-active #site-header {
 .ticker__track {
     display: flex;
     width: max-content;
-    animation: ticker-scroll 36s linear infinite;
+    animation: ticker-scroll 22s linear infinite;
     will-change: transform;
 }
 
@@ -3019,7 +3019,7 @@ html.ticker-active #site-header {
 /* Keyframe — moves track exactly one copy width for seamless loop */
 @keyframes ticker-scroll {
     from {
-        transform: translateX(50%);
+        transform: translateX(0);
     }
     to {
         transform: translateX(-50%);
