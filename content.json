@@ -62,8 +62,8 @@
 
     "ticker": {
         "message": {
-            "fr": "Brocante de Marly – Dimanche 26 juillet 2026 | Retrouvez L'histoire des Épices Rue Oscar Carpentier, près de la Mairie de Marly. Cuisine indienne authentique, desserts gourmands et boissons rafraîchissantes. 🍛✨",
-            "en": "🎉 Join us at the Marly Brocante on Sunday, July 26, 2026! 🇮🇳 Visit the L'histoire des Épices stand on Rue Oscar Carpentier, near the Marly Town Hall, and experience authentic homemade Indian cuisine, delicious desserts, and refreshing drinks. 🍛✨"
+            "fr": "📢 L’Histoire d’Épices sera fermée pour les vacances d’été du 1er au 15 août inclus. Nous vous remercions de votre compréhension et vous souhaitons un bel été !",
+            "en": "📢 L’Histoire d’Épices will be closed for summer holidays from August 1 to August 15 inclusive. Thank you for your understanding, and we wish you a wonderful summer!"
         },
         "cta": {
             "label": { "fr": "Commander", "en": "Order" },
