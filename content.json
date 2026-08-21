@@ -62,8 +62,8 @@
 
     "ticker": {
         "message": {
-            "fr": "📢 L’Histoire d’Épices sera fermée pour les vacances d’été du 1er au 15 août inclus. Nous vous remercions de votre compréhension et vous souhaitons un bel été !",
-            "en": "📢 L’Histoire d’Épices will be closed for summer holidays from August 1 to August 15 inclusive. Thank you for your understanding, and we wish you a wonderful summer!"
+            "fr": "",
+            "en": ""
         },
         "cta": {
             "label": { "fr": "Commander", "en": "Order" },
