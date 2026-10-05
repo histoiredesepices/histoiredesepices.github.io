@@ -973,14 +973,14 @@
 
             {
                 "id": "pilaf-legumes",
-                "category": "sides",
-                "name": { "fr": "Pilaf aux Légumes", "en": "Vegetable Pilaf" },
+                "category": "vegetarian",
+                "name": { "fr": "Pilaf aux Légumes", "en": "Vegetable Pulao" },
                 "description": {
                     "fr": "Riz basmati cuit avec des légumes et des épices douces.",
                     "en": "Basmati rice cooked with vegetables and mild spices."
                 },
                 "image": "assets/menu/Pilaf aux legumes.png",
-                "image_alt": { "fr": "Pilaf de légumes coloré", "en": "Colourful vegetable pilaf" },
+                "image_alt": { "fr": "Pilaf de légumes coloré", "en": "Colourful vegetable Pulao" },
                 "tags": ["vegetarian"],
                 "is_signature": false,
                 "is_new": false,
