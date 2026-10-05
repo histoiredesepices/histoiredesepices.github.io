@@ -382,8 +382,8 @@
                     "fr": "Gambas marinées aux épices indiennes, grillées façon tawa.",
                     "en": "King prawns marinated in Indian spices, tawa-grilled."
                 },
-                "image": "assets/menu/Egg roll.jfif",
-                "image_alt": { "fr": "Egg Roll indien", "en": "Indian Egg Roll" },
+                "image": "assets/menu/Prawns tikka.jpeg",
+                "image_alt": { "fr": "Crevettes Tikka", "en": "Prawns Tawa Fry" },
                 "tags": [],
                 "is_signature": false,
                 "is_new": false,
