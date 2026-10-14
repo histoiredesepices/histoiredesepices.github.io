@@ -2486,6 +2486,10 @@ img {
     transition: all 0.3s var(--ease);
 }
 
+.cart-fab[hidden] {
+    display: none;
+}
+
 .cart-fab:hover {
     background: #3d0410;
     transform: scale(1.08);

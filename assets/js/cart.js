@@ -80,8 +80,10 @@ function getCartTotal() {
 // ── UI sync ───────────────────────────────────────────────────────────────────
 
 function updateCartFab() {
+    const fab = $('cart-fab');
     const badge = $('cart-fab-badge');
     const count = getCartCount();
+    if (fab) fab.hidden = count === 0;
     if (!badge) return;
     badge.textContent = count;
     badge.hidden = count === 0;

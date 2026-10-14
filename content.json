@@ -245,7 +245,7 @@
                 "spice_level": 0
             },
 
-             {
+            {
                 "id": "Poulet-cutlet",
                 "category": "entrees",
                 "name": { "fr": "Poulet Cutlet", "en": "Chicken Cutlet" },
@@ -288,7 +288,7 @@
                 "allergens": [],
                 "spice_level": 0
             },
-            
+
             {
                 "id": "paneer-tikka",
                 "category": "entrees",
@@ -443,7 +443,6 @@
                 "spice_level": 0
             },
 
-
             {
                 "id": "galouti-kabab",
                 "category": "entrees",
@@ -458,7 +457,6 @@
                     "en": "Melt-in-the-mouth Lamb Galouti Kabab"
                 },
 
-                
                 "tags": ["halal"],
                 "is_signature": false,
                 "is_new": false,
@@ -1535,9 +1533,9 @@
             },
             "whatsapp_date_label": {
                 "fr": "Date de commande souhaitée",
-                "en": "Requested desired date"
+                "en": "Desired order date"
             },
-            "whatsapp_time_label": { "fr": "Heure souhaitée", "en": "Requested desired time" }
+            "whatsapp_time_label": { "fr": "Heure souhaitée", "en": "Desired time" }
         },
         "section_labels": {
             "hero": { "fr": "Présentation", "en": "Introduction" },
