@@ -156,7 +156,7 @@ function appendScheduleToMessage(baseMsg, dateStr, timeStr) {
         (lang === 'fr' ? 'Date de commande souhaitée' : 'Requested order date');
     const timeLabel =
         t(u.whatsapp_time_label) || (lang === 'fr' ? 'Heure souhaitée' : 'Requested time');
-    return `${baseMsg}\n\n📅 ${dateLabel} : ${formatScheduleDateForMessage(dateStr)}\n🕐 ${timeLabel} : ${timeStr}`;
+    return `${baseMsg}\n\n• ${dateLabel} : ${formatScheduleDateForMessage(dateStr)}\n• ${timeLabel} : ${timeStr}`;
 }
 
 function openScheduleModal(onConfirm) {
