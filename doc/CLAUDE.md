@@ -112,11 +112,16 @@ This is the **only file the owner ever edits**. Structure it so every piece of c
   "construction_message": {
     "fr": "Nous revenons très bientôt !",
     "en": "We'll be back very soon!"
+  },
+  "ordering": {
+    "same_day_cutoff_hour": 9
   }
 }
 ```
 
 Each flag is a simple boolean the owner can flip. The site re-renders accordingly. `show_calories` and `show_allergens` are **per-site toggles** — if `true`, the dish cards reveal that data; if `false`, the data is hidden even when present in dish entries.
+
+`ordering.same_day_cutoff_hour` (0–23) drives the order-scheduling step: before sending any order on WhatsApp (from the cart or the dish modal's quick-order button), the customer is asked to pick a delivery **date and time** via the `#schedule-modal`. If the current time is before this hour, same-day delivery is offered as the earliest date; otherwise the earliest selectable date is the next day. The chosen date/time is appended to the WhatsApp message. Related copy lives in `ui_strings.ordering` (see §4.2).
 
 #### `branding`
 

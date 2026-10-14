@@ -10,3 +10,5 @@ let _modalPrevFocus = null;
 let _currentDishId = null;
 let _cartPrevFocus = null;
 let cart = [];
+let _schedulePrevFocus = null;
+let _scheduleConfirmCallback = null;

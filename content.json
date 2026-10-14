@@ -9,6 +9,9 @@
         "show_floating_whatsapp": true,
         "site_under_construction": false,
         "github_repo": "histoiredesepices/histoiredesepices.github.io",
+        "ordering": {
+            "same_day_cutoff_hour": 9
+        },
         "contact_info": {
             "primary_phone": {
                 "display": "07 61 93 81 90",
@@ -1440,6 +1443,33 @@
         "mobile_menu": { "fr": "Menu de navigation", "en": "Navigation menu" },
         "filter_by_category": { "fr": "Filtrer par catégorie", "en": "Filter by category" },
         "contact_whatsapp": { "fr": "Contacter sur WhatsApp", "en": "Contact on WhatsApp" },
+        "ordering": {
+            "modal_title": {
+                "fr": "Quand souhaitez-vous votre commande ?",
+                "en": "When would you like your order?"
+            },
+            "date_label": { "fr": "Date souhaitée", "en": "Desired date" },
+            "time_label": { "fr": "Heure souhaitée", "en": "Desired time" },
+            "confirm_button": { "fr": "Continuer sur WhatsApp", "en": "Continue on WhatsApp" },
+            "cancel_button": { "fr": "Annuler", "en": "Cancel" },
+            "same_day_available_note": {
+                "fr": "Il n'est pas encore {hour}h : une commande pour aujourd'hui est possible.",
+                "en": "It's not yet {hour}:00: a same-day order is possible."
+            },
+            "same_day_closed_note": {
+                "fr": "Il est passé {hour}h, la commande la plus proche possible est pour demain.",
+                "en": "It's past {hour}:00, the earliest possible order is for tomorrow."
+            },
+            "error_required": {
+                "fr": "Merci de choisir une date et une heure.",
+                "en": "Please choose a date and time."
+            },
+            "whatsapp_date_label": {
+                "fr": "Date de commande souhaitée",
+                "en": "Requested order date"
+            },
+            "whatsapp_time_label": { "fr": "Heure souhaitée", "en": "Requested time" }
+        },
         "section_labels": {
             "hero": { "fr": "Présentation", "en": "Introduction" },
             "specialties": { "fr": "Nos Spécialités", "en": "Our Specialties" },

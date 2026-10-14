@@ -83,6 +83,24 @@ Dans la section `"settings"`, changez `"show_prices": false` en `"show_prices": 
 
 Dans `"settings"`, changez `"show_allergens": false` en `"show_allergens": true`.
 
+#### Changer l'heure limite pour une commande le jour même
+
+Comme vous travaillez en traiteur (préparation à l'avance), le client doit toujours préciser **la date et l'heure souhaitées** avant d'envoyer sa commande sur WhatsApp — une petite fenêtre s'affiche automatiquement pour le lui demander.
+
+Dans `"settings"` → `"ordering"`, changez la valeur de `"same_day_cutoff_hour"` :
+
+```json
+"ordering": {
+    "same_day_cutoff_hour": 9
+}
+```
+
+- Si le client commande **avant** cette heure, il peut choisir une livraison **le jour même**.
+- Si le client commande **après** cette heure, la date la plus proche proposée sera **le lendemain**.
+- La valeur est un nombre entre `0` et `23` (ex : `9` = 9h00 du matin, `14` = 14h00).
+
+Le message envoyé sur WhatsApp contiendra automatiquement la date et l'heure choisies par le client.
+
 #### Remplacer une photo de plat
 
 1. Uploadez votre photo dans le dossier `assets/menu/` sur GitHub.
@@ -271,6 +289,24 @@ In `"settings"`, change `"show_prices": false` to `"show_prices": true`. Prices 
 #### Enable/disable allergens
 
 In `"settings"`, change `"show_allergens": false` to `"show_allergens": true`.
+
+#### Change the same-day order cutoff time
+
+Since this is a catering business (dishes are prepared in advance), customers are always asked to pick a **delivery date and time** in a small pop-up before their order is sent on WhatsApp.
+
+In `"settings"` → `"ordering"`, change the `"same_day_cutoff_hour"` value:
+
+```json
+"ordering": {
+    "same_day_cutoff_hour": 9
+}
+```
+
+- If a customer orders **before** this hour, they can choose **same-day** delivery.
+- If a customer orders **after** this hour, the earliest date offered will be **the next day**.
+- The value is a number between `0` and `23` (e.g. `9` = 9:00 AM, `14` = 2:00 PM).
+
+The WhatsApp message will automatically include the date and time the customer selected.
 
 #### Replace a dish photo
 

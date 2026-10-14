@@ -113,6 +113,161 @@ function updateMenuCartButtons() {
     });
 }
 
+// ── Order scheduling (date/time picked before sending to WhatsApp) ─────────────
+
+function getOrderingCutoffHour() {
+    const hour = C.settings?.ordering?.same_day_cutoff_hour;
+    return Number.isFinite(hour) ? clamp(hour, 0, 23) : 9;
+}
+
+function getMinOrderDate() {
+    const cutoffHour = getOrderingCutoffHour();
+    const min = new Date();
+    if (min.getHours() >= cutoffHour) {
+        min.setDate(min.getDate() + 1);
+    }
+    min.setHours(0, 0, 0, 0);
+    return min;
+}
+
+function formatDateInputValue(date) {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const d = String(date.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+}
+
+function formatScheduleDateForMessage(dateStr) {
+    const date = new Date(`${dateStr}T00:00:00`);
+    if (isNaN(date)) return dateStr;
+    const locale = lang === 'fr' ? 'fr-FR' : 'en-GB';
+    return date.toLocaleDateString(locale, {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+    });
+}
+
+function appendScheduleToMessage(baseMsg, dateStr, timeStr) {
+    const u = C.ui_strings?.ordering || {};
+    const dateLabel =
+        t(u.whatsapp_date_label) ||
+        (lang === 'fr' ? 'Date de commande souhaitée' : 'Requested order date');
+    const timeLabel =
+        t(u.whatsapp_time_label) || (lang === 'fr' ? 'Heure souhaitée' : 'Requested time');
+    return `${baseMsg}\n\n📅 ${dateLabel} : ${formatScheduleDateForMessage(dateStr)}\n🕐 ${timeLabel} : ${timeStr}`;
+}
+
+function openScheduleModal(onConfirm) {
+    const modal = $('schedule-modal');
+    if (!modal) {
+        onConfirm?.();
+        return;
+    }
+
+    const u = C.ui_strings?.ordering || {};
+    const cutoffHour = getOrderingCutoffHour();
+    const sameDayAvailable = new Date().getHours() < cutoffHour;
+    const noteText = (
+        t(sameDayAvailable ? u.same_day_available_note : u.same_day_closed_note) || ''
+    ).replace('{hour}', cutoffHour);
+
+    const titleEl = $('schedule-modal-title');
+    if (titleEl)
+        titleEl.textContent =
+            t(u.modal_title) ||
+            (lang === 'fr'
+                ? 'Quand souhaitez-vous votre commande ?'
+                : 'When would you like your order?');
+
+    const dateLabelEl = $('schedule-date-label');
+    if (dateLabelEl)
+        dateLabelEl.textContent =
+            t(u.date_label) || (lang === 'fr' ? 'Date souhaitée' : 'Desired date');
+
+    const timeLabelEl = $('schedule-time-label');
+    if (timeLabelEl)
+        timeLabelEl.textContent =
+            t(u.time_label) || (lang === 'fr' ? 'Heure souhaitée' : 'Desired time');
+
+    const cancelBtn = $('schedule-cancel-btn');
+    if (cancelBtn)
+        cancelBtn.textContent = t(u.cancel_button) || (lang === 'fr' ? 'Annuler' : 'Cancel');
+
+    const confirmLabelEl = $('schedule-confirm-label');
+    if (confirmLabelEl)
+        confirmLabelEl.textContent =
+            t(u.confirm_button) ||
+            (lang === 'fr' ? 'Continuer sur WhatsApp' : 'Continue on WhatsApp');
+
+    const noteEl = $('schedule-note');
+    if (noteEl) noteEl.textContent = noteText;
+
+    const minDateStr = formatDateInputValue(getMinOrderDate());
+    const dateInput = $('schedule-date-input');
+    if (dateInput) {
+        dateInput.min = minDateStr;
+        dateInput.value = minDateStr;
+    }
+    const timeInput = $('schedule-time-input');
+    if (timeInput) timeInput.value = '';
+
+    const errorEl = $('schedule-error');
+    if (errorEl) errorEl.hidden = true;
+
+    _scheduleConfirmCallback = onConfirm;
+    _schedulePrevFocus = document.activeElement;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    dateInput?.focus();
+}
+
+function closeScheduleModal() {
+    const modal = $('schedule-modal');
+    if (!modal || modal.hidden) return;
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    if (_schedulePrevFocus?.focus) _schedulePrevFocus.focus();
+    _schedulePrevFocus = null;
+    _scheduleConfirmCallback = null;
+}
+
+function initScheduleModal() {
+    $('schedule-close')?.addEventListener('click', closeScheduleModal);
+    $('schedule-backdrop')?.addEventListener('click', closeScheduleModal);
+    $('schedule-cancel-btn')?.addEventListener('click', closeScheduleModal);
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeScheduleModal();
+    });
+
+    $('schedule-confirm-btn')?.addEventListener('click', () => {
+        const dateInput = $('schedule-date-input');
+        const timeInput = $('schedule-time-input');
+        const errorEl = $('schedule-error');
+
+        if (!dateInput?.value || !timeInput?.value) {
+            if (errorEl) {
+                const u = C.ui_strings?.ordering || {};
+                errorEl.textContent =
+                    t(u.error_required) ||
+                    (lang === 'fr'
+                        ? 'Merci de choisir une date et une heure.'
+                        : 'Please choose a date and time.');
+                errorEl.hidden = false;
+            }
+            return;
+        }
+
+        const callback = _scheduleConfirmCallback;
+        const dateVal = dateInput.value;
+        const timeVal = timeInput.value;
+        closeScheduleModal();
+        callback?.(dateVal, timeVal);
+    });
+}
+
 // ── Dish modal CTA ────────────────────────────────────────────────────────────
 
 function renderModalCta(dishId) {
@@ -130,13 +285,8 @@ function renderModalCta(dishId) {
         C.settings.contact_info?.whatsapp?.tel ||
         C.settings.contact_info?.primary_phone?.tel ||
         wa?.phone_e164;
-    const waMsg =
-        lang === 'fr'
-            ? `Bonjour ! Je souhaite commander : ${name}`
-            : `Hello! I'd like to order: ${name}`;
-    const waHref = waPhone ? waUrl(waPhone, waMsg) : null;
-    const waLinkHtml = waHref
-        ? `<a class="dish-modal__wa-link" href="${esc(waHref)}" target="_blank" rel="noopener">${waSvg('currentColor', 15)} ${esc(lang === 'fr' ? 'Commander directement sur WhatsApp' : 'Order directly on WhatsApp')}</a>`
+    const waLinkHtml = waPhone
+        ? `<button type="button" class="dish-modal__wa-link" data-wa-quick-order="${esc(dishId)}">${waSvg('currentColor', 15)} ${esc(lang === 'fr' ? 'Commander directement sur WhatsApp' : 'Order directly on WhatsApp')}</button>`
         : '';
 
     if (cartItem) {
@@ -271,7 +421,6 @@ function renderCartModal() {
         }
         msg += `\n\n${lang === 'fr' ? 'Merci !' : 'Thank you!'}`;
 
-        const waHref = waPhone ? waUrl(waPhone, msg) : null;
         const clearLabel = lang === 'fr' ? 'Vider le panier' : 'Clear cart';
         const orderLabel =
             lang === 'fr' ? 'Envoyer la commande sur WhatsApp' : 'Send order on WhatsApp';
@@ -279,9 +428,16 @@ function renderCartModal() {
         footerEl.innerHTML = `
             ${hasPrice && total > 0 ? `<div class="cart-total"><span>${lang === 'fr' ? 'Total estimé' : 'Estimated total'}</span><strong>${total.toFixed(2)} €</strong></div>` : ''}
             <div class="cart-footer__actions">
-                ${waHref ? `<a class="cart-order-btn" href="${esc(waHref)}" target="_blank" rel="noopener">${waSvg('white', 20)} ${esc(orderLabel)}</a>` : ''}
+                ${waPhone ? `<button type="button" class="cart-order-btn" id="cart-order-btn">${waSvg('white', 20)} ${esc(orderLabel)}</button>` : ''}
                 <button class="cart-clear-btn" id="cart-clear-btn">${esc(clearLabel)}</button>
             </div>`;
+
+        $('cart-order-btn')?.addEventListener('click', () => {
+            openScheduleModal((dateVal, timeVal) => {
+                const finalMsg = appendScheduleToMessage(msg, dateVal, timeVal);
+                window.open(waUrl(waPhone, finalMsg), '_blank', 'noopener');
+            });
+        });
 
         $('cart-clear-btn')?.addEventListener('click', () => {
             clearCart();
@@ -364,6 +520,30 @@ function initCart() {
         if (e.target.closest('[data-open-cart]')) {
             closeDishModal();
             openCartModal();
+            return;
+        }
+
+        // Quick "order this dish directly on WhatsApp" button inside dish modal
+        const quickOrderBtn = e.target.closest('[data-wa-quick-order]');
+        if (quickOrderBtn) {
+            const dishId = quickOrderBtn.dataset.waQuickOrder;
+            const dish = (C.menu?.dishes || []).find((d) => d.id === dishId);
+            if (!dish) return;
+            const wa = C.contact?.primary_action;
+            const waPhone =
+                C.settings.contact_info?.whatsapp?.tel ||
+                C.settings.contact_info?.primary_phone?.tel ||
+                wa?.phone_e164;
+            if (!waPhone) return;
+            const name = t(dish.name);
+            const baseMsg =
+                lang === 'fr'
+                    ? `Bonjour ! Je souhaite commander : ${name}`
+                    : `Hello! I'd like to order: ${name}`;
+            openScheduleModal((dateVal, timeVal) => {
+                const finalMsg = appendScheduleToMessage(baseMsg, dateVal, timeVal);
+                window.open(waUrl(waPhone, finalMsg), '_blank', 'noopener');
+            });
             return;
         }
     });

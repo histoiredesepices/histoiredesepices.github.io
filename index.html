@@ -342,6 +342,39 @@
     </div>
   </div>
 
+  <!-- ═══════════════════════════════════════════════════════════ SCHEDULE MODAL -->
+  <div id="schedule-modal" class="schedule-modal" role="dialog" aria-modal="true" aria-labelledby="schedule-modal-title"
+    hidden>
+    <div class="schedule-modal__backdrop" id="schedule-backdrop"></div>
+    <div class="schedule-modal__card">
+      <div class="schedule-modal__header">
+        <h2 id="schedule-modal-title" class="schedule-modal__title"></h2>
+        <button class="schedule-modal__close" id="schedule-close" aria-label="Fermer">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="schedule-modal__body">
+        <p id="schedule-note" class="schedule-modal__note"></p>
+        <label class="schedule-modal__field">
+          <span id="schedule-date-label" class="schedule-modal__field-label"></span>
+          <input type="date" id="schedule-date-input" class="schedule-modal__input">
+        </label>
+        <label class="schedule-modal__field">
+          <span id="schedule-time-label" class="schedule-modal__field-label"></span>
+          <input type="time" id="schedule-time-input" class="schedule-modal__input">
+        </label>
+        <p id="schedule-error" class="schedule-modal__error" hidden></p>
+      </div>
+      <div class="schedule-modal__footer">
+        <button id="schedule-cancel-btn" class="schedule-modal__cancel-btn" type="button"></button>
+        <button id="schedule-confirm-btn" class="schedule-modal__confirm-btn" type="button">
+          <span class="material-symbols-outlined" style="font-size:1.1rem;">send</span>
+          <span id="schedule-confirm-label"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- ═══════════════════════════════════════════════════════════ DISH MODAL -->
   <div id="dish-modal" class="dish-modal" role="dialog" aria-modal="true" aria-labelledby="modal-dish-name" hidden>
     <div class="dish-modal__backdrop" id="modal-backdrop"></div>

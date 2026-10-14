@@ -23,6 +23,7 @@ async function boot() {
         initEventListeners();
         initDishModal();
         initCart();
+        initScheduleModal();
 
         console.info("[L'Histoire des Épices] Site loaded successfully.");
     } catch (err) {
