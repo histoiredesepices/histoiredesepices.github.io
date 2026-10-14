@@ -1535,9 +1535,9 @@
             },
             "whatsapp_date_label": {
                 "fr": "Date de commande souhaitée",
-                "en": "Requested order date"
+                "en": "Requested desired date"
             },
-            "whatsapp_time_label": { "fr": "Heure souhaitée", "en": "Requested time" }
+            "whatsapp_time_label": { "fr": "Heure souhaitée", "en": "Requested desired time" }
         },
         "section_labels": {
             "hero": { "fr": "Présentation", "en": "Introduction" },

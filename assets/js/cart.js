@@ -153,9 +153,9 @@ function appendScheduleToMessage(baseMsg, dateStr, timeStr) {
     const u = C.ui_strings?.ordering || {};
     const dateLabel =
         t(u.whatsapp_date_label) ||
-        (lang === 'fr' ? 'Date de commande souhaitée' : 'Requested order date');
+        (lang === 'fr' ? 'Date de commande souhaitée' : 'Requested desired date');
     const timeLabel =
-        t(u.whatsapp_time_label) || (lang === 'fr' ? 'Heure souhaitée' : 'Requested time');
+        t(u.whatsapp_time_label) || (lang === 'fr' ? 'Heure souhaitée' : 'Requested desired time');
     return `${baseMsg}\n\n• ${dateLabel} : ${formatScheduleDateForMessage(dateStr)}\n• ${timeLabel} : ${timeStr}`;
 }
 
