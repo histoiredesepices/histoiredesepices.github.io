@@ -1531,6 +1531,10 @@
                 "fr": "Merci de choisir une date et une heure.",
                 "en": "Please choose a date and time."
             },
+            "error_date_too_early": {
+                "fr": "Merci de choisir une date à partir du {date}.",
+                "en": "Please choose a date from {date} onward."
+            },
             "whatsapp_date_label": {
                 "fr": "Date de commande souhaitée",
                 "en": "Desired order date"

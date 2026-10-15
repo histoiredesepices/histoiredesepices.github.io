@@ -248,10 +248,10 @@ function initScheduleModal() {
         const dateInput = $('schedule-date-input');
         const timeInput = $('schedule-time-input');
         const errorEl = $('schedule-error');
+        const u = C.ui_strings?.ordering || {};
 
         if (!dateInput?.value || !timeInput?.value) {
             if (errorEl) {
-                const u = C.ui_strings?.ordering || {};
                 errorEl.textContent =
                     t(u.error_required) ||
                     (lang === 'fr'
@@ -259,6 +259,25 @@ function initScheduleModal() {
                         : 'Please choose a date and time.');
                 errorEl.hidden = false;
             }
+            return;
+        }
+
+        // Some mobile browsers (notably iOS Safari) don't enforce the native
+        // date input's min/max while scrolling the wheel picker, so re-validate
+        // the chosen date against the cutoff rule here before accepting it.
+        const minDateStr = formatDateInputValue(getMinOrderDate());
+        if (dateInput.value < minDateStr) {
+            if (errorEl) {
+                errorEl.textContent = (
+                    t(u.error_date_too_early) ||
+                    (lang === 'fr'
+                        ? 'Merci de choisir une date à partir du {date}.'
+                        : 'Please choose a date from {date} onward.')
+                ).replace('{date}', formatScheduleDateForMessage(minDateStr));
+                errorEl.hidden = false;
+            }
+            dateInput.min = minDateStr;
+            dateInput.value = minDateStr;
             return;
         }
 
