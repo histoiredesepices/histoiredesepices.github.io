@@ -10,7 +10,7 @@
         "site_under_construction": false,
         "github_repo": "histoiredesepices/histoiredesepices.github.io",
         "ordering": {
-            "same_day_cutoff_hour": 9,
+            "same_day_cutoff_hour": 12,
             "earliest_delivery_time": "12:00",
             "latest_delivery_time": "21:00"
         },
