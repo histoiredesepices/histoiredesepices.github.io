@@ -250,6 +250,12 @@ function initScheduleModal() {
         const errorEl = $('schedule-error');
         const u = C.ui_strings?.ordering || {};
 
+        // Mobile browsers (notably iOS Safari) only commit the native date/time
+        // picker's scrolled value to the input on blur — force that commit here
+        // before reading .value, otherwise we can read a stale pre-scroll value.
+        dateInput?.blur();
+        timeInput?.blur();
+
         if (!dateInput?.value || !timeInput?.value) {
             if (errorEl) {
                 errorEl.textContent =
