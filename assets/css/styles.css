@@ -2994,6 +2994,12 @@ img {
     color: var(--dark);
 }
 
+.schedule-modal__hint {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+
 .schedule-modal__input {
     width: 100%;
     padding: 0.65rem 0.85rem;
@@ -3009,6 +3015,24 @@ img {
 .schedule-modal__input:focus {
     outline: none;
     border-color: var(--saffron);
+}
+
+.schedule-modal__time-select {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.schedule-modal__select {
+    width: auto;
+    flex: 1;
+    cursor: pointer;
+}
+
+.schedule-modal__time-sep {
+    font-family: var(--font-body);
+    font-weight: 700;
+    color: var(--dark);
 }
 
 .schedule-modal__error {

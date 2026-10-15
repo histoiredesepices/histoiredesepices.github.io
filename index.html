@@ -359,10 +359,17 @@
           <span id="schedule-date-label" class="schedule-modal__field-label"></span>
           <input type="date" id="schedule-date-input" class="schedule-modal__input">
         </label>
-        <label class="schedule-modal__field">
+        <div class="schedule-modal__field">
           <span id="schedule-time-label" class="schedule-modal__field-label"></span>
-          <input type="time" id="schedule-time-input" class="schedule-modal__input">
-        </label>
+          <div class="schedule-modal__time-select">
+            <select id="schedule-time-hour" class="schedule-modal__input schedule-modal__select"
+              aria-label="Heure"></select>
+            <span class="schedule-modal__time-sep">:</span>
+            <select id="schedule-time-minute" class="schedule-modal__input schedule-modal__select"
+              aria-label="Minutes"></select>
+          </div>
+          <span id="schedule-time-window-note" class="schedule-modal__hint"></span>
+        </div>
         <p id="schedule-error" class="schedule-modal__error" hidden></p>
       </div>
       <div class="schedule-modal__footer">

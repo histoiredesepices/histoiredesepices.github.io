@@ -10,7 +10,9 @@
         "site_under_construction": false,
         "github_repo": "histoiredesepices/histoiredesepices.github.io",
         "ordering": {
-            "same_day_cutoff_hour": 9
+            "same_day_cutoff_hour": 9,
+            "earliest_delivery_time": "12:00",
+            "latest_delivery_time": "21:00"
         },
         "contact_info": {
             "primary_phone": {
@@ -1517,6 +1519,10 @@
             },
             "date_label": { "fr": "Date souhaitée", "en": "Desired date" },
             "time_label": { "fr": "Heure souhaitée", "en": "Desired time" },
+            "time_window_note": {
+                "fr": "Livraison possible entre {start} et {end}.",
+                "en": "Delivery available between {start} and {end}."
+            },
             "confirm_button": { "fr": "Continuer sur WhatsApp", "en": "Continue on WhatsApp" },
             "cancel_button": { "fr": "Annuler", "en": "Cancel" },
             "same_day_available_note": {
@@ -1534,6 +1540,10 @@
             "error_date_too_early": {
                 "fr": "Merci de choisir une date à partir du {date}.",
                 "en": "Please choose a date from {date} onward."
+            },
+            "error_time_out_of_range": {
+                "fr": "Merci de choisir une heure entre {start} et {end}.",
+                "en": "Please choose a time between {start} and {end}."
             },
             "whatsapp_date_label": {
                 "fr": "Date de commande souhaitée",

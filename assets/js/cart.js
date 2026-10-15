@@ -122,6 +122,76 @@ function getOrderingCutoffHour() {
     return Number.isFinite(hour) ? clamp(hour, 0, 23) : 9;
 }
 
+const TIME_STR_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
+const TIME_MINUTE_OPTIONS = ['00', '15', '30', '45'];
+const DEFAULT_TIME_WINDOW = { start: '12:00', end: '21:00' };
+
+function getOrderingTimeWindow() {
+    const o = C.settings?.ordering || {};
+    const start = TIME_STR_RE.test(o.earliest_delivery_time)
+        ? o.earliest_delivery_time
+        : DEFAULT_TIME_WINDOW.start;
+    const end = TIME_STR_RE.test(o.latest_delivery_time)
+        ? o.latest_delivery_time
+        : DEFAULT_TIME_WINDOW.end;
+    // Guard against a misconfigured window (start after end) by falling back
+    // to the default rather than producing an empty hour dropdown.
+    return start <= end ? { start, end } : DEFAULT_TIME_WINDOW;
+}
+
+function formatTimeForDisplay(timeStr) {
+    const [h, m] = timeStr.split(':');
+    const date = new Date();
+    date.setHours(Number(h), Number(m), 0, 0);
+    const locale = lang === 'fr' ? 'fr-FR' : 'en-GB';
+    return date.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' });
+}
+
+// Populate the hour/minute <select> dropdowns so only hours within the
+// configured delivery window can ever be picked (rather than relying on
+// native <input type="time"> min/max, which mobile browsers don't enforce).
+function populateTimeSelects() {
+    const hourSelect = $('schedule-time-hour');
+    const minuteSelect = $('schedule-time-minute');
+    if (!hourSelect || !minuteSelect) return;
+
+    const { start, end } = getOrderingTimeWindow();
+    const startHour = Number(start.split(':')[0]);
+    const endHour = Number(end.split(':')[0]);
+
+    hourSelect.innerHTML = '';
+    for (let h = startHour; h <= endHour; h++) {
+        const opt = document.createElement('option');
+        opt.value = String(h).padStart(2, '0');
+        opt.textContent = String(h).padStart(2, '0');
+        hourSelect.appendChild(opt);
+    }
+
+    if (!minuteSelect.options.length) {
+        TIME_MINUTE_OPTIONS.forEach((m) => {
+            const opt = document.createElement('option');
+            opt.value = m;
+            opt.textContent = m;
+            minuteSelect.appendChild(opt);
+        });
+    }
+}
+
+function getSelectedTimeValue() {
+    const hourSelect = $('schedule-time-hour');
+    const minuteSelect = $('schedule-time-minute');
+    if (!hourSelect || !minuteSelect) return '';
+    return `${hourSelect.value}:${minuteSelect.value}`;
+}
+
+function setSelectedTimeValue(timeStr) {
+    const [h, m] = timeStr.split(':');
+    const hourSelect = $('schedule-time-hour');
+    const minuteSelect = $('schedule-time-minute');
+    if (hourSelect) hourSelect.value = h;
+    if (minuteSelect) minuteSelect.value = TIME_MINUTE_OPTIONS.includes(m) ? m : '00';
+}
+
 function getMinOrderDate() {
     const cutoffHour = getOrderingCutoffHour();
     const min = new Date();
@@ -212,8 +282,21 @@ function openScheduleModal(onConfirm) {
         dateInput.min = minDateStr;
         dateInput.value = minDateStr;
     }
-    const timeInput = $('schedule-time-input');
-    if (timeInput) timeInput.value = '';
+
+    const { start: windowStart, end: windowEnd } = getOrderingTimeWindow();
+    const timeWindowNoteEl = $('schedule-time-window-note');
+    if (timeWindowNoteEl) {
+        timeWindowNoteEl.textContent = (
+            t(u.time_window_note) ||
+            (lang === 'fr'
+                ? 'Livraison possible entre {start} et {end}.'
+                : 'Delivery available between {start} and {end}.')
+        )
+            .replace('{start}', formatTimeForDisplay(windowStart))
+            .replace('{end}', formatTimeForDisplay(windowEnd));
+    }
+    populateTimeSelects();
+    setSelectedTimeValue(windowStart);
 
     const errorEl = $('schedule-error');
     if (errorEl) errorEl.hidden = true;
@@ -246,17 +329,15 @@ function initScheduleModal() {
 
     $('schedule-confirm-btn')?.addEventListener('click', () => {
         const dateInput = $('schedule-date-input');
-        const timeInput = $('schedule-time-input');
         const errorEl = $('schedule-error');
         const u = C.ui_strings?.ordering || {};
 
-        // Mobile browsers (notably iOS Safari) only commit the native date/time
+        // Mobile browsers (notably iOS Safari) only commit the native date
         // picker's scrolled value to the input on blur — force that commit here
         // before reading .value, otherwise we can read a stale pre-scroll value.
         dateInput?.blur();
-        timeInput?.blur();
 
-        if (!dateInput?.value || !timeInput?.value) {
+        if (!dateInput?.value) {
             if (errorEl) {
                 errorEl.textContent =
                     t(u.error_required) ||
@@ -287,9 +368,29 @@ function initScheduleModal() {
             return;
         }
 
+        // The hour/minute dropdowns only ever list values inside the delivery
+        // window, but re-check anyway in case the window changed mid-session.
+        const { start: windowStart, end: windowEnd } = getOrderingTimeWindow();
+        const timeVal = getSelectedTimeValue();
+        if (timeVal < windowStart || timeVal > windowEnd) {
+            if (errorEl) {
+                errorEl.textContent = (
+                    t(u.error_time_out_of_range) ||
+                    (lang === 'fr'
+                        ? 'Merci de choisir une heure entre {start} et {end}.'
+                        : 'Please choose a time between {start} and {end}.')
+                )
+                    .replace('{start}', formatTimeForDisplay(windowStart))
+                    .replace('{end}', formatTimeForDisplay(windowEnd));
+                errorEl.hidden = false;
+            }
+            populateTimeSelects();
+            setSelectedTimeValue(timeVal < windowStart ? windowStart : windowEnd);
+            return;
+        }
+
         const callback = _scheduleConfirmCallback;
         const dateVal = dateInput.value;
-        const timeVal = timeInput.value;
         closeScheduleModal();
         callback?.(dateVal, timeVal);
     });

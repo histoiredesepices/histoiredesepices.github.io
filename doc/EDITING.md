@@ -91,13 +91,17 @@ Dans `"settings"` → `"ordering"`, changez la valeur de `"same_day_cutoff_hour"
 
 ```json
 "ordering": {
-    "same_day_cutoff_hour": 9
+    "same_day_cutoff_hour": 9,
+    "earliest_delivery_time": "12:00",
+    "latest_delivery_time": "21:00"
 }
 ```
 
 - Si le client commande **avant** cette heure, il peut choisir une livraison **le jour même**.
 - Si le client commande **après** cette heure, la date la plus proche proposée sera **le lendemain**.
 - La valeur est un nombre entre `0` et `23` (ex : `9` = 9h00 du matin, `14` = 14h00).
+
+`"earliest_delivery_time"` et `"latest_delivery_time"` limitent la plage horaire que le client peut choisir pour sa livraison (format `"HH:MM"` sur 24h). Avec les valeurs ci-dessus, le client ne peut sélectionner qu'une heure **entre 12h00 et 21h00** — toute heure en dehors de cette plage est automatiquement refusée.
 
 Le message envoyé sur WhatsApp contiendra automatiquement la date et l'heure choisies par le client.
 
@@ -298,13 +302,17 @@ In `"settings"` → `"ordering"`, change the `"same_day_cutoff_hour"` value:
 
 ```json
 "ordering": {
-    "same_day_cutoff_hour": 9
+    "same_day_cutoff_hour": 9,
+    "earliest_delivery_time": "12:00",
+    "latest_delivery_time": "21:00"
 }
 ```
 
 - If a customer orders **before** this hour, they can choose **same-day** delivery.
 - If a customer orders **after** this hour, the earliest date offered will be **the next day**.
 - The value is a number between `0` and `23` (e.g. `9` = 9:00 AM, `14` = 2:00 PM).
+
+`"earliest_delivery_time"` and `"latest_delivery_time"` restrict the time window a customer can pick for delivery (24h `"HH:MM"` format). With the values above, customers can only choose a time **between 12:00 PM and 9:00 PM** — anything outside that range is automatically rejected.
 
 The WhatsApp message will automatically include the date and time the customer selected.
 
