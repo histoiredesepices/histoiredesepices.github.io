@@ -43,7 +43,7 @@
             "price_eur": 5,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["gluten", "dairy"],
             "spice_level": 0
         },
 
@@ -65,7 +65,7 @@
             "price_eur": 6,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["gluten"],
             "spice_level": 0
         },
 
@@ -87,7 +87,7 @@
             "price_eur": 6,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["gluten"],
             "spice_level": 0
         },
 
@@ -109,7 +109,7 @@
             "price_eur": 6,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["fish", "gluten"],
             "spice_level": 0
         },
 
@@ -131,7 +131,7 @@
             "price_eur": 6,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["dairy"],
             "spice_level": 0
         },
 
@@ -153,7 +153,7 @@
             "price_eur": 6,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["dairy"],
             "spice_level": 1
         },
 
@@ -197,7 +197,7 @@
             "price_eur": 6,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["dairy"],
             "spice_level": 0
         },
 
@@ -219,7 +219,7 @@
             "price_eur": 6.0,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["eggs", "gluten"],
             "spice_level": 0
         },
 
@@ -241,7 +241,7 @@
             "price_eur": 4,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["gluten"],
             "spice_level": 1
         },
 
@@ -263,7 +263,7 @@
             "price_eur": 6.0,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["shellfish", "dairy"],
             "spice_level": 0
         },
 
@@ -311,7 +311,7 @@
             "price_eur": 10,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["dairy"],
             "spice_level": 1
         },
 
@@ -333,7 +333,7 @@
             "price_eur": 10,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["dairy"],
             "spice_level": 0
         },
 
@@ -358,7 +358,7 @@
             "price_eur": 10,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["mustard"],
             "spice_level": 1
         },
 
@@ -405,7 +405,7 @@
             "price_eur": 11.0,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["dairy"],
             "spice_level": 0
         },
 
@@ -427,7 +427,7 @@
             "price_eur": 12,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["dairy"],
             "spice_level": 0
         },
 
@@ -474,7 +474,7 @@
             "price_eur": 10,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["dairy"],
             "spice_level": 1
         },
 
@@ -499,7 +499,7 @@
             "price_eur": 13.5,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["dairy", "nuts"],
             "spice_level": 0
         },
 
@@ -521,7 +521,7 @@
             "price_eur": 13.5,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["dairy"],
             "spice_level": 0
         },
 
@@ -587,7 +587,7 @@
             "price_eur": 13.5,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["dairy", "nuts"],
             "spice_level": 0
         },
 
@@ -612,7 +612,7 @@
             "price_eur": 15,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["dairy", "nuts"],
             "spice_level": 0
         },
 
@@ -637,7 +637,7 @@
             "price_eur": 15,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["dairy"],
             "spice_level": 3
         },
 
@@ -684,7 +684,7 @@
             "price_eur": 13.5,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["shellfish"],
             "spice_level": 0
         },
 
@@ -709,7 +709,7 @@
             "price_eur": 13.5,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": null,
+            "allergens": ["fish"],
             "spice_level": 0
         },
 
@@ -753,7 +753,7 @@
             "price_eur": 15.0,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["dairy", "nuts"],
             "spice_level": 0
         },
 
@@ -775,7 +775,7 @@
             "price_eur": 15.0,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["dairy", "nuts"],
             "spice_level": 0
         },
         {
@@ -796,7 +796,7 @@
             "price_eur": 17.0,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["dairy", "nuts"],
             "spice_level": 0
         },
         {
@@ -817,7 +817,7 @@
             "price_eur": 15.0,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["shellfish", "dairy", "nuts"],
             "spice_level": 0
         },
 
@@ -905,7 +905,7 @@
             "price_eur": 2,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["gluten"],
             "spice_level": 0
         },
 
@@ -927,7 +927,7 @@
             "price_eur": 2,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["gluten", "dairy"],
             "spice_level": 0
         },
 
@@ -974,7 +974,7 @@
             "price_eur": 7,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["dairy", "nuts"],
             "spice_level": 0
         },
 
@@ -996,7 +996,7 @@
             "price_eur": 5,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["gluten", "dairy"],
             "spice_level": 0
         },
 
@@ -1021,7 +1021,7 @@
             "price_eur": 5.0,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["gluten", "dairy", "nuts"],
             "spice_level": 0
         },
 
@@ -1043,7 +1043,7 @@
             "price_eur": 12.5,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["gluten", "dairy", "eggs"],
             "spice_level": 1
         },
 
@@ -1068,7 +1068,7 @@
             "price_eur": 12.5,
             "discount_percent": null,
             "calories_kcal": null,
-            "allergens": [],
+            "allergens": ["mustard"],
             "spice_level": 0
         },
 
