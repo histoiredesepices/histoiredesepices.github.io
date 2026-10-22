@@ -687,7 +687,7 @@
                 "name": { "fr": "Poulet Tikka Masala", "en": "Chicken Tikka Masala" },
                 "description": {
                     "fr": "Poulet mariné aux épices, rôti au tandoor, sublimé par une sauce veloutée de tomates, crème fraîche et beurre, relevée d'un mélange d'épices.",
-                    "en": "Spice-marinated chicken, tandoor-roasted, in a velvety tomato, cream and butter sauce with a blend of spices."
+                    "en": "Spice-marinated chicken, tandoor-ed, in a velvety tomato, cream and butter sauce with a blend of spices."
                 },
                 "image": "assets/menu/Poulet tikka masala.png",
                 "image_alt": { "fr": "Poulet Tikka Masala", "en": "Chicken Tikka Masala" },
@@ -910,7 +910,7 @@
                 "discount_percent": null,
                 "calories_kcal": null,
                 "allergens": [],
-                "spice_level": 3
+                "spice_level": 2
             },
 
             {
