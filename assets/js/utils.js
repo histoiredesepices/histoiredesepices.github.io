@@ -29,6 +29,27 @@ const getLang = () => {
     }
 };
 
+// Loads content.json plus menu.json (dish list + categories, kept in their own
+// file to keep content.json manageable) and merges the menu into C.menu, so the
+// rest of the code can keep reading C.menu.dishes / C.menu.categories.
+// If menu.json is missing or broken, the site still loads without the menu.
+async function loadContent() {
+    const [content, menu] = await Promise.all([
+        fetch('content.json').then((r) => {
+            if (!r.ok) throw new Error(`content.json: HTTP ${r.status}`);
+            return r.json();
+        }),
+        fetch('menu.json')
+            .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
+            .catch((err) => {
+                console.error("[L'Histoire des Épices] Failed to load menu.json:", err);
+                return {};
+            }),
+    ]);
+    content.menu = { ...(content.menu || {}), ...menu };
+    return content;
+}
+
 function waUrl(phone, msg) {
     const n = String(phone).replace(/\D/g, '').replace(/^0/, '33');
     return `https://wa.me/${n.startsWith('33') ? n : '33' + n}?text=${encodeURIComponent(msg)}`;

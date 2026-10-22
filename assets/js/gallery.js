@@ -358,7 +358,7 @@ async function renderGallery() {
 
 async function bootGallery() {
     try {
-        C = await fetch('content.json').then((r) => r.json());
+        C = await loadContent();
 
         const saved = localStorage.getItem('lang');
         if (saved === 'en') {

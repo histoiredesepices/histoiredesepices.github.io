@@ -1,5 +1,5 @@
 /**
- * boot.js — Application entry point: fetches content.json and kicks off the app
+ * boot.js — Application entry point: fetches content.json + menu.json and kicks off the app
  */
 
 async function boot() {
@@ -7,10 +7,7 @@ async function boot() {
     if (stored) lang = stored;
 
     try {
-        const resp = await fetch('content.json');
-        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-
-        C = await resp.json();
+        C = await loadContent();
 
         if (!stored) lang = C.settings?.default_language || 'fr';
 

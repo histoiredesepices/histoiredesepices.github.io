@@ -6,7 +6,7 @@
 
 ## 1. Core Principles
 
-1. **One file rules everything.** All content, copy, menu data, translations, contact info, and feature flags live in `content.json`. The HTML/CSS/JS never needs to be touched for content changes.
+1. **JSON files rule everything.** All content, copy, translations, contact info, and feature flags live in `content.json`; the menu's dish list and categories live in `menu.json` (split out to keep `content.json` manageable). `loadContent()` in `utils.js` fetches both and merges `menu.json` into `C.menu`, so code reads `C.menu.dishes` / `C.menu.categories` as before. The HTML/CSS/JS never needs to be touched for content changes.
 2. **Static & dependency-light.** Pure HTML + Tailwind (CDN) + vanilla JavaScript. No build step, no npm, no framework. GitHub Pages serves it as-is.
 3. **Bilingual, French-first.** French is the default. English is a toggle. Every user-facing string in `content.json` has both `fr` and `en` keys.
 4. **Design is locked.** The visual system (colors, typography, spacing, components) is defined in `DESIGN.md` and implemented in the HTML/CSS. Content edits must never break the design.
@@ -39,7 +39,8 @@
 histoire-des-epices/
 ├── index.html              ← Page shell. Empty containers with data-* hooks.
 ├── allergens.html          ← Allergen page, generated from content.json (assets/js/allergens.js).
-├── content.json            ← ⭐ THE ONLY FILE THE OWNER EDITS.
+├── content.json            ← ⭐ Owner-edited: all copy, settings, translations.
+├── menu.json               ← ⭐ Owner-edited: menu dishes + categories (merged into C.menu).
 ├── assets/
 │   ├── js/
 │   │   ├── state.js        ← Shared mutable state (C, lang, cart, …).
@@ -237,6 +238,8 @@ This section automatically displays 6 dishes marked with `is_signature: true` fr
 Features are displayed as glassmorphism pills at the bottom of the hero section. `icon` is a Material Symbols name — the EDITING.md should link to the picker: https://fonts.google.com/icons.
 
 #### `menu` — The heart of the site
+
+> **File split:** `section_title`, `footnote`, `allergen_button` and `download_button` stay in `content.json` → `menu`. `categories` and `dishes` live at the top level of **`menu.json`** (`{ "categories": [...], "dishes": [...] }`) and are merged into `C.menu` at load time. If `menu.json` fails to load, the site still renders with an empty menu.
 
 ```json
 "menu": {

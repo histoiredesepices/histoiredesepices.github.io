@@ -1,10 +1,10 @@
 /**
  * allergens.js — Allergen information page (allergens.html)
  *
- * Everything on this page is generated from content.json:
- *   - allergen list & labels   → ui_strings.allergens
- *   - dishes, categories, tags → menu.dishes / menu.categories
- *   - page copy                → allergens_page
+ * Everything on this page is generated from the JSON content files:
+ *   - allergen list & labels   → content.json  ui_strings.allergens
+ *   - dishes, categories, tags → menu.json     dishes / categories
+ *   - page copy                → content.json  allergens_page
  * so it stays in sync with the menu automatically.
  */
 
@@ -254,7 +254,7 @@ function refreshAllergenFilter() {
 
 async function bootAllergens() {
     try {
-        C = await fetch('content.json').then((r) => r.json());
+        C = await loadContent();
     } catch (err) {
         console.error('Failed to load content:', err);
         return;

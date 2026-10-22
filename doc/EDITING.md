@@ -8,7 +8,9 @@
 
 ### C'est quoi `content.json` ?
 
-C'est **le cerveau de votre site**. Tout le contenu visible — les plats, les descriptions, les coordonnées, les prix — se trouve dans ce fichier. Le site se met à jour automatiquement quand vous le modifiez. **Vous ne devez jamais toucher aux autres fichiers** (`index.html`, `styles.css`, ou les fichiers JavaScript dans `assets/js/`).
+C'est **le cerveau de votre site**. Tout le contenu visible — les textes, les coordonnées, les réglages — se trouve dans ce fichier. Le site se met à jour automatiquement quand vous le modifiez. **Vous ne devez jamais toucher aux autres fichiers** (`index.html`, `styles.css`, ou les fichiers JavaScript dans `assets/js/`).
+
+> 🍽️ **Les plats et les catégories de la carte sont dans un fichier séparé : `menu.json`** (pour que `content.json` reste lisible). Pour ajouter, modifier ou cacher un plat, ouvrez `menu.json` — les mêmes règles s'appliquent. Les textes de la section carte (titre, note de bas de page, boutons) restent dans `content.json`, section `"menu"`.
 
 ---
 
@@ -38,7 +40,7 @@ C'est **le cerveau de votre site**. Tout le contenu visible — les plats, les d
 
 #### Ajouter un nouveau plat
 
-Trouvez la liste `"dishes": [...]` dans la section `"menu"`. Copiez un plat existant et ajoutez-le à la fin de la liste (avant le `]` final). Changez l'`"id"` pour quelque chose d'unique (en minuscules, sans espaces, ex : `"mon-nouveau-plat"`).
+Ouvrez le fichier **`menu.json`** et trouvez la liste `"dishes": [...]`. Copiez un plat existant et ajoutez-le à la fin de la liste (avant le `]` final). Changez l'`"id"` pour quelque chose d'unique (en minuscules, sans espaces, ex : `"mon-nouveau-plat"`).
 
 ```json
 {
@@ -248,7 +250,9 @@ Les photos doivent être **commitées et poussées sur GitHub** pour apparaître
 
 ### What is `content.json`?
 
-It is the **brain of your website**. All visible content — dishes, descriptions, contact details, prices — lives in this one file. The site updates automatically when you edit it. **Never touch the other files** (`index.html`, `styles.css`, or any JavaScript file inside `assets/js/`).
+It is the **brain of your website**. All visible content — text, contact details, settings — lives in this file. The site updates automatically when you edit it. **Never touch the other files** (`index.html`, `styles.css`, or any JavaScript file inside `assets/js/`).
+
+> 🍽️ **Menu dishes and categories live in a separate file: `menu.json`** (to keep `content.json` readable). To add, edit or hide a dish, open `menu.json` — the same rules apply. The menu section's text (title, footnote, buttons) stays in `content.json` under `"menu"`.
 
 ---
 
@@ -278,7 +282,7 @@ It is the **brain of your website**. All visible content — dishes, description
 
 #### Add a new dish
 
-Find the `"dishes": [...]` list inside the `"menu"` section. Copy an existing dish and paste it at the end (before the closing `]`). Change the `"id"` to something unique (lowercase, no spaces, e.g. `"my-new-dish"`).
+Open the **`menu.json`** file and find the `"dishes": [...]` list. Copy an existing dish and paste it at the end (before the closing `]`). Change the `"id"` to something unique (lowercase, no spaces, e.g. `"my-new-dish"`).
 
 #### Hide a dish without deleting it
 
