@@ -91,12 +91,14 @@ Dans `"settings"` → `"ordering"`, changez la valeur de `"same_day_cutoff_hour"
 
 ```json
 "ordering": {
-    "same_day_cutoff_hour": 9,
+    "same_day_cutoff_hour": 12,
+    "same_day_cutoff_window": 8,
     "earliest_delivery_time": "12:00",
     "latest_delivery_time": "21:00"
 }
 ```
 
+- `"same_day_cutoff_window"` est le **délai de préparation minimum** en heures. Avec `8`, un client qui commande à 10h ne pourra pas choisir une heure avant 18h. Mettez `0` pour aucun délai.
 - Si le client commande **avant** cette heure, il peut choisir une livraison **le jour même**.
 - Si le client commande **après** cette heure, la date la plus proche proposée sera **le lendemain**.
 - La valeur est un nombre entre `0` et `23` (ex : `9` = 9h00 du matin, `14` = 14h00).
@@ -302,12 +304,14 @@ In `"settings"` → `"ordering"`, change the `"same_day_cutoff_hour"` value:
 
 ```json
 "ordering": {
-    "same_day_cutoff_hour": 9,
+    "same_day_cutoff_hour": 12,
+    "same_day_cutoff_window": 8,
     "earliest_delivery_time": "12:00",
     "latest_delivery_time": "21:00"
 }
 ```
 
+- `"same_day_cutoff_window"` is the **minimum preparation lead time** in hours. With `8`, a customer ordering at 10:00 can't pick a time before 18:00. Set it to `0` for no lead time.
 - If a customer orders **before** this hour, they can choose **same-day** delivery.
 - If a customer orders **after** this hour, the earliest date offered will be **the next day**.
 - The value is a number between `0` and `23` (e.g. `9` = 9:00 AM, `14` = 2:00 PM).

@@ -122,8 +122,14 @@ function getOrderingCutoffHour() {
     return Number.isFinite(hour) ? clamp(hour, 0, 23) : 9;
 }
 
+// Minimum preparation lead time in hours: no slot earlier than now + this.
+function getOrderingLeadHours() {
+    const hours = C.settings?.ordering?.same_day_cutoff_window;
+    return Number.isFinite(hours) ? clamp(hours, 0, 168) : 0;
+}
+
 const TIME_STR_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
-const TIME_MINUTE_OPTIONS = ['00', '15', '30', '45'];
+const TIME_SLOT_STEP_MINUTES = 15;
 const DEFAULT_TIME_WINDOW = { start: '12:00', end: '21:00' };
 
 function getOrderingTimeWindow() {
@@ -147,49 +153,70 @@ function formatTimeForDisplay(timeStr) {
     return date.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' });
 }
 
-// Populate the hour/minute <select> dropdowns so only hours within the
-// configured delivery window can ever be picked (rather than relying on
-// native <input type="time"> min/max, which mobile browsers don't enforce).
-function populateTimeSelects() {
+const timeToMinutes = (timeStr) => {
+    const [h, m] = timeStr.split(':').map(Number);
+    return h * 60 + m;
+};
+
+const minutesToTime = (mins) =>
+    `${String(Math.floor(mins / 60)).padStart(2, '0')}:${String(mins % 60).padStart(2, '0')}`;
+
+// Earliest moment an order can be delivered, given the preparation lead time.
+function getEarliestDeliveryDateTime() {
+    return new Date(Date.now() + getOrderingLeadHours() * 3600000);
+}
+
+// All selectable "HH:MM" slots for a given date: every 15 minutes inside the
+// delivery window, excluding anything before now + lead time.
+function getAvailableTimeSlots(dateStr) {
+    const { start, end } = getOrderingTimeWindow();
+    const earliest = getEarliestDeliveryDateTime();
+    const earliestDateStr = formatDateInputValue(earliest);
+    if (!dateStr || dateStr < earliestDateStr) return [];
+
+    const minMinutes =
+        dateStr === earliestDateStr ? earliest.getHours() * 60 + earliest.getMinutes() : 0;
+    const slots = [];
+    for (let m = timeToMinutes(start); m <= timeToMinutes(end); m += TIME_SLOT_STEP_MINUTES) {
+        if (m >= minMinutes) slots.push(minutesToTime(m));
+    }
+    return slots;
+}
+
+function fillSelect(select, values, preferred) {
+    select.innerHTML = values.map((v) => `<option value="${v}">${v}</option>`).join('');
+    if (values.includes(preferred)) select.value = preferred;
+}
+
+// Populate the hour/minute <select> dropdowns with only the slots available
+// for the chosen date (rather than relying on native <input type="time">
+// min/max, which mobile browsers don't enforce).
+function populateTimeSelects(dateStr, preferredTime = '') {
     const hourSelect = $('schedule-time-hour');
     const minuteSelect = $('schedule-time-minute');
     if (!hourSelect || !minuteSelect) return;
 
-    const { start, end } = getOrderingTimeWindow();
-    const startHour = Number(start.split(':')[0]);
-    const endHour = Number(end.split(':')[0]);
+    const slots = getAvailableTimeSlots(dateStr);
+    const [prefHour, prefMinute] = preferredTime.split(':');
+    fillSelect(hourSelect, [...new Set(slots.map((s) => s.slice(0, 2)))], prefHour);
+    populateMinuteSelect(slots, prefMinute);
+}
 
-    hourSelect.innerHTML = '';
-    for (let h = startHour; h <= endHour; h++) {
-        const opt = document.createElement('option');
-        opt.value = String(h).padStart(2, '0');
-        opt.textContent = String(h).padStart(2, '0');
-        hourSelect.appendChild(opt);
-    }
-
-    if (!minuteSelect.options.length) {
-        TIME_MINUTE_OPTIONS.forEach((m) => {
-            const opt = document.createElement('option');
-            opt.value = m;
-            opt.textContent = m;
-            minuteSelect.appendChild(opt);
-        });
-    }
+function populateMinuteSelect(slots, preferredMinute = '') {
+    const hourSelect = $('schedule-time-hour');
+    const minuteSelect = $('schedule-time-minute');
+    if (!hourSelect || !minuteSelect) return;
+    const minutes = slots
+        .filter((s) => s.startsWith(`${hourSelect.value}:`))
+        .map((s) => s.slice(3));
+    fillSelect(minuteSelect, minutes, preferredMinute);
 }
 
 function getSelectedTimeValue() {
     const hourSelect = $('schedule-time-hour');
     const minuteSelect = $('schedule-time-minute');
-    if (!hourSelect || !minuteSelect) return '';
+    if (!hourSelect?.value || !minuteSelect?.value) return '';
     return `${hourSelect.value}:${minuteSelect.value}`;
-}
-
-function setSelectedTimeValue(timeStr) {
-    const [h, m] = timeStr.split(':');
-    const hourSelect = $('schedule-time-hour');
-    const minuteSelect = $('schedule-time-minute');
-    if (hourSelect) hourSelect.value = h;
-    if (minuteSelect) minuteSelect.value = TIME_MINUTE_OPTIONS.includes(m) ? m : '00';
 }
 
 // ── Order log (optional Google Sheets webhook) ──────────────────────────────────
@@ -216,6 +243,9 @@ function logOrderToSheet(payload) {
     } catch (_) {}
 }
 
+// Earliest selectable date: tomorrow if past the same-day cutoff hour, then
+// pushed forward further until a date actually has a slot left after the
+// preparation lead time.
 function getMinOrderDate() {
     const cutoffHour = getOrderingCutoffHour();
     const min = new Date();
@@ -223,6 +253,9 @@ function getMinOrderDate() {
         min.setDate(min.getDate() + 1);
     }
     min.setHours(0, 0, 0, 0);
+    for (let i = 0; i < 14 && !getAvailableTimeSlots(formatDateInputValue(min)).length; i++) {
+        min.setDate(min.getDate() + 1);
+    }
     return min;
 }
 
@@ -264,7 +297,8 @@ function openScheduleModal(onConfirm) {
 
     const u = C.ui_strings?.ordering || {};
     const cutoffHour = getOrderingCutoffHour();
-    const sameDayAvailable = new Date().getHours() < cutoffHour;
+    const minDateStr = formatDateInputValue(getMinOrderDate());
+    const sameDayAvailable = minDateStr === formatDateInputValue(new Date());
     const noteText = (
         t(sameDayAvailable ? u.same_day_available_note : u.same_day_closed_note) || ''
     ).replace('{hour}', cutoffHour);
@@ -300,7 +334,6 @@ function openScheduleModal(onConfirm) {
     const noteEl = $('schedule-note');
     if (noteEl) noteEl.textContent = noteText;
 
-    const minDateStr = formatDateInputValue(getMinOrderDate());
     const dateInput = $('schedule-date-input');
     if (dateInput) {
         dateInput.min = minDateStr;
@@ -308,9 +341,10 @@ function openScheduleModal(onConfirm) {
     }
 
     const { start: windowStart, end: windowEnd } = getOrderingTimeWindow();
+    const leadHours = getOrderingLeadHours();
     const timeWindowNoteEl = $('schedule-time-window-note');
     if (timeWindowNoteEl) {
-        timeWindowNoteEl.textContent = (
+        let hint = (
             t(u.time_window_note) ||
             (lang === 'fr'
                 ? 'Livraison possible entre {start} et {end}.'
@@ -318,9 +352,17 @@ function openScheduleModal(onConfirm) {
         )
             .replace('{start}', formatTimeForDisplay(windowStart))
             .replace('{end}', formatTimeForDisplay(windowEnd));
+        if (leadHours > 0) {
+            hint += ` ${(
+                t(u.lead_time_note) ||
+                (lang === 'fr'
+                    ? 'Délai de préparation minimum : {hours} h.'
+                    : 'Minimum preparation time: {hours} h.')
+            ).replace('{hours}', leadHours)}`;
+        }
+        timeWindowNoteEl.textContent = hint;
     }
-    populateTimeSelects();
-    setSelectedTimeValue(windowStart);
+    populateTimeSelects(minDateStr);
 
     const errorEl = $('schedule-error');
     if (errorEl) errorEl.hidden = true;
@@ -349,6 +391,18 @@ function initScheduleModal() {
 
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeScheduleModal();
+    });
+
+    // Available slots depend on the chosen date (lead time only trims the
+    // earliest day), so refresh the time dropdowns whenever date/hour change.
+    $('schedule-date-input')?.addEventListener('change', (e) => {
+        populateTimeSelects(e.target.value, getSelectedTimeValue());
+    });
+    $('schedule-time-hour')?.addEventListener('change', () => {
+        populateMinuteSelect(
+            getAvailableTimeSlots($('schedule-date-input')?.value),
+            $('schedule-time-minute')?.value,
+        );
     });
 
     $('schedule-confirm-btn')?.addEventListener('click', () => {
@@ -389,27 +443,24 @@ function initScheduleModal() {
             }
             dateInput.min = minDateStr;
             dateInput.value = minDateStr;
+            populateTimeSelects(minDateStr, getSelectedTimeValue());
             return;
         }
 
-        // The hour/minute dropdowns only ever list values inside the delivery
-        // window, but re-check anyway in case the window changed mid-session.
-        const { start: windowStart, end: windowEnd } = getOrderingTimeWindow();
+        // The dropdowns only list valid slots, but re-check at confirm time:
+        // the lead time keeps moving while the modal is open, so a slot that
+        // was valid when the modal opened may no longer be.
         const timeVal = getSelectedTimeValue();
-        if (timeVal < windowStart || timeVal > windowEnd) {
+        if (!getAvailableTimeSlots(dateInput.value).includes(timeVal)) {
             if (errorEl) {
-                errorEl.textContent = (
-                    t(u.error_time_out_of_range) ||
+                errorEl.textContent =
+                    t(u.error_time_unavailable) ||
                     (lang === 'fr'
-                        ? 'Merci de choisir une heure entre {start} et {end}.'
-                        : 'Please choose a time between {start} and {end}.')
-                )
-                    .replace('{start}', formatTimeForDisplay(windowStart))
-                    .replace('{end}', formatTimeForDisplay(windowEnd));
+                        ? "Ce créneau n'est plus disponible, merci d'en choisir un autre."
+                        : 'This time slot is no longer available, please choose another.');
                 errorEl.hidden = false;
             }
-            populateTimeSelects();
-            setSelectedTimeValue(timeVal < windowStart ? windowStart : windowEnd);
+            populateTimeSelects(dateInput.value, timeVal);
             return;
         }
 
