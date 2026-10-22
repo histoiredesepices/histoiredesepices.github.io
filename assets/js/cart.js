@@ -192,6 +192,30 @@ function setSelectedTimeValue(timeStr) {
     if (minuteSelect) minuteSelect.value = TIME_MINUTE_OPTIONS.includes(m) ? m : '00';
 }
 
+// ── Order log (optional Google Sheets webhook) ──────────────────────────────────
+// Best-effort, fire-and-forget: a row is appended to the owner's Google Sheet
+// via a free Apps Script Web App (see doc/ORDER_LOG_SETUP.md). If no webhook
+// is configured in content.json, this silently does nothing — the WhatsApp
+// order flow is never blocked or delayed by it.
+function logOrderToSheet(payload) {
+    const url = C.settings?.order_log?.webhook_url;
+    if (!url) return;
+    const body = JSON.stringify({
+        ...payload,
+        secret: C.settings?.order_log?.shared_secret || '',
+    });
+    try {
+        // Sent as text/plain to avoid a CORS preflight request, which Apps
+        // Script Web Apps don't handle; the script parses JSON from the body.
+        fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body,
+            keepalive: true,
+        }).catch(() => {});
+    } catch (_) {}
+}
+
 function getMinOrderDate() {
     const cutoffHour = getOrderingCutoffHour();
     const min = new Date();
@@ -563,6 +587,21 @@ function renderCartModal() {
         $('cart-order-btn')?.addEventListener('click', () => {
             openScheduleModal((dateVal, timeVal) => {
                 const finalMsg = appendScheduleToMessage(msg, dateVal, timeVal);
+                const itemsSummary = cart
+                    .map((item) => {
+                        const dish = dishes.find((d) => d.id === item.id);
+                        return dish ? `${item.qty}x ${t(dish.name)}` : null;
+                    })
+                    .filter(Boolean)
+                    .join(', ');
+                logOrderToSheet({
+                    deliveryDate: dateVal,
+                    deliveryTime: timeVal,
+                    itemsSummary,
+                    totalAmount: hasPrice && total > 0 ? Number(total.toFixed(2)) : null,
+                    language: lang,
+                    source: 'cart',
+                });
                 window.open(waUrl(waPhone, finalMsg), '_blank', 'noopener');
             });
         });
@@ -670,6 +709,14 @@ function initCart() {
                     : `Hello! I'd like to order: ${name}`;
             openScheduleModal((dateVal, timeVal) => {
                 const finalMsg = appendScheduleToMessage(baseMsg, dateVal, timeVal);
+                logOrderToSheet({
+                    deliveryDate: dateVal,
+                    deliveryTime: timeVal,
+                    itemsSummary: `1x ${name}`,
+                    totalAmount: dish.price_eur != null ? dish.price_eur : null,
+                    language: lang,
+                    source: 'quick-order',
+                });
                 window.open(waUrl(waPhone, finalMsg), '_blank', 'noopener');
             });
             return;

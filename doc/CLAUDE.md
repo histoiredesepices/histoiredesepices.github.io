@@ -62,7 +62,8 @@ histoire-des-epices/
 ├── EDITING.md              ← Plain-French guide for the owner. See section 9.
 ├── doc/
 │   ├── DESIGN.md           ← Design system reference (do not edit casually).
-│   └── CLAUDE.md           ← This file. The AI build brief.
+│   ├── CLAUDE.md           ← This file. The AI build brief.
+│   └── ORDER_LOG_SETUP.md  ← Optional Google Sheets order-logging webhook setup.
 └── README.md               ← Public-facing project description.
 ```
 
@@ -123,7 +124,9 @@ This is the **only file the owner ever edits**. Structure it so every piece of c
 
 Each flag is a simple boolean the owner can flip. The site re-renders accordingly. `show_calories` and `show_allergens` are **per-site toggles** — if `true`, the dish cards reveal that data; if `false`, the data is hidden even when present in dish entries.
 
-`ordering.same_day_cutoff_hour` (0–23) drives the order-scheduling step: before sending any order on WhatsApp (from the cart or the dish modal's quick-order button), the customer is asked to pick a delivery **date and time** via the `#schedule-modal`. If the current time is before this hour, same-day delivery is offered as the earliest date; otherwise the earliest selectable date is the next day. `ordering.earliest_delivery_time` / `latest_delivery_time` (24h `"HH:MM"` strings) restrict which times are selectable, e.g. `"12:00"`–`"21:00"` only allows afternoon/evening delivery slots. Both the date and time pickers are re-validated in JS on confirm (not just via the native `min`/`max` input attributes) because iOS Safari does not enforce those attributes on its wheel pickers. The chosen date/time is appended to the WhatsApp message. Related copy lives in `ui_strings.ordering` (see §4.2).
+`ordering.same_day_cutoff_hour` (0–23) drives the order-scheduling step: before sending any order on WhatsApp (from the cart or the dish modal's quick-order button), the customer is asked to pick a delivery **date and time** via the `#schedule-modal`. If the current time is before this hour, same-day delivery is offered as the earliest date; otherwise the earliest selectable date is the next day. `ordering.earliest_delivery_time` / `latest_delivery_time` (24h `"HH:MM"` strings) restrict which times are selectable — the time picker is two `<select>` dropdowns (hour + 15-minute increments) populated only with values inside this window, rather than a native `<input type="time">`, since mobile browsers don't reliably restrict the native wheel picker to a min/max range. The date picker is still a native `<input type="date">`, with its chosen value re-validated in JS on confirm (not just via the `min` attribute) for the same reason. The chosen date/time is appended to the WhatsApp message. Related copy lives in `ui_strings.ordering` (see §4.2).
+
+`order_log.webhook_url` (optional, empty by default) points to a Google Apps Script Web App URL. If set, every order (from the cart or a dish's quick-order button) also fires a best-effort, non-blocking POST with the order summary, amount, delivery date/time, language, and source — appended as a row to a Google Sheet. This gives the owner a simple order report without any backend/database, since GitHub Pages only serves static files. See `doc/ORDER_LOG_SETUP.md` for the full setup (Apps Script code included). `order_log.shared_secret` is sent alongside each request purely to filter casual noise — it is visible in client JS and is **not** real security.
 
 #### `branding`
 

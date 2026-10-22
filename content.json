@@ -14,6 +14,10 @@
             "earliest_delivery_time": "12:00",
             "latest_delivery_time": "21:00"
         },
+        "order_log": {
+            "webhook_url": "https://script.google.com/macros/s/AKfycbyagKYnH3VwDf_L01k5pR0rq9KVgTQPH-EkkQCbnwe_1jyHXiNP1oT3No2g79glTV4OVw/exec",
+            "shared_secret": "Thisisascretpassword"
+        },
         "contact_info": {
             "primary_phone": {
                 "display": "07 61 93 81 90",
