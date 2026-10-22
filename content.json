@@ -1412,6 +1412,34 @@
             "fr": "Mariages, anniversaires, baptêmes, séminaires d'entreprise — nous préparons des menus sur mesure pour tous vos moments importants. Commandes à partir de 10 personnes, livraison possible sur Valenciennes et environs.",
             "en": "Weddings, birthdays, baptisms, corporate seminars — we prepare custom menus for all your important occasions. Orders from 10 guests, delivery available in Valenciennes and surrounding areas."
         },
+        "quote_cta": {
+            "eyebrow": { "fr": "Devis gratuit", "en": "Free quote" },
+            "title": {
+                "fr": "Vous organisez un événement ?",
+                "en": "Planning an event?"
+            },
+            "subtitle": {
+                "fr": "Parlez-nous de votre projet et recevez un devis gratuit et sans engagement.",
+                "en": "Tell us about your occasion and get a free, no-obligation quote."
+            },
+            "perks": [
+                { "fr": "Menus sur mesure", "en": "Custom menus" },
+                { "fr": "Dès 10 personnes", "en": "From 10 guests" },
+                { "fr": "Livraison Valenciennes & environs", "en": "Delivery around Valenciennes" }
+            ],
+            "button_label": {
+                "fr": "Demander un devis",
+                "en": "Request a quote"
+            },
+            "button_note": {
+                "fr": "Réponse rapide sur WhatsApp",
+                "en": "Quick reply on WhatsApp"
+            },
+            "prefilled_message": {
+                "fr": "Bonjour L'Histoire des Épices !\n\nJ'organise bientôt un événement et j'aimerais beaucoup que vous vous occupiez du repas. Pourriez-vous me préparer un devis gratuit ?\n\nVoici quelques détails :\n• Type d'événement (mariage, anniversaire, baptême, entreprise…) : \n• Date prévue : \n• Nombre d'invités : \n• Lieu / ville : \n• Livraison ou à emporter : \n• Préférences (végétarien, halal, niveau d'épices…) : \n• Budget approximatif par personne : \n\nJe reste disponible pour en discuter. Merci beaucoup !",
+                "en": "Hello L'Histoire des Épices!\n\nI'm planning an event soon and would love for you to take care of the food. Could you put together a free quote for me?\n\nHere are a few details:\n• Type of event (wedding, birthday, baptism, corporate…): \n• Planned date: \n• Number of guests: \n• Venue / town: \n• Delivery or pick-up: \n• Preferences (vegetarian, halal, spice level…): \n• Approximate budget per person: \n\nHappy to chat further. Thank you so much!"
+            }
+        },
         "items": [
             {
                 "id": "mariage",

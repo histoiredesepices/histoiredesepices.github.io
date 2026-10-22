@@ -407,6 +407,50 @@ function renderEvents() {
     grid.querySelectorAll('.event-card__image').forEach((img) => {
         imgFallback(img, '');
     });
+
+    renderEventsQuoteCta(ev.quote_cta);
+}
+
+// "Planning an event? Get a free quote" card below the event grid. Hidden if
+// the block is removed from content.json or no WhatsApp number is configured.
+function renderEventsQuoteCta(cta) {
+    const el = $('events-cta');
+    if (!el) return;
+
+    const waPhone =
+        C.settings.contact_info?.whatsapp?.tel ||
+        C.settings.contact_info?.primary_phone?.tel ||
+        C.contact?.primary_action?.phone_e164;
+    if (!cta || !waPhone) {
+        el.hidden = true;
+        return;
+    }
+
+    const href = waUrl(waPhone, t(cta.prefilled_message));
+    const eyebrow = t(cta.eyebrow);
+    const perks = (cta.perks || [])
+        .map(
+            (p) => `<li class="events-cta__perk">
+                <span class="material-symbols-outlined" aria-hidden="true">check_circle</span>${esc(t(p))}
+            </li>`,
+        )
+        .join('');
+    const note = t(cta.button_note);
+
+    el.innerHTML = `
+        <div class="events-cta__content">
+            ${eyebrow ? `<span class="events-cta__eyebrow">${esc(eyebrow)}</span>` : ''}
+            <h3 class="events-cta__title">${esc(t(cta.title))}</h3>
+            <p class="events-cta__subtitle">${esc(t(cta.subtitle))}</p>
+            ${perks ? `<ul class="events-cta__perks">${perks}</ul>` : ''}
+        </div>
+        <div class="events-cta__action">
+            <a class="events-cta__btn" href="${esc(href)}" target="_blank" rel="noopener">
+                ${waSvg('currentColor', 20)} ${esc(t(cta.button_label))}
+            </a>
+            ${note ? `<span class="events-cta__note">${esc(note)}</span>` : ''}
+        </div>`;
+    el.hidden = false;
 }
 
 // ── Contact ───────────────────────────────────────────────────────────────────
