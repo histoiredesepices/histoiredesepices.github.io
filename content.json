@@ -168,6 +168,63 @@
         ]
     },
 
+    "allergens_page": {
+        "seo_title": {
+            "fr": "Allergènes | L'Histoire des Épices",
+            "en": "Allergens | L'Histoire des Épices"
+        },
+        "eyebrow": { "fr": "Information", "en": "Information" },
+        "title": { "fr": "Liste des Allergènes", "en": "Allergen List" },
+        "subtitle": {
+            "fr": "Retrouvez les allergènes présents dans chacun de nos plats. Cette page est mise à jour en même temps que notre carte.",
+            "en": "Find the allergens present in each of our dishes. This page is updated together with our menu."
+        },
+        "warning_eyebrow": { "fr": "Allergies & intolérances", "en": "Allergies & intolerances" },
+        "warning_title": { "fr": "Important", "en": "Important" },
+        "warning_text": {
+            "fr": "Tous nos plats sont préparés dans une cuisine où sont manipulés des allergènes. Des traces peuvent être présentes même dans les plats qui n'en contiennent pas normalement. Si vous avez une allergie sévère, contactez-nous avant de commander.",
+            "en": "All our dishes are prepared in a kitchen where allergens are handled. Traces may be present even in dishes that don't normally contain them. If you have a severe allergy, please contact us before ordering."
+        },
+        "warning_cta": { "fr": "Nous poser une question", "en": "Ask us a question" },
+        "warning_cta_note": {
+            "fr": "Réponse rapide sur WhatsApp",
+            "en": "Quick reply on WhatsApp"
+        },
+        "warning_cta_message": {
+            "fr": "Bonjour ! J'ai une question concernant les allergènes de vos plats.",
+            "en": "Hello! I have a question about the allergens in your dishes."
+        },
+        "filter_title": { "fr": "Je suis allergique à…", "en": "I'm allergic to…" },
+        "filter_hint": {
+            "fr": "Touchez un allergène pour masquer les plats qui en contiennent. Les plats sans information restent affichés : vérifiez toujours avec nous.",
+            "en": "Tap an allergen to hide the dishes that contain it. Dishes without information stay visible: always check with us."
+        },
+        "filter_reset": { "fr": "Tout réinitialiser", "en": "Reset all" },
+        "filter_empty": {
+            "fr": "Aucun plat de cette catégorie ne correspond à votre sélection.",
+            "en": "No dish in this category matches your selection."
+        },
+        "dishes_title": {
+            "fr": "Nos plats et leurs allergènes",
+            "en": "Our dishes and their allergens"
+        },
+        "contains": { "fr": "Contient", "en": "Contains" },
+        "not_specified": {
+            "fr": "Allergènes non renseignés — demandez-nous",
+            "en": "Allergens not specified — ask us"
+        },
+        "diet_title": { "fr": "Options alimentaires", "en": "Dietary options" },
+        "diet_vegetarian": {
+            "fr": "{count} plats végétariens à la carte",
+            "en": "{count} vegetarian dishes on the menu"
+        },
+        "diet_halal": {
+            "fr": "{count} plats halal — toutes nos viandes sont halal",
+            "en": "{count} halal dishes — all our meat is halal"
+        },
+        "back_label": { "fr": "Retour à la carte", "en": "Back to the menu" }
+    },
+
     "menu": {
         "section_title": { "fr": "Notre Carte Gourmande", "en": "Our Menu" },
         "footnote": {
@@ -176,7 +233,7 @@
         },
         "allergen_button": {
             "label": { "fr": "Consulter la liste des allergènes", "en": "View allergen list" },
-            "url": "assets/allergens.html"
+            "url": "allergens.html"
         },
         "download_button": {
             "label": { "fr": "Télécharger le Menu (PDF)", "en": "Download Menu (PDF)" },

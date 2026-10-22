@@ -38,6 +38,7 @@
 ```
 histoire-des-epices/
 ├── index.html              ← Page shell. Empty containers with data-* hooks.
+├── allergens.html          ← Allergen page, generated from content.json (assets/js/allergens.js).
 ├── content.json            ← ⭐ THE ONLY FILE THE OWNER EDITS.
 ├── assets/
 │   ├── js/

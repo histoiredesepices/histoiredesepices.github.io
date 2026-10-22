@@ -4243,3 +4243,416 @@ html.ticker-active #site-header {
         font-size: 1.6rem;
     }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ALLERGENS PAGE (allergens.html) — reuses .gallery-page-hero for the header
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Extra top padding clears the fixed 72px header; generous gaps between the
+   breadcrumb, eyebrow, title and intro so the hero doesn't feel cramped. */
+.allergens-hero {
+    padding: calc(72px + 4.5rem) 1.5rem 7rem;
+}
+
+.allergens-hero .gallery-breadcrumb {
+    margin-bottom: 2.25rem;
+}
+
+.allergens-hero .gallery-page-hero__title {
+    margin: 0 0 1.5rem;
+}
+
+.allergens-hero .gallery-page-hero__desc {
+    max-width: 560px;
+    line-height: 1.8;
+}
+
+@media (max-width: 767px) {
+    .allergens-hero {
+        padding: calc(72px + 3rem) 1.25rem 5.5rem;
+    }
+
+    .allergens-hero .gallery-breadcrumb {
+        margin-bottom: 1.75rem;
+    }
+
+    .allergens-hero .gallery-page-hero__title {
+        margin-bottom: 1.25rem;
+    }
+}
+
+.allergens-hero__eyebrow {
+    display: block;
+    margin: 0 0 1rem;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--saffron-light);
+}
+
+.allergens-page {
+    padding: 3.5rem 0 6rem;
+    background: #fff;
+}
+
+.allergens-page__inner {
+    max-width: 960px;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+@media (max-width: 767px) {
+    .allergens-page {
+        padding: 2.5rem 0 5rem;
+    }
+
+    .allergens-page__inner {
+        gap: 3rem;
+    }
+}
+
+.allergens-section-title {
+    font-family: var(--font-script);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--primary);
+    margin: 0 0 1rem;
+}
+
+/* ── Warning ────────────────────────────────────────────────────────────── */
+
+/* The warning reuses the events "free quote" banner (.events-cta); only the
+   outer margin differs since it sits inside the page's flex gap. */
+.allergens-warning.events-cta {
+    margin-top: 0;
+}
+
+/* ── Filter chips ───────────────────────────────────────────────────────── */
+
+.allergens-filter__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.allergens-filter__head .allergens-section-title {
+    margin-bottom: 0.25rem;
+}
+
+.allergens-filter__reset {
+    background: none;
+    border: none;
+    padding: 0.25rem 0;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+}
+
+.allergens-filter__reset[hidden] {
+    display: none;
+}
+
+.allergens-filter__hint {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--muted);
+    margin: 0 0 1.25rem;
+}
+
+.allergens-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.allergen-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 44px;
+    padding: 0.5rem 0.65rem 0.5rem 0.9rem;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--dark);
+    cursor: pointer;
+    transition: all 0.2s var(--ease);
+}
+
+.allergen-chip .material-symbols-outlined {
+    font-size: 1.1rem;
+    color: var(--saffron-dark);
+}
+
+.allergen-chip:hover {
+    border-color: var(--saffron);
+}
+
+.allergen-chip__count {
+    min-width: 1.5rem;
+    padding: 0.1rem 0.45rem;
+    border-radius: var(--radius-full);
+    background: var(--light-gray);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--muted);
+}
+
+.allergen-chip.is-active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+    text-decoration: line-through;
+    text-decoration-color: rgba(255, 255, 255, 0.6);
+}
+
+.allergen-chip.is-active .material-symbols-outlined {
+    color: var(--saffron-light);
+}
+
+.allergen-chip.is-active .allergen-chip__count {
+    background: rgba(255, 255, 255, 0.18);
+    color: white;
+}
+
+.allergen-chip:focus-visible,
+.allergens-filter__reset:focus-visible {
+    outline: 2px solid var(--saffron);
+    outline-offset: 3px;
+}
+
+/* ── Dishes by category ─────────────────────────────────────────────────── */
+
+.allergens-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.allergen-category {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.allergen-category__title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0;
+    padding: 1rem 1.25rem;
+    background: var(--primary);
+    color: white;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.allergen-category__title .material-symbols-outlined {
+    font-size: 1.2rem;
+    color: var(--saffron-light);
+}
+
+.allergen-category__count {
+    margin-left: auto;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.allergen-category__empty {
+    margin: 0;
+    padding: 1.25rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+.allergen-dish-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.allergen-dish {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.9rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    transition: background 0.2s var(--ease);
+}
+
+.allergen-dish:last-child {
+    border-bottom: none;
+}
+
+.allergen-dish:hover {
+    background: #fffdf8;
+}
+
+.allergen-dish__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.allergen-dish__name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-right: 0.25rem;
+}
+
+.allergen-dish__diet {
+    padding: 0.15rem 0.55rem;
+    border-radius: var(--radius-full);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.allergen-dish__diet--veg {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.allergen-dish__diet--halal {
+    background: rgba(201, 165, 92, 0.18);
+    color: var(--saffron-dark);
+}
+
+.allergen-dish__allergens {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.allergen-dish__contains {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+.allergen-tag-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-full);
+    background: rgba(91, 6, 23, 0.07);
+    color: var(--primary);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.allergen-tag-pill .material-symbols-outlined {
+    font-size: 0.95rem;
+}
+
+.allergen-dish__unknown {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.75rem;
+    font-style: italic;
+    color: var(--muted);
+}
+
+.allergen-dish__unknown .material-symbols-outlined {
+    font-size: 0.95rem;
+}
+
+@media (min-width: 768px) {
+    .allergen-dish {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+    }
+
+    .allergen-dish__allergens {
+        justify-content: flex-end;
+    }
+}
+
+/* ── Dietary options ────────────────────────────────────────────────────── */
+
+.allergens-diet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 1rem;
+}
+
+.allergens-diet-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.allergens-diet-card__icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(201, 165, 92, 0.15);
+    color: var(--saffron-dark);
+}
+
+.allergens-diet-card__title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin: 0 0 0.2rem;
+}
+
+.allergens-diet-card__text {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin: 0;
+}
+
+.allergens-back {
+    text-align: center;
+}
+
+@media print {
+    #site-header,
+    #ticker-bar,
+    .fab-container,
+    .allergens-filter,
+    .allergens-back {
+        display: none !important;
+    }
+
+    .gallery-page-hero {
+        padding: 1rem 0;
+    }
+}

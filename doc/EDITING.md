@@ -83,6 +83,10 @@ Dans la section `"settings"`, changez `"show_prices": false` en `"show_prices": 
 
 Dans `"settings"`, changez `"show_allergens": false` en `"show_allergens": true`.
 
+#### Page des allergènes
+
+La page « Liste des allergènes » (`allergens.html`) est **générée automatiquement** à partir du champ `"allergens"` de chaque plat. Pour qu'elle soit juste, renseignez les allergènes de chaque plat, par exemple `"allergens": ["dairy", "gluten"]` (voir la liste des clés valides plus bas). Un plat avec `"allergens": []` s'affiche comme « Allergènes non renseignés — demandez-nous ». Les textes de la page se modifient dans la section `"allergens_page"`.
+
 #### Changer l'heure limite pour une commande le jour même
 
 Comme vous travaillez en traiteur (préparation à l'avance), le client doit toujours préciser **la date et l'heure souhaitées** avant d'envoyer sa commande sur WhatsApp — une petite fenêtre s'affiche automatiquement pour le lui demander.
@@ -295,6 +299,10 @@ In `"settings"`, change `"show_prices": false` to `"show_prices": true`. Prices 
 #### Enable/disable allergens
 
 In `"settings"`, change `"show_allergens": false` to `"show_allergens": true`.
+
+#### Allergen page
+
+The "Allergen list" page (`allergens.html`) is **generated automatically** from each dish's `"allergens"` field. To keep it accurate, fill in every dish's allergens, e.g. `"allergens": ["dairy", "gluten"]` (see the list of valid keys). A dish with `"allergens": []` is shown as "Allergens not specified — ask us". The page's text lives in the `"allergens_page"` section.
 
 #### Change the same-day order cutoff time
 
