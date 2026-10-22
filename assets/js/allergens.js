@@ -261,19 +261,8 @@ async function bootAllergens() {
     }
 
     lang = getLang() || C.settings?.default_language || 'fr';
-    const applyLang = () => {
-        document.documentElement.lang = lang;
-        $('lang-toggle')?.setAttribute('aria-pressed', String(lang === 'en'));
-    };
-    applyLang();
+    initSubpageChrome(renderAllergensPage); // privacy.js: lang toggle, mobile menu, header
     renderAllergensPage();
-
-    $('lang-toggle')?.addEventListener('click', () => {
-        lang = lang === 'fr' ? 'en' : 'fr';
-        safeLang(lang);
-        applyLang();
-        renderAllergensPage();
-    });
 
     $('allergens-chips')?.addEventListener('click', (e) => {
         const chip = e.target.closest('[data-allergen]');
@@ -287,40 +276,6 @@ async function bootAllergens() {
         _excludedAllergens.clear();
         refreshAllergenFilter();
     });
-
-    const hamburger = $('hamburger');
-    const mobileMenu = $('mobile-menu');
-    const closeMobileMenu = () => {
-        mobileMenu.hidden = true;
-        hamburger.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-    };
-    if (hamburger && mobileMenu) {
-        hamburger.addEventListener('click', () => {
-            const isOpen = !mobileMenu.hidden;
-            mobileMenu.hidden = isOpen;
-            hamburger.classList.toggle('active', !isOpen);
-            hamburger.setAttribute('aria-expanded', String(!isOpen));
-            document.body.style.overflow = isOpen ? '' : 'hidden';
-        });
-        mobileMenu.addEventListener('click', (e) => {
-            if (e.target.closest('a')) closeMobileMenu();
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && !mobileMenu.hidden) {
-                closeMobileMenu();
-                hamburger.focus();
-            }
-        });
-    }
-
-    const header = $('site-header');
-    if (header) {
-        const updateHeader = () => header.classList.toggle('scrolled', window.pageYOffset > 80);
-        window.addEventListener('scroll', updateHeader, { passive: true });
-        updateHeader();
-    }
 }
 
 document.addEventListener('DOMContentLoaded', bootAllergens);

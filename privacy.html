@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="fr" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Confidentialité | L'Histoire des Épices</title>
+  <meta name="description"
+    content="Politique de confidentialité de L'Histoire des Épices : ce que le site collecte et ce qu'il ne collecte pas." />
+  <link rel="canonical" href="https://histoiredesepices.github.io/privacy.html" />
+
+  <link rel="icon" href="assets/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="assets/logo.png" as="image" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Felipa&family=Jura:wght@300..700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+
+  <script>
+    tailwind = {
+      config: {
+        theme: {
+          extend: {
+            colors: {
+              primary: { DEFAULT: '#5b0617', hover: '#7a1f2b', light: '#8a2a3d' },
+              saffron: { DEFAULT: '#C9A55C', light: '#e0c88a', dark: '#a88940' },
+              cream: '#faf8f5',
+              surface: '#ffffff',
+              dark: '#1a1a1a',
+              muted: '#6b6b6b',
+              whatsapp: '#25D366',
+            },
+            fontFamily: {
+              script: ['Felipa', 'cursive'],
+              body: ['Jura', 'sans-serif'],
+            },
+          },
+        },
+      },
+    };
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+</head>
+
+<body class="bg-white font-body text-dark antialiased flex flex-col min-h-screen" data-page="privacy">
+  <div id="ticker-bar" class="ticker-bar" hidden></div>
+
+  <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+  <!-- ══════════════════════════════════════════════════════════ HEADER / NAV -->
+  <header id="site-header">
+    <nav class="nav-container" aria-label="Navigation principale">
+      <a href="index.html" id="nav-brand" class="nav-brand" aria-label="Accueil L'Histoire des Épices">
+        <img src="assets/logo.png" alt="" class="nav-logo" aria-hidden="true" />
+        <span id="nav-brand-text" class="font-script text-2xl md:text-3xl text-primary">L'Histoire des Épices</span>
+      </a>
+
+      <div id="nav-links" class="nav-links" role="list"></div>
+
+      <div class="nav-controls">
+        <div class="lang-switch" role="group" aria-label="Changer de langue">
+          <span class="lang-switch__label lang-switch__label--fr">FR</span>
+          <button id="lang-toggle" class="lang-switch__toggle" aria-label="Changer de langue" aria-pressed="false">
+            <span class="lang-switch__slider"></span>
+          </button>
+          <span class="lang-switch__label lang-switch__label--en">EN</span>
+        </div>
+        <button id="hamburger" class="hamburger" aria-label="Ouvrir le menu" aria-expanded="false"
+          aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu de navigation" hidden>
+      <div id="mobile-nav-links" class="mobile-nav-links"></div>
+      <div id="mobile-nav-whatsapp" class="mobile-nav-wa"></div>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════════════════════════ MAIN -->
+  <main id="main-content" class="flex-1">
+
+    <section class="gallery-page-hero allergens-hero">
+      <div class="gallery-page-hero__content">
+        <nav class="gallery-breadcrumb" id="privacy-breadcrumb" aria-label="Fil d'Ariane"></nav>
+        <span id="privacy-eyebrow" class="allergens-hero__eyebrow"></span>
+        <h1 id="privacy-title" class="gallery-page-hero__title">Politique de confidentialité</h1>
+        <p id="privacy-subtitle" class="gallery-page-hero__desc"></p>
+      </div>
+    </section>
+
+    <section class="allergens-page">
+      <div class="container privacy-page__inner">
+        <p id="privacy-updated" class="privacy-updated"></p>
+        <div id="privacy-sections" class="privacy-sections"></div>
+
+        <div class="allergens-back">
+          <a href="index.html" class="btn-primary">
+            <span class="material-symbols-outlined">arrow_back</span>
+            <span id="privacy-back-label">Retour à l'accueil</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════════ FOOTER -->
+  <footer id="site-footer" class="site-footer">
+    <div class="container">
+      <p id="footer-tagline" class="footer-tagline"></p>
+      <nav id="footer-links" class="footer-links" aria-label="Liens légaux"></nav>
+      <p id="footer-copyright" class="footer-copyright"></p>
+    </div>
+  </footer>
+
+  <div id="floating-whatsapp" class="fab-container" aria-label="Contacter sur WhatsApp" role="complementary"></div>
+
+  <!-- ══════════════════════════════════════════════════════════ APP -->
+  <script src="./assets/js/state.js"></script>
+  <script src="./assets/js/utils.js"></script>
+  <script src="./assets/js/seo.js"></script>
+  <script src="./assets/js/render.js"></script>
+  <script src="./assets/js/events.js"></script>
+  <script src="./assets/js/privacy.js"></script>
+</body>
+
+</html>

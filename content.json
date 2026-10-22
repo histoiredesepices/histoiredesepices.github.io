@@ -387,6 +387,165 @@
         "copyright": {
             "fr": "© 2026 L'Histoire des Épices. Curateurs de Traditions Culinaires.",
             "en": "© 2026 L'Histoire des Épices. Curators of Culinary Tradition."
+        },
+        "links": [
+            { "label": { "fr": "Confidentialité", "en": "Privacy" }, "url": "privacy.html" },
+            { "label": { "fr": "Allergènes", "en": "Allergens" }, "url": "allergens.html" }
+        ]
+    },
+
+    "privacy": {
+        "version": "2026-10-15",
+        "banner": {
+            "title": { "fr": "Votre vie privée", "en": "Your privacy" },
+            "text": {
+                "fr": "Ce site n'utilise aucun cookie publicitaire ni outil de mesure d'audience. Voici exactement ce qui se passe quand vous le visitez.",
+                "en": "This site uses no advertising cookies or audience-tracking tools. Here is exactly what happens when you visit."
+            },
+            "collect_title": { "fr": "Ce que nous utilisons", "en": "What we use" },
+            "collect": {
+                "fr": [
+                    "Votre langue et votre panier, enregistrés uniquement sur votre appareil",
+                    "Le détail de votre commande (plats, montant, date et heure de livraison) quand vous l'envoyez",
+                    "Google Fonts et Tailwind CDN pour l'affichage, qui reçoivent votre adresse IP"
+                ],
+                "en": [
+                    "Your language and cart, stored only on your device",
+                    "Your order details (dishes, amount, delivery date and time) when you send it",
+                    "Google Fonts and Tailwind CDN for display, which receive your IP address"
+                ]
+            },
+            "not_collect_title": {
+                "fr": "Ce que nous ne collectons pas",
+                "en": "What we don't collect"
+            },
+            "not_collect": {
+                "fr": [
+                    "Aucun cookie de suivi, de publicité ou de statistiques",
+                    "Ni nom, ni e-mail, ni téléphone via le site",
+                    "Aucune revente ni partage commercial de vos données"
+                ],
+                "en": [
+                    "No tracking, advertising or analytics cookies",
+                    "No name, email or phone number through the site",
+                    "No selling or commercial sharing of your data"
+                ]
+            },
+            "details_label": { "fr": "Voir le détail", "en": "See details" },
+            "accept": { "fr": "J'ai compris", "en": "Got it" },
+            "learn_more": { "fr": "En savoir plus", "en": "Learn more" }
+        },
+        "page": {
+            "seo_title": {
+                "fr": "Confidentialité | L'Histoire des Épices",
+                "en": "Privacy | L'Histoire des Épices"
+            },
+            "eyebrow": { "fr": "RGPD", "en": "GDPR" },
+            "title": { "fr": "Politique de confidentialité", "en": "Privacy Policy" },
+            "subtitle": {
+                "fr": "Nous collectons le strict minimum. Voici, en clair, ce que fait ce site avec vos données — et ce qu'il ne fait pas.",
+                "en": "We collect the bare minimum. Here, in plain words, is what this site does with your data — and what it doesn't."
+            },
+            "updated_label": {
+                "fr": "Dernière mise à jour : {date}",
+                "en": "Last updated: {date}"
+            },
+            "sections": [
+                {
+                    "icon": "storefront",
+                    "title": { "fr": "Qui sommes-nous ?", "en": "Who are we?" },
+                    "text": {
+                        "fr": "L'Histoire des Épices, traiteur indien à Valenciennes, est responsable du traitement des données décrites sur cette page. Pour toute question, contactez-nous par WhatsApp ou au {phone}.",
+                        "en": "L'Histoire des Épices, an Indian caterer in Valenciennes, is responsible for the data processing described on this page. For any question, contact us on WhatsApp or at {phone}."
+                    }
+                },
+                {
+                    "icon": "block",
+                    "title": {
+                        "fr": "Ce que nous ne collectons pas",
+                        "en": "What we don't collect"
+                    },
+                    "items": {
+                        "fr": [
+                            "Aucun cookie : le site n'en dépose aucun.",
+                            "Aucune mesure d'audience (pas de Google Analytics ni équivalent), aucune publicité, aucun pixel de réseau social.",
+                            "Aucun compte, formulaire ou newsletter : le site ne vous demande ni nom, ni e-mail, ni numéro de téléphone, ni adresse.",
+                            "Aucun paiement en ligne.",
+                            "Nous ne vendons ni ne partageons vos données à des fins commerciales."
+                        ],
+                        "en": [
+                            "No cookies: the site sets none.",
+                            "No audience measurement (no Google Analytics or similar), no advertising, no social media pixels.",
+                            "No accounts, forms or newsletter: the site never asks for your name, email, phone number or address.",
+                            "No online payment.",
+                            "We never sell or share your data for commercial purposes."
+                        ]
+                    }
+                },
+                {
+                    "icon": "smartphone",
+                    "title": {
+                        "fr": "Enregistré uniquement sur votre appareil",
+                        "en": "Stored only on your device"
+                    },
+                    "text": {
+                        "fr": "Pour que le site fonctionne, trois informations sont gardées dans la mémoire de votre navigateur (localStorage) : la langue choisie, le contenu de votre panier et le fait que vous avez fermé ce bandeau. Elles ne nous sont jamais envoyées et vous pouvez les effacer à tout moment en supprimant les données du site dans votre navigateur. Strictement nécessaires au service que vous demandez, elles ne requièrent pas de consentement.",
+                        "en": "For the site to work, three pieces of information are kept in your browser's storage (localStorage): your chosen language, your cart contents, and the fact that you closed this banner. They are never sent to us, and you can erase them at any time by clearing this site's data in your browser. As they are strictly necessary for the service you request, they don't require consent."
+                    }
+                },
+                {
+                    "icon": "receipt_long",
+                    "title": {
+                        "fr": "Quand vous passez commande",
+                        "en": "When you place an order"
+                    },
+                    "text": {
+                        "fr": "Lorsque vous envoyez une commande sur WhatsApp, une copie de la commande (plats, quantités, montant estimé, date et heure de livraison souhaitées, langue) est enregistrée dans un tableur Google Sheets privé, accessible à nous seuls, pour préparer et suivre les commandes. Cette copie ne contient ni votre nom, ni votre téléphone, ni votre adresse. Elle est conservée le temps nécessaire au suivi des commandes et à nos obligations comptables.",
+                        "en": "When you send an order on WhatsApp, a copy of the order (dishes, quantities, estimated amount, requested delivery date and time, language) is saved in a private Google Sheets spreadsheet that only we can access, to prepare and track orders. This copy contains neither your name, phone number nor address. It is kept for as long as needed to track orders and meet our accounting obligations."
+                    }
+                },
+                {
+                    "icon": "chat",
+                    "title": { "fr": "WhatsApp et téléphone", "en": "WhatsApp and phone" },
+                    "text": {
+                        "fr": "Les boutons WhatsApp ouvrent votre propre application WhatsApp avec un message prérempli : rien n'est envoyé tant que vous n'appuyez pas sur « Envoyer ». Nous recevons alors votre numéro et votre message, que nous utilisons uniquement pour traiter votre commande ou votre demande de devis. Ces échanges sont également soumis à la politique de confidentialité de WhatsApp (Meta).",
+                        "en": "WhatsApp buttons open your own WhatsApp app with a pre-filled message: nothing is sent until you press \"Send\". We then receive your number and message, which we use only to handle your order or quote request. These exchanges are also subject to WhatsApp's (Meta's) privacy policy."
+                    }
+                },
+                {
+                    "icon": "dns",
+                    "title": { "fr": "Prestataires techniques", "en": "Technical providers" },
+                    "text": {
+                        "fr": "Comme pour tout site web, ces services reçoivent techniquement votre adresse IP lorsqu'ils vous transmettent des fichiers. Certains sont situés hors de l'Union européenne (États-Unis).",
+                        "en": "As with any website, these services technically receive your IP address when they send you files. Some are located outside the European Union (United States)."
+                    },
+                    "items": {
+                        "fr": [
+                            "GitHub Pages (GitHub Inc.) — hébergement du site",
+                            "Google Fonts (Google) — polices d'écriture et icônes",
+                            "Tailwind CDN — mise en page",
+                            "API GitHub — affichage des photos de la galerie",
+                            "Google Sheets / Apps Script (Google) — copie des commandes envoyées"
+                        ],
+                        "en": [
+                            "GitHub Pages (GitHub Inc.) — site hosting",
+                            "Google Fonts (Google) — fonts and icons",
+                            "Tailwind CDN — page layout",
+                            "GitHub API — gallery photos",
+                            "Google Sheets / Apps Script (Google) — copy of submitted orders"
+                        ]
+                    }
+                },
+                {
+                    "icon": "gavel",
+                    "title": { "fr": "Vos droits", "en": "Your rights" },
+                    "text": {
+                        "fr": "Conformément au RGPD, vous pouvez demander l'accès, la rectification ou la suppression des informations vous concernant, ou vous opposer à leur traitement, en nous contactant par WhatsApp ou au {phone}. Vous pouvez aussi adresser une réclamation à la CNIL (www.cnil.fr).",
+                        "en": "Under the GDPR, you can request access to, correction or deletion of information about you, or object to its processing, by contacting us on WhatsApp or at {phone}. You can also lodge a complaint with the CNIL, the French data protection authority (www.cnil.fr)."
+                    }
+                }
+            ],
+            "back_label": { "fr": "Retour à l'accueil", "en": "Back to home" }
         }
     },
 

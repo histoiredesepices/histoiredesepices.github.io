@@ -561,6 +561,10 @@ function renderFooter() {
             )
             .join('');
     }
+
+    // GDPR info banner (privacy.js) — rendered here so every page shows it and
+    // it follows language switches.
+    if (typeof renderPrivacyBanner === 'function') renderPrivacyBanner();
 }
 
 // ── Floating WhatsApp ─────────────────────────────────────────────────────────
