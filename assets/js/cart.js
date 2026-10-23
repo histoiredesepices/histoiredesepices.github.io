@@ -225,11 +225,11 @@ function getSelectedTimeValue() {
 // is configured in content.json, this silently does nothing — the WhatsApp
 // order flow is never blocked or delayed by it.
 function logOrderToSheet(payload) {
-    const url = C.settings?.order_log?.webhook_url;
+    const url = C.settings?.order_log?.m4Rx;
     if (!url) return;
     const body = JSON.stringify({
         ...payload,
-        secret: C.settings?.order_log?.shared_secret || '',
+        secret: C.settings?.order_log?.k7Qz || '',
     });
     try {
         // Sent as text/plain to avoid a CORS preflight request, which Apps
@@ -645,14 +645,14 @@ function renderCartModal() {
                     })
                     .filter(Boolean)
                     .join(', ');
-                logOrderToSheet({
-                    deliveryDate: dateVal,
-                    deliveryTime: timeVal,
-                    itemsSummary,
-                    totalAmount: hasPrice && total > 0 ? Number(total.toFixed(2)) : null,
-                    language: lang,
-                    source: 'cart',
-                });
+                // logOrderToSheet({
+                //     deliveryDate: dateVal,
+                //     deliveryTime: timeVal,
+                //     itemsSummary,
+                //     totalAmount: hasPrice && total > 0 ? Number(total.toFixed(2)) : null,
+                //     language: lang,
+                //     source: 'cart',
+                // });
                 window.open(waUrl(waPhone, finalMsg), '_blank', 'noopener');
             });
         });

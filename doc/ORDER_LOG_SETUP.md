@@ -9,7 +9,7 @@ This is **best-effort and non-blocking**: if the webhook is unreachable or not
 configured, the WhatsApp ordering flow still works exactly as before — nothing
 is ever lost or delayed because of this feature.
 
-> This is optional. If you leave `settings.order_log.webhook_url` empty in
+> This is optional. If you leave `settings.order_log.m4Rx` (the webhook URL) empty in
 > `content.json`, this feature does nothing.
 
 ---
@@ -120,8 +120,8 @@ In `settings.order_log`, paste the values from steps above:
 
 ```json
 "order_log": {
-    "webhook_url": "https://script.google.com/macros/s/XXXXXXXX/exec",
-    "shared_secret": "REPLACE_WITH_A_RANDOM_STRING"
+    "m4Rx": "https://script.google.com/macros/s/XXXXXXXX/exec",
+    "k7Qz": "REPLACE_WITH_A_RANDOM_STRING"
 }
 ```
 
@@ -136,7 +136,7 @@ In `settings.order_log`, paste the values from steps above:
 ## Security model — what is and isn't protected
 
 `content.json` is fetched by every visitor's browser, so **the webhook URL and
-`shared_secret` are public** — anyone can view them via browser dev tools or
+shared secret (`k7Qz`) are public** — anyone can view them via browser dev tools or
 by browsing the GitHub repo directly. This is unavoidable for any purely
 static site (no backend = nowhere to hide a credential). Given that:
 
@@ -148,7 +148,7 @@ static site (no backend = nowhere to hide a credential). Given that:
   access other spreadsheets; or affect the GitHub repo or site itself. The
   Apps Script's `doPost` function can only do exactly what's written in it
   (append a sanitized row to this one sheet) — nothing more.
-- **The `shared_secret` is a noise filter, not authentication.** It stops
+- **The shared secret (`k7Qz`) is a noise filter, not authentication.** It stops
   bots/scanners that hit the URL blindly without knowing the expected
   payload shape. It will not stop someone who deliberately reads
   `content.json` and copies the value.
@@ -162,7 +162,7 @@ static site (no backend = nowhere to hide a credential). Given that:
   the request, the order still goes through on WhatsApp as normal; it just
   won't appear as a row in the sheet.
 - **If the sheet still gets spammed**, generate a new random
-  `shared_secret`, update both the Apps Script constant and `content.json`,
+  secret, update both the Apps Script constant and `content.json` (`k7Qz`),
   and redeploy (**Deploy → Manage deployments → Edit → New version**) — this
   immediately invalidates the leaked one.
 - You can re-order or rename the sheet's columns freely — just make sure the

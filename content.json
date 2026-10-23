@@ -16,8 +16,8 @@
             "latest_delivery_time": "21:00"
         },
         "order_log": {
-            "webhook_url": "https://script.google.com/macros/s/AKfycbyagKYnH3VwDf_L01k5pR0rq9KVgTQPH-EkkQCbnwe_1jyHXiNP1oT3No2g79glTV4OVw/exec",
-            "shared_secret": "Thisisascretpassword"
+            "m4Rx": "https://script.google.com/macros/s/AKfycbyagKYnH3VwDf_L01k5pR0rq9KVgTQPH-EkkQCbnwe_1jyHXiNP1oT3No2g79glTV4OVw/exec",
+            "k7Qz": "sV-afGANvv3qge0dSR7q52olBhRURXTNfdGRcv2mjj0"
         },
         "contact_info": {
             "primary_phone": {
