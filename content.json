@@ -632,11 +632,21 @@
                 "fr": "Ce créneau n'est plus disponible, merci d'en choisir un autre.",
                 "en": "This time slot is no longer available, please choose another."
             },
-            "whatsapp_date_label": {
-                "fr": "Date de commande souhaitée",
-                "en": "Desired order date"
+            "whatsapp_message": {
+                "greeting": { "fr": "Bonjour L'Histoire des Épices !", "en": "Hello L'Histoire des Épices!" },
+                "intro": {
+                    "fr": "Je souhaite passer la commande suivante :",
+                    "en": "I'd like to place the following order:"
+                },
+                "dishes_title": { "fr": "Ma commande", "en": "My order" },
+                "total_label": { "fr": "Total estimé", "en": "Estimated total" },
+                "collection_title": { "fr": "À emporter (retrait sur place)", "en": "Collection (pick-up)" },
+                "delivery_title": { "fr": "Livraison", "en": "Delivery" },
+                "datetime": { "fr": "{date} à {time}", "en": "{date} at {time}" },
+                "address_title": { "fr": "Adresse de livraison", "en": "Delivery address" },
+                "phone_label": { "fr": "Tél.", "en": "Phone" },
+                "thanks": { "fr": "Merci beaucoup !", "en": "Thank you very much!" }
             },
-            "whatsapp_time_label": { "fr": "Heure souhaitée", "en": "Desired time" },
             "fulfillment": {
                 "mode_label": { "fr": "Retrait ou livraison ?", "en": "Collection or delivery?" },
                 "collection": { "fr": "À emporter", "en": "Collection" },
@@ -687,16 +697,7 @@
                 "error_city": {
                     "fr": "Merci d'indiquer la ville.",
                     "en": "Please enter the town."
-                },
-                "whatsapp_mode_label": { "fr": "Mode", "en": "Method" },
-                "whatsapp_collection": {
-                    "fr": "À emporter (retrait sur place)",
-                    "en": "Collection (pick-up)"
-                },
-                "whatsapp_delivery": { "fr": "Livraison", "en": "Delivery" },
-                "whatsapp_name_label": { "fr": "Nom", "en": "Name" },
-                "whatsapp_phone_label": { "fr": "Téléphone", "en": "Phone" },
-                "whatsapp_address_label": { "fr": "Adresse de livraison", "en": "Delivery address" }
+                }
             }
         },
         "section_labels": {

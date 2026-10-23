@@ -373,41 +373,67 @@ function validateDeliveryDetails(d) {
     return failed ? { field: failed[0], message: t(failed[2]) } : null;
 }
 
-function appendScheduleToMessage(baseMsg, dateStr, timeStr, fulfillment) {
-    const u = C.ui_strings?.ordering || {};
-    const f = u.fulfillment || {};
-    const sep = lang === 'fr' ? ' : ' : ': ';
-    const dateLabel =
-        t(u.whatsapp_date_label) ||
-        (lang === 'fr' ? 'Date de commande souhaitée' : 'Requested desired date');
-    const timeLabel =
-        t(u.whatsapp_time_label) || (lang === 'fr' ? 'Heure souhaitée' : 'Requested desired time');
+// ── WhatsApp order message ─────────────────────────────────────────────────────
+// Uses WhatsApp's own formatting (*bold* headings) and plain characters only —
+// 4-byte emoji render as "�" on some clients. WhatsApp also strips leading
+// spaces, so the address is laid out like a French postal label instead.
 
-    const lines = [
-        `• ${dateLabel}${sep}${formatScheduleDateForMessage(dateStr)}`,
-        `• ${timeLabel}${sep}${timeStr}`,
+const formatEuro = (n) =>
+    lang === 'fr' ? `${n.toFixed(2).replace('.', ',')} €` : `€${n.toFixed(2)}`;
+
+function dishUnitPrice(dish) {
+    if (dish?.price_eur == null) return null;
+    return dish.discount_percent
+        ? dish.price_eur * (1 - dish.discount_percent / 100)
+        : dish.price_eur;
+}
+
+// items: [{ qty, name, unitPrice|null }]
+function buildWhatsAppOrderMessage(items, dateStr, timeStr, fulfillment) {
+    const m = C.ui_strings?.ordering?.whatsapp_message || {};
+    const isDelivery = fulfillment?.mode === 'delivery';
+    const sep = lang === 'fr' ? ' : ' : ': '; // French typography puts a space before ":"
+    const total = items.reduce((s, i) => s + (i.unitPrice ?? 0) * i.qty, 0);
+    const hasPrice = items.some((i) => i.unitPrice != null);
+
+    const dishLines = items.map(
+        (i) =>
+            `• ${i.qty} × ${i.name}${i.unitPrice != null ? ` — ${formatEuro(i.unitPrice * i.qty)}` : ''}`,
+    );
+    const when = (t(m.datetime) || '{date} — {time}')
+        .replace('{date}', formatScheduleDateForMessage(dateStr))
+        .replace('{time}', timeStr);
+    // Capitalise the weekday ("samedi 24 octobre" → "Samedi 24 octobre").
+    const whenLine = when.charAt(0).toUpperCase() + when.slice(1);
+
+    const sections = [
+        `${t(m.greeting)}\n${t(m.intro)}`,
+        [
+            `*${t(m.dishes_title)}*`,
+            ...dishLines,
+            ...(hasPrice && total > 0 ? [`*${t(m.total_label)}${sep}${formatEuro(total)}*`] : []),
+        ].join('\n'),
+        `*${t(isDelivery ? m.delivery_title : m.collection_title)}*\n${whenLine}`,
     ];
-    if (fulfillment) {
-        const isDelivery = fulfillment.mode === 'delivery';
-        lines.push(
-            `• ${t(f.whatsapp_mode_label)}${sep}${t(isDelivery ? f.whatsapp_delivery : f.whatsapp_collection)}`,
-        );
-        if (isDelivery) {
-            // French address block: street / complement / POSTCODE CITY
-            const address = [
+
+    if (isDelivery) {
+        // French postal label: name / street / complement / POSTCODE TOWN, then phone.
+        sections.push(
+            [
+                `*${t(m.address_title)}*`,
+                fulfillment.name,
                 fulfillment.street,
                 fulfillment.complement,
                 `${fulfillment.postcode} ${fulfillment.city.toUpperCase()}`,
-            ].filter(Boolean);
-            lines.push(
-                `• ${t(f.whatsapp_name_label)}${sep}${fulfillment.name}`,
-                `• ${t(f.whatsapp_phone_label)}${sep}${fulfillment.phone}`,
-                `• ${t(f.whatsapp_address_label)}${sep}\n   ${address.join('\n   ')}`,
-            );
-        }
+                `${t(m.phone_label)}${sep}${fulfillment.phone}`,
+            ]
+                .filter(Boolean)
+                .join('\n'),
+        );
     }
-    const thanks = lang === 'fr' ? 'Merci !' : 'Thank you!';
-    return `${baseMsg}\n\n${lines.join('\n')}\n\n${thanks}`;
+
+    sections.push(t(m.thanks));
+    return sections.filter(Boolean).join('\n\n');
 }
 
 function openScheduleModal(onConfirm) {
@@ -761,28 +787,14 @@ function renderCartModal() {
             C.settings.contact_info?.primary_phone?.tel ||
             wa?.phone_e164;
 
-        let msg =
-            lang === 'fr'
-                ? 'Bonjour ! Je souhaite passer commande pour les plats suivants :\n\n'
-                : 'Hello! I would like to place an order for the following dishes:\n\n';
-        cart.forEach((item) => {
-            const dish = dishes.find((d) => d.id === item.id);
-            if (!dish) return;
-            const name = t(dish.name);
-            const disc = dish.discount_percent;
-            const price =
-                dish.price_eur != null
-                    ? disc
-                        ? dish.price_eur * (1 - disc / 100)
-                        : dish.price_eur
+        const orderItems = cart
+            .map((item) => {
+                const dish = dishes.find((d) => d.id === item.id);
+                return dish
+                    ? { qty: item.qty, name: t(dish.name), unitPrice: dishUnitPrice(dish) }
                     : null;
-            msg += `• ${item.qty}x ${name}`;
-            if (price != null) msg += ` — ${(price * item.qty).toFixed(2)}€`;
-            msg += '\n';
-        });
-        if (hasPrice && total > 0) {
-            msg += `\n${lang === 'fr' ? 'Total estimé' : 'Estimated total'} : ${total.toFixed(2)}€`;
-        }
+            })
+            .filter(Boolean);
 
         const clearLabel = lang === 'fr' ? 'Vider le panier' : 'Clear cart';
         const orderLabel =
@@ -797,7 +809,12 @@ function renderCartModal() {
 
         $('cart-order-btn')?.addEventListener('click', () => {
             openScheduleModal((dateVal, timeVal, fulfillment) => {
-                const finalMsg = appendScheduleToMessage(msg, dateVal, timeVal, fulfillment);
+                const finalMsg = buildWhatsAppOrderMessage(
+                    orderItems,
+                    dateVal,
+                    timeVal,
+                    fulfillment,
+                );
                 const itemsSummary = cart
                     .map((item) => {
                         const dish = dishes.find((d) => d.id === item.id);
@@ -914,12 +931,14 @@ function initCart() {
                 wa?.phone_e164;
             if (!waPhone) return;
             const name = t(dish.name);
-            const baseMsg =
-                lang === 'fr'
-                    ? `Bonjour ! Je souhaite commander : ${name}`
-                    : `Hello! I'd like to order: ${name}`;
+            const orderItems = [{ qty: 1, name, unitPrice: dishUnitPrice(dish) }];
             openScheduleModal((dateVal, timeVal, fulfillment) => {
-                const finalMsg = appendScheduleToMessage(baseMsg, dateVal, timeVal, fulfillment);
+                const finalMsg = buildWhatsAppOrderMessage(
+                    orderItems,
+                    dateVal,
+                    timeVal,
+                    fulfillment,
+                );
                 logOrderToSheet({
                     deliveryDate: dateVal,
                     deliveryTime: timeVal,
