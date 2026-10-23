@@ -12,3 +12,4 @@ let _cartPrevFocus = null;
 let cart = [];
 let _schedulePrevFocus = null;
 let _scheduleConfirmCallback = null;
+let _scheduleItems = []; // order lines shown in the schedule modal's total

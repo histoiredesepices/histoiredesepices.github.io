@@ -119,6 +119,8 @@ Le message envoyé sur WhatsApp contiendra automatiquement la date et l'heure ch
 
 Dans la même fenêtre, le client choisit **À emporter** (par défaut) ou **Livraison**. Pour une livraison, il renseigne son nom, son téléphone et son adresse (format français : numéro et rue, complément, code postal à 5 chiffres, ville) ; ces informations apparaissent dans le message WhatsApp et peuvent être mémorisées sur son appareil pour la prochaine fois. Elles ne sont jamais envoyées dans le tableur Google Sheets. Les textes de ce formulaire se modifient dans `"ui_strings"` → `"ordering"` → `"fulfillment"`.
 
+La fenêtre affiche aussi le **total de la commande**. En livraison, des frais de livraison s'ajoutent si la commande est inférieure au seuil de livraison offerte ; ils apparaissent dans le total et dans le message WhatsApp. Réglez-les dans `"settings"` → `"ordering"` : `"delivery_fee_eur": 3` (frais) et `"free_delivery_threshold_eur": 35` (livraison offerte à partir de ce montant). Le menu PDF utilise automatiquement ce même seuil.
+
 #### Remplacer une photo de plat
 
 1. Uploadez votre photo dans le dossier `assets/menu/` sur GitHub.
@@ -343,6 +345,8 @@ In `"settings"` → `"ordering"`, change the `"same_day_cutoff_hour"` value:
 The WhatsApp message will automatically include the date and time the customer selected.
 
 In the same pop-up, the customer chooses **Collection** (default) or **Delivery**. For delivery they enter their name, phone and address (French format: number and street, details, 5-digit postcode, town); this appears in the WhatsApp message and can be remembered on their device for next time. It is never sent to the Google Sheets log. The form's text lives in `"ui_strings"` → `"ordering"` → `"fulfillment"`.
+
+The pop-up also shows the **order total**. For delivery, a delivery fee is added when the order is below the free-delivery threshold; it appears in the total and in the WhatsApp message. Set it in `"settings"` → `"ordering"`: `"delivery_fee_eur": 3` (fee) and `"free_delivery_threshold_eur": 35` (free delivery from this amount). The menu PDF uses the same threshold automatically.
 
 #### Replace a dish photo
 

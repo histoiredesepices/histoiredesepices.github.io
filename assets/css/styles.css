@@ -3587,6 +3587,66 @@ img {
     margin: -0.5rem 0 0;
 }
 
+/* ── Order total (schedule modal) ─────────────────────────────────────────── */
+
+.schedule-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+}
+
+.schedule-summary[hidden],
+.schedule-summary__row[hidden],
+.schedule-summary__hint[hidden] {
+    display: none;
+}
+
+.schedule-summary__row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+.schedule-summary__row .is-free {
+    font-weight: 700;
+    color: #2e7d32;
+}
+
+.schedule-summary__total {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding-top: 0.5rem;
+    margin-top: 0.1rem;
+    border-top: 1px dashed var(--border);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.schedule-summary__total strong {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.schedule-summary__hint {
+    margin: 0.2rem 0 0;
+    padding: 0.5rem 0.65rem;
+    font-size: 0.75rem;
+    line-height: 1.45;
+    color: var(--saffron-dark);
+    background: rgba(201, 165, 92, 0.12);
+    border-radius: var(--radius-sm);
+}
+
 /* ── Collection / delivery choice ─────────────────────────────────────────── */
 
 .schedule-mode {

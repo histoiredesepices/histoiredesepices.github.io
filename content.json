@@ -13,7 +13,9 @@
             "same_day_cutoff_hour": 12,
             "same_day_cutoff_window": 8,
             "earliest_delivery_time": "12:00",
-            "latest_delivery_time": "21:00"
+            "latest_delivery_time": "21:00",
+            "delivery_fee_eur": 3,
+            "free_delivery_threshold_eur": 35
         },
         "order_log": {
             "m4Rx": "https://script.google.com/macros/s/AKfycbyagKYnH3VwDf_L01k5pR0rq9KVgTQPH-EkkQCbnwe_1jyHXiNP1oT3No2g79glTV4OVw/exec",
@@ -248,8 +250,8 @@
                 "contains_label": { "fr": "Allergènes", "en": "Allergens" },
                 "service_label": { "fr": "Bon à savoir", "en": "Good to know" },
                 "delivery_highlight": {
-                    "fr": "Livraison offerte dès 35 €",
-                    "en": "Free delivery from €35"
+                    "fr": "Livraison offerte dès {threshold}",
+                    "en": "Free delivery from {threshold}"
                 },
                 "allergen_note": {
                     "fr": "Allergènes indicatifs : nos plats sont préparés dans une cuisine qui manipule des allergènes. En cas d'allergie, contactez-nous avant de commander.",
@@ -667,6 +669,10 @@
                     "en": "I'd like to place the following order:"
                 },
                 "dishes_title": { "fr": "Ma commande", "en": "My order" },
+                "cost_title": { "fr": "Montant de la commande", "en": "Order cost" },
+                "subtotal_label": { "fr": "Sous-total", "en": "Subtotal" },
+                "delivery_fee_label": { "fr": "Livraison", "en": "Delivery" },
+                "free_label": { "fr": "offerte", "en": "free" },
                 "total_label": { "fr": "Total estimé", "en": "Estimated total" },
                 "collection_title": { "fr": "À emporter (retrait sur place)", "en": "Collection (pick-up)" },
                 "delivery_title": { "fr": "Livraison", "en": "Delivery" },
@@ -721,6 +727,14 @@
                 "error_postcode": {
                     "fr": "Le code postal doit comporter 5 chiffres.",
                     "en": "The postcode must be 5 digits."
+                },
+                "subtotal_label": { "fr": "Sous-total", "en": "Subtotal" },
+                "delivery_fee_label": { "fr": "Livraison", "en": "Delivery" },
+                "total_label": { "fr": "Total estimé", "en": "Estimated total" },
+                "free_label": { "fr": "Offerte", "en": "Free" },
+                "free_delivery_hint": {
+                    "fr": "Plus que {amount} pour profiter de la livraison offerte (dès {threshold}).",
+                    "en": "Only {amount} more for free delivery (from {threshold})."
                 },
                 "error_city": {
                     "fr": "Merci d'indiquer la ville.",

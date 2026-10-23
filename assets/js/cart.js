@@ -388,13 +388,90 @@ function dishUnitPrice(dish) {
         : dish.price_eur;
 }
 
+// Delivery pricing from content.json → settings.ordering (defaults: 3 € under 35 €).
+function getDeliveryPricing() {
+    const o = C.settings?.ordering || {};
+    const num = (v, d) => (Number.isFinite(v) && v >= 0 ? v : d);
+    return { fee: num(o.delivery_fee_eur, 3), threshold: num(o.free_delivery_threshold_eur, 35) };
+}
+
+// Single source of truth for the popup summary and the WhatsApp message.
+// items: [{ qty, name, unitPrice|null }]; mode: 'collection' | 'delivery'
+function computeOrderTotals(items, mode) {
+    const subtotal = items.reduce((s, i) => s + (i.unitPrice ?? 0) * i.qty, 0);
+    const hasPrice = items.some((i) => i.unitPrice != null) && subtotal > 0;
+    const { fee, threshold } = getDeliveryPricing();
+    const isDelivery = mode === 'delivery';
+    const deliveryFee = isDelivery && hasPrice && subtotal < threshold ? fee : 0;
+    return {
+        subtotal,
+        hasPrice,
+        isDelivery,
+        deliveryFee,
+        total: subtotal + deliveryFee,
+        missingForFree: isDelivery && hasPrice && subtotal < threshold ? threshold - subtotal : 0,
+        threshold,
+    };
+}
+
+// Popup summary: subtotal, delivery line (fee or "Free") and total.
+function renderScheduleSummary() {
+    const box = $('schedule-summary');
+    if (!box) return;
+    const totals = computeOrderTotals(_scheduleItems, getFulfillmentMode());
+    box.hidden = !totals.hasPrice;
+    if (!totals.hasPrice) return;
+
+    const f = fulfillmentStrings();
+    const set = (id, text) => {
+        const el = $(id);
+        if (el) el.textContent = text;
+    };
+    set('summary-subtotal', formatEuro(totals.subtotal));
+    set('summary-total', formatEuro(totals.total));
+
+    const deliveryRow = $('summary-delivery-row');
+    if (deliveryRow) deliveryRow.hidden = !totals.isDelivery;
+    const deliveryEl = $('summary-delivery');
+    if (deliveryEl) {
+        deliveryEl.textContent = totals.deliveryFee
+            ? formatEuro(totals.deliveryFee)
+            : t(f.free_label);
+        deliveryEl.classList.toggle('is-free', !totals.deliveryFee);
+    }
+
+    const hint = $('summary-hint');
+    if (hint) {
+        hint.hidden = !totals.missingForFree;
+        hint.textContent = totals.missingForFree
+            ? (t(f.free_delivery_hint) || '')
+                  .replace('{amount}', formatEuro(totals.missingForFree))
+                  .replace('{threshold}', formatEuro(totals.threshold))
+            : '';
+    }
+}
+
 // items: [{ qty, name, unitPrice|null }]
 function buildWhatsAppOrderMessage(items, dateStr, timeStr, fulfillment) {
     const m = C.ui_strings?.ordering?.whatsapp_message || {};
     const isDelivery = fulfillment?.mode === 'delivery';
     const sep = lang === 'fr' ? ' : ' : ': '; // French typography puts a space before ":"
-    const total = items.reduce((s, i) => s + (i.unitPrice ?? 0) * i.qty, 0);
-    const hasPrice = items.some((i) => i.unitPrice != null);
+    const totals = computeOrderTotals(items, fulfillment?.mode);
+
+    // "Order cost" section. Collection: just the total.
+    // Delivery: subtotal + delivery line (fee or free) + total.
+    const costSection = !totals.hasPrice
+        ? ''
+        : [
+              `*${t(m.cost_title)}*`,
+              ...(isDelivery
+                  ? [
+                        `${t(m.subtotal_label)}${sep}${formatEuro(totals.subtotal)}`,
+                        `${t(m.delivery_fee_label)}${sep}${totals.deliveryFee ? formatEuro(totals.deliveryFee) : t(m.free_label)}`,
+                    ]
+                  : []),
+              `*${t(m.total_label)}${sep}${formatEuro(totals.total)}*`,
+          ].join('\n');
 
     const dishLines = items.map(
         (i) =>
@@ -408,11 +485,8 @@ function buildWhatsAppOrderMessage(items, dateStr, timeStr, fulfillment) {
 
     const sections = [
         `${t(m.greeting)}\n${t(m.intro)}`,
-        [
-            `*${t(m.dishes_title)}*`,
-            ...dishLines,
-            ...(hasPrice && total > 0 ? [`*${t(m.total_label)}${sep}${formatEuro(total)}*`] : []),
-        ].join('\n'),
+        [`*${t(m.dishes_title)}*`, ...dishLines].join('\n'),
+        costSection,
         `*${t(isDelivery ? m.delivery_title : m.collection_title)}*\n${whenLine}`,
     ];
 
@@ -436,12 +510,14 @@ function buildWhatsAppOrderMessage(items, dateStr, timeStr, fulfillment) {
     return sections.filter(Boolean).join('\n\n');
 }
 
-function openScheduleModal(onConfirm) {
+// items: the order lines, used to show the total (and delivery fee) in the popup.
+function openScheduleModal(onConfirm, items = []) {
     const modal = $('schedule-modal');
     if (!modal) {
         onConfirm?.();
         return;
     }
+    _scheduleItems = items;
 
     const u = C.ui_strings?.ordering || {};
     const cutoffHour = getOrderingCutoffHour();
@@ -484,6 +560,7 @@ function openScheduleModal(onConfirm) {
 
     applyFulfillmentLabels();
     resetFulfillmentForm();
+    renderScheduleSummary();
 
     const dateInput = $('schedule-date-input');
     if (dateInput) {
@@ -560,6 +637,7 @@ function initScheduleModal() {
     $$('input[name="schedule-mode"]').forEach((radio) =>
         radio.addEventListener('change', () => {
             updateFulfillmentUI();
+            renderScheduleSummary();
             const errorEl = $('schedule-error');
             if (errorEl) errorEl.hidden = true;
         }),
@@ -831,7 +909,7 @@ function renderCartModal() {
                 //     source: 'cart',
                 // });
                 window.open(waUrl(waPhone, finalMsg), '_blank', 'noopener');
-            });
+            }, orderItems);
         });
 
         $('cart-clear-btn')?.addEventListener('click', () => {
@@ -939,16 +1017,17 @@ function initCart() {
                     timeVal,
                     fulfillment,
                 );
+                const totals = computeOrderTotals(orderItems, fulfillment?.mode);
                 logOrderToSheet({
                     deliveryDate: dateVal,
                     deliveryTime: timeVal,
                     itemsSummary: `1x ${name}`,
-                    totalAmount: dish.price_eur != null ? dish.price_eur : null,
+                    totalAmount: totals.hasPrice ? Number(totals.total.toFixed(2)) : null,
                     language: lang,
                     source: 'quick-order',
                 });
                 window.open(waUrl(waPhone, finalMsg), '_blank', 'noopener');
-            });
+            }, orderItems);
             return;
         }
     });

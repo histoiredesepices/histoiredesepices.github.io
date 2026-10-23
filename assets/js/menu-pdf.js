@@ -111,6 +111,20 @@ function menuPdfDish(dish, pdfStrings) {
         </div>`;
 }
 
+// "Free delivery from {threshold}" using settings.ordering.free_delivery_threshold_eur,
+// so the PDF always matches the threshold applied at checkout.
+function menuPdfDeliveryHighlight(pdfStrings) {
+    const threshold =
+        typeof getDeliveryPricing === 'function' ? getDeliveryPricing().threshold : 35;
+    const amount = Number.isInteger(threshold)
+        ? String(threshold)
+        : threshold.toFixed(2).replace('.', lang === 'fr' ? ',' : '.');
+    return t(pdfStrings.delivery_highlight).replace(
+        '{threshold}',
+        lang === 'fr' ? `${amount} €` : `€${amount}`,
+    );
+}
+
 // "Order & follow us" panel: phone numbers + ordering note on the left, QR
 // codes for the website (contact.website_url) and each social in
 // contact.socials on the right. Any missing link simply drops its QR code.
@@ -143,7 +157,7 @@ function buildMenuPdfContactPanel(pdfStrings) {
                 ${phones.map((p) => `<span class="menu-pdf__phone">${esc(p)}</span>`).join('')}
                 ${
                     t(pdfStrings.delivery_highlight)
-                        ? `<span class="menu-pdf__delivery">${esc(t(pdfStrings.delivery_highlight))}</span>`
+                        ? `<span class="menu-pdf__delivery">${esc(menuPdfDeliveryHighlight(pdfStrings))}</span>`
                         : ''
                 }
                 <span class="menu-pdf__contact-note">${esc(['WhatsApp', t(C.contact?.ordering_note)].filter(Boolean).join(' · '))}</span>

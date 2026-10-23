@@ -429,6 +429,24 @@
           </div>
           <span id="schedule-time-window-note" class="schedule-modal__hint"></span>
         </div>
+
+        <!-- Order total (delivery fee added below the free-delivery threshold) -->
+        <div id="schedule-summary" class="schedule-summary" hidden>
+          <div class="schedule-summary__row">
+            <span data-ordering-text="subtotal_label"></span>
+            <span id="summary-subtotal"></span>
+          </div>
+          <div class="schedule-summary__row" id="summary-delivery-row" hidden>
+            <span data-ordering-text="delivery_fee_label"></span>
+            <span id="summary-delivery"></span>
+          </div>
+          <div class="schedule-summary__total">
+            <span data-ordering-text="total_label"></span>
+            <strong id="summary-total"></strong>
+          </div>
+          <p id="summary-hint" class="schedule-summary__hint" hidden></p>
+        </div>
+
         <p id="schedule-error" class="schedule-modal__error" hidden></p>
       </div>
       <div class="schedule-modal__footer">
