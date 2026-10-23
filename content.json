@@ -368,8 +368,8 @@
             "type": "whatsapp",
             "phone_e164": "+33761938190",
             "prefilled_message": {
-                "fr": "Bonjour ! Je souhaite passer une commande chez L'Histoire des Épices.",
-                "en": "Hello! I'd like to place an order with L'Histoire des Épices."
+                "fr": "Bonjour L'Histoire des Épices !\n\nJ'aurais une petite question pour vous.\n\n• Sujet (commande, événement, allergènes, livraison…) : \n• Ma question : \n\nMerci d'avance et à très bientôt !",
+                "en": "Hello L'Histoire des Épices!\n\nI have a quick question for you.\n\n• Topic (order, event, allergens, delivery…): \n• My question: \n\nThank you in advance, speak soon!"
             },
             "label": { "fr": "Discuter sur WhatsApp", "en": "Chat on WhatsApp" }
         },
