@@ -47,6 +47,9 @@ histoire-des-epices/
 │   │   ├── utils.js        ← Pure helpers: $, $$, esc, t, waUrl, waSvg, …
 │   │   ├── seo.js          ← updateSEO, updateStructuredData.
 │   │   ├── menu.js         ← buildMenuItem, renderMenu, filterMenu.
+│   │   ├── menu-pdf.js     ← "Download menu" → A4 PDF generated live from menu.json
+│   │   │                     (html2pdf.js 0.14.0 + qrcode-generator 2.0.4 for the website/
+│   │   │                     social QR codes; pinned + SRI, lazy-loaded on first click).
 │   │   ├── render.js       ← All section renderers + render() orchestrator.
 │   │   ├── modal.js        ← Dish detail popup (open/close/init).
 │   │   ├── cart.js         ← Cart CRUD, card buttons, modal, WhatsApp order.

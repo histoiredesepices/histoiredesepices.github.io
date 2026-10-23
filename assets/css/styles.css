@@ -1418,6 +1418,339 @@ img {
     font-size: 1.1rem;
 }
 
+.download-menu-btn.is-loading {
+    opacity: 0.75;
+    cursor: progress;
+    pointer-events: none;
+}
+
+.download-menu-btn.is-loading .material-symbols-outlined {
+    animation: menuPdfSpin 1s linear infinite;
+}
+
+@keyframes menuPdfSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   GENERATED MENU PDF TEMPLATE (menu-pdf.js) — rendered off-screen, then
+   rasterised by html2pdf.js. Sized for an A4 content area (703px wide).
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.menu-pdf-host {
+    position: fixed;
+    top: 0;
+    left: -10000px;
+    pointer-events: none;
+}
+
+.menu-pdf {
+    background: #fff;
+    color: var(--dark);
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* Solid colours only in this template (no CSS gradients) — see .menu-pdf__cat-rule. */
+.menu-pdf__header {
+    padding: 28px 24px 24px;
+    text-align: center;
+    background: var(--primary);
+    border-bottom: 4px solid var(--saffron);
+    color: #fff;
+    border-radius: 14px;
+}
+
+.menu-pdf__logo {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    margin: 0 auto 8px;
+    display: block;
+}
+
+.menu-pdf__brand {
+    font-family: var(--font-script);
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 1.35;
+    margin: 0;
+}
+
+.menu-pdf__tagline {
+    margin: 10px 0 0;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--saffron-light);
+}
+
+.menu-pdf__title {
+    font-family: var(--font-script);
+    font-size: 24px;
+    margin: 14px 0 0;
+}
+
+.menu-pdf__updated {
+    margin: 4px 0 0;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Order & follow-us panel with QR codes (website + socials). */
+.menu-pdf__contact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 14px;
+    padding: 14px 18px;
+    border: 1px solid rgba(201, 165, 92, 0.55);
+    border-radius: 14px;
+}
+
+.menu-pdf__contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.menu-pdf__contact-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--saffron-dark);
+}
+
+.menu-pdf__phone {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--primary);
+}
+
+/* Free-delivery highlight. All the vertical padding is at the bottom on
+   purpose: html2canvas draws text ~6px lower than the browser lays it out,
+   and 0 / 13px was measured to centre the text in the rasterised PDF. */
+.menu-pdf__delivery {
+    align-self: flex-start;
+    margin-top: 8px;
+    padding: 0 14px 13px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--dark);
+    background: var(--saffron);
+    border-radius: 999px;
+}
+
+.menu-pdf__contact-note {
+    margin-top: 4px;
+    max-width: 260px;
+    font-size: 10.5px;
+    line-height: 1.45;
+    color: var(--muted);
+}
+
+.menu-pdf__qrs {
+    display: flex;
+    align-items: flex-end;
+    gap: 18px;
+    flex-shrink: 0;
+}
+
+.menu-pdf__qr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.menu-pdf__qr img {
+    width: 74px;
+    height: 74px;
+    image-rendering: pixelated;
+}
+
+.menu-pdf__qr span {
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--dark);
+}
+
+.menu-pdf__qr--main img {
+    width: 92px;
+    height: 92px;
+}
+
+.menu-pdf__qr--main span {
+    color: var(--primary);
+}
+
+.menu-pdf__qr-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding-left: 18px;
+    border-left: 1px solid var(--border);
+}
+
+.menu-pdf__qr-group-label {
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--saffron-dark);
+}
+
+.menu-pdf__qr-row {
+    display: flex;
+    gap: 14px;
+}
+
+/* "Good to know" + allergen notes: two matching cards with an accent bar. */
+.menu-pdf__notes {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.menu-pdf__note {
+    flex: 1;
+    padding: 10px 14px 11px;
+    background: var(--cream);
+    border-left: 3px solid var(--saffron);
+    border-radius: 0 10px 10px 0;
+}
+
+.menu-pdf__note--allergen {
+    border-left-color: var(--primary);
+}
+
+.menu-pdf__note-label {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--saffron-dark);
+}
+
+.menu-pdf__note--allergen .menu-pdf__note-label {
+    color: var(--primary);
+}
+
+.menu-pdf__note-text {
+    margin: 0;
+    font-size: 10.5px;
+    line-height: 1.5;
+    color: var(--dark);
+}
+
+.menu-pdf__cat {
+    margin-top: 22px;
+}
+
+.menu-pdf__cat-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 10px;
+    font-family: var(--font-script);
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--primary);
+}
+
+/* A real element with a solid border — not a gradient ::after: html2canvas
+   paints gradients via createPattern(), which throws on 0-sized boxes (pseudo
+   elements can collapse to 0 width in its cloned document). */
+.menu-pdf__cat-rule {
+    flex: 1;
+    min-width: 40px;
+    border-top: 1px solid rgba(201, 165, 92, 0.6);
+}
+
+.menu-pdf__dish {
+    padding: 6px 0 7px;
+    border-bottom: 1px solid rgba(91, 6, 23, 0.08);
+}
+
+.menu-pdf__dish-head {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.menu-pdf__dish-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--dark);
+}
+
+/* Sits on the text baseline once rasterised (html2canvas renders text lower). */
+.menu-pdf__dots {
+    flex: 1;
+    margin-bottom: 1px;
+    border-bottom: 1px dotted rgba(91, 6, 23, 0.35);
+}
+
+.menu-pdf__price {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary);
+    white-space: nowrap;
+}
+
+.menu-pdf__desc {
+    margin: 2px 0 0;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.menu-pdf__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+/* Plain coloured label rather than a pill: html2canvas draws this font a few
+   pixels lower than the browser, which pushes text out of background boxes. */
+.menu-pdf__badge {
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--saffron-dark);
+}
+
+.menu-pdf__badge + .menu-pdf__badge::before {
+    content: '·';
+    margin-right: 6px;
+    color: var(--muted);
+}
+
+.menu-pdf__spice {
+    font-size: 11px;
+}
+
+.menu-pdf__allergens {
+    font-size: 10.5px;
+    font-style: italic;
+    color: var(--muted);
+}
+
 /* ═══════════════════════════════════════════════════════════════════════════
    HERITAGE SECTION
    ═══════════════════════════════════════════════════════════════════════════ */

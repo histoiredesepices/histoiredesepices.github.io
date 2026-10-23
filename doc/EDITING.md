@@ -65,6 +65,10 @@ Ouvrez le fichier **`menu.json`** et trouvez la liste `"dishes": [...]`. Copiez 
 }
 ```
 
+#### Le menu PDF
+
+Le bouton « Télécharger le Menu (PDF) » **crée le PDF automatiquement** à partir de `menu.json`, dans la langue choisie par le visiteur. Il est donc toujours à jour : plus besoin de refaire un PDF quand vous changez un plat ou un prix. Les plats cachés (`"is_available": false`) n'y apparaissent pas. Les textes du PDF se modifient dans `content.json` → `"menu"` → `"download_button"`. Les QR codes du PDF sont créés à partir de `"contact"` → `"website_url"` (« Scanner pour commander ») et des liens `"socials"` (Facebook, Instagram) : si vous changez un lien, le QR code suit automatiquement.
+
 #### Cacher un plat (sans le supprimer)
 
 Trouvez le plat et changez `"is_available": true` en `"is_available": false`. Le plat disparaît du site mais reste dans le fichier, prêt à être réactivé.
@@ -283,6 +287,10 @@ It is the **brain of your website**. All visible content — text, contact detai
 #### Add a new dish
 
 Open the **`menu.json`** file and find the `"dishes": [...]` list. Copy an existing dish and paste it at the end (before the closing `]`). Change the `"id"` to something unique (lowercase, no spaces, e.g. `"my-new-dish"`).
+
+#### The menu PDF
+
+The "Download Menu (PDF)" button **builds the PDF automatically** from `menu.json`, in the visitor's chosen language. It is always up to date: no need to remake a PDF when you change a dish or a price. Hidden dishes (`"is_available": false`) are left out. The PDF's text is edited in `content.json` → `"menu"` → `"download_button"`. The PDF's QR codes are generated from `"contact"` → `"website_url"` ("Scan to order") and the `"socials"` links (Facebook, Instagram): change a link and its QR code follows automatically.
 
 #### Hide a dish without deleting it
 

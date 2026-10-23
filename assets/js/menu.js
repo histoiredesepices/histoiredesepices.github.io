@@ -109,10 +109,9 @@ function renderMenu() {
         if (linkText) linkText.textContent = ' ' + t(m.allergen_button.label);
     }
 
-    // Download menu button
+    // Download menu button — the PDF is generated from menu.json by menu-pdf.js
     const downloadBtn = $('download-menu-btn');
     if (downloadBtn && m.download_button) {
-        downloadBtn.href = m.download_button.url || 'assets/Menu.pdf';
         const btnText = downloadBtn.querySelector('[data-i18n="download_menu"]');
         if (btnText) btnText.textContent = t(m.download_button.label);
     }

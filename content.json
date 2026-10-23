@@ -237,7 +237,25 @@
         },
         "download_button": {
             "label": { "fr": "Télécharger le Menu (PDF)", "en": "Download Menu (PDF)" },
-            "url": "assets/Menu.pdf"
+            "generating_label": { "fr": "Préparation du PDF…", "en": "Preparing PDF…" },
+            "error_label": { "fr": "Échec — réessayez", "en": "Failed — please retry" },
+            "pdf": {
+                "file_name": "Menu-LHistoire-des-Epices",
+                "updated_label": { "fr": "Carte à jour au {date}", "en": "Menu as of {date}" },
+                "order_label": { "fr": "Commandes", "en": "Orders" },
+                "scan_to_order": { "fr": "Scanner pour commander", "en": "Scan to order" },
+                "follow_us": { "fr": "Suivez-nous", "en": "Follow us" },
+                "contains_label": { "fr": "Allergènes", "en": "Allergens" },
+                "service_label": { "fr": "Bon à savoir", "en": "Good to know" },
+                "delivery_highlight": {
+                    "fr": "Livraison offerte dès 35 €",
+                    "en": "Free delivery from €35"
+                },
+                "allergen_note": {
+                    "fr": "Allergènes indicatifs : nos plats sont préparés dans une cuisine qui manipule des allergènes. En cas d'allergie, contactez-nous avant de commander.",
+                    "en": "Allergens are indicative: our dishes are prepared in a kitchen that handles allergens. If you have an allergy, contact us before ordering."
+                }
+            }
         }
     },
 
@@ -357,6 +375,7 @@
         },
         "phone_label": { "fr": "APPELEZ-NOUS", "en": "CALL US" },
         "alternative_phone_label": { "fr": "NUMÉRO ALTERNATIF", "en": "ALTERNATIVE NUMBER" },
+        "website_url": "https://histoiredesepices.github.io/",
         "socials": [
             {
                 "platform": "facebook",
