@@ -117,6 +117,8 @@ Dans `"settings"` → `"ordering"`, changez la valeur de `"same_day_cutoff_hour"
 
 Le message envoyé sur WhatsApp contiendra automatiquement la date et l'heure choisies par le client.
 
+Dans la même fenêtre, le client choisit **À emporter** (par défaut) ou **Livraison**. Pour une livraison, il renseigne son nom, son téléphone et son adresse (format français : numéro et rue, complément, code postal à 5 chiffres, ville) ; ces informations apparaissent dans le message WhatsApp et peuvent être mémorisées sur son appareil pour la prochaine fois. Elles ne sont jamais envoyées dans le tableur Google Sheets. Les textes de ce formulaire se modifient dans `"ui_strings"` → `"ordering"` → `"fulfillment"`.
+
 #### Remplacer une photo de plat
 
 1. Uploadez votre photo dans le dossier `assets/menu/` sur GitHub.
@@ -339,6 +341,8 @@ In `"settings"` → `"ordering"`, change the `"same_day_cutoff_hour"` value:
 `"earliest_delivery_time"` and `"latest_delivery_time"` restrict the time window a customer can pick for delivery (24h `"HH:MM"` format). With the values above, customers can only choose a time **between 12:00 PM and 9:00 PM** — anything outside that range is automatically rejected.
 
 The WhatsApp message will automatically include the date and time the customer selected.
+
+In the same pop-up, the customer chooses **Collection** (default) or **Delivery**. For delivery they enter their name, phone and address (French format: number and street, details, 5-digit postcode, town); this appears in the WhatsApp message and can be remembered on their device for next time. It is never sent to the Google Sheets log. The form's text lives in `"ui_strings"` → `"ordering"` → `"fulfillment"`.
 
 #### Replace a dish photo
 

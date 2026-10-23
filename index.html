@@ -357,6 +357,63 @@
       </div>
       <div class="schedule-modal__body">
         <p id="schedule-note" class="schedule-modal__note"></p>
+
+        <!-- Collection or delivery (labels filled from content.json → ui_strings.ordering.fulfillment) -->
+        <fieldset class="schedule-modal__field schedule-mode">
+          <legend class="schedule-modal__field-label" data-ordering-text="mode_label"></legend>
+          <div class="schedule-mode__options">
+            <label class="schedule-mode__option">
+              <input type="radio" name="schedule-mode" value="collection" checked>
+              <span class="material-symbols-outlined" aria-hidden="true">storefront</span>
+              <span data-ordering-text="collection"></span>
+            </label>
+            <label class="schedule-mode__option">
+              <input type="radio" name="schedule-mode" value="delivery">
+              <span class="material-symbols-outlined" aria-hidden="true">local_shipping</span>
+              <span data-ordering-text="delivery"></span>
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- Delivery details — French address format: number + street, complement, postcode + city -->
+        <div id="schedule-delivery" class="schedule-delivery" hidden>
+          <label class="schedule-modal__field">
+            <span class="schedule-modal__field-label" data-ordering-text="name_label"></span>
+            <input type="text" id="delivery-name" class="schedule-modal__input" autocomplete="name" maxlength="80">
+          </label>
+          <label class="schedule-modal__field">
+            <span class="schedule-modal__field-label" data-ordering-text="phone_label"></span>
+            <input type="tel" id="delivery-phone" class="schedule-modal__input" autocomplete="tel" inputmode="tel"
+              maxlength="20" data-ordering-placeholder="phone_placeholder">
+          </label>
+          <label class="schedule-modal__field">
+            <span class="schedule-modal__field-label" data-ordering-text="street_label"></span>
+            <input type="text" id="delivery-street" class="schedule-modal__input" autocomplete="address-line1"
+              maxlength="120" data-ordering-placeholder="street_placeholder">
+          </label>
+          <label class="schedule-modal__field">
+            <span class="schedule-modal__field-label" data-ordering-text="complement_label"></span>
+            <input type="text" id="delivery-complement" class="schedule-modal__input" autocomplete="address-line2"
+              maxlength="120" data-ordering-placeholder="complement_placeholder">
+          </label>
+          <div class="schedule-delivery__row">
+            <label class="schedule-modal__field schedule-delivery__postcode">
+              <span class="schedule-modal__field-label" data-ordering-text="postcode_label"></span>
+              <input type="text" id="delivery-postcode" class="schedule-modal__input" autocomplete="postal-code"
+                inputmode="numeric" maxlength="5" data-ordering-placeholder="postcode_placeholder">
+            </label>
+            <label class="schedule-modal__field schedule-delivery__city">
+              <span class="schedule-modal__field-label" data-ordering-text="city_label"></span>
+              <input type="text" id="delivery-city" class="schedule-modal__input" autocomplete="address-level2"
+                maxlength="80" data-ordering-placeholder="city_placeholder">
+            </label>
+          </div>
+          <label class="schedule-delivery__remember">
+            <input type="checkbox" id="delivery-remember" checked>
+            <span data-ordering-text="remember_label"></span>
+          </label>
+        </div>
+
         <label class="schedule-modal__field">
           <span id="schedule-date-label" class="schedule-modal__field-label"></span>
           <input type="date" id="schedule-date-input" class="schedule-modal__input">

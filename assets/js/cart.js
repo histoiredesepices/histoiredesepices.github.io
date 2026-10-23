@@ -278,14 +278,136 @@ function formatScheduleDateForMessage(dateStr) {
     });
 }
 
-function appendScheduleToMessage(baseMsg, dateStr, timeStr) {
+// ── Collection / delivery (inside the schedule modal) ─────────────────────────
+// Delivery details are only ever kept in this browser (localStorage, if the
+// customer ticks "remember") and sent inside the WhatsApp message they choose
+// to send. They are never included in the Google Sheets order log.
+
+const DELIVERY_KEY = 'hde_delivery_details';
+const DELIVERY_FIELDS = {
+    name: 'delivery-name',
+    phone: 'delivery-phone',
+    street: 'delivery-street',
+    complement: 'delivery-complement',
+    postcode: 'delivery-postcode',
+    city: 'delivery-city',
+};
+// French numbers: 0X XX XX XX XX, or +33 / 0033 followed by 9 digits.
+const FR_PHONE_RE = /^(?:\+33|0033|0)[1-9]\d{8}$/;
+const FR_POSTCODE_RE = /^\d{5}$/;
+
+const fulfillmentStrings = () => C.ui_strings?.ordering?.fulfillment || {};
+
+function loadDeliveryDetails() {
+    try {
+        return JSON.parse(localStorage.getItem(DELIVERY_KEY) || 'null');
+    } catch {
+        return null;
+    }
+}
+
+function saveDeliveryDetails(details) {
+    try {
+        localStorage.setItem(DELIVERY_KEY, JSON.stringify(details));
+    } catch {}
+}
+
+function clearDeliveryDetails() {
+    try {
+        localStorage.removeItem(DELIVERY_KEY);
+    } catch {}
+}
+
+function getFulfillmentMode() {
+    return document.querySelector('input[name="schedule-mode"]:checked')?.value || 'collection';
+}
+
+function updateFulfillmentUI() {
+    const block = $('schedule-delivery');
+    if (block) block.hidden = getFulfillmentMode() !== 'delivery';
+}
+
+function applyFulfillmentLabels() {
+    const f = fulfillmentStrings();
+    $$('#schedule-modal [data-ordering-text]').forEach((el) => {
+        el.textContent = t(f[el.dataset.orderingText]);
+    });
+    $$('#schedule-modal [data-ordering-placeholder]').forEach((el) => {
+        el.placeholder = t(f[el.dataset.orderingPlaceholder]);
+    });
+}
+
+// Defaults to collection; pre-fills any remembered delivery details.
+function resetFulfillmentForm() {
+    const collection = document.querySelector('input[name="schedule-mode"][value="collection"]');
+    if (collection) collection.checked = true;
+    const saved = loadDeliveryDetails() || {};
+    Object.entries(DELIVERY_FIELDS).forEach(([key, id]) => {
+        const input = $(id);
+        if (!input) return;
+        input.value = saved[key] || '';
+        input.removeAttribute('aria-invalid');
+    });
+    const remember = $('delivery-remember');
+    if (remember) remember.checked = true;
+    updateFulfillmentUI();
+}
+
+function readDeliveryDetails() {
+    return Object.fromEntries(
+        Object.entries(DELIVERY_FIELDS).map(([key, id]) => [key, ($(id)?.value || '').trim()]),
+    );
+}
+
+// Returns { field, message } for the first invalid field, or null if valid.
+function validateDeliveryDetails(d) {
+    const f = fulfillmentStrings();
+    const checks = [
+        ['name', d.name.length >= 2, f.error_name],
+        ['phone', FR_PHONE_RE.test(d.phone.replace(/[\s.\-()]/g, '')), f.error_phone],
+        ['street', d.street.length >= 3, f.error_street],
+        ['postcode', FR_POSTCODE_RE.test(d.postcode), f.error_postcode],
+        ['city', d.city.length >= 2, f.error_city],
+    ];
+    const failed = checks.find(([, ok]) => !ok);
+    return failed ? { field: failed[0], message: t(failed[2]) } : null;
+}
+
+function appendScheduleToMessage(baseMsg, dateStr, timeStr, fulfillment) {
     const u = C.ui_strings?.ordering || {};
+    const f = u.fulfillment || {};
+    const sep = lang === 'fr' ? ' : ' : ': ';
     const dateLabel =
         t(u.whatsapp_date_label) ||
         (lang === 'fr' ? 'Date de commande souhaitée' : 'Requested desired date');
     const timeLabel =
         t(u.whatsapp_time_label) || (lang === 'fr' ? 'Heure souhaitée' : 'Requested desired time');
-    return `${baseMsg}\n\n• ${dateLabel} : ${formatScheduleDateForMessage(dateStr)}\n• ${timeLabel} : ${timeStr}`;
+
+    const lines = [
+        `• ${dateLabel}${sep}${formatScheduleDateForMessage(dateStr)}`,
+        `• ${timeLabel}${sep}${timeStr}`,
+    ];
+    if (fulfillment) {
+        const isDelivery = fulfillment.mode === 'delivery';
+        lines.push(
+            `• ${t(f.whatsapp_mode_label)}${sep}${t(isDelivery ? f.whatsapp_delivery : f.whatsapp_collection)}`,
+        );
+        if (isDelivery) {
+            // French address block: street / complement / POSTCODE CITY
+            const address = [
+                fulfillment.street,
+                fulfillment.complement,
+                `${fulfillment.postcode} ${fulfillment.city.toUpperCase()}`,
+            ].filter(Boolean);
+            lines.push(
+                `• ${t(f.whatsapp_name_label)}${sep}${fulfillment.name}`,
+                `• ${t(f.whatsapp_phone_label)}${sep}${fulfillment.phone}`,
+                `• ${t(f.whatsapp_address_label)}${sep}\n   ${address.join('\n   ')}`,
+            );
+        }
+    }
+    const thanks = lang === 'fr' ? 'Merci !' : 'Thank you!';
+    return `${baseMsg}\n\n${lines.join('\n')}\n\n${thanks}`;
 }
 
 function openScheduleModal(onConfirm) {
@@ -333,6 +455,9 @@ function openScheduleModal(onConfirm) {
 
     const noteEl = $('schedule-note');
     if (noteEl) noteEl.textContent = noteText;
+
+    applyFulfillmentLabels();
+    resetFulfillmentForm();
 
     const dateInput = $('schedule-date-input');
     if (dateInput) {
@@ -405,6 +530,21 @@ function initScheduleModal() {
         );
     });
 
+    // Collection / delivery toggle + clear a field's error state as it's edited.
+    $$('input[name="schedule-mode"]').forEach((radio) =>
+        radio.addEventListener('change', () => {
+            updateFulfillmentUI();
+            const errorEl = $('schedule-error');
+            if (errorEl) errorEl.hidden = true;
+        }),
+    );
+    Object.values(DELIVERY_FIELDS).forEach((id) =>
+        $(id)?.addEventListener('input', (e) => e.target.removeAttribute('aria-invalid')),
+    );
+    $('delivery-postcode')?.addEventListener('input', (e) => {
+        e.target.value = e.target.value.replace(/\D/g, '').slice(0, 5);
+    });
+
     $('schedule-confirm-btn')?.addEventListener('click', () => {
         const dateInput = $('schedule-date-input');
         const errorEl = $('schedule-error');
@@ -464,10 +604,31 @@ function initScheduleModal() {
             return;
         }
 
+        // Delivery: validate the French address form, then remember (or forget)
+        // the details on this device according to the checkbox.
+        const fulfillment = { mode: getFulfillmentMode() };
+        if (fulfillment.mode === 'delivery') {
+            const details = readDeliveryDetails();
+            const invalid = validateDeliveryDetails(details);
+            if (invalid) {
+                const input = $(DELIVERY_FIELDS[invalid.field]);
+                input?.setAttribute('aria-invalid', 'true');
+                input?.focus();
+                if (errorEl) {
+                    errorEl.textContent = invalid.message;
+                    errorEl.hidden = false;
+                }
+                return;
+            }
+            if ($('delivery-remember')?.checked) saveDeliveryDetails(details);
+            else clearDeliveryDetails();
+            Object.assign(fulfillment, details);
+        }
+
         const callback = _scheduleConfirmCallback;
         const dateVal = dateInput.value;
         closeScheduleModal();
-        callback?.(dateVal, timeVal);
+        callback?.(dateVal, timeVal, fulfillment);
     });
 }
 
@@ -622,7 +783,6 @@ function renderCartModal() {
         if (hasPrice && total > 0) {
             msg += `\n${lang === 'fr' ? 'Total estimé' : 'Estimated total'} : ${total.toFixed(2)}€`;
         }
-        msg += `\n\n${lang === 'fr' ? 'Merci !' : 'Thank you!'}`;
 
         const clearLabel = lang === 'fr' ? 'Vider le panier' : 'Clear cart';
         const orderLabel =
@@ -636,8 +796,8 @@ function renderCartModal() {
             </div>`;
 
         $('cart-order-btn')?.addEventListener('click', () => {
-            openScheduleModal((dateVal, timeVal) => {
-                const finalMsg = appendScheduleToMessage(msg, dateVal, timeVal);
+            openScheduleModal((dateVal, timeVal, fulfillment) => {
+                const finalMsg = appendScheduleToMessage(msg, dateVal, timeVal, fulfillment);
                 const itemsSummary = cart
                     .map((item) => {
                         const dish = dishes.find((d) => d.id === item.id);
@@ -758,8 +918,8 @@ function initCart() {
                 lang === 'fr'
                     ? `Bonjour ! Je souhaite commander : ${name}`
                     : `Hello! I'd like to order: ${name}`;
-            openScheduleModal((dateVal, timeVal) => {
-                const finalMsg = appendScheduleToMessage(baseMsg, dateVal, timeVal);
+            openScheduleModal((dateVal, timeVal, fulfillment) => {
+                const finalMsg = appendScheduleToMessage(baseMsg, dateVal, timeVal, fulfillment);
                 logOrderToSheet({
                     deliveryDate: dateVal,
                     deliveryTime: timeVal,

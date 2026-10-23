@@ -414,7 +414,7 @@
     },
 
     "privacy": {
-        "version": "2026-10-15",
+        "version": "2026-10-23",
         "banner": {
             "title": { "fr": "Votre vie privée", "en": "Your privacy" },
             "text": {
@@ -424,12 +424,12 @@
             "collect_title": { "fr": "Ce que nous utilisons", "en": "What we use" },
             "collect": {
                 "fr": [
-                    "Votre langue et votre panier, enregistrés uniquement sur votre appareil",
+                    "Votre langue, votre panier et, si vous le souhaitez, vos coordonnées de livraison, enregistrés uniquement sur votre appareil",
                     "Le détail de votre commande (plats, montant, date et heure de livraison) quand vous l'envoyez",
                     "Google Fonts et Tailwind CDN pour l'affichage, qui reçoivent votre adresse IP"
                 ],
                 "en": [
-                    "Your language and cart, stored only on your device",
+                    "Your language, your cart and, if you choose, your delivery details, stored only on your device",
                     "Your order details (dishes, amount, delivery date and time) when you send it",
                     "Google Fonts and Tailwind CDN for display, which receive your IP address"
                 ]
@@ -441,12 +441,12 @@
             "not_collect": {
                 "fr": [
                     "Aucun cookie de suivi, de publicité ou de statistiques",
-                    "Ni nom, ni e-mail, ni téléphone via le site",
+                    "Aucun compte ni e-mail : vos coordonnées de livraison ne nous parviennent que dans le message WhatsApp que vous envoyez",
                     "Aucune revente ni partage commercial de vos données"
                 ],
                 "en": [
                     "No tracking, advertising or analytics cookies",
-                    "No name, email or phone number through the site",
+                    "No account or email: your delivery details only reach us inside the WhatsApp message you send",
                     "No selling or commercial sharing of your data"
                 ]
             },
@@ -488,14 +488,14 @@
                         "fr": [
                             "Aucun cookie : le site n'en dépose aucun.",
                             "Aucune mesure d'audience (pas de Google Analytics ni équivalent), aucune publicité, aucun pixel de réseau social.",
-                            "Aucun compte, formulaire ou newsletter : le site ne vous demande ni nom, ni e-mail, ni numéro de téléphone, ni adresse.",
+                            "Aucun compte, e-mail ou newsletter. Le site ne vous demande un nom, un téléphone et une adresse que si vous choisissez la livraison, et ces informations ne nous sont jamais envoyées automatiquement (voir ci-dessous).",
                             "Aucun paiement en ligne.",
                             "Nous ne vendons ni ne partageons vos données à des fins commerciales."
                         ],
                         "en": [
                             "No cookies: the site sets none.",
                             "No audience measurement (no Google Analytics or similar), no advertising, no social media pixels.",
-                            "No accounts, forms or newsletter: the site never asks for your name, email, phone number or address.",
+                            "No accounts, email or newsletter. The site only asks for a name, phone number and address if you choose delivery, and this information is never sent to us automatically (see below).",
                             "No online payment.",
                             "We never sell or share your data for commercial purposes."
                         ]
@@ -508,8 +508,8 @@
                         "en": "Stored only on your device"
                     },
                     "text": {
-                        "fr": "Pour que le site fonctionne, trois informations sont gardées dans la mémoire de votre navigateur (localStorage) : la langue choisie, le contenu de votre panier et le fait que vous avez fermé ce bandeau. Elles ne nous sont jamais envoyées et vous pouvez les effacer à tout moment en supprimant les données du site dans votre navigateur. Strictement nécessaires au service que vous demandez, elles ne requièrent pas de consentement.",
-                        "en": "For the site to work, three pieces of information are kept in your browser's storage (localStorage): your chosen language, your cart contents, and the fact that you closed this banner. They are never sent to us, and you can erase them at any time by clearing this site's data in your browser. As they are strictly necessary for the service you request, they don't require consent."
+                        "fr": "Pour que le site fonctionne, ces informations sont gardées dans la mémoire de votre navigateur (localStorage) : la langue choisie, le contenu de votre panier et le fait que vous avez fermé ce bandeau. Si vous choisissez la livraison et cochez « Mémoriser mes coordonnées », vos nom, téléphone et adresse y sont aussi gardés pour pré-remplir vos prochaines commandes ; décochez la case pour les effacer. Ces informations ne nous sont jamais envoyées et vous pouvez les effacer à tout moment en supprimant les données du site dans votre navigateur. Strictement nécessaires au service que vous demandez, elles ne requièrent pas de consentement.",
+                        "en": "For the site to work, this information is kept in your browser's storage (localStorage): your chosen language, your cart contents, and the fact that you closed this banner. If you choose delivery and tick \"Remember my details\", your name, phone number and address are also kept there to pre-fill your next orders; untick the box to erase them. This information is never sent to us, and you can erase them at any time by clearing this site's data in your browser. As they are strictly necessary for the service you request, they don't require consent."
                     }
                 },
                 {
@@ -519,8 +519,8 @@
                         "en": "When you place an order"
                     },
                     "text": {
-                        "fr": "Lorsque vous envoyez une commande sur WhatsApp, une copie de la commande (plats, quantités, montant estimé, date et heure de livraison souhaitées, langue) est enregistrée dans un tableur Google Sheets privé, accessible à nous seuls, pour préparer et suivre les commandes. Cette copie ne contient ni votre nom, ni votre téléphone, ni votre adresse. Elle est conservée le temps nécessaire au suivi des commandes et à nos obligations comptables.",
-                        "en": "When you send an order on WhatsApp, a copy of the order (dishes, quantities, estimated amount, requested delivery date and time, language) is saved in a private Google Sheets spreadsheet that only we can access, to prepare and track orders. This copy contains neither your name, phone number nor address. It is kept for as long as needed to track orders and meet our accounting obligations."
+                        "fr": "Lorsque vous envoyez une commande sur WhatsApp, une copie de la commande (plats, quantités, montant estimé, date et heure de livraison souhaitées, langue) est enregistrée dans un tableur Google Sheets privé, accessible à nous seuls, pour préparer et suivre les commandes. Cette copie ne contient ni votre nom, ni votre téléphone, ni votre adresse. En cas de livraison, ces coordonnées figurent uniquement dans le message WhatsApp que vous nous envoyez, et nous ne les utilisons que pour livrer votre commande. La copie est conservée le temps nécessaire au suivi des commandes et à nos obligations comptables.",
+                        "en": "When you send an order on WhatsApp, a copy of the order (dishes, quantities, estimated amount, requested delivery date and time, language) is saved in a private Google Sheets spreadsheet that only we can access, to prepare and track orders. This copy contains neither your name, phone number nor address. For delivery, those details appear only in the WhatsApp message you send us, and we use them solely to deliver your order. The copy is kept for as long as needed to track orders and meet our accounting obligations."
                     }
                 },
                 {
@@ -603,8 +603,8 @@
             "date_label": { "fr": "Date souhaitée", "en": "Desired date" },
             "time_label": { "fr": "Heure souhaitée", "en": "Desired time" },
             "time_window_note": {
-                "fr": "Livraison possible entre {start} et {end}.",
-                "en": "Delivery available between {start} and {end}."
+                "fr": "Créneaux disponibles entre {start} et {end}.",
+                "en": "Time slots available between {start} and {end}."
             },
             "confirm_button": { "fr": "Continuer sur WhatsApp", "en": "Continue on WhatsApp" },
             "cancel_button": { "fr": "Annuler", "en": "Cancel" },
@@ -636,7 +636,68 @@
                 "fr": "Date de commande souhaitée",
                 "en": "Desired order date"
             },
-            "whatsapp_time_label": { "fr": "Heure souhaitée", "en": "Desired time" }
+            "whatsapp_time_label": { "fr": "Heure souhaitée", "en": "Desired time" },
+            "fulfillment": {
+                "mode_label": { "fr": "Retrait ou livraison ?", "en": "Collection or delivery?" },
+                "collection": { "fr": "À emporter", "en": "Collection" },
+                "delivery": { "fr": "Livraison", "en": "Delivery" },
+                "name_label": { "fr": "Nom et prénom", "en": "Full name" },
+                "phone_label": { "fr": "Téléphone", "en": "Phone" },
+                "phone_placeholder": { "fr": "06 12 34 56 78", "en": "06 12 34 56 78" },
+                "street_label": {
+                    "fr": "Adresse (numéro et rue)",
+                    "en": "Address (number and street)"
+                },
+                "street_placeholder": {
+                    "fr": "12 rue de la République",
+                    "en": "12 rue de la République"
+                },
+                "complement_label": {
+                    "fr": "Complément d'adresse (facultatif)",
+                    "en": "Address details (optional)"
+                },
+                "complement_placeholder": {
+                    "fr": "Bâtiment, étage, digicode…",
+                    "en": "Building, floor, door code…"
+                },
+                "postcode_label": { "fr": "Code postal", "en": "Postcode" },
+                "postcode_placeholder": { "fr": "59300", "en": "59300" },
+                "city_label": { "fr": "Ville", "en": "Town" },
+                "city_placeholder": { "fr": "Valenciennes", "en": "Valenciennes" },
+                "remember_label": {
+                    "fr": "Mémoriser mes coordonnées sur cet appareil pour mes prochaines commandes",
+                    "en": "Remember my details on this device for future orders"
+                },
+                "error_name": {
+                    "fr": "Merci d'indiquer votre nom.",
+                    "en": "Please enter your name."
+                },
+                "error_phone": {
+                    "fr": "Merci d'indiquer un numéro de téléphone français valide (ex. 06 12 34 56 78).",
+                    "en": "Please enter a valid French phone number (e.g. 06 12 34 56 78)."
+                },
+                "error_street": {
+                    "fr": "Merci d'indiquer le numéro et la rue.",
+                    "en": "Please enter the street number and name."
+                },
+                "error_postcode": {
+                    "fr": "Le code postal doit comporter 5 chiffres.",
+                    "en": "The postcode must be 5 digits."
+                },
+                "error_city": {
+                    "fr": "Merci d'indiquer la ville.",
+                    "en": "Please enter the town."
+                },
+                "whatsapp_mode_label": { "fr": "Mode", "en": "Method" },
+                "whatsapp_collection": {
+                    "fr": "À emporter (retrait sur place)",
+                    "en": "Collection (pick-up)"
+                },
+                "whatsapp_delivery": { "fr": "Livraison", "en": "Delivery" },
+                "whatsapp_name_label": { "fr": "Nom", "en": "Name" },
+                "whatsapp_phone_label": { "fr": "Téléphone", "en": "Phone" },
+                "whatsapp_address_label": { "fr": "Adresse de livraison", "en": "Delivery address" }
+            }
         },
         "section_labels": {
             "hero": { "fr": "Présentation", "en": "Introduction" },
