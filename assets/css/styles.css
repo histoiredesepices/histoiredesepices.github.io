@@ -1603,7 +1603,10 @@ img {
     border-left: 1px solid var(--border);
 }
 
+/* Extra bottom margin: html2canvas draws text ~6px lower than laid out, which
+   otherwise pushes this label down onto the QR codes. */
 .menu-pdf__qr-group-label {
+    margin-bottom: 10px;
     font-size: 9.5px;
     font-weight: 700;
     letter-spacing: 0.15em;
