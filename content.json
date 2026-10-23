@@ -425,12 +425,12 @@
             "collect": {
                 "fr": [
                     "Votre langue, votre panier et, si vous le souhaitez, vos coordonnées de livraison, enregistrés uniquement sur votre appareil",
-                    "Le détail de votre commande (plats, montant, date et heure de livraison) quand vous l'envoyez",
+                    "Le détail de votre commande quand vous l'envoyez et, pour une livraison, vos nom, téléphone et adresse, uniquement dans votre message WhatsApp",
                     "Google Fonts et Tailwind CDN pour l'affichage, qui reçoivent votre adresse IP"
                 ],
                 "en": [
                     "Your language, your cart and, if you choose, your delivery details, stored only on your device",
-                    "Your order details (dishes, amount, delivery date and time) when you send it",
+                    "Your order details when you send it and, for delivery, your name, phone and address, only inside your WhatsApp message",
                     "Google Fonts and Tailwind CDN for display, which receive your IP address"
                 ]
             },
@@ -524,6 +524,34 @@
                     }
                 },
                 {
+                    "icon": "local_shipping",
+                    "title": { "fr": "Livraison : vos coordonnées", "en": "Delivery: your details" },
+                    "text": {
+                        "fr": "Si vous choisissez la livraison, nous vous demandons les informations strictement nécessaires pour vous livrer.",
+                        "en": "If you choose delivery, we ask only for the information strictly needed to deliver your order."
+                    },
+                    "items": {
+                        "fr": [
+                            "Données : nom et prénom, numéro de téléphone, adresse de livraison (rue, complément, code postal, ville).",
+                            "Finalité : préparer et livrer votre commande, et vous joindre en cas de besoin (retard, accès, adresse introuvable).",
+                            "Base légale : l'exécution de votre commande, à votre demande (article 6.1.b du RGPD).",
+                            "Transmission : uniquement dans le message WhatsApp que vous choisissez d'envoyer. Le site ne nous les transmet jamais lui-même et elles ne sont pas copiées dans notre tableur de commandes.",
+                            "Destinataires : nous seuls, ainsi que WhatsApp (Meta) qui achemine le message. Elles ne sont ni vendues, ni partagées, ni utilisées à des fins publicitaires.",
+                            "Durée de conservation : le temps de traiter et livrer votre commande, puis au maximum 12 mois dans l'historique de nos conversations WhatsApp, sauf si vous demandez leur suppression avant.",
+                            "Sur votre appareil : uniquement si vous cochez « Mémoriser mes coordonnées » ; décochez la case lors de votre prochaine commande pour les effacer."
+                        ],
+                        "en": [
+                            "Data: full name, phone number, delivery address (street, details, postcode, town).",
+                            "Purpose: to prepare and deliver your order, and to reach you if needed (delay, access, address not found).",
+                            "Legal basis: performing your order, at your request (Article 6(1)(b) GDPR).",
+                            "Transmission: only inside the WhatsApp message you choose to send. The site never sends them to us by itself, and they are not copied into our order spreadsheet.",
+                            "Recipients: only us, plus WhatsApp (Meta), which carries the message. They are never sold, shared or used for advertising.",
+                            "Retention: as long as needed to handle and deliver your order, then at most 12 months in our WhatsApp chat history, unless you ask us to delete them sooner.",
+                            "On your device: only if you tick \"Remember my details\"; untick the box on your next order to erase them."
+                        ]
+                    }
+                },
+                {
                     "icon": "chat",
                     "title": { "fr": "WhatsApp et téléphone", "en": "WhatsApp and phone" },
                     "text": {
@@ -559,8 +587,8 @@
                     "icon": "gavel",
                     "title": { "fr": "Vos droits", "en": "Your rights" },
                     "text": {
-                        "fr": "Conformément au RGPD, vous pouvez demander l'accès, la rectification ou la suppression des informations vous concernant, ou vous opposer à leur traitement, en nous contactant par WhatsApp ou au {phone}. Vous pouvez aussi adresser une réclamation à la CNIL (www.cnil.fr).",
-                        "en": "Under the GDPR, you can request access to, correction or deletion of information about you, or object to its processing, by contacting us on WhatsApp or at {phone}. You can also lodge a complaint with the CNIL, the French data protection authority (www.cnil.fr)."
+                        "fr": "Conformément au RGPD, vous pouvez demander l'accès, la rectification, la suppression ou la portabilité des informations vous concernant, la limitation de leur traitement, ou vous y opposer, en nous contactant par WhatsApp ou au {phone}. Nous vous répondons dans un délai d'un mois. Les informations gardées sur votre appareil sont sous votre seul contrôle : vous pouvez les effacer à tout moment. Vous pouvez aussi adresser une réclamation à la CNIL (www.cnil.fr).",
+                        "en": "Under the GDPR, you can request access to, correction, deletion or portability of information about you, restrict its processing, or object to it, by contacting us on WhatsApp or at {phone}. We reply within one month. Information kept on your device is under your sole control: you can erase it at any time. You can also lodge a complaint with the CNIL, the French data protection authority (www.cnil.fr)."
                     }
                 }
             ],

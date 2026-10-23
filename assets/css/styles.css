@@ -3454,9 +3454,16 @@ img {
     max-width: 420px;
     max-height: 92vh;
     overflow-y: auto;
+    /* Still scrollable (wheel, trackpad, touch) — just no visible scrollbar. */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     display: flex;
     flex-direction: column;
     animation: modalIn 0.32s var(--ease-bounce) forwards;
+}
+
+.schedule-modal__card::-webkit-scrollbar {
+    display: none;
 }
 
 .schedule-modal__header {
