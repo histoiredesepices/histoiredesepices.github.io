@@ -1183,5 +1183,33 @@
             "allergens": [],
             "spice_level": 0
         }
+
+        {
+            "id": "Diwali Menu-Mixed",
+            "category": "combo_meal",
+            "name": {
+                "fr": "Menu Mixte Spécial-DIWALI",
+                "en": "DIWALI special Menu-Mixed"
+            },
+            "description": {
+                "fr": "Un duo gourmand composé de mutton yakhni pulao, de shahi paneer, de 2 naans",
+                "en": "A delicious duo consisting of mutton yakhni pulao, shahi paneer, and 2 naans"
+            },
+            "image": "assets/menu/Diwali mixed.jpeg",
+            "image_alt": {
+                "fr": "Idiyappam avec ragoût non-végétarien au lait de coco",
+                "en": "Idiyappam with non-vegetarian coconut milk stew"
+            },
+            "tags": ["halal"],
+            "is_signature": true,
+            "is_new": false,
+            "is_spicy": false,
+            "is_available": true,
+            "price_eur": 14.5,
+            "discount_percent": null,
+            "calories_kcal": null,
+            "allergens": [],
+            "spice_level": 0
+        }
     ]
 }
