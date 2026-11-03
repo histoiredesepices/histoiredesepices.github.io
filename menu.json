@@ -1182,10 +1182,10 @@
             "calories_kcal": null,
             "allergens": [],
             "spice_level": 0
-        }
+        },
         
         {
-            "id": "Diwali Menu-Mixed",
+            "id": "Diwali-Menu-Mixed",
             "category": "combo_meal",
             "name": {
                 "fr": "Menu Mixte Spécial-DIWALI",
