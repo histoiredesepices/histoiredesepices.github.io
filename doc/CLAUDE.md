@@ -199,20 +199,20 @@ Each `id` must match a section `id` in `index.html` so anchor scroll works.
 
 `headline` is an array of strings rendered as separate lines. `headline_italic_part` is the index (0-based) of which line is italicised — keeps the editorial feel.
 
-#### `specialties` — The 6 signature dishes showcase section
+#### `specialties` — "In the Spotlight" highlights section
 
 ```json
 "specialties": {
-  "eyebrow": { "fr": "Découvrez", "en": "Discover" },
-  "title": { "fr": "Nos Spécialités", "en": "Our Specialties" },
+  "eyebrow": { "fr": "À ne pas manquer", "en": "Don't miss" },
+  "title": { "fr": "À la Une", "en": "In the Spotlight" },
   "subtitle": {
-    "fr": "Six plats signatures qui racontent l'histoire de nos épices",
-    "en": "Six signature dishes that tell the story of our spices"
+    "fr": "Plats signatures, offres du moment et nouveautés : notre sélection à découvrir dès maintenant.",
+    "en": "Signature dishes, current offers and new arrivals: our pick for you to discover right now."
   }
 }
 ```
 
-This section automatically displays 6 dishes marked with `is_signature: true` from the menu. If fewer than 6 signatures exist, it fills with other available dishes.
+A highlights showcase: the copy is deliberately generic so the section can feature signature dishes, offers or new arrivals. It displays up to 6 available dishes (`is_available !== false`) marked `is_signature: true` in `menu.json`, in menu order, each with a "Signature" badge. It does **not** fill up with other dishes; if no dish is marked as a signature, the whole section (and its nav link) is hidden.
 
 #### `features` — The 3 quick-info pills in the hero
 

@@ -133,11 +133,11 @@
     },
 
     "specialties": {
-        "eyebrow": { "fr": "Découvrez", "en": "Discover" },
-        "title": { "fr": "Nos Spécialités", "en": "Our Specialties" },
+        "eyebrow": { "fr": "À ne pas manquer", "en": "Don't miss" },
+        "title": { "fr": "À la Une", "en": "In the Spotlight" },
         "subtitle": {
-            "fr": "Six plats signatures qui racontent l'histoire de nos épices",
-            "en": "Six signature dishes that tell the story of our spices"
+            "fr": "Plats signatures, offres du moment et nouveautés : notre sélection à découvrir dès maintenant.",
+            "en": "Signature dishes, current offers and new arrivals: our pick for you to discover right now."
         }
     },
 
@@ -527,7 +527,10 @@
                 },
                 {
                     "icon": "local_shipping",
-                    "title": { "fr": "Livraison : vos coordonnées", "en": "Delivery: your details" },
+                    "title": {
+                        "fr": "Livraison : vos coordonnées",
+                        "en": "Delivery: your details"
+                    },
                     "text": {
                         "fr": "Si vous choisissez la livraison, nous vous demandons les informations strictement nécessaires pour vous livrer.",
                         "en": "If you choose delivery, we ask only for the information strictly needed to deliver your order."
@@ -663,7 +666,10 @@
                 "en": "This time slot is no longer available, please choose another."
             },
             "whatsapp_message": {
-                "greeting": { "fr": "Bonjour L'Histoire des Épices !", "en": "Hello L'Histoire des Épices!" },
+                "greeting": {
+                    "fr": "Bonjour L'Histoire des Épices !",
+                    "en": "Hello L'Histoire des Épices!"
+                },
                 "intro": {
                     "fr": "Je souhaite passer la commande suivante :",
                     "en": "I'd like to place the following order:"
@@ -675,7 +681,10 @@
                 "delivery_fee_label": { "fr": "Livraison", "en": "Delivery" },
                 "free_label": { "fr": "offerte", "en": "free" },
                 "total_label": { "fr": "Total estimé", "en": "Estimated total" },
-                "collection_title": { "fr": "À emporter (retrait sur place)", "en": "Collection (pick-up)" },
+                "collection_title": {
+                    "fr": "À emporter (retrait sur place)",
+                    "en": "Collection (pick-up)"
+                },
                 "delivery_title": { "fr": "Livraison", "en": "Delivery" },
                 "datetime": { "fr": "{date} à {time}", "en": "{date} at {time}" },
                 "address_title": { "fr": "Adresse de livraison", "en": "Delivery address" },
