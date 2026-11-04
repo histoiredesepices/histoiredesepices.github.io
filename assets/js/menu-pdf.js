@@ -285,8 +285,9 @@ async function generateMenuPdf(btn) {
 
         const stamp = new Date().toISOString().slice(0, 10);
         const fileBase = db.pdf?.file_name || 'Menu';
-        const site = (C.seo?.canonical_url || '').replace(/^https?:\/\//, '');
-        const footerText = [C.branding?.name, site].filter(Boolean).join('  ·  ');
+        const site = (C.seo?.canonical_url || '').replace(/^https?:\/\/|\/$/g, '');
+        const brand = C.branding?.name || '';
+        const pageLabel = 'Page'; // same word in FR and EN
 
         await window
             .html2pdf()
@@ -310,15 +311,41 @@ async function generateMenuPdf(btn) {
             .toPdf()
             .get('pdf')
             .then((pdf) => {
-                // Page footer: "L'Histoire des Épices · site — 1 / 3"
+                // Page footer in the header's style: rounded burgundy bar with a
+                // saffron top edge — brand (left) · website (centre) · page (right).
                 const pages = pdf.internal.getNumberOfPages();
                 const w = pdf.internal.pageSize.getWidth();
                 const h = pdf.internal.pageSize.getHeight();
+                const x = 12; // same side margins as the content
+                const barW = w - 2 * x;
+                const barH = 8;
+                const barY = h - 12; // content ends at h - 16 (bottom margin)
+                const midY = barY + barH / 2;
                 for (let i = 1; i <= pages; i++) {
                     pdf.setPage(i);
+                    // Saffron layer peeking 0.8 mm above the burgundy bar = gold edge.
+                    pdf.setFillColor(201, 165, 92);
+                    pdf.roundedRect(x, barY - 0.8, barW, barH + 0.8, 2.5, 2.5, 'F');
+                    pdf.setFillColor(91, 6, 23);
+                    pdf.roundedRect(x, barY, barW, barH, 2.5, 2.5, 'F');
+
+                    pdf.setFont('helvetica', 'bold');
+                    pdf.setFontSize(8.5);
+                    pdf.setTextColor(255, 255, 255);
+                    pdf.text(brand, x + 5, midY, { baseline: 'middle' });
+
+                    pdf.setFont('helvetica', 'normal');
+                    pdf.setFontSize(7.5);
+                    pdf.setTextColor(224, 200, 138); // saffron-light
+                    if (site) pdf.text(site, w / 2, midY, { align: 'center', baseline: 'middle' });
+
+                    pdf.setFont('helvetica', 'bold');
                     pdf.setFontSize(8);
-                    pdf.setTextColor(140);
-                    pdf.text(`${footerText} — ${i} / ${pages}`, w / 2, h - 7, { align: 'center' });
+                    pdf.setTextColor(255, 255, 255);
+                    pdf.text(`${pageLabel} ${i} / ${pages}`, x + barW - 5, midY, {
+                        align: 'right',
+                        baseline: 'middle',
+                    });
                 }
             })
             .save();
