@@ -246,6 +246,51 @@ function logOrderToSheet(payload) {
 // Earliest selectable date: tomorrow if past the same-day cutoff hour, then
 // pushed forward further until a date actually has a slot left after the
 // preparation lead time.
+// Short reference shown in the WhatsApp message and logged in the sheet, so a
+// sheet row can be matched to its WhatsApp conversation, e.g. "HDE-261023-K7Q2".
+function generateOrderRef() {
+    const d = new Date();
+    const ymd = [d.getFullYear() % 100, d.getMonth() + 1, d.getDate()]
+        .map((n) => String(n).padStart(2, '0'))
+        .join('');
+    const alphabet = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789'; // no look-alikes (0/O, 1/I/L)
+    const rand = Array.from(crypto.getRandomValues(new Uint8Array(4)))
+        .map((b) => alphabet[b % alphabet.length])
+        .join('');
+    return `HDE-${ymd}-${rand}`;
+}
+
+// Sheet row data. Deliberately contains no name, phone or street address —
+// only postcode + town for planning delivery rounds (see the privacy policy).
+function buildOrderLogPayload(items, dateVal, timeVal, fulfillment, source, orderRef) {
+    const totals = computeOrderTotals(items, fulfillment?.mode);
+    const money = (n) => (totals.hasPrice ? Number(n.toFixed(2)) : null);
+    const isDelivery = fulfillment?.mode === 'delivery';
+    return {
+        orderRef,
+        deliveryDate: dateVal,
+        deliveryTime: timeVal,
+        fulfillment: isDelivery ? 'delivery' : 'collection',
+        itemsSummary: items.map((i) => `${i.qty}x ${i.name}`).join(', '),
+        itemCount: items.reduce((s, i) => s + i.qty, 0),
+        subtotal: money(totals.subtotal),
+        deliveryFee: money(totals.deliveryFee),
+        totalAmount: money(totals.total),
+        postcode: isDelivery ? fulfillment.postcode : '',
+        city: isDelivery ? fulfillment.city : '',
+        language: lang,
+        source,
+    };
+}
+
+// Confirmed order → WhatsApp message + (best-effort) sheet row.
+function sendOrder(items, dateVal, timeVal, fulfillment, source, waPhone) {
+    const orderRef = generateOrderRef();
+    const message = buildWhatsAppOrderMessage(items, dateVal, timeVal, fulfillment, orderRef);
+    logOrderToSheet(buildOrderLogPayload(items, dateVal, timeVal, fulfillment, source, orderRef));
+    window.open(waUrl(waPhone, message), '_blank', 'noopener');
+}
+
 function getMinOrderDate() {
     const cutoffHour = getOrderingCutoffHour();
     const min = new Date();
@@ -452,7 +497,7 @@ function renderScheduleSummary() {
 }
 
 // items: [{ qty, name, unitPrice|null }]
-function buildWhatsAppOrderMessage(items, dateStr, timeStr, fulfillment) {
+function buildWhatsAppOrderMessage(items, dateStr, timeStr, fulfillment, orderRef) {
     const m = C.ui_strings?.ordering?.whatsapp_message || {};
     const isDelivery = fulfillment?.mode === 'delivery';
     const sep = lang === 'fr' ? ' : ' : ': '; // French typography puts a space before ":"
@@ -484,7 +529,9 @@ function buildWhatsAppOrderMessage(items, dateStr, timeStr, fulfillment) {
     const whenLine = when.charAt(0).toUpperCase() + when.slice(1);
 
     const sections = [
-        `${t(m.greeting)}\n${t(m.intro)}`,
+        [t(m.greeting), t(m.intro), orderRef ? `${t(m.order_ref_label)}${sep}${orderRef}` : '']
+            .filter(Boolean)
+            .join('\n'),
         [`*${t(m.dishes_title)}*`, ...dishLines].join('\n'),
         costSection,
         `*${t(isDelivery ? m.delivery_title : m.collection_title)}*\n${whenLine}`,
@@ -886,30 +933,11 @@ function renderCartModal() {
             </div>`;
 
         $('cart-order-btn')?.addEventListener('click', () => {
-            openScheduleModal((dateVal, timeVal, fulfillment) => {
-                const finalMsg = buildWhatsAppOrderMessage(
-                    orderItems,
-                    dateVal,
-                    timeVal,
-                    fulfillment,
-                );
-                const itemsSummary = cart
-                    .map((item) => {
-                        const dish = dishes.find((d) => d.id === item.id);
-                        return dish ? `${item.qty}x ${t(dish.name)}` : null;
-                    })
-                    .filter(Boolean)
-                    .join(', ');
-                // logOrderToSheet({
-                //     deliveryDate: dateVal,
-                //     deliveryTime: timeVal,
-                //     itemsSummary,
-                //     totalAmount: hasPrice && total > 0 ? Number(total.toFixed(2)) : null,
-                //     language: lang,
-                //     source: 'cart',
-                // });
-                window.open(waUrl(waPhone, finalMsg), '_blank', 'noopener');
-            }, orderItems);
+            openScheduleModal(
+                (dateVal, timeVal, fulfillment) =>
+                    sendOrder(orderItems, dateVal, timeVal, fulfillment, 'cart', waPhone),
+                orderItems,
+            );
         });
 
         $('cart-clear-btn')?.addEventListener('click', () => {
@@ -1010,24 +1038,11 @@ function initCart() {
             if (!waPhone) return;
             const name = t(dish.name);
             const orderItems = [{ qty: 1, name, unitPrice: dishUnitPrice(dish) }];
-            openScheduleModal((dateVal, timeVal, fulfillment) => {
-                const finalMsg = buildWhatsAppOrderMessage(
-                    orderItems,
-                    dateVal,
-                    timeVal,
-                    fulfillment,
-                );
-                const totals = computeOrderTotals(orderItems, fulfillment?.mode);
-                logOrderToSheet({
-                    deliveryDate: dateVal,
-                    deliveryTime: timeVal,
-                    itemsSummary: `1x ${name}`,
-                    totalAmount: totals.hasPrice ? Number(totals.total.toFixed(2)) : null,
-                    language: lang,
-                    source: 'quick-order',
-                });
-                window.open(waUrl(waPhone, finalMsg), '_blank', 'noopener');
-            }, orderItems);
+            openScheduleModal(
+                (dateVal, timeVal, fulfillment) =>
+                    sendOrder(orderItems, dateVal, timeVal, fulfillment, 'quick-order', waPhone),
+                orderItems,
+            );
             return;
         }
     });

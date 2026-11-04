@@ -18,11 +18,35 @@ is ever lost or delayed because of this feature.
 
 1. Go to [sheets.google.com](https://sheets.google.com) and create a new blank
    spreadsheet, e.g. named **"L'Histoire des Épices — Commandes"**.
-2. In row 1, add these column headers:
+2. Leave it empty — the script writes the header row itself on the first
+   order. The columns are:
 
-    | A       | B                 | C                  | D        | E           | F      | G      |
-    | ------- | ----------------- | ------------------ | -------- | ----------- | ------ | ------ |
-    | Reçu le | Date de livraison | Heure de livraison | Commande | Montant (€) | Langue | Source |
+    | Column | Header | Example |
+    | --- | --- | --- |
+    | A | Reçu le | 23/10/2026 16:27 |
+    | B | Référence | HDE-261023-K7Q2 (also shown in the customer's WhatsApp message) |
+    | C | Date souhaitée | 2026-10-24 |
+    | D | Heure | 12:00 |
+    | E | Mode | À emporter / Livraison |
+    | F | Commande | 2x Butter Chicken, 1x Naan Maison |
+    | G | Nb articles | 3 |
+    | H | Sous-total (€) | 29.00 |
+    | I | Livraison (€) | 3.00 (0 if free or collection) |
+    | J | Total (€) | 32.00 |
+    | K | Code postal | 59300 (delivery only) |
+    | L | Ville | Valenciennes (delivery only) |
+    | M | Langue | fr |
+    | N | Source | cart / quick-order |
+
+   **No name, phone number or street address is ever sent to the sheet** —
+   those only travel in the customer's own WhatsApp message (this is what
+   the privacy policy promises). Match a row to its conversation with the
+   reference in column B.
+
+> **Upgrading from the first version?** The old sheet had 7 columns. Either
+> start a new tab (rename the old one, e.g. "Anciennes commandes", then add
+> an empty tab — the script writes to the **first** tab), or clear row 1 of
+> your current tab and let the script write the new headers.
 
 ## 2. Add the Apps Script
 
@@ -30,11 +54,18 @@ is ever lost or delayed because of this feature.
 2. Delete any placeholder code and paste the script below.
 3. Replace `REPLACE_WITH_A_RANDOM_STRING` with a random string of your choice
    (treat it like a lightweight password — it just filters out noise, it is
-   **not** real security since it travels in the page's JavaScript).
+   **not** real security since it travels in the page's JavaScript). It must
+   match `settings.order_log.k7Qz` in `content.json`.
 
 ```js
 var SHARED_SECRET = 'REPLACE_WITH_A_RANDOM_STRING';
 var MAX_REQUESTS_PER_MINUTE = 20; // generous for real traffic, blocks floods
+
+var HEADERS = [
+    'Reçu le', 'Référence', 'Date souhaitée', 'Heure', 'Mode', 'Commande',
+    'Nb articles', 'Sous-total (€)', 'Livraison (€)', 'Total (€)',
+    'Code postal', 'Ville', 'Langue', 'Source',
+];
 
 function doPost(e) {
     try {
@@ -48,26 +79,38 @@ function doPost(e) {
             return jsonResponse({ status: 'rate_limited' });
         }
 
-        var deliveryDate = sanitize_(data.deliveryDate, 10);
-        var deliveryTime = sanitize_(data.deliveryTime, 5);
-        var itemsSummary = sanitize_(data.itemsSummary, 500);
-        var language = sanitize_(data.language, 5);
-        var source = sanitize_(data.source, 20);
-        var totalAmount =
-            typeof data.totalAmount === 'number' && isFinite(data.totalAmount)
-                ? Math.max(0, Math.min(data.totalAmount, 100000))
-                : '';
-
-        var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-        sheet.appendRow([
+        var isDelivery = data.fulfillment === 'delivery';
+        var row = [
             new Date(),
-            deliveryDate,
-            deliveryTime,
-            itemsSummary,
-            totalAmount,
-            language,
-            source,
-        ]);
+            text_(data.orderRef, 20),
+            text_(data.deliveryDate, 10),
+            text_(data.deliveryTime, 5),
+            isDelivery ? 'Livraison' : 'À emporter',
+            text_(data.itemsSummary, 500),
+            amount_(data.itemCount, 1000),
+            amount_(data.subtotal, 100000),
+            amount_(data.deliveryFee, 1000),
+            amount_(data.totalAmount, 100000),
+            isDelivery ? postcode_(data.postcode) : '',
+            isDelivery ? text_(data.city, 80) : '',
+            text_(data.language, 5),
+            text_(data.source, 20),
+        ];
+
+        // Serialise writes so two simultaneous orders can't collide.
+        var lock = LockService.getScriptLock();
+        lock.waitLock(10000);
+        try {
+            var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
+            if (sheet.getLastRow() === 0) {
+                sheet.appendRow(HEADERS);
+                sheet.setFrozenRows(1);
+                sheet.getRange(1, 1, 1, HEADERS.length).setFontWeight('bold');
+            }
+            sheet.appendRow(row);
+        } finally {
+            lock.releaseLock();
+        }
 
         return jsonResponse({ status: 'ok' });
     } catch (err) {
@@ -86,11 +129,24 @@ function isRateLimited_() {
     return count > MAX_REQUESTS_PER_MINUTE;
 }
 
-// Coerces a field to a trimmed string capped at maxLen, discarding anything
-// that isn't a plain string (defends against unexpected payload shapes).
-function sanitize_(value, maxLen) {
+// Plain string capped at maxLen. Anything that isn't a string becomes ''.
+// A leading = + - @ is neutralised so a crafted value can never be run as a
+// spreadsheet formula ("formula injection").
+function text_(value, maxLen) {
     if (typeof value !== 'string') return '';
-    return value.slice(0, maxLen);
+    var s = value.slice(0, maxLen);
+    return /^[=+\-@]/.test(s) ? "'" + s : s;
+}
+
+// Finite number between 0 and max (rounded to cents), or '' if missing/invalid.
+function amount_(value, max) {
+    if (typeof value !== 'number' || !isFinite(value)) return '';
+    return Math.round(Math.max(0, Math.min(value, max)) * 100) / 100;
+}
+
+// French postcode: exactly 5 digits, kept as text so leading zeros survive.
+function postcode_(value) {
+    return typeof value === 'string' && /^\d{5}$/.test(value) ? "'" + value : '';
 }
 
 function jsonResponse(obj) {

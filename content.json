@@ -19,7 +19,7 @@
         },
         "order_log": {
             "m4Rx": "https://script.google.com/macros/s/AKfycbyagKYnH3VwDf_L01k5pR0rq9KVgTQPH-EkkQCbnwe_1jyHXiNP1oT3No2g79glTV4OVw/exec",
-            "k7Qz": "sV-afGANvv3qge0dSR7q52olBhRURXTNfdGRcv2mjj0"
+            "k7Qz": "Thisisascretpassword"
         },
         "contact_info": {
             "primary_phone": {
@@ -521,8 +521,8 @@
                         "en": "When you place an order"
                     },
                     "text": {
-                        "fr": "Lorsque vous envoyez une commande sur WhatsApp, une copie de la commande (plats, quantités, montant estimé, date et heure de livraison souhaitées, langue) est enregistrée dans un tableur Google Sheets privé, accessible à nous seuls, pour préparer et suivre les commandes. Cette copie ne contient ni votre nom, ni votre téléphone, ni votre adresse. En cas de livraison, ces coordonnées figurent uniquement dans le message WhatsApp que vous nous envoyez, et nous ne les utilisons que pour livrer votre commande. La copie est conservée le temps nécessaire au suivi des commandes et à nos obligations comptables.",
-                        "en": "When you send an order on WhatsApp, a copy of the order (dishes, quantities, estimated amount, requested delivery date and time, language) is saved in a private Google Sheets spreadsheet that only we can access, to prepare and track orders. This copy contains neither your name, phone number nor address. For delivery, those details appear only in the WhatsApp message you send us, and we use them solely to deliver your order. The copy is kept for as long as needed to track orders and meet our accounting obligations."
+                        "fr": "Lorsque vous envoyez une commande sur WhatsApp, une copie de la commande (référence, plats, quantités, montants y compris les frais de livraison, retrait ou livraison, date et heure souhaitées, langue et, pour une livraison, le code postal et la ville) est enregistrée dans un tableur Google Sheets privé, accessible à nous seuls, pour préparer et suivre les commandes. Cette copie ne contient ni votre nom, ni votre téléphone, ni votre numéro et nom de rue. En cas de livraison, ces coordonnées figurent uniquement dans le message WhatsApp que vous nous envoyez, et nous ne les utilisons que pour livrer votre commande. La copie est conservée le temps nécessaire au suivi des commandes et à nos obligations comptables.",
+                        "en": "When you send an order on WhatsApp, a copy of the order (reference, dishes, quantities, amounts including any delivery fee, collection or delivery, requested date and time, language and, for delivery, the postcode and town) is saved in a private Google Sheets spreadsheet that only we can access, to prepare and track orders. This copy contains neither your name, phone number nor street address. For delivery, those details appear only in the WhatsApp message you send us, and we use them solely to deliver your order. The copy is kept for as long as needed to track orders and meet our accounting obligations."
                     }
                 },
                 {
@@ -537,7 +537,7 @@
                             "Données : nom et prénom, numéro de téléphone, adresse de livraison (rue, complément, code postal, ville).",
                             "Finalité : préparer et livrer votre commande, et vous joindre en cas de besoin (retard, accès, adresse introuvable).",
                             "Base légale : l'exécution de votre commande, à votre demande (article 6.1.b du RGPD).",
-                            "Transmission : uniquement dans le message WhatsApp que vous choisissez d'envoyer. Le site ne nous les transmet jamais lui-même et elles ne sont pas copiées dans notre tableur de commandes.",
+                            "Transmission : uniquement dans le message WhatsApp que vous choisissez d'envoyer. Le site ne nous les transmet jamais lui-même. Seuls le code postal et la ville sont notés dans notre tableur de commandes, pour organiser les tournées de livraison.",
                             "Destinataires : nous seuls, ainsi que WhatsApp (Meta) qui achemine le message. Elles ne sont ni vendues, ni partagées, ni utilisées à des fins publicitaires.",
                             "Durée de conservation : le temps de traiter et livrer votre commande, puis au maximum 12 mois dans l'historique de nos conversations WhatsApp, sauf si vous demandez leur suppression avant.",
                             "Sur votre appareil : uniquement si vous cochez « Mémoriser mes coordonnées » ; décochez la case lors de votre prochaine commande pour les effacer."
@@ -546,7 +546,7 @@
                             "Data: full name, phone number, delivery address (street, details, postcode, town).",
                             "Purpose: to prepare and deliver your order, and to reach you if needed (delay, access, address not found).",
                             "Legal basis: performing your order, at your request (Article 6(1)(b) GDPR).",
-                            "Transmission: only inside the WhatsApp message you choose to send. The site never sends them to us by itself, and they are not copied into our order spreadsheet.",
+                            "Transmission: only inside the WhatsApp message you choose to send. The site never sends them to us by itself. Only the postcode and town are noted in our order spreadsheet, to plan delivery rounds.",
                             "Recipients: only us, plus WhatsApp (Meta), which carries the message. They are never sold, shared or used for advertising.",
                             "Retention: as long as needed to handle and deliver your order, then at most 12 months in our WhatsApp chat history, unless you ask us to delete them sooner.",
                             "On your device: only if you tick \"Remember my details\"; untick the box on your next order to erase them."
@@ -668,6 +668,7 @@
                     "fr": "Je souhaite passer la commande suivante :",
                     "en": "I'd like to place the following order:"
                 },
+                "order_ref_label": { "fr": "Référence", "en": "Reference" },
                 "dishes_title": { "fr": "Ma commande", "en": "My order" },
                 "cost_title": { "fr": "Montant de la commande", "en": "Order cost" },
                 "subtotal_label": { "fr": "Sous-total", "en": "Subtotal" },
