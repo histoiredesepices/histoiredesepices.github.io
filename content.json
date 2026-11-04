@@ -95,7 +95,7 @@
 
     "navigation": {
         "items": [
-            { "id": "specialties", "label": { "fr": "Spécialités", "en": "Specialties" } },
+            { "id": "specialties", "label": { "fr": "À la Une", "en": "Spotlight" } },
             { "id": "menu", "label": { "fr": "La Carte", "en": "Menu" } },
             { "id": "heritage", "label": { "fr": "Héritage", "en": "Heritage" } },
             { "id": "evenements", "label": { "fr": "Événements", "en": "Events" } },
@@ -754,7 +754,7 @@
         },
         "section_labels": {
             "hero": { "fr": "Présentation", "en": "Introduction" },
-            "specialties": { "fr": "Nos Spécialités", "en": "Our Specialties" },
+            "specialties": { "fr": "À la Une", "en": "In the Spotlight" },
             "menu": { "fr": "La carte", "en": "The menu" },
             "heritage": { "fr": "Notre histoire", "en": "Our story" },
             "evenements": { "fr": "Événements", "en": "Events" },

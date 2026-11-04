@@ -153,7 +153,7 @@ Each flag is a simple boolean the owner can flip. The site re-renders accordingl
 ```json
 "navigation": {
   "items": [
-    { "id": "specialties", "label": { "fr": "Spécialités", "en": "Specialties" } },
+    { "id": "specialties", "label": { "fr": "À la Une", "en": "Spotlight" } },
     { "id": "menu", "label": { "fr": "La Carte", "en": "Menu" } },
     { "id": "heritage", "label": { "fr": "Héritage", "en": "Heritage" } },
     { "id": "evenements", "label": { "fr": "Événements", "en": "Events" } },
@@ -549,7 +549,7 @@ Implements a modern, clean single-page layout. Sections in order:
     - **Features:** Three glassmorphism pills at bottom showing key selling points (icon + title).
     - **Scroll indicator:** Bouncing chevron at very bottom.
 
-3. **Specialties** — Showcase of 6 signature dishes in a responsive grid (1/2/3 columns).
+3. **Spotlight ("À la Une")** — Up to 6 highlighted dishes (marked `is_signature`) in a responsive grid (1/2/3 columns).
     - Cards with image, signature badge, name, description, and price.
     - Hover: lift effect with shadow.
 
