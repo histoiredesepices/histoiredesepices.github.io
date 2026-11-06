@@ -28,7 +28,7 @@ _No frameworks • No build step • Bilingual FR/EN • GitHub Pages ready_
 ### Menu & content
 
 - **Live PDF menu**: "Download menu" builds an A4 PDF from `menu.json` on the fly, in the visitor's language, so it never goes out of date. It includes QR codes for the website, Facebook and Instagram.
-- **Menu filtering**: by category (Starters, Vegetarian, Non-Vegetarian, Sides, Desserts, Meal combos).
+- **Menu filtering**: by category (Starters, Vegetarian, Non-Vegetarian, Biryani, Sides, Desserts, Meal combos).
 - **Allergen page**: generated from each dish's `allergens` field, with an "I'm allergic to…" filter.
 - **Events & free quote**: event cards with photo galleries, plus a "Request a quote" WhatsApp banner with a detailed pre-filled message.
 - **Bilingual (FR/EN)**: language toggle, remembered on the device.

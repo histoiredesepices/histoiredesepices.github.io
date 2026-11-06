@@ -261,6 +261,7 @@ Features are displayed as glassmorphism pills at the bottom of the hero section.
     { "id": "entrees", "label": { "fr": "Entrées", "en": "Starters" } },
     { "id": "vegetarian", "label": { "fr": "Végétarien", "en": "Vegetarian" } },
     { "id": "non_vegetarian", "label": { "fr": "Non-Végétarien", "en": "Non-Vegetarian" } },
+    { "id": "biryani", "label": { "fr": "Biriyani", "en": "Biryani" } },
     { "id": "sides", "label": { "fr": "Accompagnements", "en": "Sides" } },
     { "id": "desserts", "label": { "fr": "Desserts", "en": "Desserts" } }
   ],

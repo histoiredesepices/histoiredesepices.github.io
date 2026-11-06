@@ -151,8 +151,10 @@ Dans `"settings"`, changez `"site_under_construction": false` en `"site_under_co
 | `entrees`           | Entrées             | Starters           |
 | `vegetarian`        | Végétarien          | Vegetarian         |
 | `non_vegetarian`    | Non-Végétarien      | Non-Vegetarian     |
+| `biryani`           | Biriyani            | Biryani            |
 | `sides`             | Accompagnements     | Sides              |
 | `desserts`          | Desserts            | Desserts           |
+| `combo_meal`        | Formule repas       | Meal combo         |
 
 ---
 

@@ -13,6 +13,11 @@
             "label": { "fr": "Non-Végétarien", "en": "Non-Vegetarian" }
         },
         {
+            "id": "biryani",
+            "icon": "dinner_dining",
+            "label": { "fr": "Biriyani", "en": "Biryani" }
+        },
+        {
             "id": "sides",
             "icon": "rice_bowl",
             "label": { "fr": "Accompagnements", "en": "Sides" }
@@ -768,7 +773,7 @@
 
         {
             "id": "poulet-biriyani",
-            "category": "non_vegetarian",
+            "category": "biryani",
             "name": { "fr": "Poulet Biriyani", "en": "Chicken Biryani" },
             "description": {
                 "fr": "Riz basmati aux épices douces et viande marinée, cuisson lente à l'étouffée, saveurs subtiles et parfumées.",
@@ -791,7 +796,7 @@
 
         {
             "id": "Biriyani au bœuf",
-            "category": "non_vegetarian",
+            "category": "biryani",
             "name": { "fr": "Biriyani au bœuf", "en": "Beef Biryani" },
             "description": {
                 "fr": "Biryani de bœuf de style Malabar avec du bœuf tendre mijoté, des épices grillées, des oignons caramélisés et du riz parfumé Kaima (Jeerakasala) .",
@@ -813,7 +818,7 @@
         },
         {
             "id": "Agneau-biriyani",
-            "category": "non_vegetarian",
+            "category": "biryani",
             "name": { "fr": "Agneau Biriyani", "en": "Mutton Biryani" },
             "description": {
                 "fr": "Riz basmati aux épices douces et viande marinée, cuisson lente à l'étouffée, saveurs subtiles et parfumées.",
@@ -835,7 +840,7 @@
         },
         {
             "id": "Crevettes -biriyani",
-            "category": "non_vegetarian",
+            "category": "biryani",
             "name": { "fr": "Crevettes Biriyani", "en": "Prawns Biryani" },
             "description": {
                 "fr": "Riz basmati aux épices douces et viande marinée, cuisson lente à l'étouffée, saveurs subtiles et parfumées.",
