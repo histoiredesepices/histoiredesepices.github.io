@@ -16,7 +16,14 @@
             "earliest_delivery_time": "12:00",
             "latest_delivery_time": "21:00",
             "delivery_fee_eur": 3,
-            "free_delivery_threshold_eur": 35
+            "free_delivery_threshold_eur": 35,
+            "complimentary_sides": [
+                {
+                    "id": "rice",
+                    "label": { "fr": "Riz basmati nature", "en": "Plain basmati rice" }
+                },
+                { "id": "chapati", "label": { "fr": "Chapati (2 pcs)", "en": "Chapati (2 pcs)" } }
+            ]
         },
         "order_log": {
             "m4Rx": "https://script.google.com/macros/s/AKfycbyagKYnH3VwDf_L01k5pR0rq9KVgTQPH-EkkQCbnwe_1jyHXiNP1oT3No2g79glTV4OVw/exec",
@@ -231,8 +238,8 @@
     "menu": {
         "section_title": { "fr": "Notre Carte Gourmande", "en": "Our Menu" },
         "footnote": {
-            "fr": "Tous les plats sont accompagnés de Riz Basmati nature. Supplément pour tout accompagnement ou remplacement.",
-            "en": "All dishes are served with plain Basmati rice. Extra charge for any side dish or replacement."
+            "fr": "Tous nos currys sont servis avec un accompagnement offert au choix : riz basmati nature ou chapati (2 pcs). Supplément pour tout autre accompagnement.",
+            "en": "All our curries come with a free side of your choice: plain basmati rice or chapati (2 pcs). Extra charge for any other side."
         },
         "allergen_button": {
             "label": { "fr": "Consulter la liste des allergènes", "en": "View allergen list" },
@@ -670,6 +677,15 @@
                 "fr": "Ce créneau n'est plus disponible, merci d'en choisir un autre.",
                 "en": "This time slot is no longer available, please choose another."
             },
+            "sides_prompt": {
+                "title": { "fr": "Votre accompagnement offert", "en": "Your free side" },
+                "text": {
+                    "fr": "Chaque curry est servi avec un accompagnement offert. Que souhaitez-vous ?",
+                    "en": "Each curry comes with a free side. Which would you like?"
+                },
+                "confirm_button": { "fr": "Continuer", "en": "Continue" },
+                "cancel_button": { "fr": "Retour au panier", "en": "Back to cart" }
+            },
             "whatsapp_message": {
                 "greeting": {
                     "fr": "Bonjour L'Histoire des Épices !",
@@ -681,6 +697,7 @@
                 },
                 "order_ref_label": { "fr": "Référence", "en": "Reference" },
                 "dishes_title": { "fr": "Ma commande", "en": "My order" },
+                "free_side_label": { "fr": "offert", "en": "free" },
                 "cost_title": { "fr": "Montant de la commande", "en": "Order cost" },
                 "subtotal_label": { "fr": "Sous-total", "en": "Subtotal" },
                 "delivery_fee_label": { "fr": "Livraison", "en": "Delivery" },

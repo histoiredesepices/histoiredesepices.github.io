@@ -58,6 +58,7 @@ Ouvrez le fichier **`menu.json`** et trouvez la liste `"dishes": [...]`. Copiez 
     "is_new": true,
     "is_spicy": false,
     "is_available": true,
+    "needs_side": false,
     "price_eur": null,
     "calories_kcal": null,
     "allergens": [],
@@ -68,6 +69,12 @@ Ouvrez le fichier **`menu.json`** et trouvez la liste `"dishes": [...]`. Copiez 
 #### Le menu PDF
 
 Le bouton « Télécharger le Menu (PDF) » **crée le PDF automatiquement** à partir de `menu.json`, dans la langue choisie par le visiteur. Il est donc toujours à jour : plus besoin de refaire un PDF quand vous changez un plat ou un prix. Les plats cachés (`"is_available": false`) n'y apparaissent pas. Les textes du PDF se modifient dans `content.json` → `"menu"` → `"download_button"`. Les QR codes du PDF sont créés à partir de `"contact"` → `"website_url"` (« Scanner pour commander ») et des liens `"socials"` (Facebook, Instagram) : si vous changez un lien, le QR code suit automatiquement.
+
+#### Accompagnement offert (`needs_side`)
+
+Pour un curry, mettez `"needs_side": true` : au moment de commander, le client choisit son accompagnement **offert** pour chaque curry (riz basmati nature par défaut, ou chapati 2 pcs). Le choix apparaît dans le message WhatsApp, par exemple « • 1 × Butter Chicken + Chapati (2 pcs) _offert_ — 13,50 € ». Mettez `"needs_side": false` pour les entrées, biryanis, desserts, accompagnements et formules.
+
+Les choix proposés se modifient dans `"settings"` → `"ordering"` → `"complimentary_sides"` (le premier de la liste est sélectionné par défaut). Les textes de la fenêtre se modifient dans `"ui_strings"` → `"ordering"` → `"sides_prompt"`.
 
 #### Cacher un plat (sans le supprimer)
 
@@ -299,6 +306,12 @@ Open the **`menu.json`** file and find the `"dishes": [...]` list. Copy an exist
 #### The menu PDF
 
 The "Download Menu (PDF)" button **builds the PDF automatically** from `menu.json`, in the visitor's chosen language. It is always up to date: no need to remake a PDF when you change a dish or a price. Hidden dishes (`"is_available": false`) are left out. The PDF's text is edited in `content.json` → `"menu"` → `"download_button"`. The PDF's QR codes are generated from `"contact"` → `"website_url"` ("Scan to order") and the `"socials"` links (Facebook, Instagram): change a link and its QR code follows automatically.
+
+#### Free side (`needs_side`)
+
+For a curry, set `"needs_side": true`: when ordering, the customer picks the **free** side for each curry (plain basmati rice by default, or chapati 2 pcs). The choice appears in the WhatsApp message, e.g. "• 1 × Butter Chicken + Chapati (2 pcs) _offert_ — 13,50 €". Set `"needs_side": false` for starters, biryanis, desserts, sides and combos.
+
+The options are set in `"settings"` → `"ordering"` → `"complimentary_sides"` (the first one is selected by default). The pop-up's text lives in `"ui_strings"` → `"ordering"` → `"sides_prompt"`.
 
 #### Hide a dish without deleting it
 

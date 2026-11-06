@@ -249,8 +249,8 @@ Features are displayed as glassmorphism pills at the bottom of the hero section.
 "menu": {
   "section_title": { "fr": "Notre Carte Gourmande", "en": "Our Menu" },
   "footnote": {
-    "fr": "Tous nos plats sont accompagnés de Riz Basmati nature.",
-    "en": "All dishes are served with plain Basmati rice."
+    "fr": "Tous nos currys sont servis avec un accompagnement offert au choix : riz basmati nature ou chapati (2 pcs). Supplément pour tout autre accompagnement.",
+    "en": "All our curries come with a free side of your choice: plain basmati rice or chapati (2 pcs). Extra charge for any other side."
   },
   "allergen_button": {
     "label": { "fr": "Consulter la liste des allergènes", "en": "View allergen list" },
@@ -280,6 +280,7 @@ Features are displayed as glassmorphism pills at the bottom of the hero section.
       "is_new": false,
       "is_spicy": false,
       "is_available": true,
+      "needs_side": true,
       "price_eur": null,
       "calories_kcal": 320,
       "allergens": ["dairy"],
@@ -292,23 +293,24 @@ Features are displayed as glassmorphism pills at the bottom of the hero section.
 
 **Dish field reference:**
 
-| Field           | Type                | Purpose                                                                                        |
-| --------------- | ------------------- | ---------------------------------------------------------------------------------------------- |
-| `id`            | string (kebab-case) | Stable internal ID. Used for anchors, must be unique.                                          |
-| `category`      | string              | Must match a `categories[].id` exactly.                                                        |
-| `name`          | `{fr, en}`          | Display name.                                                                                  |
-| `description`   | `{fr, en}`          | One short sentence.                                                                            |
-| `image`         | string (path)       | Path under `assets/menu/`. If missing/broken → graceful placeholder.                           |
-| `image_alt`     | `{fr, en}`          | Accessibility text.                                                                            |
-| `tags`          | string[]            | Free-form tags: `vegetarian`, `vegan`, `halal`, `dairy_free`, `gluten_free`.                   |
-| `is_signature`  | boolean             | Shows a "Signature" badge.                                                                     |
-| `is_new`        | boolean             | Shows a "Nouveau / New" badge.                                                                 |
-| `is_spicy`      | boolean             | Shows a flame icon.                                                                            |
-| `is_available`  | boolean             | If false, dish is hidden from the menu. (Owner can hide seasonal items without deleting them.) |
-| `price_eur`     | number \| null      | Shown only if `settings.show_prices === true`. `null` = price hidden / quote-based.            |
-| `calories_kcal` | number \| null      | Shown only if `settings.show_calories === true`.                                               |
-| `allergens`     | string[]            | Allergen keys (see `ui_strings.allergens`). Shown only if `settings.show_allergens === true`.  |
-| `spice_level`   | 0–3                 | 0 = mild, 3 = very spicy. Rendered as 0–3 flame icons.                                         |
+| Field           | Type                | Purpose                                                                                                                                                                                                                                                                                                             |
+| --------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`            | string (kebab-case) | Stable internal ID. Used for anchors, must be unique.                                                                                                                                                                                                                                                               |
+| `category`      | string              | Must match a `categories[].id` exactly.                                                                                                                                                                                                                                                                             |
+| `name`          | `{fr, en}`          | Display name.                                                                                                                                                                                                                                                                                                       |
+| `description`   | `{fr, en}`          | One short sentence.                                                                                                                                                                                                                                                                                                 |
+| `image`         | string (path)       | Path under `assets/menu/`. If missing/broken → graceful placeholder.                                                                                                                                                                                                                                                |
+| `image_alt`     | `{fr, en}`          | Accessibility text.                                                                                                                                                                                                                                                                                                 |
+| `tags`          | string[]            | Free-form tags: `vegetarian`, `vegan`, `halal`, `dairy_free`, `gluten_free`.                                                                                                                                                                                                                                        |
+| `is_signature`  | boolean             | Shows a "Signature" badge.                                                                                                                                                                                                                                                                                          |
+| `is_new`        | boolean             | Shows a "Nouveau / New" badge.                                                                                                                                                                                                                                                                                      |
+| `is_spicy`      | boolean             | Shows a flame icon.                                                                                                                                                                                                                                                                                                 |
+| `is_available`  | boolean             | If false, dish is hidden from the menu. (Owner can hide seasonal items without deleting them.)                                                                                                                                                                                                                      |
+| `needs_side`    | boolean             | Curries: before the date/time step (cart or quick order), the `#sides-modal` asks the customer to pick the free side for each such dish from `settings.ordering.complimentary_sides` (first option = default). The choice is appended to that line in the WhatsApp message and sheet summary; prices are unchanged. |
+| `price_eur`     | number \| null      | Shown only if `settings.show_prices === true`. `null` = price hidden / quote-based.                                                                                                                                                                                                                                 |
+| `calories_kcal` | number \| null      | Shown only if `settings.show_calories === true`.                                                                                                                                                                                                                                                                    |
+| `allergens`     | string[]            | Allergen keys (see `ui_strings.allergens`). Shown only if `settings.show_allergens === true`.                                                                                                                                                                                                                       |
+| `spice_level`   | 0–3                 | 0 = mild, 3 = very spicy. Rendered as 0–3 flame icons.                                                                                                                                                                                                                                                              |
 
 #### `heritage` — The story block (dark burgundy section)
 

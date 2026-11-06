@@ -271,7 +271,9 @@ function buildOrderLogPayload(items, dateVal, timeVal, fulfillment, source, orde
         deliveryDate: dateVal,
         deliveryTime: timeVal,
         fulfillment: isDelivery ? 'delivery' : 'collection',
-        itemsSummary: items.map((i) => `${i.qty}x ${i.name}`).join(', '),
+        itemsSummary: items
+            .map((i) => `${i.qty}x ${i.name}${i.side ? ` (+ ${i.side})` : ''}`)
+            .join(', '),
         itemCount: items.reduce((s, i) => s + i.qty, 0),
         subtotal: money(totals.subtotal),
         deliveryFee: money(totals.deliveryFee),
@@ -281,6 +283,111 @@ function buildOrderLogPayload(items, dateVal, timeVal, fulfillment, source, orde
         language: lang,
         source,
     };
+}
+
+// ── Complimentary side choice ──────────────────────────────────────────────────
+// Curries ("needs_side": true in menu.json) come with a free side. Before the
+// date/time step the customer picks it for each curry — options come from
+// content.json → settings.ordering.complimentary_sides (e.g. rice or chapati).
+
+let _sidesCallback = null;
+let _sidesPrevFocus = null;
+
+const sidesStrings = () => C.ui_strings?.ordering?.sides_prompt || {};
+const getComplimentarySides = () => {
+    const list = C.settings?.ordering?.complimentary_sides;
+    return Array.isArray(list) ? list.filter((o) => o && o.id && o.label) : [];
+};
+const findDish = (id) => (C.menu?.dishes || []).find((d) => d.id === id);
+
+// Current cart as order lines (always fresh — the cart may have just changed).
+function getCartOrderItems() {
+    return cart
+        .map((item) => {
+            const dish = findDish(item.id);
+            return dish
+                ? { id: dish.id, qty: item.qty, name: t(dish.name), unitPrice: dishUnitPrice(dish) }
+                : null;
+        })
+        .filter(Boolean);
+}
+
+// Adds the chosen free side ({ dishId: "Riz basmati nature" }) to each order line.
+const applyComplimentarySides = (items, sides) =>
+    items.map((i) => (sides[i.id] ? { ...i, side: sides[i.id] } : i));
+
+// curries: order lines of dishes that need a side. onDone({ dishId: sideLabel }).
+function openSidesPrompt(curries, onDone) {
+    const modal = $('sides-modal');
+    const options = getComplimentarySides();
+    if (!modal || !options.length || !curries.length) {
+        onDone({});
+        return;
+    }
+    const s = sidesStrings();
+    $('sides-modal-title').textContent = t(s.title);
+    $('sides-modal-text').textContent = t(s.text);
+    $('sides-cancel-btn').textContent = t(s.cancel_button);
+    $('sides-confirm-label').textContent = t(s.confirm_button);
+
+    // One row per curry with a radio choice; the first option is the default.
+    $('sides-list').innerHTML = curries
+        .map(
+            (c, row) => `
+        <li class="sides-item" data-dish-id="${esc(c.id)}">
+            <span class="sides-item__name">${esc(c.qty > 1 ? `${c.qty} × ${c.name}` : c.name)}</span>
+            <div class="sides-item__choices" role="radiogroup" aria-label="${esc(c.name)}">
+                ${options
+                    .map(
+                        (o, i) => `
+                    <label class="sides-choice">
+                        <input type="radio" name="side-choice-${row}" value="${esc(o.id)}"${i === 0 ? ' checked' : ''}>
+                        <span>${esc(t(o.label))}</span>
+                    </label>`,
+                    )
+                    .join('')}
+            </div>
+        </li>`,
+        )
+        .join('');
+
+    _sidesCallback = onDone;
+    _sidesPrevFocus = document.activeElement;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    $('sides-confirm-btn')?.focus();
+}
+
+// proceed = true → continue the order with the choices; false → back to the cart.
+function closeSidesModal(proceed) {
+    const modal = $('sides-modal');
+    if (!modal || modal.hidden) return;
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    const callback = _sidesCallback;
+    _sidesCallback = null;
+    if (!proceed) {
+        if (_sidesPrevFocus?.focus) _sidesPrevFocus.focus();
+        return;
+    }
+    const options = getComplimentarySides();
+    const sides = {};
+    $$('#sides-list .sides-item').forEach((row) => {
+        const value = row.querySelector('input[type="radio"]:checked')?.value;
+        const option = options.find((o) => o.id === value) || options[0];
+        sides[row.dataset.dishId] = t(option.label);
+    });
+    callback?.(sides);
+}
+
+function initSidesModal() {
+    $('sides-close')?.addEventListener('click', () => closeSidesModal(false));
+    $('sides-backdrop')?.addEventListener('click', () => closeSidesModal(false));
+    $('sides-cancel-btn')?.addEventListener('click', () => closeSidesModal(false));
+    $('sides-confirm-btn')?.addEventListener('click', () => closeSidesModal(true));
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeSidesModal(false);
+    });
 }
 
 // Confirmed order → WhatsApp message + (best-effort) sheet row.
@@ -518,9 +625,12 @@ function buildWhatsAppOrderMessage(items, dateStr, timeStr, fulfillment, orderRe
               `*${t(m.total_label)}${sep}${formatEuro(totals.total)}*`,
           ].join('\n');
 
+    // e.g. "• 1 × Butter Chicken + Chapati (2 pcs) _offert_ — 13,50 €" (_x_ = italics)
     const dishLines = items.map(
         (i) =>
-            `• ${i.qty} × ${i.name}${i.unitPrice != null ? ` — ${formatEuro(i.unitPrice * i.qty)}` : ''}`,
+            `• ${i.qty} × ${i.name}` +
+            (i.side ? ` + ${i.side} _${t(m.free_side_label)}_` : '') +
+            (i.unitPrice != null ? ` — ${formatEuro(i.unitPrice * i.qty)}` : ''),
     );
     const when = (t(m.datetime) || '{date} — {time}')
         .replace('{date}', formatScheduleDateForMessage(dateStr))
@@ -660,6 +770,7 @@ function closeScheduleModal() {
 }
 
 function initScheduleModal() {
+    initSidesModal();
     $('schedule-close')?.addEventListener('click', closeScheduleModal);
     $('schedule-backdrop')?.addEventListener('click', closeScheduleModal);
     $('schedule-cancel-btn')?.addEventListener('click', closeScheduleModal);
@@ -933,11 +1044,19 @@ function renderCartModal() {
             </div>`;
 
         $('cart-order-btn')?.addEventListener('click', () => {
-            openScheduleModal(
-                (dateVal, timeVal, fulfillment) =>
-                    sendOrder(orderItems, dateVal, timeVal, fulfillment, 'cart', waPhone),
-                orderItems,
-            );
+            const cartItems = getCartOrderItems();
+            const proceed = (sides = {}) => {
+                const items = applyComplimentarySides(cartItems, sides);
+                openScheduleModal(
+                    (dateVal, timeVal, fulfillment) =>
+                        sendOrder(items, dateVal, timeVal, fulfillment, 'cart', waPhone),
+                    items,
+                );
+            };
+            // Curries in the cart → choose their free side first.
+            const curries = cartItems.filter((i) => findDish(i.id)?.needs_side);
+            if (curries.length) openSidesPrompt(curries, proceed);
+            else proceed();
         });
 
         $('cart-clear-btn')?.addEventListener('click', () => {
@@ -1036,13 +1155,26 @@ function initCart() {
                 C.settings.contact_info?.primary_phone?.tel ||
                 wa?.phone_e164;
             if (!waPhone) return;
-            const name = t(dish.name);
-            const orderItems = [{ qty: 1, name, unitPrice: dishUnitPrice(dish) }];
-            openScheduleModal(
-                (dateVal, timeVal, fulfillment) =>
-                    sendOrder(orderItems, dateVal, timeVal, fulfillment, 'quick-order', waPhone),
-                orderItems,
-            );
+            const dishItems = [
+                { id: dish.id, qty: 1, name: t(dish.name), unitPrice: dishUnitPrice(dish) },
+            ];
+            const proceed = (sides = {}) => {
+                const orderItems = applyComplimentarySides(dishItems, sides);
+                openScheduleModal(
+                    (dateVal, timeVal, fulfillment) =>
+                        sendOrder(
+                            orderItems,
+                            dateVal,
+                            timeVal,
+                            fulfillment,
+                            'quick-order',
+                            waPhone,
+                        ),
+                    orderItems,
+                );
+            };
+            if (dish.needs_side) openSidesPrompt(dishItems, proceed);
+            else proceed();
             return;
         }
     });

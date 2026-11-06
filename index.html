@@ -7,7 +7,7 @@
     // Apply the theme before first paint (no flash). theme.js keeps it in sync.
     (function () {
       var t = 'dark';
-      try { t = localStorage.getItem('theme') || localStorage.getItem('theme_default') || 'dark'; } catch (e) {}
+      try { t = localStorage.getItem('theme') || localStorage.getItem('theme_default') || 'dark'; } catch (e) { }
       document.documentElement.dataset.theme = t === 'light' ? 'light' : 'dark';
     })();
   </script>
@@ -353,6 +353,34 @@
       </div>
       <div id="cart-items" class="cart-modal__items"></div>
       <div id="cart-footer" class="cart-modal__footer"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════ FREE SIDE CHOICE MODAL -->
+  <!-- Shown before the schedule step when the order has a curry ("needs_side": true in
+       menu.json): pick its complimentary side (content.json → settings.ordering.complimentary_sides).
+       Texts: content.json → ui_strings.ordering.sides_prompt -->
+  <div id="sides-modal" class="schedule-modal sides-modal" role="dialog" aria-modal="true"
+    aria-labelledby="sides-modal-title" hidden>
+    <div class="schedule-modal__backdrop" id="sides-backdrop"></div>
+    <div class="schedule-modal__card">
+      <div class="schedule-modal__header">
+        <h2 id="sides-modal-title" class="schedule-modal__title"></h2>
+        <button class="schedule-modal__close" id="sides-close" aria-label="Fermer">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="schedule-modal__body">
+        <p id="sides-modal-text" class="schedule-modal__note"></p>
+        <ul id="sides-list" class="sides-list"></ul>
+      </div>
+      <div class="schedule-modal__footer">
+        <button id="sides-cancel-btn" class="schedule-modal__cancel-btn" type="button"></button>
+        <button id="sides-confirm-btn" class="schedule-modal__confirm-btn" type="button">
+          <span class="material-symbols-outlined" style="font-size:1.1rem;">arrow_forward</span>
+          <span id="sides-confirm-label"></span>
+        </button>
+      </div>
     </div>
   </div>
 

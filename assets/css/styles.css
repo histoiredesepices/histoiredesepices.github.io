@@ -3698,6 +3698,74 @@ img {
     margin: -0.5rem 0 0;
 }
 
+/* ── Free side choice (reuses the schedule modal shell) ───────────────────── */
+
+.sides-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.sides-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.sides-item__name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.sides-item__choices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+.sides-choice {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.5rem 0.6rem;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    color: var(--dark);
+    font-size: 0.85rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s var(--ease), background 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.sides-choice input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sides-choice:hover {
+    border-color: var(--saffron);
+}
+
+.sides-choice:has(input:checked) {
+    border-color: var(--saffron);
+    background: rgba(201, 165, 92, 0.12);
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.sides-choice:has(input:focus-visible) {
+    outline: 2px solid var(--saffron);
+    outline-offset: 2px;
+}
+
 /* ── Order total (schedule modal) ─────────────────────────────────────────── */
 
 .schedule-summary {
