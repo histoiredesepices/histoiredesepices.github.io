@@ -1040,7 +1040,7 @@
                 "en": "Carrot Halwa with dried fruits"
             },
             "tags": ["vegetarian"],
-            "is_signature": false,
+            "is_signature": true,
             "is_new": false,
             "is_spicy": false,
             "is_available": true,
@@ -1065,7 +1065,7 @@
                 "en": "Carrot Halwa with dried fruits"
             },
             "tags": ["vegetarian"],
-            "is_signature": false,
+            "is_signature": true,
             "is_new": false,
             "is_spicy": false,
             "is_available": true,
