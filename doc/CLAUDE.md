@@ -108,6 +108,7 @@ This is the **only file the owner ever edits**. Structure it so every piece of c
 ```json
 "settings": {
   "default_language": "fr",
+  "default_theme": "dark",
   "show_calories": false,
   "show_allergens": true,
   "show_prices": false,

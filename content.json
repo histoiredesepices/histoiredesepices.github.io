@@ -1,6 +1,7 @@
 {
     "settings": {
         "default_language": "fr",
+        "default_theme": "light",
         "show_calories": true,
         "show_allergens": true,
         "show_prices": true,
@@ -616,6 +617,10 @@
     },
 
     "ui_strings": {
+        "theme_toggle": {
+            "to_light": { "fr": "Passer en mode clair", "en": "Switch to light mode" },
+            "to_dark": { "fr": "Passer en mode sombre", "en": "Switch to dark mode" }
+        },
         "lang_toggle_label": { "fr": "Passer en anglais", "en": "Switch to French" },
         "view_menu_pdf": { "fr": "Télécharger le menu (PDF)", "en": "Download menu (PDF)" },
         "request_quote": { "fr": "Demander un devis", "en": "Request a quote" },

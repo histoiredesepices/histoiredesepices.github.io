@@ -68,6 +68,9 @@ function renderTicker() {
 // ── Navigation ───────────────────────────────────────────────────────────────
 
 function renderNav() {
+    // Light/dark theme (theme.js): apply content.json default + refresh toggle label.
+    if (typeof syncThemeWithContent === 'function') syncThemeWithContent();
+
     const hasSpecialties = (C.menu?.dishes || []).some(
         (d) => d.is_signature && d.is_available !== false,
     );

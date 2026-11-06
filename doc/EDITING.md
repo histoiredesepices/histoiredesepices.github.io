@@ -81,6 +81,10 @@ Sur le plat de votre choix, changez `"is_signature": false` en `"is_signature": 
 
 Dans la section `"contact"`, trouvez `"phone_e164"` et remplacez le numéro. Utilisez le format international (ex : `"+33612345678"`).
 
+#### Mode sombre / mode clair
+
+Le site s'affiche en **mode sombre** par défaut. Pour changer le thème par défaut, dans `"settings"`, mettez `"default_theme": "dark"` ou `"default_theme": "light"`. Les visiteurs peuvent aussi changer de thème avec le bouton soleil/lune en haut de la page ; leur choix est mémorisé sur leur appareil et l'emporte sur le thème par défaut. Le menu PDF reste toujours en couleurs claires.
+
 #### Activer/désactiver les prix
 
 Dans la section `"settings"`, changez `"show_prices": false` en `"show_prices": true`. Les prix s'affichent si le champ `"price_eur"` du plat contient un nombre.
@@ -307,6 +311,10 @@ On the dish of your choice, change `"is_signature": false` to `"is_signature": t
 #### Change the WhatsApp number
 
 In the `"contact"` section, find `"phone_e164"` and replace the number. Use international format (e.g. `"+33612345678"`).
+
+#### Dark mode / light mode
+
+The site shows in **dark mode** by default. To change the default theme, in `"settings"` set `"default_theme": "dark"` or `"default_theme": "light"`. Visitors can also switch with the sun/moon button at the top of the page; their choice is remembered on their device and wins over the default. The PDF menu always stays in light colours.
 
 #### Enable/disable prices
 

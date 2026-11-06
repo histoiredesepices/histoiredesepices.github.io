@@ -32,6 +32,7 @@ _No frameworks • No build step • Bilingual FR/EN • GitHub Pages ready_
 - **Allergen page**: generated from each dish's `allergens` field, with an "I'm allergic to…" filter.
 - **Events & free quote**: event cards with photo galleries, plus a "Request a quote" WhatsApp banner with a detailed pre-filled message.
 - **Bilingual (FR/EN)**: language toggle, remembered on the device.
+- **Dark / light mode**: a sun/moon toggle in the header. The default is set in `content.json`, and the visitor's choice is remembered.
 
 ### Privacy, quality & SEO
 
@@ -75,6 +76,7 @@ _No frameworks • No build step • Bilingual FR/EN • GitHub Pages ready_
 │   │   ├── cart.js        # Cart, scheduling, delivery, WhatsApp order, order log
 │   │   ├── events.js      # Nav, scroll & language listeners
 │   │   ├── privacy.js     # GDPR banner + privacy page
+│   │   ├── theme.js       # Light / dark mode toggle
 │   │   ├── allergens.js   # Allergen page
 │   │   ├── gallery.js     # Gallery page
 │   │   └── boot.js        # Home page entry point
@@ -125,6 +127,7 @@ Full owner guide in French and English: **[`doc/EDITING.md`](doc/EDITING.md)**.
 | Privacy policy & banner                | `content.json` → `privacy` (bump `version` to re-show the banner)                                                        |
 | Order log webhook                      | `content.json` → `settings.order_log` (see `doc/ORDER_LOG_SETUP.md`)                                                     |
 | Change a photo                         | Upload to `assets/menu/`, update the dish's `image` path                                                                 |
+| Default theme (dark / light)           | `content.json` → `settings.default_theme: "dark"` or `"light"`                                                           |
 | Maintenance mode                       | `content.json` → `settings.site_under_construction: true`                                                                |
 
 ## 🔒 Privacy

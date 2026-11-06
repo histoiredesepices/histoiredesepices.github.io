@@ -3,6 +3,14 @@
 
 <head>
   <meta charset="UTF-8" />
+  <script>
+    // Apply the theme before first paint (no flash). theme.js keeps it in sync.
+    (function () {
+      var t = 'dark';
+      try { t = localStorage.getItem('theme') || localStorage.getItem('theme_default') || 'dark'; } catch (e) {}
+      document.documentElement.dataset.theme = t === 'light' ? 'light' : 'dark';
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Allergènes | L'Histoire des Épices</title>
   <meta name="description"
@@ -62,6 +70,9 @@
       <div id="nav-links" class="nav-links" role="list"></div>
 
       <div class="nav-controls">
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Mode clair" aria-pressed="false">
+          <span class="material-symbols-outlined" aria-hidden="true">light_mode</span>
+        </button>
         <div class="lang-switch" role="group" aria-label="Changer de langue">
           <span class="lang-switch__label lang-switch__label--fr">FR</span>
           <button id="lang-toggle" class="lang-switch__toggle" aria-label="Changer de langue" aria-pressed="false">
@@ -139,6 +150,7 @@
   <!-- ══════════════════════════════════════════════════════════ APP -->
   <script src="./assets/js/state.js"></script>
   <script src="./assets/js/utils.js"></script>
+  <script src="./assets/js/theme.js"></script>
   <script src="./assets/js/seo.js"></script>
   <script src="./assets/js/render.js"></script>
   <script src="./assets/js/events.js"></script>

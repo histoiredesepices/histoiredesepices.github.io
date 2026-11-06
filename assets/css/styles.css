@@ -20,6 +20,8 @@
     --border: rgba(91, 6, 23, 0.1);
     --whatsapp: #25d366;
     --whatsapp-dark: #128c7e;
+    --accent: var(--primary); /* coloured text: titles, prices, links */
+    --header-bg: rgba(250, 248, 245, 0.98);
 
     /* Typography */
     --font-script: 'Felipa', serif;
@@ -45,6 +47,58 @@
     --radius-md: 1rem;
     --radius-lg: 1.5rem;
     --radius-full: 9999px;
+}
+
+/* ─── Dark theme ──────────────────────────────────────────────────────────────
+   Applied via <html data-theme="dark">. Default comes from content.json →
+   settings.default_theme; the visitor's choice (theme toggle) is remembered. */
+[data-theme='dark'] {
+    color-scheme: dark;
+    --cream: #15100f;
+    --surface: #1f1817;
+    --light-gray: #2b2221;
+    --dark: #f3ece4;
+    --muted: #b9ada4;
+    --border: rgba(224, 200, 138, 0.16);
+    --accent: var(--saffron-light);
+    --header-bg: rgba(21, 16, 15, 0.96);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.45);
+    --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.55);
+}
+
+[data-theme='dark'] body {
+    background-color: var(--cream);
+    color: var(--dark);
+}
+
+/* Pale tinted backgrounds → dark tints, so light text stays readable. */
+[data-theme='dark'] .contact-card--alt {
+    background: linear-gradient(135deg, rgba(201, 165, 92, 0.16) 0%, rgba(201, 165, 92, 0.05) 100%);
+}
+
+[data-theme='dark'] .contact-card--whatsapp {
+    background: linear-gradient(135deg, rgba(37, 211, 102, 0.18) 0%, rgba(37, 211, 102, 0.05) 100%);
+}
+
+[data-theme='dark'] .badge--veg,
+[data-theme='dark'] .badge--halal,
+[data-theme='dark'] .allergen-dish__diet--veg {
+    background: rgba(46, 125, 50, 0.28);
+    color: #a5d6a7;
+}
+
+[data-theme='dark'] .badge--spicy {
+    background: rgba(220, 38, 38, 0.2);
+}
+
+[data-theme='dark'] .cart-item__remove:hover,
+[data-theme='dark'] .cart-clear-btn:hover {
+    background: rgba(220, 38, 38, 0.18);
+}
+
+[data-theme='dark'] .schedule-delivery .schedule-modal__input[aria-invalid='true'] {
+    background: rgba(220, 38, 38, 0.12);
 }
 
 /* ─── Performance Optimizations ──────────────────────────────────────────── */
@@ -181,7 +235,7 @@ img {
 }
 
 #site-header.scrolled {
-    background: rgba(250, 248, 245, 0.98);
+    background: var(--header-bg);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
@@ -327,7 +381,7 @@ img {
 }
 
 .nav-link:hover {
-    color: var(--primary);
+    color: var(--accent);
 }
 
 .nav-link:hover::after {
@@ -347,6 +401,54 @@ img {
     gap: 0.5rem;
 }
 
+/* Light / dark mode toggle (theme.js) */
+.theme-toggle {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 0;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--dark);
+    cursor: pointer;
+    transition: all 0.25s var(--ease);
+}
+
+.theme-toggle .material-symbols-outlined {
+    font-size: 1.15rem;
+}
+
+.theme-toggle:hover {
+    border-color: var(--saffron);
+    color: var(--saffron);
+}
+
+#site-header:not(.scrolled) .theme-toggle {
+    color: rgba(255, 255, 255, 0.85);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+#site-header:not(.scrolled) .theme-toggle:hover {
+    color: var(--saffron);
+    border-color: var(--saffron);
+}
+
+/* Small phones: keep brand + toggle + FR/EN + menu on one line. */
+@media (max-width: 400px) {
+    .theme-toggle {
+        width: 32px;
+        height: 32px;
+    }
+
+    .nav-controls {
+        gap: 0.5rem;
+    }
+}
+
 .lang-switch__label {
     font-family: var(--font-body);
     font-size: 0.7rem;
@@ -359,7 +461,7 @@ img {
 
 .lang-switch__label--fr.active,
 .lang-switch__label--en.active {
-    color: var(--primary);
+    color: var(--accent);
 }
 
 .lang-switch__toggle {
@@ -490,7 +592,7 @@ img {
 }
 
 .nav-link-mobile:hover {
-    color: var(--primary);
+    color: var(--accent);
 }
 
 .mobile-nav-wa {
@@ -775,7 +877,7 @@ img {
     gap: 0.5rem;
     padding: 1rem 2rem;
     background: var(--saffron);
-    color: var(--dark);
+    color: #1a1a1a; /* dark text on gold, both themes */
     font-family: var(--font-body);
     font-size: 0.875rem;
     font-weight: 600;
@@ -827,7 +929,7 @@ img {
     gap: 0.5rem;
     padding: 0.875rem 1.75rem;
     background: transparent;
-    color: var(--primary);
+    color: var(--accent);
     font-family: var(--font-body);
     font-size: 0.875rem;
     font-weight: 600;
@@ -1032,7 +1134,7 @@ img {
     left: 1rem;
     padding: 0.4rem 0.8rem;
     background: var(--saffron);
-    color: var(--dark);
+    color: #1a1a1a; /* dark text on gold, both themes */
     font-size: 0.7rem;
     font-weight: 700;
     letter-spacing: 0.05em;
@@ -1089,7 +1191,7 @@ img {
     font-family: var(--font-body);
     font-size: 1.1rem;
     font-weight: 700;
-    color: var(--primary);
+    color: var(--accent);
 }
 
 .specialty-card__placeholder {
@@ -1142,7 +1244,7 @@ img {
 
 .menu-filter:hover {
     border-color: var(--saffron);
-    color: var(--primary);
+    color: var(--accent);
 }
 
 .menu-filter.active {
@@ -1177,7 +1279,7 @@ img {
 .menu-group-header h3 {
     font-family: var(--font-script);
     font-size: 2rem;
-    color: var(--primary);
+    color: var(--accent);
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -1273,7 +1375,7 @@ img {
     font-family: var(--font-body);
     font-size: 0.95rem;
     font-weight: 700;
-    color: var(--primary);
+    color: var(--accent);
     white-space: nowrap;
 }
 
@@ -1295,7 +1397,7 @@ img {
 
 .badge--signature {
     background: var(--saffron);
-    color: var(--dark);
+    color: #1a1a1a; /* dark text on gold, both themes */
 }
 
 .badge--new {
@@ -1380,7 +1482,7 @@ img {
     gap: 0.5rem;
     font-size: 0.875rem;
     font-weight: 500;
-    color: var(--primary);
+    color: var(--accent);
     text-decoration: none;
     transition: color 0.2s var(--ease);
 }
@@ -1447,6 +1549,15 @@ img {
 }
 
 .menu-pdf {
+    /* Always light, whatever the site theme. */
+    color-scheme: light;
+    --cream: #faf8f5;
+    --surface: #ffffff;
+    --light-gray: #f0ede8;
+    --dark: #1a1a1a;
+    --muted: #6b6b6b;
+    --border: rgba(91, 6, 23, 0.1);
+    --accent: var(--primary);
     background: #fff;
     color: var(--dark);
     font-family: var(--font-body);
@@ -1531,7 +1642,7 @@ img {
     font-size: 19px;
     font-weight: 700;
     letter-spacing: 0.04em;
-    color: var(--primary);
+    color: var(--accent);
 }
 
 /* Free-delivery highlight. All the vertical padding is at the bottom on
@@ -1544,7 +1655,7 @@ img {
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.04em;
-    color: var(--dark);
+    color: #1a1a1a; /* dark text on gold, both themes */
     background: var(--saffron);
     border-radius: 999px;
 }
@@ -1591,7 +1702,7 @@ img {
 }
 
 .menu-pdf__qr--main span {
-    color: var(--primary);
+    color: var(--accent);
 }
 
 .menu-pdf__qr-group {
@@ -1649,7 +1760,7 @@ img {
 }
 
 .menu-pdf__note--allergen .menu-pdf__note-label {
-    color: var(--primary);
+    color: var(--accent);
 }
 
 .menu-pdf__note-text {
@@ -1671,7 +1782,7 @@ img {
     font-family: var(--font-script);
     font-size: 26px;
     font-weight: 400;
-    color: var(--primary);
+    color: var(--accent);
 }
 
 /* A real element with a solid border — not a gradient ::after: html2canvas
@@ -1710,7 +1821,7 @@ img {
 .menu-pdf__price {
     font-size: 14px;
     font-weight: 700;
-    color: var(--primary);
+    color: var(--accent);
     white-space: nowrap;
 }
 
@@ -2067,7 +2178,7 @@ img {
     min-height: 44px;
     padding: 1rem 2rem;
     background: var(--saffron);
-    color: var(--dark);
+    color: #1a1a1a; /* dark text on gold, both themes */
     font-family: var(--font-body);
     font-size: 0.875rem;
     font-weight: 600;
@@ -2354,7 +2465,7 @@ img {
 
 .social-link:hover {
     border-color: var(--primary);
-    color: var(--primary);
+    color: var(--accent);
 }
 
 .contact-note {
@@ -2375,7 +2486,7 @@ img {
 
 .site-footer {
     padding: 3rem 0 2rem;
-    background: white;
+    background: var(--surface);
     text-align: center;
     border-top: 1px solid var(--border);
 }
@@ -2383,7 +2494,7 @@ img {
 .footer-tagline {
     font-family: var(--font-script);
     font-size: 1.25rem;
-    color: var(--primary);
+    color: var(--accent);
     max-width: 500px;
     margin: 0 auto 1rem;
     line-height: 1.6;
@@ -2507,7 +2618,7 @@ img {
     color: var(--saffron);
 }
 .text-primary {
-    color: var(--primary);
+    color: var(--accent);
 }
 .text-muted {
     color: var(--muted);
@@ -2661,7 +2772,7 @@ img {
 .dish-modal__name {
     font-family: var(--font-script);
     font-size: 2.25rem;
-    color: var(--primary);
+    color: var(--accent);
     margin-bottom: 0.5rem;
     line-height: 1.2;
 }
@@ -2696,7 +2807,7 @@ img {
     background: var(--cream);
     border-radius: 50%;
     flex-shrink: 0;
-    color: var(--primary);
+    color: var(--accent);
     border: 1px solid var(--border);
 }
 
@@ -2969,7 +3080,7 @@ img {
     padding: 0.75rem 1.5rem;
     background: transparent;
     border: 2px solid var(--primary);
-    color: var(--primary);
+    color: var(--accent);
     font-family: var(--font-body);
     font-size: 0.875rem;
     font-weight: 600;
@@ -3278,7 +3389,7 @@ img {
 .cart-item__total {
     font-size: 0.875rem;
     font-weight: 700;
-    color: var(--primary);
+    color: var(--accent);
     min-width: 3rem;
     text-align: right;
     flex-shrink: 0;
@@ -3326,7 +3437,7 @@ img {
 
 .cart-total strong {
     font-size: 1.3rem;
-    color: var(--primary);
+    color: var(--accent);
     font-weight: 800;
 }
 
@@ -3634,7 +3745,7 @@ img {
 .schedule-summary__total strong {
     font-size: 1.25rem;
     font-weight: 800;
-    color: var(--primary);
+    color: var(--accent);
 }
 
 .schedule-summary__hint {
@@ -3704,11 +3815,11 @@ img {
 .schedule-mode__option:has(input:checked) {
     border-color: var(--primary);
     background: rgba(91, 6, 23, 0.05);
-    color: var(--primary);
+    color: var(--accent);
 }
 
 .schedule-mode__option:has(input:checked) .material-symbols-outlined {
-    color: var(--primary);
+    color: var(--accent);
 }
 
 .schedule-mode__option:has(input:focus-visible) {
@@ -3784,7 +3895,7 @@ img {
 
 .schedule-modal__cancel-btn:hover {
     border-color: var(--primary);
-    color: var(--primary);
+    color: var(--accent);
 }
 
 .schedule-modal__confirm-btn {
@@ -3883,7 +3994,7 @@ html.ticker-active #site-header {
 
 .ticker__label .material-symbols-outlined {
     font-size: 1rem;
-    color: var(--primary);
+    color: var(--accent);
 }
 
 /* Scrolling text zone */
@@ -3961,7 +4072,7 @@ html.ticker-active #site-header {
 
 .ticker__close:hover {
     background: rgba(91, 6, 23, 0.22);
-    color: var(--primary);
+    color: var(--accent);
 }
 
 .ticker__close:focus-visible {
@@ -4109,7 +4220,7 @@ html.ticker-active #site-header {
     right: -5%;
     bottom: -1px;
     height: 4rem;
-    background: #fff;
+    background: var(--surface);
     border-radius: 50% 50% 0 0;
     pointer-events: none;
     z-index: 1;
@@ -4189,7 +4300,7 @@ html.ticker-active #site-header {
 
 .gallery-section {
     padding: 3rem 0 5rem;
-    background: #fff;
+    background: var(--surface);
 }
 
 /* ── Album grid ─────────────────────────────────────────────────────────── */
@@ -4362,7 +4473,7 @@ html.ticker-active #site-header {
     font-family: var(--font-body);
     font-size: 0.68rem;
     font-weight: 600;
-    color: var(--primary);
+    color: var(--accent);
     background: rgba(91, 6, 23, 0.07);
     padding: 0.2rem 0.55rem;
     border-radius: var(--radius-full);
@@ -4537,7 +4648,7 @@ html.ticker-active #site-header {
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--primary);
+    color: var(--accent);
     text-decoration: none;
     border: 2px solid var(--primary);
     padding: 0.65rem 1.25rem;
@@ -4811,7 +4922,7 @@ html.ticker-active #site-header {
 
 .allergens-page {
     padding: 3.5rem 0 6rem;
-    background: #fff;
+    background: var(--surface);
 }
 
 .allergens-page__inner {
@@ -4835,7 +4946,7 @@ html.ticker-active #site-header {
     font-family: var(--font-script);
     font-size: 2rem;
     font-weight: 400;
-    color: var(--primary);
+    color: var(--accent);
     margin: 0 0 1rem;
 }
 
@@ -4867,7 +4978,7 @@ html.ticker-active #site-header {
     font-family: var(--font-body);
     font-size: 0.8rem;
     font-weight: 600;
-    color: var(--primary);
+    color: var(--accent);
     text-decoration: underline;
     text-underline-offset: 3px;
     cursor: pointer;
@@ -5021,7 +5132,7 @@ html.ticker-active #site-header {
 }
 
 .allergen-dish:hover {
-    background: #fffdf8;
+    background: rgba(201, 165, 92, 0.06);
 }
 
 .allergen-dish__head {
@@ -5077,7 +5188,7 @@ html.ticker-active #site-header {
     padding: 0.2rem 0.6rem;
     border-radius: var(--radius-full);
     background: rgba(91, 6, 23, 0.07);
-    color: var(--primary);
+    color: var(--accent);
     font-size: 0.75rem;
     font-weight: 600;
 }
@@ -5200,7 +5311,7 @@ html.ticker-active #site-header {
 }
 
 .footer-link:hover {
-    color: var(--primary);
+    color: var(--accent);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -5365,7 +5476,7 @@ html.ticker-active #site-header {
     min-height: 44px;
     padding: 0.75rem 1.75rem;
     background: var(--saffron);
-    color: var(--dark);
+    color: #1a1a1a; /* dark text on gold, both themes */
     border: none;
     border-radius: var(--radius-full);
     font-family: var(--font-body);
@@ -5466,14 +5577,14 @@ html.ticker-active #site-header {
     justify-content: center;
     border-radius: 50%;
     background: rgba(91, 6, 23, 0.08);
-    color: var(--primary);
+    color: var(--accent);
 }
 
 .privacy-card__title {
     font-family: var(--font-script);
     font-size: 1.6rem;
     font-weight: 400;
-    color: var(--primary);
+    color: var(--accent);
     margin: 0 0 0.6rem;
 }
 
