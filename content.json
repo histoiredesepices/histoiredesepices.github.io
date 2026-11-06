@@ -17,6 +17,7 @@
             "latest_delivery_time": "21:00",
             "delivery_fee_eur": 3,
             "free_delivery_threshold_eur": 35,
+            "enable_discount_codes": true,
             "complimentary_sides": [
                 {
                     "id": "rice",
@@ -529,8 +530,8 @@
                         "en": "When you place an order"
                     },
                     "text": {
-                        "fr": "Lorsque vous envoyez une commande sur WhatsApp, une copie de la commande (référence, plats, quantités, montants y compris les frais de livraison, retrait ou livraison, date et heure souhaitées, langue et, pour une livraison, le code postal et la ville) est enregistrée dans un tableur Google Sheets privé, accessible à nous seuls, pour préparer et suivre les commandes. Cette copie ne contient ni votre nom, ni votre téléphone, ni votre numéro et nom de rue. En cas de livraison, ces coordonnées figurent uniquement dans le message WhatsApp que vous nous envoyez, et nous ne les utilisons que pour livrer votre commande. La copie est conservée le temps nécessaire au suivi des commandes et à nos obligations comptables.",
-                        "en": "When you send an order on WhatsApp, a copy of the order (reference, dishes, quantities, amounts including any delivery fee, collection or delivery, requested date and time, language and, for delivery, the postcode and town) is saved in a private Google Sheets spreadsheet that only we can access, to prepare and track orders. This copy contains neither your name, phone number nor street address. For delivery, those details appear only in the WhatsApp message you send us, and we use them solely to deliver your order. The copy is kept for as long as needed to track orders and meet our accounting obligations."
+                        "fr": "Lorsque vous envoyez une commande sur WhatsApp, une copie de la commande (référence, plats, quantités, montants y compris les frais de livraison et l'éventuel code promo, retrait ou livraison, date et heure souhaitées, langue et, pour une livraison, le code postal et la ville) est enregistrée dans un tableur Google Sheets privé, accessible à nous seuls, pour préparer et suivre les commandes. Cette copie ne contient ni votre nom, ni votre téléphone, ni votre numéro et nom de rue. En cas de livraison, ces coordonnées figurent uniquement dans le message WhatsApp que vous nous envoyez, et nous ne les utilisons que pour livrer votre commande. La copie est conservée le temps nécessaire au suivi des commandes et à nos obligations comptables.",
+                        "en": "When you send an order on WhatsApp, a copy of the order (reference, dishes, quantities, amounts including any delivery fee and promo code, collection or delivery, requested date and time, language and, for delivery, the postcode and town) is saved in a private Google Sheets spreadsheet that only we can access, to prepare and track orders. This copy contains neither your name, phone number nor street address. For delivery, those details appear only in the WhatsApp message you send us, and we use them solely to deliver your order. The copy is kept for as long as needed to track orders and meet our accounting obligations."
                     }
                 },
                 {
@@ -677,6 +678,39 @@
                 "fr": "Ce créneau n'est plus disponible, merci d'en choisir un autre.",
                 "en": "This time slot is no longer available, please choose another."
             },
+            "promo": {
+                "label": { "fr": "Code promo", "en": "Promo code" },
+                "placeholder": { "fr": "Votre code (facultatif)", "en": "Your code (optional)" },
+                "apply": { "fr": "Appliquer", "en": "Apply" },
+                "remove": { "fr": "Retirer", "en": "Remove" },
+                "checking": { "fr": "Vérification du code…", "en": "Checking the code…" },
+                "applied": { "fr": "Code {code} appliqué : −{value}", "en": "Code {code} applied: −{value}" },
+                "summary_label": { "fr": "Remise ({code})", "en": "Discount ({code})" },
+                "errors": {
+                    "invalid": { "fr": "Ce code n'est pas valide.", "en": "This code isn't valid." },
+                    "expired": { "fr": "Ce code a expiré.", "en": "This code has expired." },
+                    "used_up": {
+                        "fr": "Ce code a déjà été utilisé le nombre maximum de fois.",
+                        "en": "This code has already been used the maximum number of times."
+                    },
+                    "min_order": {
+                        "fr": "Ce code est valable à partir de {amount} de commande.",
+                        "en": "This code is valid for orders of {amount} or more."
+                    },
+                    "rate_limited": {
+                        "fr": "Trop d'essais. Merci de réessayer dans quelques minutes.",
+                        "en": "Too many attempts. Please try again in a few minutes."
+                    },
+                    "network": {
+                        "fr": "Impossible de vérifier le code pour le moment. Réessayez, ou indiquez-le-nous sur WhatsApp.",
+                        "en": "We couldn't check the code right now. Please try again, or mention it to us on WhatsApp."
+                    },
+                    "not_applied": {
+                        "fr": "Appuyez sur « Appliquer » pour valider votre code, ou effacez-le.",
+                        "en": "Tap \"Apply\" to validate your code, or clear it."
+                    }
+                }
+            },
             "sides_prompt": {
                 "title": { "fr": "Votre accompagnement offert", "en": "Your free side" },
                 "text": {
@@ -699,6 +733,7 @@
                 "dishes_title": { "fr": "Ma commande", "en": "My order" },
                 "free_side_label": { "fr": "offert", "en": "free" },
                 "cost_title": { "fr": "Montant de la commande", "en": "Order cost" },
+                "discount_label": { "fr": "Code promo {code}", "en": "Promo code {code}" },
                 "subtotal_label": { "fr": "Sous-total", "en": "Subtotal" },
                 "delivery_fee_label": { "fr": "Livraison", "en": "Delivery" },
                 "free_label": { "fr": "offerte", "en": "free" },

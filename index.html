@@ -471,11 +471,27 @@
           <span id="schedule-time-window-note" class="schedule-modal__hint"></span>
         </div>
 
+        <!-- Promo code (verified by the Apps Script; content.json → ui_strings.ordering.promo) -->
+        <div id="schedule-promo" class="schedule-promo" hidden>
+          <label id="promo-label" for="promo-code-input" class="schedule-modal__label"></label>
+          <div class="schedule-promo__row">
+            <input id="promo-code-input" class="schedule-modal__input schedule-promo__input" type="text"
+              autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="30"
+              aria-describedby="promo-status" />
+            <button id="promo-apply-btn" class="schedule-promo__btn" type="button"></button>
+          </div>
+          <p id="promo-status" class="schedule-promo__status" role="status" aria-live="polite" hidden></p>
+        </div>
+
         <!-- Order total (delivery fee added below the free-delivery threshold) -->
         <div id="schedule-summary" class="schedule-summary" hidden>
           <div class="schedule-summary__row">
             <span data-ordering-text="subtotal_label"></span>
             <span id="summary-subtotal"></span>
+          </div>
+          <div class="schedule-summary__row schedule-summary__row--discount" id="summary-discount-row" hidden>
+            <span id="summary-discount-label"></span>
+            <span id="summary-discount"></span>
           </div>
           <div class="schedule-summary__row" id="summary-delivery-row" hidden>
             <span data-ordering-text="delivery_fee_label"></span>

@@ -88,6 +88,10 @@ Sur le plat de votre choix, changez `"is_signature": false` en `"is_signature": 
 
 Dans la section `"contact"`, trouvez `"phone_e164"` et remplacez le numéro. Utilisez le format international (ex : `"+33612345678"`).
 
+#### Codes promo
+
+Les codes promo ne sont **pas** dans ce site (il est public) : ils se gèrent dans l'onglet **« Codes »** de votre Google Sheet des commandes. Une ligne par code : le code, `%` ou `€`, la valeur, la commande minimum, la date d'expiration, le nombre maximum d'utilisations, et la case **Actif** à cocher. Le client tape le code dans la fenêtre de commande, le site le vérifie, et la remise apparaît dans le total et dans le message WhatsApp. Chaque commande avec un code est notée dans le tableur (colonnes « Code promo » et « Remise »). Mode d'emploi complet : `doc/ORDER_LOG_SETUP.md`, section 5. Pour masquer le champ « Code promo », mettez `"enable_discount_codes": false` dans `"settings"` → `"ordering"`.
+
 #### Mode sombre / mode clair
 
 Le site s'affiche en **mode sombre** par défaut. Pour changer le thème par défaut, dans `"settings"`, mettez `"default_theme": "dark"` ou `"default_theme": "light"`. Les visiteurs peuvent aussi changer de thème avec le bouton soleil/lune en haut de la page ; leur choix est mémorisé sur leur appareil et l'emporte sur le thème par défaut. Le menu PDF reste toujours en couleurs claires.
@@ -326,6 +330,10 @@ On the dish of your choice, change `"is_signature": false` to `"is_signature": t
 #### Change the WhatsApp number
 
 In the `"contact"` section, find `"phone_e164"` and replace the number. Use international format (e.g. `"+33612345678"`).
+
+#### Promo codes
+
+Promo codes are **not** stored in this site (it is public): you manage them in the **"Codes"** tab of your order Google Sheet. One row per code: the code, `%` or `€`, the value, the minimum order, the expiry date, the maximum number of uses, and the **Actif** checkbox. The customer types the code in the order pop-up, the site checks it, and the discount appears in the total and in the WhatsApp message. Every order with a code is recorded in the sheet ("Code promo" and "Remise" columns). Full guide: `doc/ORDER_LOG_SETUP.md`, section 5. To hide the promo field, set `"enable_discount_codes": false` in `"settings"` → `"ordering"`.
 
 #### Dark mode / light mode
 

@@ -3741,7 +3741,10 @@ img {
     font-size: 0.85rem;
     text-align: center;
     cursor: pointer;
-    transition: border-color 0.2s var(--ease), background 0.2s var(--ease), color 0.2s var(--ease);
+    transition:
+        border-color 0.2s var(--ease),
+        background 0.2s var(--ease),
+        color 0.2s var(--ease);
 }
 
 .sides-choice input {
@@ -3795,6 +3798,101 @@ img {
 .schedule-summary__row .is-free {
     font-weight: 700;
     color: #2e7d32;
+}
+
+.schedule-summary__row--discount {
+    font-weight: 700;
+    color: #2e7d32;
+}
+
+[data-theme='dark'] .schedule-summary__row--discount,
+[data-theme='dark'] .schedule-summary__row .is-free {
+    color: #81c784;
+}
+
+/* ── Promo code (schedule modal) ──────────────────────────────────────────── */
+
+.schedule-promo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.schedule-promo[hidden],
+.schedule-promo__status[hidden] {
+    display: none;
+}
+
+.schedule-promo__row {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.schedule-promo__input {
+    flex: 1;
+    min-width: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.schedule-promo__input::placeholder {
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.schedule-promo__input[readonly] {
+    border-color: #2e7d32;
+    background: rgba(46, 125, 50, 0.08);
+}
+
+.schedule-promo__input[aria-invalid='true'] {
+    border-color: #dc2626;
+}
+
+.schedule-promo__btn {
+    flex-shrink: 0;
+    padding: 0 1rem;
+    border: 1.5px solid var(--saffron);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--accent);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s var(--ease);
+}
+
+.schedule-promo__btn:hover:not(:disabled) {
+    background: rgba(201, 165, 92, 0.12);
+}
+
+.schedule-promo__btn:disabled {
+    opacity: 0.5;
+    cursor: wait;
+}
+
+.schedule-promo__status {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+.schedule-promo__status[data-kind='success'] {
+    color: #2e7d32;
+    font-weight: 600;
+}
+
+.schedule-promo__status[data-kind='error'] {
+    color: #dc2626;
+}
+
+[data-theme='dark'] .schedule-promo__status[data-kind='success'] {
+    color: #81c784;
+}
+
+[data-theme='dark'] .schedule-promo__status[data-kind='error'] {
+    color: #f87171;
 }
 
 .schedule-summary__total {

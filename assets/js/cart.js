@@ -263,7 +263,7 @@ function generateOrderRef() {
 // Sheet row data. Deliberately contains no name, phone or street address —
 // only postcode + town for planning delivery rounds (see the privacy policy).
 function buildOrderLogPayload(items, dateVal, timeVal, fulfillment, source, orderRef) {
-    const totals = computeOrderTotals(items, fulfillment?.mode);
+    const totals = computeOrderTotals(items, fulfillment?.mode, fulfillment?.promo);
     const money = (n) => (totals.hasPrice ? Number(n.toFixed(2)) : null);
     const isDelivery = fulfillment?.mode === 'delivery';
     return {
@@ -278,6 +278,9 @@ function buildOrderLogPayload(items, dateVal, timeVal, fulfillment, source, orde
         subtotal: money(totals.subtotal),
         deliveryFee: money(totals.deliveryFee),
         totalAmount: money(totals.total),
+        // Re-checked by the Apps Script, which also counts the use.
+        discountCode: totals.promoCode,
+        discountAmount: totals.discount ? money(totals.discount) : null,
         postcode: isDelivery ? fulfillment.postcode : '',
         city: isDelivery ? fulfillment.city : '',
         language: lang,
@@ -547,30 +550,179 @@ function getDeliveryPricing() {
     return { fee: num(o.delivery_fee_eur, 3), threshold: num(o.free_delivery_threshold_eur, 35) };
 }
 
-// Single source of truth for the popup summary and the WhatsApp message.
+// Discount from a verified promo code ({ code, type: 'percent'|'fixed', value, minOrder }).
+function computeDiscount(subtotal, promo) {
+    if (!promo || subtotal <= 0 || subtotal < (promo.minOrder || 0)) return 0;
+    const raw = promo.type === 'percent' ? (subtotal * promo.value) / 100 : promo.value;
+    return Math.round(Math.min(raw, subtotal) * 100) / 100;
+}
+
+// Single source of truth for the popup summary, the WhatsApp message and the sheet.
 // items: [{ qty, name, unitPrice|null }]; mode: 'collection' | 'delivery'
-function computeOrderTotals(items, mode) {
+// The free-delivery threshold applies to the amount *after* the discount.
+function computeOrderTotals(items, mode, promo = null) {
     const subtotal = items.reduce((s, i) => s + (i.unitPrice ?? 0) * i.qty, 0);
     const hasPrice = items.some((i) => i.unitPrice != null) && subtotal > 0;
+    const discount = hasPrice ? computeDiscount(subtotal, promo) : 0;
+    const afterDiscount = subtotal - discount;
     const { fee, threshold } = getDeliveryPricing();
     const isDelivery = mode === 'delivery';
-    const deliveryFee = isDelivery && hasPrice && subtotal < threshold ? fee : 0;
+    const belowThreshold = isDelivery && hasPrice && afterDiscount < threshold;
+    const deliveryFee = belowThreshold ? fee : 0;
     return {
         subtotal,
         hasPrice,
+        discount,
+        promoCode: discount ? promo.code : '',
         isDelivery,
         deliveryFee,
-        total: subtotal + deliveryFee,
-        missingForFree: isDelivery && hasPrice && subtotal < threshold ? threshold - subtotal : 0,
+        total: afterDiscount + deliveryFee,
+        missingForFree: belowThreshold ? threshold - afterDiscount : 0,
         threshold,
     };
+}
+
+// ── Promo codes ───────────────────────────────────────────────────────────────
+// Codes are checked by the Google Apps Script (private "Codes" tab of the order
+// sheet) — never stored in this public repo. See doc/ORDER_LOG_SETUP.md.
+
+let _appliedPromo = null;
+
+const promoStrings = () => C.ui_strings?.ordering?.promo || {};
+const promoEnabled = () =>
+    !!(C.settings?.ordering?.enable_discount_codes && C.settings?.order_log?.m4Rx);
+
+const formatPromoValue = (promo) =>
+    promo.type === 'percent'
+        ? `${promo.value}${lang === 'fr' ? ' %' : '%'}`
+        : formatEuro(promo.value);
+
+async function checkPromoCode(code, subtotal) {
+    const o = C.settings.order_log;
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 12000);
+    try {
+        // text/plain = no CORS preflight (Apps Script can't answer one).
+        const res = await fetch(o.m4Rx, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({
+                action: 'check_code',
+                code,
+                subtotal: Number(subtotal.toFixed(2)),
+                secret: o.k7Qz || '',
+            }),
+            signal: controller.signal,
+        });
+        return await res.json();
+    } finally {
+        clearTimeout(timer);
+    }
+}
+
+function setPromoStatus(text, kind) {
+    const el = $('promo-status');
+    if (!el) return;
+    el.textContent = text || '';
+    el.hidden = !text;
+    el.dataset.kind = kind || '';
+}
+
+function updatePromoUI() {
+    const input = $('promo-code-input');
+    const applyBtn = $('promo-apply-btn');
+    const p = promoStrings();
+    if (input) input.readOnly = !!_appliedPromo;
+    if (applyBtn) {
+        applyBtn.disabled = false;
+        applyBtn.textContent = t(_appliedPromo ? p.remove : p.apply);
+    }
+}
+
+function resetPromo() {
+    _appliedPromo = null;
+    const p = promoStrings();
+    const block = $('schedule-promo');
+    const totals = computeOrderTotals(_scheduleItems, getFulfillmentMode());
+    if (block) block.hidden = !promoEnabled() || !totals.hasPrice;
+    const label = $('promo-label');
+    if (label) label.textContent = t(p.label);
+    const input = $('promo-code-input');
+    if (input) {
+        input.value = '';
+        input.placeholder = t(p.placeholder);
+        input.removeAttribute('aria-invalid');
+    }
+    setPromoStatus('');
+    updatePromoUI();
+}
+
+async function onPromoApplyClick() {
+    const input = $('promo-code-input');
+    const applyBtn = $('promo-apply-btn');
+    const p = promoStrings();
+    const errors = p.errors || {};
+
+    if (_appliedPromo) {
+        // "Remove"
+        _appliedPromo = null;
+        if (input) input.value = '';
+        setPromoStatus('');
+        updatePromoUI();
+        renderScheduleSummary();
+        input?.focus();
+        return;
+    }
+
+    const code = (input?.value || '').trim().toUpperCase();
+    if (!code) return input?.focus();
+    input.value = code;
+    input.removeAttribute('aria-invalid');
+    applyBtn.disabled = true;
+    setPromoStatus(t(p.checking), 'info');
+
+    const { subtotal } = computeOrderTotals(_scheduleItems, getFulfillmentMode());
+    let result;
+    try {
+        result = await checkPromoCode(code, subtotal);
+    } catch (_) {
+        result = { valid: false, reason: 'network' };
+    }
+
+    if (result?.valid && ['percent', 'fixed'].includes(result.type) && result.value > 0) {
+        _appliedPromo = {
+            code: result.code || code,
+            type: result.type,
+            value: Number(result.value),
+            minOrder: Number(result.minOrder) || 0,
+        };
+        setPromoStatus(
+            (t(p.applied) || '')
+                .replace('{code}', _appliedPromo.code)
+                .replace('{value}', formatPromoValue(_appliedPromo)),
+            'success',
+        );
+    } else {
+        const reason = result?.reason && errors[result.reason] ? result.reason : 'invalid';
+        const reasonKey = result?.status === 'rate_limited' ? 'rate_limited' : reason;
+        setPromoStatus(
+            (t(errors[reasonKey]) || '').replace(
+                '{amount}',
+                formatEuro(Number(result?.minOrder) || 0),
+            ),
+            'error',
+        );
+        input.setAttribute('aria-invalid', 'true');
+    }
+    updatePromoUI();
+    renderScheduleSummary();
 }
 
 // Popup summary: subtotal, delivery line (fee or "Free") and total.
 function renderScheduleSummary() {
     const box = $('schedule-summary');
     if (!box) return;
-    const totals = computeOrderTotals(_scheduleItems, getFulfillmentMode());
+    const totals = computeOrderTotals(_scheduleItems, getFulfillmentMode(), _appliedPromo);
     box.hidden = !totals.hasPrice;
     if (!totals.hasPrice) return;
 
@@ -581,6 +733,16 @@ function renderScheduleSummary() {
     };
     set('summary-subtotal', formatEuro(totals.subtotal));
     set('summary-total', formatEuro(totals.total));
+
+    const discountRow = $('summary-discount-row');
+    if (discountRow) discountRow.hidden = !totals.discount;
+    if (totals.discount) {
+        set(
+            'summary-discount-label',
+            (t(promoStrings().summary_label) || '').replace('{code}', totals.promoCode),
+        );
+        set('summary-discount', `−${formatEuro(totals.discount)}`);
+    }
 
     const deliveryRow = $('summary-delivery-row');
     if (deliveryRow) deliveryRow.hidden = !totals.isDelivery;
@@ -608,17 +770,24 @@ function buildWhatsAppOrderMessage(items, dateStr, timeStr, fulfillment, orderRe
     const m = C.ui_strings?.ordering?.whatsapp_message || {};
     const isDelivery = fulfillment?.mode === 'delivery';
     const sep = lang === 'fr' ? ' : ' : ': '; // French typography puts a space before ":"
-    const totals = computeOrderTotals(items, fulfillment?.mode);
+    const totals = computeOrderTotals(items, fulfillment?.mode, fulfillment?.promo);
 
-    // "Order cost" section. Collection: just the total.
-    // Delivery: subtotal + delivery line (fee or free) + total.
+    // "Order cost" section. Collection without a code: just the total.
+    // Otherwise: subtotal, promo-code line, delivery line (fee or free), total.
     const costSection = !totals.hasPrice
         ? ''
         : [
               `*${t(m.cost_title)}*`,
+              ...(isDelivery || totals.discount
+                  ? [`${t(m.subtotal_label)}${sep}${formatEuro(totals.subtotal)}`]
+                  : []),
+              ...(totals.discount
+                  ? [
+                        `${(t(m.discount_label) || '{code}').replace('{code}', totals.promoCode)}${sep}−${formatEuro(totals.discount)}`,
+                    ]
+                  : []),
               ...(isDelivery
                   ? [
-                        `${t(m.subtotal_label)}${sep}${formatEuro(totals.subtotal)}`,
                         `${t(m.delivery_fee_label)}${sep}${totals.deliveryFee ? formatEuro(totals.deliveryFee) : t(m.free_label)}`,
                     ]
                   : []),
@@ -717,6 +886,7 @@ function openScheduleModal(onConfirm, items = []) {
 
     applyFulfillmentLabels();
     resetFulfillmentForm();
+    resetPromo();
     renderScheduleSummary();
 
     const dateInput = $('schedule-date-input');
@@ -807,6 +977,18 @@ function initScheduleModal() {
         e.target.value = e.target.value.replace(/\D/g, '').slice(0, 5);
     });
 
+    $('promo-apply-btn')?.addEventListener('click', onPromoApplyClick);
+    $('promo-code-input')?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            onPromoApplyClick();
+        }
+    });
+    $('promo-code-input')?.addEventListener('input', (e) => {
+        e.target.removeAttribute('aria-invalid');
+        if ($('promo-status')?.dataset.kind === 'error') setPromoStatus('');
+    });
+
     $('schedule-confirm-btn')?.addEventListener('click', () => {
         const dateInput = $('schedule-date-input');
         const errorEl = $('schedule-error');
@@ -886,6 +1068,16 @@ function initScheduleModal() {
             else clearDeliveryDetails();
             Object.assign(fulfillment, details);
         }
+
+        // A code typed but not applied would silently be ignored — ask first.
+        const promoInput = $('promo-code-input');
+        if (promoEnabled() && !_appliedPromo && promoInput?.value.trim()) {
+            setPromoStatus(t(promoStrings().errors?.not_applied), 'error');
+            promoInput.setAttribute('aria-invalid', 'true');
+            promoInput.focus();
+            return;
+        }
+        fulfillment.promo = _appliedPromo;
 
         const callback = _scheduleConfirmCallback;
         const dateVal = dateInput.value;
