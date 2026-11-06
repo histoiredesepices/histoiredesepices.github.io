@@ -77,7 +77,7 @@
                 "fr": "Croquette de poulet aux épices indiennes. (2 pcs)",
                 "en": "Chicken cutlets seasoned with Indian spices. (2 pcs)"
             },
-            "image": "assets/menu/vegetable-cutlet.jpg",
+            "image": "assets/menu/Chicken cutlet.jpeg",
             "image_alt": { "fr": "Croquette de légumes", "en": "Vegetable croquette" },
             "tags": ["halal"],
             "is_signature": false,
@@ -1024,6 +1024,57 @@
             "allergens": ["gluten", "dairy", "nuts"],
             "spice_level": 0
         },
+        
+        {
+            "id": "Déssert-Spécial-DIWALI_Halwa-carottes",
+            "category": "desserts",
+            "name": { "fr": "DIWALI Spécial Halwa Carottes", "en": "DIWALI Special Carrot Halwa" },
+            "description": {
+                "fr": "Carottes râpées lentement mijotées dans du lait, du sucre et du ghee, parfumées à la cardamome et garnies de fruits secs.",
+                "en": "Grated carrots slowly simmered in milk, sugar and ghee, scented with cardamom and topped with dried fruits."
+            },
+            "image": "assets/menu/Carrot Halwa Diwali.jpeg",
+            "image_alt": {
+                "fr": "Halwa Carottes aux fruits secs",
+                "en": "Carrot Halwa with dried fruits"
+            },
+            "tags": ["vegetarian"],
+            "is_signature": false,
+            "is_new": false,
+            "is_spicy": false,
+            "is_available": true,
+            "price_eur": 10,
+            "discount_percent": null,
+            "calories_kcal": null,
+            "allergens": ["dairy", "nuts"],
+            "spice_level": 0
+        },
+        
+         {
+            "id": "Gulab-Jamun",
+            "category": "desserts",
+            "name": { "fr": "DIWALI Spécial Gulab Jamun", "en": "DIWALI Special Gulab Jamun" },
+            "description": {
+                "fr": "De délicieuses boules de lait,frites et délicatement imbibé d'un sirop parfume au safran à la cardamome et à l'eau de rose.Faites maison",
+                "en": "Delicious milk balls, deep-fried and delicately soaked in a syrup infused with saffron, cardamom, and rose water. Homemade."
+            },
+            "image": "assets/menu/Gulab Jamun Diwali.jpeg",
+            "image_alt": {
+                "fr": "Halwa Carottes aux fruits secs",
+                "en": "Carrot Halwa with dried fruits"
+            },
+            "tags": ["vegetarian"],
+            "is_signature": false,
+            "is_new": false,
+            "is_spicy": false,
+            "is_available": true,
+            "price_eur": 8,
+            "discount_percent": null,
+            "calories_kcal": null,
+            "allergens": ["dairy", "nuts"],
+            "spice_level": 0
+        },
+
 
         {
             "id": "pav-bhaji",
