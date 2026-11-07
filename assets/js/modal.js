@@ -56,6 +56,15 @@ function openDishModal(dishId, triggerEl) {
         badgesEl.innerHTML = html;
     }
 
+    // ── Header: category (icon + label from menu.json) ───────────────────────
+    const categoryEl = $('modal-category');
+    if (categoryEl) {
+        const cat = (C.menu?.categories || []).find((c) => c.id === dish.category);
+        categoryEl.innerHTML = cat
+            ? `${cat.icon ? `<span class="material-symbols-outlined" aria-hidden="true">${esc(cat.icon)}</span>` : ''}<span>${esc(t(cat.label))}</span>`
+            : '';
+    }
+
     // ── Name & description ───────────────────────────────────────────────────
     const nameEl = $('modal-dish-name');
     if (nameEl) nameEl.textContent = name;
@@ -187,8 +196,7 @@ function openDishModal(dishId, triggerEl) {
     // ── Show modal ───────────────────────────────────────────────────────────
     const modal = $('dish-modal');
     if (modal) {
-        const closeLabel = modal.querySelector('.dish-modal__close-label');
-        if (closeLabel) closeLabel.textContent = lang === 'fr' ? 'Fermer' : 'Close';
+        $('modal-close')?.setAttribute('aria-label', lang === 'fr' ? 'Fermer' : 'Close');
         _modalPrevFocus = triggerEl || document.activeElement;
         modal.hidden = false;
         document.body.style.overflow = 'hidden';

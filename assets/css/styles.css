@@ -2665,6 +2665,7 @@ img {
     width: 100%;
     max-width: 560px;
     max-height: 92vh;
+    max-height: 92dvh; /* visible height on mobile (excludes browser bars) */
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -2675,6 +2676,8 @@ img {
     overflow-y: auto;
     overflow-x: hidden;
     flex: 1;
+    min-height: 0;
+    overscroll-behavior: contain;
     scrollbar-width: thin;
     scrollbar-color: var(--border) transparent;
 }
@@ -2690,36 +2693,63 @@ img {
     }
 }
 
+/* Fixed header (same style as the order pop-ups): category + round close button. */
+.dish-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 1rem 0.85rem 1.5rem;
+    background: var(--primary);
+    border-bottom: 1px solid rgba(201, 165, 92, 0.35);
+    flex-shrink: 0;
+}
+
+.dish-modal__header-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--saffron-light);
+}
+
+.dish-modal__header-title span:last-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dish-modal__header-title .material-symbols-outlined {
+    font-size: 1.15rem;
+    flex-shrink: 0;
+}
+
 .dish-modal__close {
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    width: 100%;
-    padding: 1rem 1.5rem;
-    background: var(--primary);
-    color: white;
+    background: rgba(255, 255, 255, 0.15);
     border: none;
-    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    border-radius: 50%;
     cursor: pointer;
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
+    color: white;
     flex-shrink: 0;
     transition: background 0.2s var(--ease);
 }
 
 .dish-modal__close:hover {
-    background: #3d0410;
+    background: rgba(255, 255, 255, 0.3);
 }
 
 .dish-modal__close .material-symbols-outlined {
-    font-size: 1.1rem;
-}
-
-.dish-modal__close-label {
-    font-family: var(--font-body);
+    font-size: 1.25rem;
 }
 
 .dish-modal__image-wrap {
@@ -2728,7 +2758,6 @@ img {
     min-height: 260px;
     max-height: 260px;
     overflow: hidden;
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     background: var(--light-gray);
     flex-shrink: 0;
 }
@@ -2901,6 +2930,7 @@ img {
 
     .dish-modal__card {
         max-height: 95vh;
+        max-height: 95dvh;
         border-radius: var(--radius-lg) var(--radius-lg) 0 0;
         animation: modalInMobile 0.32s var(--ease-bounce) forwards;
         align-self: flex-end;
