@@ -1075,59 +1075,7 @@
             "spice_level": 0
         },
         
-        {
-            "id": "Déssert-Spécial-DIWALI_Halwa-carottes",
-            "category": "desserts",
-            "name": { "fr": "DIWALI Spécial Halwa Carottes", "en": "DIWALI Special Carrot Halwa" },
-            "description": {
-                "fr": "Carottes râpées lentement mijotées dans du lait, du sucre et du ghee, parfumées à la cardamome et garnies de fruits secs.",
-                "en": "Grated carrots slowly simmered in milk, sugar and ghee, scented with cardamom and topped with dried fruits."
-            },
-            "image": "assets/menu/Carrot Halwa Diwali.jpeg",
-            "image_alt": {
-                "fr": "Halwa Carottes aux fruits secs",
-                "en": "Carrot Halwa with dried fruits"
-            },
-            "tags": ["vegetarian"],
-            "is_signature": true,
-            "is_new": false,
-            "is_spicy": false,
-            "is_available": true,
-            "needs_side": false,
-            "price_eur": 10,
-            "discount_percent": null,
-            "calories_kcal": null,
-            "allergens": ["dairy", "nuts"],
-            "spice_level": 0
-        },
         
-         {
-            "id": "Gulab-Jamun",
-            "category": "desserts",
-            "name": { "fr": "DIWALI Spécial Gulab Jamun", "en": "DIWALI Special Gulab Jamun" },
-            "description": {
-                "fr": "De délicieuses boules de lait,frites et délicatement imbibé d'un sirop parfume au safran à la cardamome et à l'eau de rose.Faites maison",
-                "en": "Delicious milk balls, deep-fried and delicately soaked in a syrup infused with saffron, cardamom, and rose water. Homemade."
-            },
-            "image": "assets/menu/Gulab Jamun Diwali.jpeg",
-            "image_alt": {
-                "fr": "Halwa Carottes aux fruits secs",
-                "en": "Carrot Halwa with dried fruits"
-            },
-            "tags": ["vegetarian"],
-            "is_signature": true,
-            "is_new": false,
-            "is_spicy": false,
-            "is_available": true,
-            "needs_side": false,
-            "price_eur": 8,
-            "discount_percent": null,
-            "calories_kcal": null,
-            "allergens": ["dairy", "nuts"],
-            "spice_level": 0
-        },
-
-
         {
             "id": "pav-bhaji",
             "category": "combo_meal",
@@ -1291,94 +1239,8 @@
             "calories_kcal": null,
             "allergens": [],
             "spice_level": 0
-        },
-        
-        {
-            "id": "Diwali-Menu-Mixed",
-            "category": "combo_meal",
-            "name": {
-                "fr": "Menu Mixte Spécial-DIWALI",
-                "en": "DIWALI special Menu-Mixed"
-            },
-            "description": {
-                "fr": "Un duo gourmand composé de mutton yakhni pulao, de shahi paneer, de 2 naans",
-                "en": "A delicious duo consisting of mutton yakhni pulao, shahi paneer, and 2 naans"
-            },
-            "image": "assets/menu/Diwali mixed.jpeg",
-            "image_alt": {
-                "fr": "Idiyappam avec ragoût non-végétarien au lait de coco",
-                "en": "Idiyappam with non-vegetarian coconut milk stew"
-            },
-            "tags": ["halal"],
-            "is_signature": true,
-            "is_new": false,
-            "is_spicy": false,
-            "is_available": true,
-            "needs_side": false,
-            "price_eur": 35,
-            "discount_percent": null,
-            "calories_kcal": null,
-            "allergens": [],
-            "spice_level": 0
-        },
-        
-         {
-            "id": "Diwali-Menu-Nonvegetarian",
-            "category": "combo_meal",
-            "name": {
-                "fr": "DIWALI Special-Menu Non Végétarien",
-                "en": "DIWALI Special-Menu Non Vegetarian"
-            },
-            "description": {
-                "fr": "Un duo gourmand composé de Chicken Korma,Chicken pasanda, de 2 naans et de riz",
-                "en": "A delicious duo consisting of Chicken Korma, Chicken Pasanda, 2 naans and rice"
-            },
-            "image": "assets/menu/Diwali non veg.jpeg",
-            "image_alt": {
-                "fr": "Idiyappam avec ragoût non-végétarien au lait de coco",
-                "en": "Idiyappam with non-vegetarian coconut milk stew"
-            },
-            "tags": ["halal"],
-            "is_signature": true,
-            "is_new": false,
-            "is_spicy": false,
-            "is_available": true,
-            "needs_side": false,
-            "price_eur": 34,
-            "discount_percent": null,
-            "calories_kcal": null,
-            "allergens": [],
-            "spice_level": 0
-        },
-
-         {
-            "id": "Diwali-Menu-Vegetarian",
-            "category": "combo_meal",
-            "name": {
-                "fr": "DIWALI Special-Menu Végétarien",
-                "en": "DIWALI Special-Menu Vegetarian"
-            },
-            "description": {
-                "fr": "Un duo gourmand composé de Navratan Korma,De malai kofta, de 2 naan maison",
-                "en": "A delicious duo consisting of Navratan Korma,Malai kofta, 2 naans "
-            },
-            "image": "assets/menu/Diwali veg.jpeg",
-            "image_alt": {
-                "fr": "Idiyappam avec ragoût non-végétarien au lait de coco",
-                "en": "Idiyappam with non-vegetarian coconut milk stew"
-            },
-            "tags": ["vegetarian"],
-            "is_signature": true,
-            "is_new": false,
-            "is_spicy": false,
-            "is_available": true,
-            "needs_side": false,
-            "price_eur": 31,
-            "discount_percent": null,
-            "calories_kcal": null,
-            "allergens": [],
-            "spice_level": 0
         }
-
+        
+        
     ]
 }
