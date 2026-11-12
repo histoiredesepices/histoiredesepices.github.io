@@ -154,7 +154,7 @@
         "items": [
             {
                 "icon": "restaurant",
-                "title": { "fr": "Traiteur à Domicile", "en": "Home Catering" },
+                "title": { "fr": "Traiteur", "en": "Catering" },
                 "subtitle": {
                     "fr": "Pour tous vos événements privés et professionnels",
                     "en": "For all your private and professional events"
